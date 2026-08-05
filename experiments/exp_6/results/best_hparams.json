@@ -1,0 +1,8 @@
+{
+    "representation": "embedkit_sup",
+    "n_neighbors": 3,
+    "weights": "uniform",
+    "metric": "euclidean",
+    "mean_macro_f1": 0.5469403852476575,
+    "frozen_target_dim": 384
+}

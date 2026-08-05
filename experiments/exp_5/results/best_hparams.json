@@ -1,0 +1,6 @@
+{
+    "n_neighbors": 3,
+    "weights": "uniform",
+    "metric": "euclidean",
+    "mean_macro_f1": 0.6217549252014021
+}

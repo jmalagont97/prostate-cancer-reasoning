@@ -1,0 +1,21 @@
+{
+  "total_cases": 195,
+  "file_presence": {
+    "prostate-biopsy-decision.json": 91,
+    "prostate-biopsy-decision-reasoning.json": 91,
+    "prostate-biopsy-decision-clinical-data.json": 195,
+    "prostate-modality-level-neural-representations.json": 191,
+    "structured-prompt.json": 195
+  },
+  "active_sources": {
+    "MRI Embedding": 191,
+    "Structured Clinical Notes": 195,
+    "Clinical Lab Data": 195,
+    "Biopsy Label": 91
+  },
+  "label_distribution": {
+    "yes": 56,
+    "no": 35,
+    "unlabeled": 104
+  }
+}
