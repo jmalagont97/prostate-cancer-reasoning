@@ -1,0 +1,9 @@
+{
+    "representation": "embedkit_unsup",
+    "k": 3,
+    "weights": "uniform",
+    "metric": "euclidean",
+    "mccv_mean_macro_f1": 0.5422328321212896,
+    "mccv_std_macro_f1": 0.11299042928892321,
+    "mccv_mean_accuracy": 0.5877777777777777
+}

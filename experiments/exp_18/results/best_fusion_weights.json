@@ -1,0 +1,11 @@
+{
+    "w_tabular_fuzzy": 0.05,
+    "w_mri_hard": 0.5,
+    "w_text_hard": 0.45,
+    "macro_f1": 0.6712643678160919,
+    "accuracy": 0.7045454545454546,
+    "sensitivity": 0.8333333333333334,
+    "specificity": 0.5,
+    "auroc": 0.7333877995642701,
+    "brier_score": 0.2151352390963902
+}
