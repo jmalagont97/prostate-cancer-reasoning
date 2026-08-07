@@ -1,5 +1,5 @@
 # Experiment Design: Clinical Feature Relevance Attribution via SHAP Shapley Values
-**Experiment**: experiments/exp_21/ · **Project**: pathology-reasoning · **Date**: 2026-08-05 · **Status**: Draft
+**Experiment**: experiments/exp_21/ · **Project**: pathology-reasoning · **Date**: 2026-08-05 · **Status**: Complete
 
 ---
 
