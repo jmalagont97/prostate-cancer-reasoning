@@ -1,0 +1,64 @@
+{
+  "num_input_rows": 195,
+  "num_target_rows": 195,
+  "input_num_columns": 1077,
+  "target_num_columns": 27,
+  "collection_columns_found": [],
+  "text_columns_present": [
+    "txt_comorbidities",
+    "txt_allergies",
+    "txt_chief_complaint",
+    "txt_history",
+    "txt_physical_examination",
+    "txt_prompt_summary_notes",
+    "txt_full_prompt_narrative",
+    "txt_family_history_narrative",
+    "txt_radiology_report",
+    "txt_previous_notes",
+    "txt_psa_trend_summary",
+    "txt_laboratory_results_summary",
+    "txt_consolidated_ehr_narrative"
+  ],
+  "official_10_variables_check": {
+    "age": {
+      "present_in_inputs": true,
+      "present_in_targets": true
+    },
+    "fh": {
+      "present_in_inputs": true,
+      "present_in_targets": true
+    },
+    "cspca": {
+      "present_in_inputs": true,
+      "present_in_targets": true
+    },
+    "pirads": {
+      "present_in_inputs": true,
+      "present_in_targets": true
+    },
+    "vol": {
+      "present_in_inputs": true,
+      "present_in_targets": true
+    },
+    "psa": {
+      "present_in_inputs": true,
+      "present_in_targets": true
+    },
+    "comorbidity": {
+      "present_in_inputs": true,
+      "present_in_targets": true
+    },
+    "psad": {
+      "present_in_inputs": true,
+      "present_in_targets": true
+    },
+    "dre": {
+      "present_in_inputs": true,
+      "present_in_targets": true
+    },
+    "bx": {
+      "present_in_inputs": true,
+      "present_in_targets": true
+    }
+  }
+}
