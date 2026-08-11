@@ -1,0 +1,12 @@
+{
+  "condition": "decision_rf",
+  "target": "decision",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "rf",
+  "f1_mean": 0.615,
+  "f1_std": 0.039,
+  "n_folds": 50,
+  "roc_auc_mean": 0.619,
+  "pr_auc_mean": 0.784,
+  "class_imbalance_handling": "class_weight (balanced)"
+}

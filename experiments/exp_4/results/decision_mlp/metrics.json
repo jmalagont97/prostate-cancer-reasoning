@@ -1,0 +1,12 @@
+{
+  "condition": "decision_mlp",
+  "target": "decision",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "mlp",
+  "f1_mean": 0.728,
+  "f1_std": 0.011,
+  "n_folds": 50,
+  "roc_auc_mean": 0.473,
+  "pr_auc_mean": 0.593,
+  "class_imbalance_handling": "none"
+}

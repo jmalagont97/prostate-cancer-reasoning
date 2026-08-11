@@ -1,0 +1,19 @@
+{
+  "condition": "decision_logistic_count",
+  "target": "decision",
+  "features": "11 official Task-1 variables",
+  "comorbidity_treatment": "count",
+  "model": "logistic_regression",
+  "f1_mean": 0.678,
+  "f1_std": 0.105,
+  "n_folds": 50,
+  "roc_auc": 0.69,
+  "pr_auc": 0.814,
+  "n": 91,
+  "positive_rate": 0.6154,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note -- same root cause (104/195 unlabeled cases silently coded as y=0), fixed via train_decision.load_labeled_data().",
+    "old_wrong_values": {"n": 195, "f1_mean": 0.473, "roc_auc": 0.626, "pr_auc": 0.414}
+  }
+}

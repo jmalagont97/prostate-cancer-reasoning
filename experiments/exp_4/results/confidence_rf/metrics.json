@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_rf",
+  "target": "confidence",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "rf",
+  "ordinal_distance_mean": 0.747,
+  "ordinal_distance_std": 0.055,
+  "class_imbalance_handling": "class_weight (balanced)"
+}

@@ -1,0 +1,22 @@
+{
+  "condition": "weights_logistic",
+  "model": "OneVsRestClassifier(LogisticRegression(solver=liblinear, class_weight=balanced, C=0.5)) x 10 factors",
+  "features": "clinical",
+  "n": 91,
+  "cv": "repeated out-of-fold KFold(n_splits=5), n_repeats=8",
+  "mean_ordinal_error": 0.574,
+  "mean_decisive_set_f1": 0.451,
+  "per_factor": {
+    "age":         {"ordinal_error": 0.589, "decisive_set_f1": 0.622},
+    "fh":          {"ordinal_error": 0.488, "decisive_set_f1": 0.051},
+    "cspca":       {"ordinal_error": 0.670, "decisive_set_f1": 0.182},
+    "pirads":      {"ordinal_error": 0.426, "decisive_set_f1": 0.975},
+    "vol":         {"ordinal_error": 0.540, "decisive_set_f1": 0.258},
+    "psa":         {"ordinal_error": 0.573, "decisive_set_f1": 0.709},
+    "comorbidity": {"ordinal_error": 0.569, "decisive_set_f1": 0.115},
+    "psad":        {"ordinal_error": 0.743, "decisive_set_f1": 0.408},
+    "dre":         {"ordinal_error": 0.429, "decisive_set_f1": 0.409},
+    "bx":          {"ordinal_error": 0.716, "decisive_set_f1": 0.779}
+  },
+  "note": "mean ordinal error (0.574) is worse than the per-factor majority baseline (0.401); mean decisive-set F1 (0.451) is better than baseline (0.341). Model beats baseline's ordinal error only on 'pirads'; beats baseline's decisive-set F1 on fh, cspca, vol, comorbidity, psad, dre; underperforms on age, psa, bx where the majority-class guess is already close to correct."
+}

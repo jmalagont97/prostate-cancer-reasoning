@@ -1,0 +1,7 @@
+{
+  "condition": "confidence_baseline",
+  "model": "always predict majority class",
+  "n": 91,
+  "majority_class": "clear",
+  "ordinal_distance_mean": 0.527
+}

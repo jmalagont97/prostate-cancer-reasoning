@@ -1,0 +1,51 @@
+{
+  "condition": "weights_official_rf",
+  "target": "variable_weights",
+  "model": "rf",
+  "scope": "official",
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "mean_ordinal_error": 0.721,
+  "mean_decisive_set_f1": 0.493,
+  "mean_ordinal_error_baseline": 0.413,
+  "mean_decisive_set_f1_baseline": 0.379,
+  "per_factor": {
+    "age": {
+      "ordinal_error": 0.745,
+      "decisive_set_f1": 0.65
+    },
+    "cspca": {
+      "ordinal_error": 0.884,
+      "decisive_set_f1": 0.235
+    },
+    "pirads": {
+      "ordinal_error": 0.602,
+      "decisive_set_f1": 0.942
+    },
+    "vol": {
+      "ordinal_error": 0.642,
+      "decisive_set_f1": 0.447
+    },
+    "psa": {
+      "ordinal_error": 0.793,
+      "decisive_set_f1": 0.513
+    },
+    "comorbidity": {
+      "ordinal_error": 0.668,
+      "decisive_set_f1": 0.055
+    },
+    "psad": {
+      "ordinal_error": 0.868,
+      "decisive_set_f1": 0.376
+    },
+    "dre": {
+      "ordinal_error": 0.596,
+      "decisive_set_f1": 0.452
+    },
+    "bx": {
+      "ordinal_error": 0.688,
+      "decisive_set_f1": 0.764
+    }
+  },
+  "class_imbalance_handling": "class_weight (balanced)"
+}

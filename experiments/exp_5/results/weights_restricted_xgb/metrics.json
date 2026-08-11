@@ -1,0 +1,72 @@
+{
+  "condition": "weights_restricted_xgb",
+  "target": "variable_weights",
+  "model": "xgb",
+  "scope": "restricted",
+  "n_factors_included": 5,
+  "n_factors_skipped": 4,
+  "mean_ordinal_error": 0.711,
+  "mean_decisive_set_f1": 0.382,
+  "mean_ordinal_error_baseline": 0.363,
+  "mean_decisive_set_f1_baseline": 0.0,
+  "per_factor": {
+    "age": {
+      "error": "ValueError: Invalid classes inferred from unique values of `y`.  Expected: [0 1 2], got [1 2 3]",
+      "skipped": true
+    },
+    "cspca": {
+      "ordinal_error": 0.787,
+      "decisive_set_f1": 0.261,
+      "columns": [
+        "cli_cspca"
+      ]
+    },
+    "pirads": {
+      "error": "ValueError: Invalid classes inferred from unique values of `y`.  Expected: [0 1 2], got [0 2 3]",
+      "skipped": true
+    },
+    "vol": {
+      "ordinal_error": 0.516,
+      "decisive_set_f1": 0.421,
+      "columns": [
+        "cli_vol"
+      ]
+    },
+    "psa": {
+      "error": "ValueError: Invalid classes inferred from unique values of `y`.  Expected: [0 1 2], got [1 2 3]",
+      "skipped": true
+    },
+    "comorbidity": {
+      "ordinal_error": 0.495,
+      "decisive_set_f1": 0.231,
+      "columns": [
+        "comorb_cardiometabolic",
+        "comorb_renal",
+        "comorb_bleeding_risk",
+        "comorb_respiratory",
+        "comorb_bph",
+        "comorb_other_unmatched"
+      ]
+    },
+    "psad": {
+      "ordinal_error": 0.868,
+      "decisive_set_f1": 0.383,
+      "columns": [
+        "cli_psad"
+      ]
+    },
+    "dre": {
+      "ordinal_error": 0.89,
+      "decisive_set_f1": 0.612,
+      "columns": [
+        "cli_dre_ordinal",
+        "cli_dre_not_done"
+      ]
+    },
+    "bx": {
+      "error": "ValueError: Invalid classes inferred from unique values of `y`.  Expected: [0 1 2], got [1 2 3]",
+      "skipped": true
+    }
+  },
+  "class_imbalance_handling": "sample_weight (balanced)"
+}

@@ -1,0 +1,19 @@
+{
+  "condition": "weights_baseline",
+  "model": "always predict per-factor majority class",
+  "n": 91,
+  "mean_ordinal_error": 0.401,
+  "mean_decisive_set_f1": 0.341,
+  "per_factor": {
+    "age":         {"ordinal_error": 0.396, "decisive_set_f1": 0.787},
+    "fh":          {"ordinal_error": 0.297, "decisive_set_f1": 0.000},
+    "cspca":       {"ordinal_error": 0.451, "decisive_set_f1": 0.000},
+    "pirads":      {"ordinal_error": 0.527, "decisive_set_f1": 0.994},
+    "vol":         {"ordinal_error": 0.264, "decisive_set_f1": 0.000},
+    "psa":         {"ordinal_error": 0.451, "decisive_set_f1": 0.803},
+    "comorbidity": {"ordinal_error": 0.308, "decisive_set_f1": 0.000},
+    "psad":        {"ordinal_error": 0.484, "decisive_set_f1": 0.000},
+    "dre":         {"ordinal_error": 0.308, "decisive_set_f1": 0.000},
+    "bx":          {"ordinal_error": 0.527, "decisive_set_f1": 0.826}
+  }
+}

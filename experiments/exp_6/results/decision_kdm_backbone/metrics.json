@@ -1,0 +1,10 @@
+{
+  "condition": "decision_kdm_backbone",
+  "target": "decision",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "KDM (memory-based, sigma-only trained) -- shared backbone re-verification",
+  "macro_f1_mean": 0.593,
+  "macro_f1_std": 0.045,
+  "n_folds": 50,
+  "note": "cross-check against exp_3's decision_kdm (macro_f1=0.588) -- same fold seed/hyperparameters, refactored fit/predict split"
+}

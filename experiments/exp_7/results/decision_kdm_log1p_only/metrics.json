@@ -1,0 +1,16 @@
+{
+  "condition": "decision_kdm_log1p_only",
+  "target": "decision",
+  "features": "exp_3 19-column frame, log1p on psa/psad/vol",
+  "model": "KDM (memory-based, sigma-only trained), exp_7 ablation",
+  "fit_kwargs": {
+    "n_epochs": 300,
+    "lr": 0.01,
+    "sigma_mult": 1.0,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+  },
+  "macro_f1_mean": 0.615,
+  "macro_f1_std": 0.032,
+  "n_folds": 50
+}

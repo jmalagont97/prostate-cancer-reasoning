@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_extratrees",
+  "target": "confidence",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "extratrees",
+  "ordinal_distance_mean": 0.778,
+  "ordinal_distance_std": 0.028,
+  "class_imbalance_handling": "class_weight (balanced)"
+}

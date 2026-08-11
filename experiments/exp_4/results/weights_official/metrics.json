@@ -1,0 +1,48 @@
+{
+  "condition": "weights_official",
+  "target": "variable_weights",
+  "features": "exp_4 16-column frame",
+  "model": "OvR logistic regression, all 9 in-scope factors on the same 16-column frame",
+  "mean_ordinal_error": 0.601,
+  "mean_decisive_set_f1": 0.543,
+  "mean_ordinal_error_baseline": 0.413,
+  "mean_decisive_set_f1_baseline": 0.379,
+  "per_factor": {
+    "age": {
+      "ordinal_error": 0.78,
+      "decisive_set_f1": 0.552
+    },
+    "cspca": {
+      "ordinal_error": 0.762,
+      "decisive_set_f1": 0.27
+    },
+    "pirads": {
+      "ordinal_error": 0.424,
+      "decisive_set_f1": 0.966
+    },
+    "vol": {
+      "ordinal_error": 0.501,
+      "decisive_set_f1": 0.41
+    },
+    "psa": {
+      "ordinal_error": 0.673,
+      "decisive_set_f1": 0.628
+    },
+    "comorbidity": {
+      "ordinal_error": 0.545,
+      "decisive_set_f1": 0.189
+    },
+    "psad": {
+      "ordinal_error": 0.815,
+      "decisive_set_f1": 0.455
+    },
+    "dre": {
+      "ordinal_error": 0.345,
+      "decisive_set_f1": 0.589
+    },
+    "bx": {
+      "ordinal_error": 0.566,
+      "decisive_set_f1": 0.828
+    }
+  }
+}

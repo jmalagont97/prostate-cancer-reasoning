@@ -1,0 +1,11 @@
+{
+  "condition": "confidence_kdm_count",
+  "target": "confidence",
+  "features": "11 official Task-1 variables",
+  "comorbidity_treatment": "count",
+  "model": "KDM (memory-based, sigma-only trained)",
+  "ordinal_distance_mean": 0.578,
+  "ordinal_distance_std": 0.039,
+  "mean_predictive_entropy": 0.371,
+  "max_possible_entropy": 1.099
+}

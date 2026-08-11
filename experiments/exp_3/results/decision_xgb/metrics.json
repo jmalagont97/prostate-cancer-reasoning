@@ -1,0 +1,19 @@
+{
+  "condition": "decision_xgb",
+  "target": "decision",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "xgb",
+  "f1_mean": 0.644,
+  "f1_std": 0.024,
+  "n_folds": 50,
+  "roc_auc_mean": 0.614,
+  "pr_auc_mean": 0.771,
+  "class_imbalance_handling": "sample_weight (balanced)",
+  "n": 91,
+  "positive_rate": 0.6154,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note.",
+    "old_wrong_values": {"n": 195, "f1_mean": 0.423, "roc_auc_mean": 0.6, "pr_auc_mean": 0.431}
+  }
+}

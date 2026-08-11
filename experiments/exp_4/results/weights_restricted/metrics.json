@@ -1,0 +1,82 @@
+{
+  "condition": "weights_restricted",
+  "target": "variable_weights",
+  "features": "exp_4 16-column frame",
+  "model": "OvR logistic regression, one classifier per factor on its own restricted group (unchanged from exp_3 -- MRI was never in any group)",
+  "mean_ordinal_error": 0.72,
+  "mean_decisive_set_f1": 0.519,
+  "mean_ordinal_error_baseline": 0.413,
+  "mean_decisive_set_f1_baseline": 0.379,
+  "per_factor": {
+    "age": {
+      "ordinal_error": 0.883,
+      "decisive_set_f1": 0.586,
+      "columns": [
+        "cli_age"
+      ]
+    },
+    "cspca": {
+      "ordinal_error": 1.212,
+      "decisive_set_f1": 0.275,
+      "columns": [
+        "cli_cspca"
+      ]
+    },
+    "pirads": {
+      "ordinal_error": 1.051,
+      "decisive_set_f1": 0.857,
+      "columns": [
+        "cli_pirads"
+      ]
+    },
+    "vol": {
+      "ordinal_error": 0.466,
+      "decisive_set_f1": 0.432,
+      "columns": [
+        "cli_vol"
+      ]
+    },
+    "psa": {
+      "ordinal_error": 0.632,
+      "decisive_set_f1": 0.631,
+      "columns": [
+        "cli_psa"
+      ]
+    },
+    "comorbidity": {
+      "ordinal_error": 0.471,
+      "decisive_set_f1": 0.101,
+      "columns": [
+        "comorb_cardiometabolic",
+        "comorb_renal",
+        "comorb_bleeding_risk",
+        "comorb_respiratory",
+        "comorb_bph",
+        "comorb_other_unmatched"
+      ]
+    },
+    "psad": {
+      "ordinal_error": 0.86,
+      "decisive_set_f1": 0.36,
+      "columns": [
+        "cli_psad"
+      ]
+    },
+    "dre": {
+      "ordinal_error": 0.38,
+      "decisive_set_f1": 0.6,
+      "columns": [
+        "cli_dre_ordinal",
+        "cli_dre_not_done"
+      ]
+    },
+    "bx": {
+      "ordinal_error": 0.527,
+      "decisive_set_f1": 0.832,
+      "columns": [
+        "cli_bx_positive",
+        "cli_bx_missing"
+      ]
+    }
+  }
+}

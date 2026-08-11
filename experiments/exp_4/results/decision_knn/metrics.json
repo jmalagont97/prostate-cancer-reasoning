@@ -1,0 +1,12 @@
+{
+  "condition": "decision_knn",
+  "target": "decision",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "knn",
+  "f1_mean": 0.725,
+  "f1_std": 0.017,
+  "n_folds": 50,
+  "roc_auc_mean": 0.695,
+  "pr_auc_mean": 0.803,
+  "class_imbalance_handling": "none"
+}

@@ -1,0 +1,19 @@
+{
+  "condition": "decision_knn",
+  "target": "decision",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "knn",
+  "f1_mean": 0.733,
+  "f1_std": 0.027,
+  "n_folds": 50,
+  "roc_auc_mean": 0.689,
+  "pr_auc_mean": 0.789,
+  "class_imbalance_handling": "none",
+  "n": 91,
+  "positive_rate": 0.6154,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note. This model reverses hardest in the other direction: F1 0.313 -> 0.733, now (tied for) the best decision result in exp_3.",
+    "old_wrong_values": {"n": 195, "f1_mean": 0.313, "roc_auc_mean": 0.594, "pr_auc_mean": 0.406}
+  }
+}

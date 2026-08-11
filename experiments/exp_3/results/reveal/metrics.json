@@ -1,0 +1,20 @@
+{
+  "condition": "reveal",
+  "target": "reveal_sequence",
+  "features": "exp_3 19-column frame",
+  "model": "MultiOutputClassifier(OvR logistic regression)",
+  "sections_modeled": [
+    "previous_notes",
+    "laboratory_results",
+    "psa_trend",
+    "radiology_report"
+  ],
+  "set_precision_mean": 0.833,
+  "set_precision_std": 0.026,
+  "mode_pattern": [
+    "previous_notes",
+    "laboratory_results",
+    "psa_trend",
+    "radiology_report"
+  ]
+}

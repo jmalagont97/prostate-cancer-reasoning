@@ -1,0 +1,21 @@
+{
+  "condition": "reveal_count",
+  "target": "reveal_sequence",
+  "features": "11 official Task-1 variables",
+  "comorbidity_treatment": "count",
+  "model": "MultiOutputClassifier(OvR logistic regression)",
+  "sections_modeled": [
+    "previous_notes",
+    "laboratory_results",
+    "psa_trend",
+    "radiology_report"
+  ],
+  "set_precision_mean": 0.852,
+  "set_precision_std": 0.02,
+  "mode_pattern": [
+    "previous_notes",
+    "laboratory_results",
+    "psa_trend",
+    "radiology_report"
+  ]
+}

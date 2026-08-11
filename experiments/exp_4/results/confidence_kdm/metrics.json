@@ -1,0 +1,11 @@
+{
+  "condition": "confidence_kdm",
+  "target": "confidence",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "KDM (memory-based, sigma-only trained)",
+  "ordinal_distance_mean": 0.623,
+  "ordinal_distance_std": 0.043,
+  "mean_predictive_entropy": 0.394,
+  "max_possible_entropy": 1.099,
+  "class_imbalance_handling": "none"
+}

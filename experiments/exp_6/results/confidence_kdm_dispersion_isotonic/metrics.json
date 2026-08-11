@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_kdm_dispersion_isotonic",
+  "target": "confidence",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "KDM decision backbone + signal recalibration (no separate model family)",
+  "ordinal_distance_mean": 0.776,
+  "ordinal_distance_std": 0.016,
+  "n_folds": 50
+}

@@ -1,0 +1,14 @@
+{
+  "condition": "decision_kdm",
+  "target": "decision",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "KDM (memory-based, sigma-only trained)",
+  "f1_mean": 0.716,
+  "f1_std": 0.025,
+  "n_folds": 50,
+  "roc_auc_mean": 0.679,
+  "pr_auc_mean": 0.805,
+  "mean_predictive_entropy": 0.276,
+  "max_possible_entropy": 0.693,
+  "class_imbalance_handling": "none"
+}

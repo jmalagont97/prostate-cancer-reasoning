@@ -1,0 +1,12 @@
+{
+  "condition": "decision_extratrees",
+  "target": "decision",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "extratrees",
+  "f1_mean": 0.668,
+  "f1_std": 0.018,
+  "n_folds": 50,
+  "roc_auc_mean": 0.677,
+  "pr_auc_mean": 0.805,
+  "class_imbalance_handling": "class_weight (balanced)"
+}

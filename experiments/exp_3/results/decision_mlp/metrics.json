@@ -1,0 +1,19 @@
+{
+  "condition": "decision_mlp",
+  "target": "decision",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "mlp",
+  "f1_mean": 0.383,
+  "f1_std": 0.017,
+  "n_folds": 50,
+  "roc_auc_mean": 0.486,
+  "pr_auc_mean": 0.638,
+  "class_imbalance_handling": "none",
+  "n": 91,
+  "positive_rate": 0.6154,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note.",
+    "old_wrong_values": {"n": 195, "f1_mean": 0.238, "roc_auc_mean": 0.492, "pr_auc_mean": 0.313}
+  }
+}

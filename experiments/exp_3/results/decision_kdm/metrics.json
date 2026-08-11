@@ -1,0 +1,22 @@
+{
+  "condition": "decision_kdm",
+  "target": "decision",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "KDM (memory-based, sigma-only trained)",
+  "f1_mean": 0.709,
+  "f1_std": 0.033,
+  "n_folds": 50,
+  "roc_auc_mean": 0.639,
+  "pr_auc_mean": 0.783,
+  "mean_predictive_entropy": 0.317,
+  "max_possible_entropy": 0.693,
+  "class_imbalance_handling": "none",
+  "note": "roc_auc/pr_auc from the last of N_REPEATS out-of-fold probability sets, not averaged, same as exp_2's KDM decision conditions.",
+  "n": 91,
+  "positive_rate": 0.6154,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note.",
+    "old_wrong_values": {"n": 195, "f1_mean": 0.294, "roc_auc_mean": 0.479, "pr_auc_mean": 0.303, "mean_predictive_entropy": 0.276}
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "condition": "confidence_kdm",
+  "target": "confidence",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "KDM (memory-based, sigma-only trained)",
+  "ordinal_distance_mean": 0.53,
+  "ordinal_distance_std": 0.043,
+  "mean_predictive_entropy": 0.402,
+  "max_possible_entropy": 1.099,
+  "class_imbalance_handling": "none"
+}

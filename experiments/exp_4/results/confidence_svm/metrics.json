@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_svm",
+  "target": "confidence",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "svm",
+  "ordinal_distance_mean": 0.509,
+  "ordinal_distance_std": 0.036,
+  "class_imbalance_handling": "class_weight (balanced)"
+}

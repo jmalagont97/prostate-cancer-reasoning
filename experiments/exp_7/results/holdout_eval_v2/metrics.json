@@ -1,0 +1,19 @@
+{
+  "n_test": 19,
+  "exp6_plain_kdm": {
+    "f1": 0.786,
+    "macro_f1": 0.593
+  },
+  "exp7_tuned_kdm": {
+    "f1": 0.759,
+    "macro_f1": 0.49,
+    "config": {
+      "n_epochs": 300,
+      "lr": 0.003,
+      "sigma_mult": 0.5,
+      "optimizer": "adam",
+      "weight_decay": 0.0
+    }
+  },
+  "macro_f1_delta": -0.102
+}

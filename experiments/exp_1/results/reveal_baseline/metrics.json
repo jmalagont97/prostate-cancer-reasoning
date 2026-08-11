@@ -1,0 +1,7 @@
+{
+  "condition": "reveal_baseline",
+  "model": "always predict the single most common section-subset (mode pattern)",
+  "n": 91,
+  "mode_pattern": ["previous_notes", "laboratory_results", "psa_trend", "radiology_report"],
+  "set_precision_mean": 0.783
+}

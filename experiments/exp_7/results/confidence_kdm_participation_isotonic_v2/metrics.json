@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_kdm_participation_isotonic_v2",
+  "target": "confidence",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA), log1p on psa/psad/vol",
+  "model": "exp_7 tuned KDM backbone + signal recalibration, config: {'n_epochs': 300, 'lr': 0.003, 'sigma_mult': 0.5, 'optimizer': 'adam', 'weight_decay': 0.0}",
+  "ordinal_distance_mean": 0.846,
+  "ordinal_distance_std": 0.069,
+  "n_folds": 50
+}

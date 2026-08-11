@@ -1,0 +1,85 @@
+{
+  "condition": "weights_restricted_rf",
+  "target": "variable_weights",
+  "model": "rf",
+  "scope": "restricted",
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "mean_ordinal_error": 0.979,
+  "mean_decisive_set_f1": 0.466,
+  "mean_ordinal_error_baseline": 0.413,
+  "mean_decisive_set_f1_baseline": 0.379,
+  "per_factor": {
+    "age": {
+      "ordinal_error": 1.136,
+      "decisive_set_f1": 0.357,
+      "columns": [
+        "cli_age"
+      ]
+    },
+    "cspca": {
+      "ordinal_error": 1.044,
+      "decisive_set_f1": 0.342,
+      "columns": [
+        "cli_cspca"
+      ]
+    },
+    "pirads": {
+      "ordinal_error": 1.231,
+      "decisive_set_f1": 0.76,
+      "columns": [
+        "cli_pirads"
+      ]
+    },
+    "vol": {
+      "ordinal_error": 0.98,
+      "decisive_set_f1": 0.447,
+      "columns": [
+        "cli_vol"
+      ]
+    },
+    "psa": {
+      "ordinal_error": 0.877,
+      "decisive_set_f1": 0.429,
+      "columns": [
+        "cli_psa"
+      ]
+    },
+    "comorbidity": {
+      "ordinal_error": 0.769,
+      "decisive_set_f1": 0.108,
+      "columns": [
+        "comorb_cardiometabolic",
+        "comorb_renal",
+        "comorb_bleeding_risk",
+        "comorb_respiratory",
+        "comorb_bph",
+        "comorb_other_unmatched"
+      ]
+    },
+    "psad": {
+      "ordinal_error": 0.862,
+      "decisive_set_f1": 0.379,
+      "columns": [
+        "cli_psad"
+      ]
+    },
+    "dre": {
+      "ordinal_error": 1.141,
+      "decisive_set_f1": 0.612,
+      "columns": [
+        "cli_dre_ordinal",
+        "cli_dre_not_done"
+      ]
+    },
+    "bx": {
+      "ordinal_error": 0.774,
+      "decisive_set_f1": 0.761,
+      "columns": [
+        "cli_bx_positive",
+        "cli_bx_missing"
+      ]
+    }
+  },
+  "class_imbalance_handling": "class_weight (balanced)"
+}

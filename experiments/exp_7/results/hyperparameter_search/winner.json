@@ -1,0 +1,13 @@
+{
+  "n_epochs": 300,
+  "lr": 0.003,
+  "sigma_mult": 0.5,
+  "optimizer": "adam",
+  "weight_decay": 0.0,
+  "search_macro_f1_mean": 0.619,
+  "search_macro_f1_std": 0.0009,
+  "search_n_repeats": 3,
+  "margin_over_exp6": 0.026,
+  "clear_margin_threshold": 0.02,
+  "margin_is_clear": true
+}

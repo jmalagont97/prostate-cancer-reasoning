@@ -1,0 +1,51 @@
+{
+  "condition": "weights_official_knn",
+  "target": "variable_weights",
+  "model": "knn",
+  "scope": "official",
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "mean_ordinal_error": 0.428,
+  "mean_decisive_set_f1": 0.429,
+  "mean_ordinal_error_baseline": 0.413,
+  "mean_decisive_set_f1_baseline": 0.379,
+  "per_factor": {
+    "age": {
+      "ordinal_error": 0.475,
+      "decisive_set_f1": 0.708
+    },
+    "cspca": {
+      "ordinal_error": 0.547,
+      "decisive_set_f1": 0.022
+    },
+    "pirads": {
+      "ordinal_error": 0.336,
+      "decisive_set_f1": 0.994
+    },
+    "vol": {
+      "ordinal_error": 0.266,
+      "decisive_set_f1": 0.059
+    },
+    "psa": {
+      "ordinal_error": 0.536,
+      "decisive_set_f1": 0.673
+    },
+    "comorbidity": {
+      "ordinal_error": 0.336,
+      "decisive_set_f1": 0.0
+    },
+    "psad": {
+      "ordinal_error": 0.6,
+      "decisive_set_f1": 0.2
+    },
+    "dre": {
+      "ordinal_error": 0.29,
+      "decisive_set_f1": 0.365
+    },
+    "bx": {
+      "ordinal_error": 0.464,
+      "decisive_set_f1": 0.839
+    }
+  },
+  "class_imbalance_handling": "none"
+}

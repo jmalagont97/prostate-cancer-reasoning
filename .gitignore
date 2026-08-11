@@ -1,0 +1,24 @@
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# CHIMERA-Agent Task 1 training data -- pseudonymized clinical data, not redistributed
+# publicly pending confirmation of the challenge's data-use terms.
+data/
+
+# Organizers' baseline code -- not ours to republish.
+vendor/
+
+# Per-case signal/prediction dumps carry per-case ground-truth labels tied to
+# pseudonymous case_ids -- treated the same as data/ for this push.
+experiments/*/results/per_instance_signals.csv
+experiments/*/results/per_instance_predictions.csv
+
+# Local tool config, not a project deliverable.
+.claude/
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db

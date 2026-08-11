@@ -1,0 +1,22 @@
+{
+  "condition": "decision_kdm_flags",
+  "target": "decision",
+  "features": "11 official Task-1 variables",
+  "comorbidity_treatment": "flags",
+  "model": "KDM (memory-based, sigma-only trained)",
+  "f1_mean": 0.723,
+  "f1_std": 0.03,
+  "n_folds": 50,
+  "roc_auc": 0.688,
+  "pr_auc": 0.814,
+  "mean_predictive_entropy": 0.28,
+  "max_possible_entropy": 0.693,
+  "note": "roc_auc/pr_auc computed from the last of the N_REPEATS_KDM out-of-fold probability sets (not averaged, unlike f1) -- KDM has no predict_proba-style single-pass CV helper here.",
+  "n": 91,
+  "positive_rate": 0.6154,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note.",
+    "old_wrong_values": {"n": 195, "f1_mean": 0.307, "roc_auc": 0.483, "pr_auc": 0.332, "mean_predictive_entropy": 0.329}
+  }
+}

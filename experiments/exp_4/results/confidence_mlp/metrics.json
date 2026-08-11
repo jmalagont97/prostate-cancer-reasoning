@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_mlp",
+  "target": "confidence",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "mlp",
+  "ordinal_distance_mean": 0.955,
+  "ordinal_distance_std": 0.024,
+  "class_imbalance_handling": "none"
+}

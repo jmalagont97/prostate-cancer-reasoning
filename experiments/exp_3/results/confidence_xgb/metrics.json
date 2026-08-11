@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_xgb",
+  "target": "confidence",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "xgb",
+  "ordinal_distance_mean": 0.678,
+  "ordinal_distance_std": 0.031,
+  "class_imbalance_handling": "sample_weight (balanced)"
+}

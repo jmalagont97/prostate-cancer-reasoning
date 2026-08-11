@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_rf",
+  "target": "confidence",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "rf",
+  "ordinal_distance_mean": 0.748,
+  "ordinal_distance_std": 0.048,
+  "class_imbalance_handling": "class_weight (balanced)"
+}

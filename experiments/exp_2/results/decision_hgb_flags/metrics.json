@@ -1,0 +1,19 @@
+{
+  "condition": "decision_hgb_flags",
+  "target": "decision",
+  "features": "11 official Task-1 variables",
+  "comorbidity_treatment": "flags",
+  "model": "hist_gradient_boosting",
+  "f1_mean": 0.652,
+  "f1_std": 0.1,
+  "n_folds": 50,
+  "roc_auc": 0.664,
+  "pr_auc": 0.803,
+  "n": 91,
+  "positive_rate": 0.6154,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note.",
+    "old_wrong_values": {"n": 195, "f1_mean": 0.408, "roc_auc": 0.652, "pr_auc": 0.442}
+  }
+}

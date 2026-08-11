@@ -1,0 +1,19 @@
+{
+  "condition": "decision_extratrees",
+  "target": "decision",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "extratrees",
+  "f1_mean": 0.665,
+  "f1_std": 0.016,
+  "n_folds": 50,
+  "roc_auc_mean": 0.667,
+  "pr_auc_mean": 0.792,
+  "class_imbalance_handling": "class_weight (balanced)",
+  "n": 91,
+  "positive_rate": 0.6154,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note. This was the exp_3 headline 'best decision model' pre-correction (F1 0.545); post-correction it is mid-pack (0.665), no longer the standout.",
+    "old_wrong_values": {"n": 195, "f1_mean": 0.545, "roc_auc_mean": 0.672, "pr_auc_mean": 0.505}
+  }
+}

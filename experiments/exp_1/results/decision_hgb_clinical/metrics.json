@@ -1,0 +1,16 @@
+{
+  "condition": "decision_hgb_clinical",
+  "model": "HistGradientBoostingClassifier(max_leaf_nodes=7, min_samples_leaf=20, l2_regularization=1.0, max_iter=100, class_weight=balanced)",
+  "features": "clinical only",
+  "n": 91,
+  "positive_rate": 0.6154,
+  "cv": "RepeatedStratifiedKFold(n_splits=5, n_repeats=10)",
+  "f1_mean": 0.653,
+  "f1_std": 0.115,
+  "n_folds": 50,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "See decision_baseline/metrics.json's bugfix_corrected note -- same root cause (104/195 unlabeled cases silently coded as y=0).",
+    "old_wrong_values": {"n": 195, "f1_mean": 0.404, "f1_std": 0.126}
+  }
+}

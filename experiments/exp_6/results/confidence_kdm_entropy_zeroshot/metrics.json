@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_kdm_entropy_zeroshot",
+  "target": "confidence",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "KDM decision backbone + signal recalibration (no separate model family)",
+  "ordinal_distance_mean": 1.232,
+  "ordinal_distance_std": 0.015,
+  "n_folds": 50
+}

@@ -1,0 +1,19 @@
+{
+  "condition": "decision_baseline",
+  "model": "DummyClassifier (feature-blind)",
+  "n": 91,
+  "positive_rate": 0.6154,
+  "cv": "RepeatedStratifiedKFold(n_splits=5, n_repeats=10)",
+  "always_yes_f1_mean": 0.762,
+  "always_yes_f1_std": 0.006,
+  "always_no_f1_mean": 0.0,
+  "always_no_f1_std": 0.0,
+  "random_class_proportional_f1_mean": 0.584,
+  "random_class_proportional_f1_std": 0.081,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "target_biopsy_decision is NaN for 104/195 cases (only 91 cases have a real label). Previously this baseline was computed on the full 195-row merge, where `y = (df['target_biopsy_decision'] == 'yes')` silently coded the 104 unlabeled cases as y=0 ('no') rather than excluding them -- pandas NaN==\"yes\" is False, not an error.",
+    "fix": "train_decision.py now provides load_labeled_data(), filtering to the 91 actually-labeled cases before constructing y. See that function's docstring for detail.",
+    "old_wrong_values": {"n": 195, "positive_rate": 0.2872, "always_yes_f1_mean": 0.446, "always_no_f1_mean": 0.0, "random_class_proportional_f1_mean": 0.267}
+  }
+}

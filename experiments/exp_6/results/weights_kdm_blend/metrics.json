@@ -1,0 +1,58 @@
+{
+  "condition": "weights_kdm_blend",
+  "target": "variable_weights",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "KDM decision backbone + signal recalibration (no separate model family)",
+  "mean_ordinal_error": 0.742,
+  "mean_decisive_set_f1": 0.428,
+  "mean_n_factors_included": 9.0,
+  "mean_n_factors_skipped": 0.0,
+  "n_repeats": 10,
+  "per_factor": {
+    "age": {
+      "ordinal_error": 1.348,
+      "decisive_set_f1": 0.336,
+      "n_repeats_included": 10
+    },
+    "cspca": {
+      "ordinal_error": 0.596,
+      "decisive_set_f1": 0.0,
+      "n_repeats_included": 10
+    },
+    "pirads": {
+      "ordinal_error": 0.76,
+      "decisive_set_f1": 0.932,
+      "n_repeats_included": 10
+    },
+    "vol": {
+      "ordinal_error": 0.285,
+      "decisive_set_f1": 0.041,
+      "n_repeats_included": 10
+    },
+    "psa": {
+      "ordinal_error": 0.657,
+      "decisive_set_f1": 0.714,
+      "n_repeats_included": 10
+    },
+    "comorbidity": {
+      "ordinal_error": 0.54,
+      "decisive_set_f1": 0.102,
+      "n_repeats_included": 10
+    },
+    "psad": {
+      "ordinal_error": 1.242,
+      "decisive_set_f1": 0.447,
+      "n_repeats_included": 10
+    },
+    "dre": {
+      "ordinal_error": 0.648,
+      "decisive_set_f1": 0.447,
+      "n_repeats_included": 10
+    },
+    "bx": {
+      "ordinal_error": 0.604,
+      "decisive_set_f1": 0.833,
+      "n_repeats_included": 10
+    }
+  }
+}

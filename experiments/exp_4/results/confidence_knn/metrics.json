@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_knn",
+  "target": "confidence",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "knn",
+  "ordinal_distance_mean": 0.589,
+  "ordinal_distance_std": 0.033,
+  "class_imbalance_handling": "none"
+}

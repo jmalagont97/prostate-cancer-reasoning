@@ -1,0 +1,11 @@
+{
+  "condition": "reveal_logistic",
+  "model": "MultiOutputClassifier(OneVsRestClassifier(LogisticRegression(solver=liblinear, class_weight=balanced, C=0.5)))",
+  "features": "clinical",
+  "n": 91,
+  "sections_modeled": ["previous_notes", "laboratory_results", "psa_trend", "radiology_report"],
+  "cv": "repeated out-of-fold KFold(n_splits=5), n_repeats=8",
+  "set_precision_mean": 0.840,
+  "set_precision_std": 0.010,
+  "note": "the one target where the trained model clearly beat its naive baseline"
+}

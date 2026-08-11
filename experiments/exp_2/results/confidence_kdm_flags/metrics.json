@@ -1,0 +1,11 @@
+{
+  "condition": "confidence_kdm_flags",
+  "target": "confidence",
+  "features": "11 official Task-1 variables",
+  "comorbidity_treatment": "flags",
+  "model": "KDM (memory-based, sigma-only trained)",
+  "ordinal_distance_mean": 0.598,
+  "ordinal_distance_std": 0.041,
+  "mean_predictive_entropy": 0.411,
+  "max_possible_entropy": 1.099
+}

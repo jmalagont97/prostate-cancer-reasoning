@@ -1,0 +1,51 @@
+{
+  "condition": "weights_official_xgb",
+  "target": "variable_weights",
+  "model": "xgb",
+  "scope": "official",
+  "n_factors_included": 5,
+  "n_factors_skipped": 4,
+  "mean_ordinal_error": 0.554,
+  "mean_decisive_set_f1": 0.272,
+  "mean_ordinal_error_baseline": 0.363,
+  "mean_decisive_set_f1_baseline": 0.0,
+  "per_factor": {
+    "age": {
+      "error": "ValueError: Invalid classes inferred from unique values of `y`.  Expected: [0 1 2], got [1 2 3]",
+      "skipped": true
+    },
+    "cspca": {
+      "ordinal_error": 0.631,
+      "decisive_set_f1": 0.238
+    },
+    "pirads": {
+      "error": "ValueError: Invalid classes inferred from unique values of `y`.  Expected: [0 1 2], got [0 2 3]",
+      "skipped": true
+    },
+    "vol": {
+      "ordinal_error": 0.358,
+      "decisive_set_f1": 0.489
+    },
+    "psa": {
+      "error": "ValueError: Invalid classes inferred from unique values of `y`.  Expected: [0 1 2], got [1 2 3]",
+      "skipped": true
+    },
+    "comorbidity": {
+      "ordinal_error": 0.523,
+      "decisive_set_f1": 0.0
+    },
+    "psad": {
+      "ordinal_error": 0.785,
+      "decisive_set_f1": 0.269
+    },
+    "dre": {
+      "ordinal_error": 0.475,
+      "decisive_set_f1": 0.362
+    },
+    "bx": {
+      "error": "ValueError: Invalid classes inferred from unique values of `y`.  Expected: [0 1 2], got [1 2 3]",
+      "skipped": true
+    }
+  },
+  "class_imbalance_handling": "sample_weight (balanced)"
+}

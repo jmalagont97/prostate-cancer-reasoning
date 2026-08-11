@@ -1,0 +1,12 @@
+{
+  "condition": "decision_svm",
+  "target": "decision",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "svm",
+  "f1_mean": 0.728,
+  "f1_std": 0.026,
+  "n_folds": 50,
+  "roc_auc_mean": 0.667,
+  "pr_auc_mean": 0.787,
+  "class_imbalance_handling": "class_weight (balanced)"
+}

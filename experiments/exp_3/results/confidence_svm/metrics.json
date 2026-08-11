@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_svm",
+  "target": "confidence",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "svm",
+  "ordinal_distance_mean": 0.468,
+  "ordinal_distance_std": 0.022,
+  "class_imbalance_handling": "class_weight (balanced)"
+}

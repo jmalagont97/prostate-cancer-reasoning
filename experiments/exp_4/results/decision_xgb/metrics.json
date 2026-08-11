@@ -1,0 +1,12 @@
+{
+  "condition": "decision_xgb",
+  "target": "decision",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "xgb",
+  "f1_mean": 0.655,
+  "f1_std": 0.031,
+  "n_folds": 50,
+  "roc_auc_mean": 0.639,
+  "pr_auc_mean": 0.786,
+  "class_imbalance_handling": "sample_weight (balanced)"
+}

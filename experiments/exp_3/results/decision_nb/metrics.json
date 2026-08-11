@@ -1,0 +1,19 @@
+{
+  "condition": "decision_nb",
+  "target": "decision",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "nb",
+  "f1_mean": 0.078,
+  "f1_std": 0.057,
+  "n_folds": 50,
+  "roc_auc_mean": 0.636,
+  "pr_auc_mean": 0.726,
+  "class_imbalance_handling": "sample_weight (balanced)",
+  "n": 91,
+  "positive_rate": 0.6154,
+  "bugfix_corrected": {
+    "date": "2026-08-10",
+    "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note. This model reverses hardest: F1 0.415 -> 0.078, now the worst decision result in exp_3.",
+    "old_wrong_values": {"n": 195, "f1_mean": 0.415, "roc_auc_mean": 0.539, "pr_auc_mean": 0.316}
+  }
+}

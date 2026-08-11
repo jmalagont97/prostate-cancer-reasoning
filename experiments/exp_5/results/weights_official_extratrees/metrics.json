@@ -1,0 +1,51 @@
+{
+  "condition": "weights_official_extratrees",
+  "target": "variable_weights",
+  "model": "extratrees",
+  "scope": "official",
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "mean_ordinal_error": 0.719,
+  "mean_decisive_set_f1": 0.512,
+  "mean_ordinal_error_baseline": 0.413,
+  "mean_decisive_set_f1_baseline": 0.379,
+  "per_factor": {
+    "age": {
+      "ordinal_error": 0.76,
+      "decisive_set_f1": 0.594
+    },
+    "cspca": {
+      "ordinal_error": 0.732,
+      "decisive_set_f1": 0.313
+    },
+    "pirads": {
+      "ordinal_error": 0.442,
+      "decisive_set_f1": 0.966
+    },
+    "vol": {
+      "ordinal_error": 0.684,
+      "decisive_set_f1": 0.327
+    },
+    "psa": {
+      "ordinal_error": 0.732,
+      "decisive_set_f1": 0.662
+    },
+    "comorbidity": {
+      "ordinal_error": 0.668,
+      "decisive_set_f1": 0.077
+    },
+    "psad": {
+      "ordinal_error": 1.079,
+      "decisive_set_f1": 0.44
+    },
+    "dre": {
+      "ordinal_error": 0.677,
+      "decisive_set_f1": 0.435
+    },
+    "bx": {
+      "ordinal_error": 0.697,
+      "decisive_set_f1": 0.797
+    }
+  },
+  "class_imbalance_handling": "class_weight (balanced)"
+}

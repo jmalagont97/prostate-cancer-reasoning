@@ -1,0 +1,10 @@
+{
+  "condition": "decision_kdm_v2",
+  "target": "decision",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA), log1p on psa/psad/vol",
+  "model": "KDM (memory-based, sigma-only trained), tuned config: {'n_epochs': 300, 'lr': 0.003, 'sigma_mult': 0.5, 'optimizer': 'adam', 'weight_decay': 0.0}",
+  "macro_f1_mean": 0.622,
+  "macro_f1_std": 0.028,
+  "n_folds": 50,
+  "note": "compare against exp_6's decision_kdm_backbone (macro_f1=0.593)"
+}

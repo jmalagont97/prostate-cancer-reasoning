@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_knn",
+  "target": "confidence",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "knn",
+  "ordinal_distance_mean": 0.558,
+  "ordinal_distance_std": 0.03,
+  "class_imbalance_handling": "none"
+}

@@ -1,0 +1,49 @@
+{
+  "condition": "weights_official_flags",
+  "target": "variable_weights",
+  "comorbidity_treatment": "flags",
+  "features": "11 official Task-1 variables",
+  "model": "OvR logistic regression, all 9 in-scope factors on the same frame",
+  "mean_ordinal_error": 0.585,
+  "mean_decisive_set_f1": 0.546,
+  "mean_ordinal_error_baseline": 0.413,
+  "mean_decisive_set_f1_baseline": 0.379,
+  "per_factor": {
+    "age": {
+      "ordinal_error": 0.607,
+      "decisive_set_f1": 0.626
+    },
+    "cspca": {
+      "ordinal_error": 0.815,
+      "decisive_set_f1": 0.264
+    },
+    "pirads": {
+      "ordinal_error": 0.42,
+      "decisive_set_f1": 0.972
+    },
+    "vol": {
+      "ordinal_error": 0.526,
+      "decisive_set_f1": 0.375
+    },
+    "psa": {
+      "ordinal_error": 0.665,
+      "decisive_set_f1": 0.631
+    },
+    "comorbidity": {
+      "ordinal_error": 0.563,
+      "decisive_set_f1": 0.168
+    },
+    "psad": {
+      "ordinal_error": 0.743,
+      "decisive_set_f1": 0.475
+    },
+    "dre": {
+      "ordinal_error": 0.348,
+      "decisive_set_f1": 0.577
+    },
+    "bx": {
+      "ordinal_error": 0.577,
+      "decisive_set_f1": 0.825
+    }
+  }
+}

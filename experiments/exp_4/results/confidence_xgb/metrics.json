@@ -1,0 +1,9 @@
+{
+  "condition": "confidence_xgb",
+  "target": "confidence",
+  "features": "exp_4 16-column frame (clinical + comorbidity, no MRI)",
+  "model": "xgb",
+  "ordinal_distance_mean": 0.645,
+  "ordinal_distance_std": 0.07,
+  "class_imbalance_handling": "sample_weight (balanced)"
+}
