@@ -1,64 +1,76 @@
 {
-  "num_input_rows": 195,
-  "num_target_rows": 195,
-  "input_num_columns": 1077,
-  "target_num_columns": 27,
-  "collection_columns_found": [],
-  "text_columns_present": [
-    "txt_comorbidities",
-    "txt_allergies",
-    "txt_chief_complaint",
-    "txt_history",
-    "txt_physical_examination",
-    "txt_prompt_summary_notes",
-    "txt_full_prompt_narrative",
-    "txt_family_history_narrative",
-    "txt_radiology_report",
-    "txt_previous_notes",
-    "txt_psa_trend_summary",
-    "txt_laboratory_results_summary",
-    "txt_consolidated_ehr_narrative"
-  ],
-  "official_10_variables_check": {
-    "age": {
-      "present_in_inputs": true,
-      "present_in_targets": true
+  "validation": {
+    "inputs": {
+      "name": "inputs",
+      "shape": [
+        195,
+        1077
+      ],
+      "expected_shape": [
+        195,
+        1077
+      ],
+      "passed": [
+        "shape_match",
+        "no_collection_columns",
+        "unique_case_ids"
+      ],
+      "errors": [],
+      "all_passed": true
     },
-    "fh": {
-      "present_in_inputs": true,
-      "present_in_targets": true
+    "ground_truth": {
+      "name": "ground_truth",
+      "shape": [
+        195,
+        27
+      ],
+      "expected_shape": [
+        195,
+        27
+      ],
+      "passed": [
+        "shape_match",
+        "no_collection_columns",
+        "unique_case_ids"
+      ],
+      "errors": [],
+      "all_passed": true
+    }
+  },
+  "diff": {
+    "inputs": {
+      "name": "inputs",
+      "shapes_match": true,
+      "new_shape": [
+        195,
+        1077
+      ],
+      "ref_shape": [
+        195,
+        1077
+      ],
+      "missing_cols": [],
+      "extra_cols": [],
+      "columns_match": true,
+      "max_numeric_diff": 3.552713678800501e-15,
+      "values_identical": "True"
     },
-    "cspca": {
-      "present_in_inputs": true,
-      "present_in_targets": true
-    },
-    "pirads": {
-      "present_in_inputs": true,
-      "present_in_targets": true
-    },
-    "vol": {
-      "present_in_inputs": true,
-      "present_in_targets": true
-    },
-    "psa": {
-      "present_in_inputs": true,
-      "present_in_targets": true
-    },
-    "comorbidity": {
-      "present_in_inputs": true,
-      "present_in_targets": true
-    },
-    "psad": {
-      "present_in_inputs": true,
-      "present_in_targets": true
-    },
-    "dre": {
-      "present_in_inputs": true,
-      "present_in_targets": true
-    },
-    "bx": {
-      "present_in_inputs": true,
-      "present_in_targets": true
+    "ground_truth": {
+      "name": "ground_truth",
+      "shapes_match": true,
+      "new_shape": [
+        195,
+        27
+      ],
+      "ref_shape": [
+        195,
+        27
+      ],
+      "missing_cols": [],
+      "extra_cols": [],
+      "columns_match": true,
+      "max_numeric_diff": 0.0,
+      "values_identical": true
     }
   }
 }
