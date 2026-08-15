@@ -1,0 +1,11 @@
+{
+  "condition": "confidence_kdm_entropy_zeroshot_ard_19col",
+  "target": "confidence",
+  "features": "exp_3 19-column frame (19col)",
+  "model": "ARD-KDM backbone + signal recalibration, config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.0}",
+  "ordinal_distance_mean": 1.363,
+  "ordinal_distance_std": 0.037,
+  "macro_f1_mean": 0.151,
+  "macro_f1_std": 0.019,
+  "n_folds": 50
+}

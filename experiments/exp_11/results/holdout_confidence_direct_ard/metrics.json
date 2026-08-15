@@ -1,0 +1,29 @@
+{
+  "n_test": 19,
+  "19col": {
+    "accuracy": 0.737,
+    "macro_f1": 0.482,
+    "ordinal_distance": 0.316,
+    "roc_auc": 0.714,
+    "brier_score": 0.398,
+    "probs_check_ok": true
+  },
+  "23col": {
+    "accuracy": 0.737,
+    "macro_f1": 0.482,
+    "ordinal_distance": 0.316,
+    "roc_auc": 0.764,
+    "brier_score": 0.386,
+    "probs_check_ok": true
+  },
+  "reference": {
+    "exp3_direct_confidence_kdm_cv_ordinal_distance": 0.53,
+    "exp3_direct_confidence_kdm_cv_macro_f1": 0.508,
+    "note": "exp_3's original held-out confidence numbers were only printed, never persisted -- CV is the only historical reference available"
+  },
+  "config": {
+    "n_epochs": 300,
+    "lr": 0.01,
+    "sigma_mult": 1.0
+  }
+}

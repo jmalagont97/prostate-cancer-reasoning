@@ -8,5 +8,7 @@
   "n_folds": 50,
   "roc_auc_mean": 0.619,
   "pr_auc_mean": 0.784,
-  "class_imbalance_handling": "class_weight (balanced)"
+  "class_imbalance_handling": "class_weight (balanced)",
+  "macro_f1_mean": 0.57,
+  "macro_f1_std": 0.05
 }

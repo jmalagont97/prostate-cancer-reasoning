@@ -1,0 +1,77 @@
+{
+  "condition": "holdout_weights_direct_scalar_restricted",
+  "n_test": 19,
+  "mean_ordinal_error": 0.413,
+  "mean_decisive_set_f1": 0.398,
+  "mean_macro_f1": 0.271,
+  "n_factors_included": 7,
+  "n_factors_skipped": 2,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.684,
+      "macro_f1": 0.33,
+      "ordinal_error": 0.316,
+      "decisive_set_f1": 0.75,
+      "roc_auc": null,
+      "brier_score": 0.51
+    },
+    "cspca": {
+      "accuracy": 0.474,
+      "macro_f1": 0.238,
+      "ordinal_error": 0.684,
+      "decisive_set_f1": 0.286,
+      "roc_auc": null,
+      "brier_score": 0.908
+    },
+    "pirads": {
+      "skipped": true
+    },
+    "vol": {
+      "accuracy": 0.684,
+      "macro_f1": 0.203,
+      "ordinal_error": 0.368,
+      "decisive_set_f1": 0.0,
+      "roc_auc": 0.435,
+      "brier_score": 0.684
+    },
+    "psa": {
+      "accuracy": 0.526,
+      "macro_f1": 0.25,
+      "ordinal_error": 0.526,
+      "decisive_set_f1": 0.692,
+      "roc_auc": null,
+      "brier_score": 0.589
+    },
+    "comorbidity": {
+      "accuracy": 0.632,
+      "macro_f1": 0.194,
+      "ordinal_error": 0.368,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.434
+    },
+    "psad": {
+      "accuracy": 0.526,
+      "macro_f1": 0.229,
+      "ordinal_error": 0.579,
+      "decisive_set_f1": 0.2,
+      "roc_auc": 0.592,
+      "brier_score": 0.759
+    },
+    "dre": {
+      "accuracy": 0.947,
+      "macro_f1": 0.456,
+      "ordinal_error": 0.053,
+      "decisive_set_f1": 0.857,
+      "roc_auc": null,
+      "brier_score": 0.2
+    },
+    "bx": {
+      "skipped": true
+    }
+  },
+  "reference": {
+    "weights_svm_incumbent_ordinal_error": 0.392,
+    "exp5_direct_scalar_kdm_ordinal_error": 0.454
+  }
+}

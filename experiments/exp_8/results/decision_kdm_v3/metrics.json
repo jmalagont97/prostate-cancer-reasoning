@@ -1,0 +1,10 @@
+{
+  "condition": "decision_kdm_v3",
+  "target": "decision",
+  "features": "exp_8 23-column frame (psav/psap/isup/bmi added)",
+  "model": "KDM (memory-based, sigma-only trained), combined config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.5, 'optimizer': 'adam', 'weight_decay': 0.0}",
+  "macro_f1_mean": 0.585,
+  "macro_f1_std": 0.03,
+  "n_folds": 50,
+  "note": "compare against exp_6's decision_kdm_backbone (macro_f1=0.593) and exp_7's decision_kdm_v2 (0.622 CV / 0.490 held-out)"
+}

@@ -10,5 +10,7 @@
   "pr_auc_mean": 0.805,
   "mean_predictive_entropy": 0.276,
   "max_possible_entropy": 0.693,
-  "class_imbalance_handling": "none"
+  "class_imbalance_handling": "none",
+  "macro_f1_mean": 0.584,
+  "macro_f1_std": 0.029
 }

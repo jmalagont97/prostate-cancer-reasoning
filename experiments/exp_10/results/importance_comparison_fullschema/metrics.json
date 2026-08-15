@@ -1,0 +1,104 @@
+{
+  "exp5_solved_factors": [
+    "age",
+    "bx",
+    "dre",
+    "pirads",
+    "psa"
+  ],
+  "exp5_unsolved_factors": [
+    "comorbidity",
+    "cspca",
+    "psad",
+    "vol"
+  ],
+  "sigma_by_column": {
+    "cli_age": 0.4424,
+    "cli_psa": 0.9863,
+    "cli_psap": 0.9052,
+    "cli_psav": 0.9307,
+    "cli_psad": 0.8888,
+    "cli_vol": 0.3934,
+    "cli_months": 0.5669,
+    "cli_cspca": 0.4145,
+    "cli_comorbidity_count": 0.4125,
+    "cli_allergies_count": 0.6503,
+    "cli_ipss_score": 0.4689,
+    "vit_weight_kg": 0.5765,
+    "vit_height_cm": 0.488,
+    "vit_bmi": 0.5104,
+    "vit_bp_systolic": 0.3829,
+    "vit_bp_diastolic": 0.4497,
+    "vit_heart_rate_bpm": 0.3466,
+    "vit_smoking_pack_years": 0.5246,
+    "psa_tr_count": 0.537,
+    "psa_tr_first_val": 0.559,
+    "psa_tr_min": 0.3871,
+    "psa_tr_mean": 0.8843,
+    "psa_tr_delta": 0.974,
+    "psa_tr_slope": 0.8251,
+    "lab_creatinine_mg_dl": 0.4809,
+    "lab_free_psa_ng_ml": 0.4892,
+    "lab_free_total_ratio": 0.6917,
+    "mri_pca_0": 0.481,
+    "mri_pca_1": 0.3803,
+    "cli_pirads": 0.6145,
+    "path_hist_bx_isup": 0.5557,
+    "path_hist_bx_gl_prim": 0.7845,
+    "path_hist_bx_gl_sec": 0.7246,
+    "cli_fh_binary": 0.6108,
+    "cli_pirads_missing": 0.692,
+    "cli_bx_missing": 0.7701,
+    "cli_fh_missing": 0.6794,
+    "mri_missing": 0.9557,
+    "cli_dre_Normal": 0.7635,
+    "cli_dre_Nodus": 0.7113,
+    "cli_dre_Abnormal": 1.1868,
+    "cli_dre_Not done": 0.9625,
+    "cli_dre_Suspicious": 0.6603,
+    "cli_bx_Positive": 0.8079,
+    "cli_bx_Negative": 0.8285,
+    "vit_smoking_status_Never": 0.7828,
+    "vit_smoking_status_Ex-smoker": 0.7713,
+    "vit_smoking_status_Current": 0.7982
+  },
+  "factor_relevance_ranked": [
+    [
+      "vol",
+      2.5417
+    ],
+    [
+      "comorbidity",
+      2.4243
+    ],
+    [
+      "cspca",
+      2.4127
+    ],
+    [
+      "age",
+      2.2603
+    ],
+    [
+      "pirads",
+      1.5362
+    ],
+    [
+      "bx",
+      1.2478
+    ],
+    [
+      "dre",
+      1.2223
+    ],
+    [
+      "psad",
+      1.1251
+    ],
+    [
+      "psa",
+      1.0138
+    ]
+  ],
+  "top5_vs_exp5_solved_agreement": 2
+}

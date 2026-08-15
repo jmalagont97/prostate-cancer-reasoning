@@ -78,5 +78,17 @@
         "cli_bx_missing"
       ]
     }
+  },
+  "mean_macro_f1": 0.272,
+  "per_factor_macro_f1": {
+    "age": 0.201,
+    "cspca": 0.156,
+    "pirads": 0.206,
+    "vol": 0.272,
+    "psa": 0.38,
+    "comorbidity": 0.326,
+    "psad": 0.266,
+    "dre": 0.272,
+    "bx": 0.365
   }
 }

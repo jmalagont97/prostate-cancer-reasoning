@@ -1,0 +1,87 @@
+{
+  "condition": "holdout_weights_direct_scalar_official",
+  "n_test": 19,
+  "mean_ordinal_error": 0.462,
+  "mean_decisive_set_f1": 0.537,
+  "mean_macro_f1": 0.281,
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.579,
+      "macro_f1": 0.235,
+      "ordinal_error": 0.421,
+      "decisive_set_f1": 0.741,
+      "roc_auc": null,
+      "brier_score": 0.768
+    },
+    "cspca": {
+      "accuracy": 0.579,
+      "macro_f1": 0.292,
+      "ordinal_error": 0.474,
+      "decisive_set_f1": 0.4,
+      "roc_auc": null,
+      "brier_score": 0.616
+    },
+    "pirads": {
+      "accuracy": 0.737,
+      "macro_f1": 0.376,
+      "ordinal_error": 0.316,
+      "decisive_set_f1": 0.973,
+      "roc_auc": null,
+      "brier_score": 0.46
+    },
+    "vol": {
+      "accuracy": 0.632,
+      "macro_f1": 0.207,
+      "ordinal_error": 0.421,
+      "decisive_set_f1": 0.286,
+      "roc_auc": 0.66,
+      "brier_score": 0.677
+    },
+    "psa": {
+      "accuracy": 0.421,
+      "macro_f1": 0.226,
+      "ordinal_error": 0.632,
+      "decisive_set_f1": 0.609,
+      "roc_auc": null,
+      "brier_score": 0.876
+    },
+    "comorbidity": {
+      "accuracy": 0.684,
+      "macro_f1": 0.315,
+      "ordinal_error": 0.368,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.557
+    },
+    "psad": {
+      "accuracy": 0.526,
+      "macro_f1": 0.236,
+      "ordinal_error": 0.579,
+      "decisive_set_f1": 0.364,
+      "roc_auc": 0.672,
+      "brier_score": 0.671
+    },
+    "dre": {
+      "accuracy": 0.895,
+      "macro_f1": 0.417,
+      "ordinal_error": 0.158,
+      "decisive_set_f1": 0.857,
+      "roc_auc": null,
+      "brier_score": 0.247
+    },
+    "bx": {
+      "accuracy": 0.368,
+      "macro_f1": 0.225,
+      "ordinal_error": 0.789,
+      "decisive_set_f1": 0.6,
+      "roc_auc": 0.568,
+      "brier_score": 0.997
+    }
+  },
+  "reference": {
+    "weights_svm_incumbent_ordinal_error": 0.382,
+    "exp5_direct_scalar_kdm_ordinal_error": 0.478
+  }
+}

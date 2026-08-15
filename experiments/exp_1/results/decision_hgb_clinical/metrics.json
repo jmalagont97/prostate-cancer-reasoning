@@ -11,6 +11,12 @@
   "bugfix_corrected": {
     "date": "2026-08-10",
     "issue": "See decision_baseline/metrics.json's bugfix_corrected note -- same root cause (104/195 unlabeled cases silently coded as y=0).",
-    "old_wrong_values": {"n": 195, "f1_mean": 0.404, "f1_std": 0.126}
-  }
+    "old_wrong_values": {
+      "n": 195,
+      "f1_mean": 0.404,
+      "f1_std": 0.126
+    }
+  },
+  "macro_f1_mean": 0.598,
+  "macro_f1_std": 0.048
 }

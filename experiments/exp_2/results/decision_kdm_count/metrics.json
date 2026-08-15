@@ -17,6 +17,14 @@
   "bugfix_corrected": {
     "date": "2026-08-10",
     "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note.",
-    "old_wrong_values": {"n": 195, "f1_mean": 0.431, "roc_auc": 0.592, "pr_auc": 0.446, "mean_predictive_entropy": 0.255}
-  }
+    "old_wrong_values": {
+      "n": 195,
+      "f1_mean": 0.431,
+      "roc_auc": 0.592,
+      "pr_auc": 0.446,
+      "mean_predictive_entropy": 0.255
+    }
+  },
+  "macro_f1_mean": 0.545,
+  "macro_f1_std": 0.043
 }

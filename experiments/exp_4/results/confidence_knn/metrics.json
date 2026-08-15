@@ -5,5 +5,7 @@
   "model": "knn",
   "ordinal_distance_mean": 0.589,
   "ordinal_distance_std": 0.033,
-  "class_imbalance_handling": "none"
+  "class_imbalance_handling": "none",
+  "macro_f1_mean": 0.417,
+  "macro_f1_std": 0.033
 }

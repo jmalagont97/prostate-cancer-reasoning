@@ -7,5 +7,7 @@
   "ordinal_distance_mean": 0.598,
   "ordinal_distance_std": 0.041,
   "mean_predictive_entropy": 0.411,
-  "max_possible_entropy": 1.099
+  "max_possible_entropy": 1.099,
+  "macro_f1_mean": 0.45,
+  "macro_f1_std": 0.026
 }

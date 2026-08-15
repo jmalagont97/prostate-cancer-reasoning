@@ -1,0 +1,14 @@
+{
+  "condition": "decision_kdm_ard_19col",
+  "target": "decision",
+  "features": "exp_3 19-column frame (19col)",
+  "model": "ARD-KDM (per-dimension sigma, 19 dims), fixed config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.0}",
+  "macro_f1_mean": 0.642,
+  "macro_f1_std": 0.017,
+  "n_folds": 50,
+  "note": "compare against exp_6's decision_kdm_backbone (macro_f1=0.593, scalar sigma, same frame/hyperparameters)",
+  "roc_auc_mean": 0.699,
+  "roc_auc_std": 0.023,
+  "brier_score_mean": 0.257,
+  "brier_score_std": 0.015
+}

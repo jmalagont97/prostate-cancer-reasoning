@@ -1,0 +1,29 @@
+{
+  "n_test": 19,
+  "exp6_scalar_19col": {
+    "f1": 0.786,
+    "macro_f1": 0.593,
+    "roc_auc": 0.768,
+    "brier_score": 0.232
+  },
+  "ard_19col": {
+    "f1": 0.741,
+    "macro_f1": 0.552,
+    "roc_auc": 0.821,
+    "brier_score": 0.195
+  },
+  "ard_23col": {
+    "f1": 0.815,
+    "macro_f1": 0.68,
+    "roc_auc": 0.857,
+    "brier_score": 0.17
+  },
+  "ard_effect_19col_delta": -0.041,
+  "ard_plus_expansion_delta": 0.087,
+  "expansion_under_ard_delta": 0.128,
+  "config": {
+    "n_epochs": 300,
+    "lr": 0.01,
+    "sigma_mult": 1.0
+  }
+}

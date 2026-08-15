@@ -1,0 +1,14 @@
+{
+  "condition": "decision_kdm_ard_23col",
+  "target": "decision",
+  "features": "exp_8 23-column frame (23col)",
+  "model": "ARD-KDM (per-dimension sigma, 23 dims), fixed config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.0}",
+  "macro_f1_mean": 0.608,
+  "macro_f1_std": 0.031,
+  "n_folds": 50,
+  "note": "compare against exp_8's decision_kdm_v3 (0.585 CV, scalar sigma, same frame) and exp_6's 0.593 (19-col reference)",
+  "roc_auc_mean": 0.676,
+  "roc_auc_std": 0.018,
+  "brier_score_mean": 0.269,
+  "brier_score_std": 0.013
+}

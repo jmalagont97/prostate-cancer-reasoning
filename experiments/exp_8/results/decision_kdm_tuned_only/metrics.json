@@ -1,0 +1,16 @@
+{
+  "condition": "decision_kdm_tuned_only",
+  "target": "decision",
+  "features": "exp_3 19-column frame (original)",
+  "model": "KDM (memory-based, sigma-only trained), exp_8 ablation",
+  "fit_kwargs": {
+    "n_epochs": 300,
+    "lr": 0.01,
+    "sigma_mult": 1.5,
+    "optimizer": "adam",
+    "weight_decay": 0.0
+  },
+  "macro_f1_mean": 0.591,
+  "macro_f1_std": 0.031,
+  "n_folds": 50
+}

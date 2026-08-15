@@ -17,5 +17,14 @@
     "laboratory_results",
     "psa_trend",
     "radiology_report"
-  ]
+  ],
+  "macro_f1_mean": 0.744,
+  "macro_f1_std": 0.019,
+  "per_section_macro_f1": {
+    "previous_notes": 0.801,
+    "laboratory_results": 0.566,
+    "psa_trend": 0.721,
+    "radiology_report": 0.889
+  },
+  "macro_f1_definition": "per-section binary F1 (revealed vs. not), macro-averaged across the modeled sections"
 }

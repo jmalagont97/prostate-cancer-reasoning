@@ -1,0 +1,143 @@
+{
+  "exp5_solved_factors": [
+    "age",
+    "bx",
+    "dre",
+    "pirads",
+    "psa"
+  ],
+  "exp5_unsolved_factors": [
+    "comorbidity",
+    "cspca",
+    "psad",
+    "vol"
+  ],
+  "19col": {
+    "sigma_by_column": {
+      "cli_psa": 1.4152,
+      "cli_psad": 1.0406,
+      "cli_vol": 0.8948,
+      "cli_age": 0.5561,
+      "cli_cspca": 1.2706,
+      "cli_pirads": 1.0485,
+      "cli_dre_ordinal": 1.0993,
+      "cli_dre_not_done": 2.6601,
+      "cli_bx_positive": 1.332,
+      "cli_bx_missing": 1.5005,
+      "comorb_cardiometabolic": 1.27,
+      "comorb_renal": 1.8788,
+      "comorb_bleeding_risk": 2.1492,
+      "comorb_respiratory": 1.6635,
+      "comorb_bph": 1.5522,
+      "comorb_other_unmatched": 3.0551,
+      "mri_pca_0": 1.1663,
+      "mri_pca_1": 0.6013,
+      "mri_missing": 2.5202
+    },
+    "factor_relevance_ranked": [
+      [
+        "age",
+        1.7981
+      ],
+      [
+        "vol",
+        1.1176
+      ],
+      [
+        "psad",
+        0.961
+      ],
+      [
+        "pirads",
+        0.9537
+      ],
+      [
+        "cspca",
+        0.787
+      ],
+      [
+        "bx",
+        0.7086
+      ],
+      [
+        "psa",
+        0.7066
+      ],
+      [
+        "dre",
+        0.6428
+      ],
+      [
+        "comorbidity",
+        0.5596
+      ]
+    ],
+    "top5_vs_exp5_solved_agreement": 2
+  },
+  "23col": {
+    "sigma_by_column": {
+      "cli_psa": 1.9688,
+      "cli_psap": 2.0133,
+      "cli_psav": 1.8381,
+      "cli_psad": 1.5456,
+      "cli_vol": 0.9591,
+      "cli_age": 0.7996,
+      "cli_cspca": 1.4317,
+      "cli_pirads": 1.2947,
+      "cli_dre_ordinal": 1.1392,
+      "cli_dre_not_done": 2.9632,
+      "cli_bx_positive": 1.5814,
+      "cli_bx_missing": 1.5978,
+      "comorb_cardiometabolic": 1.3004,
+      "comorb_renal": 1.9443,
+      "comorb_bleeding_risk": 2.335,
+      "comorb_respiratory": 1.9602,
+      "comorb_bph": 1.6772,
+      "comorb_other_unmatched": 3.4618,
+      "mri_pca_0": 1.1929,
+      "mri_pca_1": 0.7874,
+      "mri_missing": 2.7945,
+      "cli_isup": 1.0195,
+      "vit_bmi": 1.0138
+    },
+    "factor_relevance_ranked": [
+      [
+        "age",
+        1.2506
+      ],
+      [
+        "vol",
+        1.0427
+      ],
+      [
+        "pirads",
+        0.7724
+      ],
+      [
+        "cspca",
+        0.6985
+      ],
+      [
+        "psad",
+        0.647
+      ],
+      [
+        "bx",
+        0.6291
+      ],
+      [
+        "dre",
+        0.6076
+      ],
+      [
+        "comorbidity",
+        0.5178
+      ],
+      [
+        "psa",
+        0.5079
+      ]
+    ],
+    "top5_vs_exp5_solved_agreement": 2
+  }
+}

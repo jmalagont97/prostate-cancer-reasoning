@@ -45,5 +45,17 @@
       "ordinal_error": 0.577,
       "decisive_set_f1": 0.825
     }
+  },
+  "mean_macro_f1": 0.307,
+  "per_factor_macro_f1": {
+    "age": 0.233,
+    "cspca": 0.246,
+    "pirads": 0.34,
+    "vol": 0.299,
+    "psa": 0.297,
+    "comorbidity": 0.286,
+    "psad": 0.323,
+    "dre": 0.324,
+    "bx": 0.416
   }
 }

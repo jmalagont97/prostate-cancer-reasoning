@@ -1,0 +1,136 @@
+"""Backfill macro-F1 into exp_8's reveal_kdm_occlusion result, per this project's cross-experiment
+macro-F1 reporting initiative (2026-08-12). Reveal is a multi-label target, so "macro-F1" here is
+the standard multi-label definition: per-section binary F1 (revealed vs. not), macro-averaged
+across the 4 modeled sections -- computed per repeat from that repeat's confusion counts, then
+averaged across repeats, matching how every other metric in this project is aggregated.
+
+Reproduces the EXACT same CV loop as run_reveal_kdm.py; merges the new metric into the existing
+metrics.json rather than overwriting it.
+
+Run with the project's own .venv (from the project root):
+    .venv/Scripts/python.exe experiments/exp_8/scripts/backfill_macro_f1_reveal.py
+"""
+
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import KFold
+from sklearn.preprocessing import StandardScaler
+
+sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "exp_6" / "scripts"))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "exp_7" / "scripts"))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "src"))
+from features_v3 import select_exp8_feature_frame  # noqa: E402
+from kdm_backbone_v2 import fit_kdm_backbone  # noqa: E402
+from run_reveal_kdm import SECTION_FEATURE_GROUPS, occlusion_entropy_delta  # noqa: E402
+
+from chimera_task1.features import build_preprocessor
+from chimera_task1.reasoning_labels import REVEAL_SECTIONS, parse_reveal_sequences
+from chimera_task1.train_decision import mri_pca_features
+from chimera_task1.train_reasoning import load_annotated, make_classifier
+
+RANDOM_STATE = 0
+N_SPLITS = 5
+N_REPEATS = 10
+RESULTS_DIR = Path(__file__).parent.parent / "results"
+SEARCH_DIR = RESULTS_DIR / "hyperparameter_search"
+
+
+def main() -> None:
+    with open(SEARCH_DIR / "winner.json") as f:
+        winner = json.load(f)
+    winning_config = {
+        "n_epochs": winner["n_epochs"], "lr": winner["lr"], "sigma_mult": winner["sigma_mult"],
+        "optimizer": winner["optimizer"], "weight_decay": winner["weight_decay"],
+    }
+
+    ann, inp_ann = load_annotated()
+    y_decision = (ann["target_biopsy_decision"].values == "yes").astype(int)
+
+    seqs = parse_reveal_sequences(ann["target_reveal_sequence_json"])
+    sections = [s for s in REVEAL_SECTIONS if any(s in seq for seq in seqs)]
+    Y = np.array([[1 if s in seq else 0 for s in sections] for seq in seqs])
+
+    full_inp = pd.read_csv("data/inputs.csv")
+    mri_pca_full = mri_pca_features(full_inp, n_components=2)
+    mri_pca_full["case_id"] = full_inp["case_id"].values
+    mri_pca = mri_pca_full.set_index("case_id").loc[inp_ann["case_id"]].reset_index(drop=True)
+    X_frame = select_exp8_feature_frame(inp_ann, mri_pca)
+
+    preprocessor = build_preprocessor(X_frame)
+    X_pre = preprocessor.fit_transform(X_frame)
+    X_pre = X_pre.toarray() if hasattr(X_pre, "toarray") else X_pre
+    section_col_idx = {s: [X_frame.columns.get_loc(c) for c in SECTION_FEATURE_GROUPS[s]] for s in sections}
+
+    n = len(y_decision)
+    n_sections = len(sections)
+    per_repeat_macro_f1 = []
+    per_section_f1s = {s: [] for s in sections}
+
+    for repeat in range(N_REPEATS):
+        kf = KFold(n_splits=N_SPLITS, shuffle=True, random_state=RANDOM_STATE + repeat)
+        oof_pred = np.zeros((n, n_sections), dtype=int)
+
+        for train_idx, test_idx in kf.split(X_pre):
+            scaler = StandardScaler().fit(X_pre[train_idx])
+            X_train = scaler.transform(X_pre[train_idx])
+            X_test = scaler.transform(X_pre[test_idx])
+
+            model = fit_kdm_backbone(X_train, y_decision[train_idx], n_classes=2, **winning_config)
+
+            for si, section in enumerate(sections):
+                col_idx = section_col_idx[section]
+                fill = np.median(X_train[:, col_idx], axis=0)
+                R_train = occlusion_entropy_delta(model, X_train, col_idx, fill)
+                R_test = occlusion_entropy_delta(model, X_test, col_idx, fill)
+
+                y_sec_train = Y[train_idx, si]
+                if len(np.unique(y_sec_train)) < 2:
+                    oof_pred[test_idx, si] = y_sec_train[0]
+                    continue
+                clf = make_classifier()
+                clf.fit(R_train.reshape(-1, 1), y_sec_train)
+                oof_pred[test_idx, si] = clf.predict(R_test.reshape(-1, 1))
+
+        section_f1s_this_repeat = []
+        for si, section in enumerate(sections):
+            true_col, pred_col = Y[:, si], oof_pred[:, si]
+            tp = int(np.sum((true_col == 1) & (pred_col == 1)))
+            fp = int(np.sum((true_col == 0) & (pred_col == 1)))
+            fn = int(np.sum((true_col == 1) & (pred_col == 0)))
+            precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+            recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+            f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+            per_section_f1s[section].append(f1)
+            section_f1s_this_repeat.append(f1)
+
+        per_repeat_macro_f1.append(float(np.mean(section_f1s_this_repeat)))
+        print(f"repeat {repeat} done")
+
+    per_section_mean_f1 = {s: round(float(np.mean(per_section_f1s[s])), 3) for s in sections}
+    macro_f1_mean = round(float(np.mean(per_repeat_macro_f1)), 3)
+    macro_f1_std = round(float(np.std(per_repeat_macro_f1)), 3)
+
+    path = RESULTS_DIR / "reveal_kdm_occlusion" / "metrics.json"
+    with open(path) as f:
+        payload = json.load(f)
+    payload["macro_f1_mean"] = macro_f1_mean
+    payload["macro_f1_std"] = macro_f1_std
+    payload["per_section_macro_f1"] = per_section_mean_f1
+    payload["macro_f1_definition"] = "per-section binary F1 (revealed vs. not), macro-averaged across the 4 modeled sections"
+    with open(path, "w") as f:
+        json.dump(payload, f, indent=2)
+
+    print(f"\n[reveal_kdm_occlusion] macro_f1={macro_f1_mean} +/- {macro_f1_std}")
+    for s in sections:
+        print(f"  {s:20s} F1={per_section_mean_f1[s]}")
+
+
+if __name__ == "__main__":
+    main()

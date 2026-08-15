@@ -2,6 +2,19 @@
   "condition": "reveal_baseline",
   "model": "always predict the single most common section-subset (mode pattern)",
   "n": 91,
-  "mode_pattern": ["previous_notes", "laboratory_results", "psa_trend", "radiology_report"],
-  "set_precision_mean": 0.783
+  "mode_pattern": [
+    "previous_notes",
+    "laboratory_results",
+    "psa_trend",
+    "radiology_report"
+  ],
+  "set_precision_mean": 0.783,
+  "macro_f1": 0.863,
+  "per_section_macro_f1": {
+    "previous_notes": 0.917,
+    "laboratory_results": 0.621,
+    "psa_trend": 0.929,
+    "radiology_report": 0.983
+  },
+  "macro_f1_definition": "per-section binary F1 (revealed vs. not), macro-averaged across the modeled sections"
 }

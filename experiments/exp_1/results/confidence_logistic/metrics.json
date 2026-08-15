@@ -3,9 +3,19 @@
   "model": "OneVsRestClassifier(LogisticRegression(solver=liblinear, class_weight=balanced, C=0.5))",
   "features": "clinical",
   "n": 91,
-  "classes": ["uncertain", "borderline", "clear"],
-  "class_counts": {"clear": 58, "borderline": 18, "uncertain": 15},
+  "classes": [
+    "uncertain",
+    "borderline",
+    "clear"
+  ],
+  "class_counts": {
+    "clear": 58,
+    "borderline": 18,
+    "uncertain": 15
+  },
   "cv": "repeated out-of-fold KFold(n_splits=5), n_repeats=8",
   "ordinal_distance_mean": 0.576,
-  "note": "worse than the always-'clear' naive baseline (0.527)"
+  "note": "worse than the always-'clear' naive baseline (0.527)",
+  "macro_f1_mean": 0.445,
+  "macro_f1_std": 0.035
 }

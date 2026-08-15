@@ -14,6 +14,13 @@
   "bugfix_corrected": {
     "date": "2026-08-10",
     "issue": "See experiments/exp_1/results/decision_baseline/metrics.json's bugfix_corrected note.",
-    "old_wrong_values": {"n": 195, "f1_mean": 0.451, "roc_auc": 0.609, "pr_auc": 0.406}
-  }
+    "old_wrong_values": {
+      "n": 195,
+      "f1_mean": 0.451,
+      "roc_auc": 0.609,
+      "pr_auc": 0.406
+    }
+  },
+  "macro_f1_mean": 0.606,
+  "macro_f1_std": 0.034
 }

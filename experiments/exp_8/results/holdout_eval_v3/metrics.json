@@ -1,0 +1,19 @@
+{
+  "n_test": 19,
+  "exp6_plain_kdm_19col": {
+    "f1": 0.786,
+    "macro_f1": 0.593
+  },
+  "exp8_combined_23col": {
+    "f1": 0.769,
+    "macro_f1": 0.635,
+    "config": {
+      "n_epochs": 300,
+      "lr": 0.01,
+      "sigma_mult": 1.5,
+      "optimizer": "adam",
+      "weight_decay": 0.0
+    }
+  },
+  "macro_f1_delta": 0.042
+}

@@ -5,5 +5,7 @@
   "model": "mlp",
   "ordinal_distance_mean": 0.955,
   "ordinal_distance_std": 0.024,
-  "class_imbalance_handling": "none"
+  "class_imbalance_handling": "none",
+  "macro_f1_mean": 0.314,
+  "macro_f1_std": 0.02
 }

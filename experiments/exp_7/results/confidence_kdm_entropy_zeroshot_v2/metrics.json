@@ -5,5 +5,7 @@
   "model": "exp_7 tuned KDM backbone + signal recalibration, config: {'n_epochs': 300, 'lr': 0.003, 'sigma_mult': 0.5, 'optimizer': 'adam', 'weight_decay': 0.0}",
   "ordinal_distance_mean": 1.255,
   "ordinal_distance_std": 0.029,
-  "n_folds": 50
+  "n_folds": 50,
+  "macro_f1_mean": 0.167,
+  "macro_f1_std": 0.019
 }

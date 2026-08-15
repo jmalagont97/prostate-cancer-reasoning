@@ -16,6 +16,16 @@
   "bugfix_corrected": {
     "date": "2026-08-10",
     "issue": "See decision_baseline/metrics.json's bugfix_corrected note -- same root cause (104/195 unlabeled cases silently coded as y=0).",
-    "old_wrong_values": {"n": 195, "f1_mean": 0.435, "f1_std": 0.092, "roc_auc": 0.606, "pr_auc": 0.354, "best_threshold_f1_diagnostic": 0.493, "best_threshold_diagnostic": 0.15}
-  }
+    "old_wrong_values": {
+      "n": 195,
+      "f1_mean": 0.435,
+      "f1_std": 0.092,
+      "roc_auc": 0.606,
+      "pr_auc": 0.354,
+      "best_threshold_f1_diagnostic": 0.493,
+      "best_threshold_diagnostic": 0.15
+    }
+  },
+  "macro_f1_mean": 0.573,
+  "macro_f1_std": 0.037
 }

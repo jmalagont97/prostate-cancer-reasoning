@@ -1,0 +1,63 @@
+{
+  "condition": "reveal_kdm_occlusion",
+  "target": "reveal_sequence",
+  "features": "exp_8 23-column frame",
+  "model": "KDM shared backbone (config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.5, 'optimizer': 'adam', 'weight_decay': 0.0}) + per-section occlusion-entropy signal + univariate binary classifiers",
+  "sections_modeled": [
+    "previous_notes",
+    "laboratory_results",
+    "psa_trend",
+    "radiology_report"
+  ],
+  "sections_dropped_no_positive_examples": [
+    "family_history",
+    "pathology_report"
+  ],
+  "set_precision_mean": 0.799,
+  "set_precision_std": 0.018,
+  "n_repeats": 10,
+  "per_section": {
+    "previous_notes": {
+      "mean_tp": 61.6,
+      "mean_fp": 7.3,
+      "mean_fn": 15.4,
+      "precision": 0.894,
+      "recall": 0.8,
+      "positive_rate": 0.846
+    },
+    "laboratory_results": {
+      "mean_tp": 6.5,
+      "mean_fp": 8.3,
+      "mean_fn": 34.5,
+      "precision": 0.439,
+      "recall": 0.159,
+      "positive_rate": 0.451
+    },
+    "psa_trend": {
+      "mean_tp": 48.9,
+      "mean_fp": 8.8,
+      "mean_fn": 30.1,
+      "precision": 0.847,
+      "recall": 0.619,
+      "positive_rate": 0.868
+    },
+    "radiology_report": {
+      "mean_tp": 18.7,
+      "mean_fp": 0.0,
+      "mean_fn": 69.3,
+      "precision": 1.0,
+      "recall": 0.212,
+      "positive_rate": 0.967
+    }
+  },
+  "note": "compare against exp_2's reveal_flags incumbent (0.853) and naive baseline (0.783)",
+  "macro_f1_mean": 0.531,
+  "macro_f1_std": 0.037,
+  "per_section_macro_f1": {
+    "previous_notes": 0.844,
+    "laboratory_results": 0.22,
+    "psa_trend": 0.711,
+    "radiology_report": 0.349
+  },
+  "macro_f1_definition": "per-section binary F1 (revealed vs. not), macro-averaged across the 4 modeled sections"
+}

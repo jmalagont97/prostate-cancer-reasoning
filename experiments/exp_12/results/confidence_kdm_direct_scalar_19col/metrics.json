@@ -1,0 +1,19 @@
+{
+  "condition": "confidence_kdm_direct_scalar_19col",
+  "target": "confidence",
+  "features": "exp_9/exp_10 19col frame (direct training, scalar backbone -- ARD ablation of exp_11)",
+  "model": "scalar-sigma KDM trained directly on the 3-class confidence label (exp_6's kdm_backbone, defaults)",
+  "accuracy_mean": 0.618,
+  "accuracy_std": 0.029,
+  "macro_f1_mean": 0.5,
+  "macro_f1_std": 0.039,
+  "ordinal_distance_mean": 0.543,
+  "ordinal_distance_std": 0.043,
+  "roc_auc_mean": 0.696,
+  "roc_auc_std": 0.023,
+  "roc_auc_n_repeats_included": 10,
+  "brier_score_mean": 0.628,
+  "brier_score_std": 0.037,
+  "n_folds": 50,
+  "note": "compare against exp_11's direct ARD-KDM (converged CV/LOO/repeated-holdout: ordinal_distance 0.47-0.55, macro_f1 0.47-0.51) and exp_3's original direct scalar-KDM on a worse frame (ordinal_distance=0.530, macro_f1=0.508)"
+}

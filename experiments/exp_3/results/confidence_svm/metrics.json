@@ -5,5 +5,7 @@
   "model": "svm",
   "ordinal_distance_mean": 0.468,
   "ordinal_distance_std": 0.022,
-  "class_imbalance_handling": "class_weight (balanced)"
+  "class_imbalance_handling": "class_weight (balanced)",
+  "macro_f1_mean": 0.404,
+  "macro_f1_std": 0.027
 }

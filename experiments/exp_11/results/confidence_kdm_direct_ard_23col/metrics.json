@@ -1,0 +1,19 @@
+{
+  "condition": "confidence_kdm_direct_ard_23col",
+  "target": "confidence",
+  "features": "exp_9/exp_10 23col frame (direct training, not derived signal)",
+  "model": "ARD-KDM trained directly on the 3-class confidence label, fixed config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.0}",
+  "accuracy_mean": 0.607,
+  "accuracy_std": 0.023,
+  "macro_f1_mean": 0.502,
+  "macro_f1_std": 0.042,
+  "ordinal_distance_mean": 0.527,
+  "ordinal_distance_std": 0.039,
+  "roc_auc_mean": 0.69,
+  "roc_auc_std": 0.024,
+  "roc_auc_n_repeats_included": 10,
+  "brier_score_mean": 0.588,
+  "brier_score_std": 0.025,
+  "n_folds": 50,
+  "note": "compare against exp_3's original directly-trained confidence_kdm (scalar backbone): ordinal_distance=0.530, macro_f1=0.508 -- and exp_6-exp_10's best derived-signal conditions (exp_6 entropy_isotonic: 0.731/0.223; exp_9 ARD 19-col blend: 0.836/0.283)"
+}

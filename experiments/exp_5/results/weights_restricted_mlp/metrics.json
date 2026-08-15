@@ -81,5 +81,17 @@
       ]
     }
   },
-  "class_imbalance_handling": "none"
+  "class_imbalance_handling": "none",
+  "mean_macro_f1": 0.143,
+  "per_factor_macro_f1": {
+    "age": 0.189,
+    "cspca": 0.122,
+    "pirads": 0.163,
+    "vol": 0.099,
+    "psa": 0.18,
+    "comorbidity": 0.251,
+    "psad": 0.108,
+    "dre": 0.066,
+    "bx": 0.105
+  }
 }

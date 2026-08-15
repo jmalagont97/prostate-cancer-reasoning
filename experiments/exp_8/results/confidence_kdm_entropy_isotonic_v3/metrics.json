@@ -1,0 +1,11 @@
+{
+  "condition": "confidence_kdm_entropy_isotonic_v3",
+  "target": "confidence",
+  "features": "exp_8 23-column frame (psav/psap/isup/bmi added)",
+  "model": "exp_8 KDM backbone + signal recalibration, config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.5, 'optimizer': 'adam', 'weight_decay': 0.0}",
+  "ordinal_distance_mean": 0.744,
+  "ordinal_distance_std": 0.071,
+  "n_folds": 50,
+  "macro_f1_mean": 0.268,
+  "macro_f1_std": 0.067
+}

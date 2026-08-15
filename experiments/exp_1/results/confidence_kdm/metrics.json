@@ -3,11 +3,17 @@
   "model": "KDMClassModel (kdm-torch), encoder=nn.Identity(), n_comp=len(X_train) (memory-based), x_train=y_train=w_train=False, sigma_trainable=True, 300 epochs full-batch Adam(lr=1e-2)",
   "features": "clinical, StandardScaler-normalized",
   "n": 91,
-  "classes": ["uncertain", "borderline", "clear"],
+  "classes": [
+    "uncertain",
+    "borderline",
+    "clear"
+  ],
   "cv": "repeated out-of-fold KFold(n_splits=5), n_repeats=10",
   "ordinal_distance_mean": 0.564,
   "ordinal_distance_std": 0.054,
   "mean_predictive_entropy": 0.716,
   "max_possible_entropy": 1.099,
-  "note": "better than confidence_logistic (0.576) but still worse than the always-'clear' naive baseline (0.527). Design choice: prototypes frozen at training data (memory-based / Parzen-window), only kernel bandwidth trained, to avoid overfitting ~73 training rows/fold with a higher-capacity KDM configuration."
+  "note": "better than confidence_logistic (0.576) but still worse than the always-'clear' naive baseline (0.527). Design choice: prototypes frozen at training data (memory-based / Parzen-window), only kernel bandwidth trained, to avoid overfitting ~73 training rows/fold with a higher-capacity KDM configuration.",
+  "macro_f1_mean": 0.442,
+  "macro_f1_std": 0.053
 }

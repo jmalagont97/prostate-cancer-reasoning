@@ -78,14 +78,20 @@ the one check specifically designed to stress-test it.
 Re-running `exp_6`'s exact, unmodified confidence/weights readout code on the new backbone
 produced numbers within noise of `exp_6`'s originals in both directions:
 
-| Condition | exp_6 | exp_7 (`_v2`) | Δ |
-|---|---|---|---|
-| `confidence_kdm_entropy_isotonic` | 0.731 | 0.730 | ~0 |
-| `confidence_kdm_dispersion_isotonic` | 0.776 | 0.776 | 0 |
-| `confidence_kdm_blend` | 0.754 | 0.748 | ~0 |
-| `weights_kdm_occlusion` | 0.405 | 0.404 | ~0 |
-| `weights_kdm_kernel_distance` | 0.526 | 0.548 | +0.022 (worse) |
-| `weights_kdm_blend` | 0.742 | 0.802 | +0.060 (worse) |
+| Condition | exp_6 ord. dist./error | exp_7 (`_v2`) | Δ | exp_6 macro-F1† | exp_7 macro-F1† |
+|---|---|---|---|---|---|
+| `confidence_kdm_entropy_isotonic` | 0.731 | 0.730 | ~0 | 0.223 | 0.217 |
+| `confidence_kdm_dispersion_isotonic` | 0.776 | 0.776 | 0 | 0.153 | 0.181 |
+| `confidence_kdm_blend` | 0.754 | 0.748 | ~0 | 0.269 | 0.253 |
+| `weights_kdm_occlusion` | 0.405 | 0.404 | ~0 | 0.256 | 0.256 |
+| `weights_kdm_kernel_distance` | 0.526 | 0.548 | +0.022 (worse) | 0.217 | 0.213 |
+| `weights_kdm_blend` | 0.742 | 0.802 | +0.060 (worse) | 0.237 | 0.215 |
+
+†Backfilled 2026-08-12, per this project's cross-experiment macro-F1 reporting initiative —
+confidence: standard 3-class macro-F1; weights: per-factor 4-class macro-F1 averaged across the 9
+factors. Macro-F1 **corroborates** the "no meaningful change" conclusion already reached from
+ordinal distance/error — every condition's macro-F1 moved by at most ~0.03 between `exp_6` and
+`exp_7`, the same order of noise the primary metrics showed.
 
 `weights_kdm_occlusion`'s per-factor breakdown (`results/weights_kdm_occlusion_v2/metrics.json`)
 replicates `exp_6`'s exact pattern — `pirads`/`bx`/`age`/`psa`/`dre` solid, `cspca`/`comorbidity`/

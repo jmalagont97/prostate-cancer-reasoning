@@ -1,0 +1,77 @@
+{
+  "condition": "weights_kdm_direct_scalar_restricted",
+  "target": "variable_weights",
+  "features": "exp_8 23-column frame, restricted scope (direct training, scalar backbone)",
+  "model": "scalar-sigma KDM trained directly on each factor's 4-class weight label",
+  "mean_ordinal_error": 0.454,
+  "mean_decisive_set_f1": 0.375,
+  "mean_macro_f1": 0.277,
+  "n_factors_included": 7,
+  "n_factors_skipped": 2,
+  "n_repeats": 10,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.631,
+      "macro_f1": 0.448,
+      "ordinal_error": 0.38,
+      "decisive_set_f1": 0.742,
+      "roc_auc": 0.552,
+      "brier_score": 0.587
+    },
+    "cspca": {
+      "accuracy": 0.497,
+      "macro_f1": 0.215,
+      "ordinal_error": 0.624,
+      "decisive_set_f1": 0.156,
+      "roc_auc": null,
+      "brier_score": 0.936
+    },
+    "pirads": {
+      "skipped": true
+    },
+    "vol": {
+      "accuracy": 0.735,
+      "macro_f1": 0.287,
+      "ordinal_error": 0.307,
+      "decisive_set_f1": 0.278,
+      "roc_auc": 0.548,
+      "brier_score": 0.488
+    },
+    "psa": {
+      "accuracy": 0.427,
+      "macro_f1": 0.204,
+      "ordinal_error": 0.595,
+      "decisive_set_f1": 0.653,
+      "roc_auc": 0.428,
+      "brier_score": 0.822
+    },
+    "comorbidity": {
+      "accuracy": 0.621,
+      "macro_f1": 0.243,
+      "ordinal_error": 0.384,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.483
+    },
+    "psad": {
+      "accuracy": 0.489,
+      "macro_f1": 0.23,
+      "ordinal_error": 0.6,
+      "decisive_set_f1": 0.341,
+      "roc_auc": 0.525,
+      "brier_score": 0.85
+    },
+    "dre": {
+      "accuracy": 0.71,
+      "macro_f1": 0.309,
+      "ordinal_error": 0.291,
+      "decisive_set_f1": 0.454,
+      "roc_auc": 0.396,
+      "brier_score": 0.391
+    },
+    "bx": {
+      "skipped": true
+    }
+  },
+  "note": "compare against weights_svm incumbent (official=0.382, restricted=0.392 mean ordinal error) and exp_5's original direct scalar-KDM on a worse frame (official=0.478, restricted=0.454)"
+}

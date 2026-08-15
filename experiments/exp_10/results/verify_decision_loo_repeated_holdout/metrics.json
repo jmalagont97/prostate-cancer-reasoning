@@ -1,0 +1,120 @@
+{
+  "23col_exp9": {
+    "reference": {
+      "cv_macro_f1": 0.608,
+      "held_out_seed0_macro_f1": 0.68
+    },
+    "loo": {
+      "macro_f1": 0.639,
+      "f1": 0.746,
+      "roc_auc": 0.694,
+      "brier_score": 0.264,
+      "n_folds": 91
+    },
+    "repeated_holdout": {
+      "macro_f1_mean": 0.67,
+      "macro_f1_std": 0.064,
+      "roc_auc_mean": 0.739,
+      "roc_auc_std": 0.062,
+      "brier_score_mean": 0.24,
+      "brier_score_std": 0.044,
+      "per_seed_macro_f1": [
+        0.68,
+        0.614,
+        0.734,
+        0.774,
+        0.708,
+        0.591,
+        0.552,
+        0.661,
+        0.708,
+        0.676
+      ],
+      "per_seed_roc_auc": [
+        0.857,
+        0.702,
+        0.75,
+        0.774,
+        0.774,
+        0.714,
+        0.667,
+        0.655,
+        0.81,
+        0.69
+      ],
+      "per_seed_brier_score": [
+        0.17,
+        0.255,
+        0.231,
+        0.21,
+        0.2,
+        0.313,
+        0.306,
+        0.258,
+        0.2,
+        0.259
+      ],
+      "seed0_matches_reference": 0.68
+    },
+    "seed0_sanity_check_ok": true
+  },
+  "48col_exp10_fullschema": {
+    "reference": {
+      "cv_macro_f1": 0.548,
+      "held_out_seed0_macro_f1": 0.708
+    },
+    "loo": {
+      "macro_f1": 0.53,
+      "f1": 0.649,
+      "roc_auc": 0.574,
+      "brier_score": 0.327,
+      "n_folds": 91
+    },
+    "repeated_holdout": {
+      "macro_f1_mean": 0.509,
+      "macro_f1_std": 0.134,
+      "roc_auc_mean": 0.559,
+      "roc_auc_std": 0.155,
+      "brier_score_mean": 0.34,
+      "brier_score_std": 0.095,
+      "per_seed_macro_f1": [
+        0.708,
+        0.568,
+        0.526,
+        0.352,
+        0.244,
+        0.474,
+        0.548,
+        0.661,
+        0.591,
+        0.421
+      ],
+      "per_seed_roc_auc": [
+        0.833,
+        0.702,
+        0.655,
+        0.393,
+        0.274,
+        0.548,
+        0.464,
+        0.583,
+        0.667,
+        0.476
+      ],
+      "per_seed_brier_score": [
+        0.202,
+        0.265,
+        0.272,
+        0.461,
+        0.508,
+        0.333,
+        0.37,
+        0.291,
+        0.261,
+        0.435
+      ],
+      "seed0_matches_reference": 0.708
+    },
+    "seed0_sanity_check_ok": true
+  }
+}

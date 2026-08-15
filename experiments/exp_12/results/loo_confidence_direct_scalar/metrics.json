@@ -1,0 +1,18 @@
+{
+  "19col": {
+    "accuracy": 0.626,
+    "macro_f1": 0.514,
+    "ordinal_distance": 0.56,
+    "roc_auc": 0.7,
+    "brier_score": 0.633,
+    "n_folds": 91
+  },
+  "23col": {
+    "accuracy": 0.681,
+    "macro_f1": 0.589,
+    "ordinal_distance": 0.44,
+    "roc_auc": 0.731,
+    "brier_score": 0.538,
+    "n_folds": 91
+  }
+}

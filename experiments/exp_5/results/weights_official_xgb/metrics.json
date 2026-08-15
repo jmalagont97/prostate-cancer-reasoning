@@ -47,5 +47,13 @@
       "skipped": true
     }
   },
-  "class_imbalance_handling": "sample_weight (balanced)"
+  "class_imbalance_handling": "sample_weight (balanced)",
+  "mean_macro_f1": 0.275,
+  "per_factor_macro_f1": {
+    "cspca": 0.279,
+    "vol": 0.359,
+    "comorbidity": 0.222,
+    "psad": 0.267,
+    "dre": 0.249
+  }
 }

@@ -8,13 +8,23 @@
   "f1_mean": 0.635,
   "f1_std": 0.092,
   "n_folds": 50,
-  "roc_auc": 0.660,
+  "roc_auc": 0.66,
   "pr_auc": 0.789,
   "best_threshold_f1_diagnostic": 0.733,
   "best_threshold_diagnostic": 0.05,
   "bugfix_corrected": {
     "date": "2026-08-10",
     "issue": "See decision_baseline/metrics.json's bugfix_corrected note -- same root cause (104/195 unlabeled cases silently coded as y=0). Also fixed: MRI-PCA is now correctly fit on the full 195-case embedding pool and aligned to the 91 labeled cases by case_id, rather than accidentally fit on a mismatched set.",
-    "old_wrong_values": {"n": 195, "f1_mean": 0.393, "f1_std": 0.092, "roc_auc": 0.589, "pr_auc": 0.365, "best_threshold_f1_diagnostic": 0.467, "best_threshold_diagnostic": 0.10}
-  }
+    "old_wrong_values": {
+      "n": 195,
+      "f1_mean": 0.393,
+      "f1_std": 0.092,
+      "roc_auc": 0.589,
+      "pr_auc": 0.365,
+      "best_threshold_f1_diagnostic": 0.467,
+      "best_threshold_diagnostic": 0.1
+    }
+  },
+  "macro_f1_mean": 0.543,
+  "macro_f1_std": 0.05
 }

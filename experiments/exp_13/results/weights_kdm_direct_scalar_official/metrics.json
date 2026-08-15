@@ -1,0 +1,87 @@
+{
+  "condition": "weights_kdm_direct_scalar_official",
+  "target": "variable_weights",
+  "features": "exp_8 23-column frame, official scope (direct training, scalar backbone)",
+  "model": "scalar-sigma KDM trained directly on each factor's 4-class weight label",
+  "mean_ordinal_error": 0.483,
+  "mean_decisive_set_f1": 0.509,
+  "mean_macro_f1": 0.3,
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "n_repeats": 10,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.499,
+      "macro_f1": 0.296,
+      "ordinal_error": 0.531,
+      "decisive_set_f1": 0.642,
+      "roc_auc": 0.382,
+      "brier_score": 0.798
+    },
+    "cspca": {
+      "accuracy": 0.571,
+      "macro_f1": 0.307,
+      "ordinal_error": 0.531,
+      "decisive_set_f1": 0.253,
+      "roc_auc": null,
+      "brier_score": 0.657
+    },
+    "pirads": {
+      "accuracy": 0.666,
+      "macro_f1": 0.337,
+      "ordinal_error": 0.362,
+      "decisive_set_f1": 0.988,
+      "roc_auc": null,
+      "brier_score": 0.548
+    },
+    "vol": {
+      "accuracy": 0.671,
+      "macro_f1": 0.235,
+      "ordinal_error": 0.355,
+      "decisive_set_f1": 0.193,
+      "roc_auc": 0.587,
+      "brier_score": 0.517
+    },
+    "psa": {
+      "accuracy": 0.445,
+      "macro_f1": 0.31,
+      "ordinal_error": 0.608,
+      "decisive_set_f1": 0.656,
+      "roc_auc": 0.442,
+      "brier_score": 0.857
+    },
+    "comorbidity": {
+      "accuracy": 0.61,
+      "macro_f1": 0.285,
+      "ordinal_error": 0.41,
+      "decisive_set_f1": 0.071,
+      "roc_auc": null,
+      "brier_score": 0.631
+    },
+    "psad": {
+      "accuracy": 0.512,
+      "macro_f1": 0.302,
+      "ordinal_error": 0.575,
+      "decisive_set_f1": 0.544,
+      "roc_auc": 0.617,
+      "brier_score": 0.727
+    },
+    "dre": {
+      "accuracy": 0.695,
+      "macro_f1": 0.313,
+      "ordinal_error": 0.331,
+      "decisive_set_f1": 0.463,
+      "roc_auc": 0.439,
+      "brier_score": 0.485
+    },
+    "bx": {
+      "accuracy": 0.507,
+      "macro_f1": 0.313,
+      "ordinal_error": 0.64,
+      "decisive_set_f1": 0.775,
+      "roc_auc": 0.545,
+      "brier_score": 0.752
+    }
+  },
+  "note": "compare against weights_svm incumbent (official=0.382, restricted=0.392 mean ordinal error) and exp_5's original direct scalar-KDM on a worse frame (official=0.478, restricted=0.454)"
+}

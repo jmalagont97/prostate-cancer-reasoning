@@ -1,0 +1,92 @@
+{
+  "condition": "holdout_weights_direct_ard_official",
+  "n_test": 19,
+  "mean_ordinal_error": 0.456,
+  "mean_decisive_set_f1": 0.549,
+  "mean_macro_f1": 0.29,
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.579,
+      "macro_f1": 0.235,
+      "ordinal_error": 0.421,
+      "decisive_set_f1": 0.741,
+      "roc_auc": null,
+      "brier_score": 0.73
+    },
+    "cspca": {
+      "accuracy": 0.632,
+      "macro_f1": 0.363,
+      "ordinal_error": 0.421,
+      "decisive_set_f1": 0.4,
+      "roc_auc": null,
+      "brier_score": 0.532
+    },
+    "pirads": {
+      "accuracy": 0.789,
+      "macro_f1": 0.402,
+      "ordinal_error": 0.263,
+      "decisive_set_f1": 0.973,
+      "roc_auc": null,
+      "brier_score": 0.396
+    },
+    "vol": {
+      "accuracy": 0.684,
+      "macro_f1": 0.217,
+      "ordinal_error": 0.368,
+      "decisive_set_f1": 0.333,
+      "roc_auc": 0.709,
+      "brier_score": 0.57
+    },
+    "psa": {
+      "accuracy": 0.368,
+      "macro_f1": 0.172,
+      "ordinal_error": 0.684,
+      "decisive_set_f1": 0.615,
+      "roc_auc": null,
+      "brier_score": 0.869
+    },
+    "comorbidity": {
+      "accuracy": 0.632,
+      "macro_f1": 0.259,
+      "ordinal_error": 0.421,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.56
+    },
+    "psad": {
+      "accuracy": 0.632,
+      "macro_f1": 0.329,
+      "ordinal_error": 0.632,
+      "decisive_set_f1": 0.5,
+      "roc_auc": 0.739,
+      "brier_score": 0.547
+    },
+    "dre": {
+      "accuracy": 0.842,
+      "macro_f1": 0.384,
+      "ordinal_error": 0.211,
+      "decisive_set_f1": 0.75,
+      "roc_auc": null,
+      "brier_score": 0.227
+    },
+    "bx": {
+      "accuracy": 0.421,
+      "macro_f1": 0.247,
+      "ordinal_error": 0.684,
+      "decisive_set_f1": 0.632,
+      "roc_auc": 0.614,
+      "brier_score": 0.9
+    }
+  },
+  "reference": {
+    "weights_svm_incumbent_ordinal_error": 0.382,
+    "exp5_direct_scalar_kdm_ordinal_error": 0.478
+  },
+  "config": {
+    "n_epochs": 300,
+    "lr": 0.01,
+    "sigma_mult": 1.0
+  }
+}

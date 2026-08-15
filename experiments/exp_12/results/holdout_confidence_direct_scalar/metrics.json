@@ -1,0 +1,25 @@
+{
+  "n_test": 19,
+  "19col": {
+    "accuracy": 0.737,
+    "macro_f1": 0.504,
+    "ordinal_distance": 0.368,
+    "roc_auc": 0.664,
+    "brier_score": 0.498,
+    "probs_check_ok": true
+  },
+  "23col": {
+    "accuracy": 0.737,
+    "macro_f1": 0.504,
+    "ordinal_distance": 0.368,
+    "roc_auc": 0.744,
+    "brier_score": 0.433,
+    "probs_check_ok": true
+  },
+  "reference": {
+    "exp3_direct_confidence_kdm_cv_ordinal_distance": 0.53,
+    "exp3_direct_confidence_kdm_cv_macro_f1": 0.508,
+    "exp11_direct_ard_kdm_converged_ordinal_distance": "0.47-0.55",
+    "exp11_direct_ard_kdm_converged_macro_f1": "0.47-0.51"
+  }
+}

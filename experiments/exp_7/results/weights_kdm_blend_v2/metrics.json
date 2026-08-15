@@ -54,5 +54,17 @@
       "decisive_set_f1": 0.843,
       "n_repeats_included": 10
     }
+  },
+  "mean_macro_f1": 0.215,
+  "per_factor_macro_f1": {
+    "age": 0.118,
+    "cspca": 0.239,
+    "pirads": 0.215,
+    "vol": 0.227,
+    "psa": 0.166,
+    "comorbidity": 0.281,
+    "psad": 0.077,
+    "dre": 0.279,
+    "bx": 0.336
   }
 }

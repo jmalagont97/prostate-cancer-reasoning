@@ -66,13 +66,20 @@ that gap is the cost side of this experiment's central trade, and it did not shr
 
 ### 3.2 Confidence — all 5 conditions worse than baseline
 
-| Condition | Ordinal distance | vs. baseline (0.527) | vs. incumbent (0.468) |
-|---|---|---|---|
-| `confidence_kdm_entropy_isotonic` | 0.731 | ❌ worse | ❌ worse |
-| `confidence_kdm_blend` | 0.754 | ❌ worse | ❌ worse |
-| `confidence_kdm_dispersion_isotonic` | 0.776 | ❌ worse | ❌ worse |
-| `confidence_kdm_participation_isotonic` | 0.844 | ❌ worse | ❌ worse |
-| `confidence_kdm_entropy_zeroshot` | 1.232 | ❌ much worse | ❌ much worse |
+| Condition | Ordinal distance | Macro-F1† | vs. baseline (0.527) | vs. incumbent (0.468) |
+|---|---|---|---|---|
+| `confidence_kdm_blend` | 0.754 | **0.269** | ❌ worse | ❌ worse |
+| `confidence_kdm_participation_isotonic` | 0.844 | 0.245 | ❌ worse | ❌ worse |
+| `confidence_kdm_entropy_isotonic` | 0.731 | 0.223 | ❌ worse | ❌ worse |
+| `confidence_kdm_dispersion_isotonic` | 0.776 | 0.153 | ❌ worse | ❌ worse |
+| `confidence_kdm_entropy_zeroshot` | 1.232 | 0.179 | ❌ much worse | ❌ much worse |
+
+†Macro-F1 (standard 3-class average across `uncertain`/`borderline`/`clear`), backfilled
+2026-08-12 as part of this project's cross-experiment macro-F1 reporting initiative — reported
+alongside `ordinal_distance`, which remains the primary/official metric. Note the ranking
+**changes** under macro-F1: `blend` is actually the best condition by this metric despite
+`entropy_isotonic` having the better ordinal distance — the two metrics don't agree on a
+winner here, itself worth knowing when comparing conditions.
 
 None of Signals A (entropy), B (dispersion), or C (participation ratio) — alone or blended —
 recover anything close to baseline, let alone `confidence_svm`. Two findings worth separating:
@@ -101,11 +108,17 @@ recover anything close to baseline, let alone `confidence_svm`. Two findings wor
 
 ### 3.3 Variable weights — one mechanism narrowly beats baseline
 
-| Condition | Mean ordinal error | Mean decisive-set F1 | vs. baseline (0.413) | vs. incumbent (0.382/0.392) |
-|---|---|---|---|---|
-| `weights_kdm_occlusion` | **0.405** | 0.442 | ✅ narrowly beats | ❌ |
-| `weights_kdm_kernel_distance` | 0.526 | 0.454 | ❌ | ❌ |
-| `weights_kdm_blend` | 0.742 | 0.428 | ❌ | ❌ |
+| Condition | Mean ordinal error | Mean decisive-set F1 | Mean macro-F1† | vs. baseline (0.413) | vs. incumbent (0.382/0.392) |
+|---|---|---|---|---|---|
+| `weights_kdm_occlusion` | **0.405** | 0.442 | **0.256** | ✅ narrowly beats | ❌ |
+| `weights_kdm_blend` | 0.742 | 0.428 | 0.237 | ❌ | ❌ |
+| `weights_kdm_kernel_distance` | 0.526 | 0.454 | 0.217 | ❌ | ❌ |
+
+†Macro-F1 across the 4 weight classes (`not_used`/`noted`/`important`/`decisive`, `labels=[0,1,2,3]`
+explicitly so a class absent from a factor's true labels still counts at F1=0 — the technically
+correct definition), averaged per factor then across the 9 in-scope factors. Backfilled
+2026-08-12. Here macro-F1 and ordinal error **agree** on the ranking (`occlusion` best on both),
+unlike confidence's table above.
 
 Only local occlusion (Signal D) beats baseline, and only narrowly (0.405 vs. 0.413 — about a
 fifth the margin `weights_svm` achieves over the same baseline). Signal E (kernel-distance
@@ -116,17 +129,24 @@ real signal, not just overhead.
 **Per-factor breakdown for `weights_kdm_occlusion`** (per `DESIGN.md`'s explicit instruction not
 to report only the aggregate):
 
-| Factor | Baseline | `weights_kdm_occlusion` | Beats baseline? | `exp_5` incumbent |
-|---|---|---|---|---|
-| dre | 0.308 | **0.263** | ✅ beats baseline **and** exp_5's own best (0.284) | 0.284 (SVM) |
-| psa | 0.451 | **0.426** | ✅ beats baseline, ties exp_5's best exactly | 0.426 (SVM) |
-| bx | 0.527 | **0.451** | ✅ beats baseline | 0.420 (SVM) |
-| pirads | 0.527 | **0.490** | ✅ beats baseline | 0.336 (kNN) |
-| comorbidity | 0.308 | 0.316 | ❌ narrowly worse | 0.321 (not beaten) |
-| cspca | 0.451 | 0.470 | ❌ worse | 0.455 (not beaten) |
-| vol | 0.264 | 0.288 | ❌ worse | 0.264 (tied) |
-| age | 0.396 | 0.414 | ❌ worse | 0.360 (SVM, beats baseline) |
-| psad | 0.484 | 0.526 | ❌ worse | 0.486 (not beaten) |
+| Factor | Baseline | `weights_kdm_occlusion` | Macro-F1† | Beats baseline? | `exp_5` incumbent |
+|---|---|---|---|---|---|
+| dre | 0.308 | **0.263** | 0.324 | ✅ beats baseline **and** exp_5's own best (0.284) | 0.284 (SVM) |
+| psa | 0.451 | **0.426** | 0.301 | ✅ beats baseline, ties exp_5's best exactly | 0.426 (SVM) |
+| bx | 0.527 | **0.451** | 0.343 | ✅ beats baseline | 0.420 (SVM) |
+| pirads | 0.527 | **0.490** | 0.255 | ✅ beats baseline | 0.336 (kNN) |
+| comorbidity | 0.308 | 0.316 | 0.203 | ❌ narrowly worse | 0.321 (not beaten) |
+| cspca | 0.451 | 0.470 | 0.244 | ❌ worse | 0.455 (not beaten) |
+| vol | 0.264 | 0.288 | 0.234 | ❌ worse | 0.264 (tied) |
+| age | 0.396 | 0.414 | 0.193 | ❌ worse | 0.360 (SVM, beats baseline) |
+| psad | 0.484 | 0.526 | 0.209 | ❌ worse | 0.486 (not beaten) |
+
+†Per-factor macro-F1, backfilled 2026-08-12. Notably tracks the same solvable/unsolvable split as
+ordinal error — `bx`/`dre` (the two best-performing factors on ordinal error) also have the two
+highest macro-F1 scores (0.343, 0.324), while `age` (worst on ordinal error among the "solved"
+factors) also has the lowest macro-F1 (0.193) of the whole set — the two metrics corroborate each
+other at the per-factor level even though the aggregate ranking across conditions (above) doesn't
+always agree between metrics.
 
 **4 of 9 factors beat baseline** — `dre`, `psa`, `bx`, `pirads` — closely reproducing (via a
 completely different mechanism: local sensitivity off a shared decision backbone, not a

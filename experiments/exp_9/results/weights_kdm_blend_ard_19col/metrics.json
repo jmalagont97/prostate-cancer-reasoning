@@ -1,0 +1,68 @@
+{
+  "condition": "weights_kdm_blend_ard_19col",
+  "target": "variable_weights",
+  "features": "exp_3 19-column frame (19col)",
+  "model": "ARD-KDM backbone + signal recalibration, config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.0}",
+  "mean_ordinal_error": 0.661,
+  "mean_decisive_set_f1": 0.489,
+  "mean_macro_f1": 0.244,
+  "mean_n_factors_included": 9.0,
+  "mean_n_factors_skipped": 0.0,
+  "n_repeats": 10,
+  "per_factor": {
+    "age": {
+      "ordinal_error": 0.735,
+      "decisive_set_f1": 0.601,
+      "macro_f1": 0.217,
+      "n_repeats_included": 10
+    },
+    "cspca": {
+      "ordinal_error": 0.66,
+      "decisive_set_f1": 0.0,
+      "macro_f1": 0.194,
+      "n_repeats_included": 10
+    },
+    "pirads": {
+      "ordinal_error": 0.651,
+      "decisive_set_f1": 0.961,
+      "macro_f1": 0.208,
+      "n_repeats_included": 10
+    },
+    "vol": {
+      "ordinal_error": 0.409,
+      "decisive_set_f1": 0.291,
+      "macro_f1": 0.247,
+      "n_repeats_included": 10
+    },
+    "psa": {
+      "ordinal_error": 0.662,
+      "decisive_set_f1": 0.705,
+      "macro_f1": 0.26,
+      "n_repeats_included": 10
+    },
+    "comorbidity": {
+      "ordinal_error": 0.47,
+      "decisive_set_f1": 0.095,
+      "macro_f1": 0.29,
+      "n_repeats_included": 10
+    },
+    "psad": {
+      "ordinal_error": 1.237,
+      "decisive_set_f1": 0.451,
+      "macro_f1": 0.14,
+      "n_repeats_included": 10
+    },
+    "dre": {
+      "ordinal_error": 0.423,
+      "decisive_set_f1": 0.478,
+      "macro_f1": 0.323,
+      "n_repeats_included": 10
+    },
+    "bx": {
+      "ordinal_error": 0.702,
+      "decisive_set_f1": 0.82,
+      "macro_f1": 0.321,
+      "n_repeats_included": 10
+    }
+  }
+}

@@ -5,5 +5,7 @@
   "model": "KDM decision backbone + signal recalibration (no separate model family)",
   "ordinal_distance_mean": 0.776,
   "ordinal_distance_std": 0.016,
-  "n_folds": 50
+  "n_folds": 50,
+  "macro_f1_mean": 0.153,
+  "macro_f1_std": 0.015
 }

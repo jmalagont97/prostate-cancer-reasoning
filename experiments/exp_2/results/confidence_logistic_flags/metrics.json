@@ -5,5 +5,7 @@
   "comorbidity_treatment": "flags",
   "model": "OvR logistic regression",
   "ordinal_distance_mean": 0.657,
-  "ordinal_distance_std": 0.024
+  "ordinal_distance_std": 0.024,
+  "macro_f1_mean": 0.395,
+  "macro_f1_std": 0.019
 }

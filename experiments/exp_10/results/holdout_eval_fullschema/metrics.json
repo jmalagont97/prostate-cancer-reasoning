@@ -1,0 +1,22 @@
+{
+  "n_test": 19,
+  "ard_fullschema": {
+    "f1": 0.8,
+    "macro_f1": 0.708,
+    "roc_auc": 0.833,
+    "brier_score": 0.202
+  },
+  "reference": {
+    "exp9_ard_23col_held_out_macro_f1": 0.68,
+    "exp9_ard_23col_cv_macro_f1": 0.608,
+    "exp6_scalar_19col_held_out_macro_f1": 0.593
+  },
+  "delta_vs_exp9_ard_23col_held_out": 0.028,
+  "delta_vs_exp6_scalar_19col_held_out": 0.115,
+  "config": {
+    "n_epochs": 300,
+    "lr": 0.01,
+    "sigma_mult": 1.0
+  },
+  "probs_check_ok": true
+}

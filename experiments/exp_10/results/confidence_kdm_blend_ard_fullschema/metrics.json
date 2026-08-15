@@ -1,0 +1,11 @@
+{
+  "condition": "confidence_kdm_blend_ard_fullschema",
+  "target": "confidence",
+  "features": "exp_10 full-schema frame (fullschema)",
+  "model": "ARD-KDM backbone + signal recalibration, config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.0}",
+  "ordinal_distance_mean": 1.443,
+  "ordinal_distance_std": 0.026,
+  "macro_f1_mean": 0.114,
+  "macro_f1_std": 0.023,
+  "n_folds": 50
+}

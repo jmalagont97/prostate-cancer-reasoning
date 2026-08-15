@@ -1,0 +1,14 @@
+{
+  "condition": "decision_kdm_ard_fullschema",
+  "target": "decision",
+  "features": "exp_10 full-schema frame (fullschema, 48 cols, MinMax + one-hot + missing-flags)",
+  "model": "ARD-KDM (per-dimension sigma, 48 dims), fixed config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.0}",
+  "macro_f1_mean": 0.548,
+  "macro_f1_std": 0.034,
+  "n_folds": 50,
+  "note": "compare against exp_9's decision_kdm_ard_23col (0.608 CV, 0.680 held-out) and exp_6's 0.593 (19-col reference)",
+  "roc_auc_mean": 0.57,
+  "roc_auc_std": 0.027,
+  "brier_score_mean": 0.325,
+  "brier_score_std": 0.019
+}

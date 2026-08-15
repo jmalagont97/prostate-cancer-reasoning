@@ -47,5 +47,17 @@
       "decisive_set_f1": 0.806
     }
   },
-  "class_imbalance_handling": "none"
+  "class_imbalance_handling": "none",
+  "mean_macro_f1": 0.295,
+  "per_factor_macro_f1": {
+    "age": 0.215,
+    "cspca": 0.319,
+    "pirads": 0.327,
+    "vol": 0.263,
+    "psa": 0.311,
+    "comorbidity": 0.326,
+    "psad": 0.265,
+    "dre": 0.311,
+    "bx": 0.318
+  }
 }

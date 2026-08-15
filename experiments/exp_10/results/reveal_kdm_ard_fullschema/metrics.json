@@ -1,0 +1,48 @@
+{
+  "condition": "reveal_kdm_ard_fullschema",
+  "target": "reveal_sequence",
+  "features": "exp_10 full-schema frame (fullschema)",
+  "model": "ARD-KDM backbone + per-section occlusion-entropy signal, config: {'n_epochs': 300, 'lr': 0.01, 'sigma_mult': 1.0}",
+  "sections_modeled": [
+    "previous_notes",
+    "laboratory_results",
+    "psa_trend",
+    "radiology_report"
+  ],
+  "sections_dropped_no_positive_examples": [
+    "family_history",
+    "pathology_report"
+  ],
+  "set_precision_mean": 0.718,
+  "set_precision_std": 0.028,
+  "macro_f1_mean": 0.572,
+  "macro_f1_std": 0.03,
+  "n_repeats": 10,
+  "per_section": {
+    "previous_notes": {
+      "precision": 0.833,
+      "recall": 0.416,
+      "f1": 0.548,
+      "positive_rate": 0.846
+    },
+    "laboratory_results": {
+      "precision": 0.436,
+      "recall": 0.507,
+      "f1": 0.468,
+      "positive_rate": 0.451
+    },
+    "psa_trend": {
+      "precision": 0.864,
+      "recall": 0.601,
+      "f1": 0.706,
+      "positive_rate": 0.868
+    },
+    "radiology_report": {
+      "precision": 0.994,
+      "recall": 0.398,
+      "f1": 0.566,
+      "positive_rate": 0.967
+    }
+  },
+  "note": "compare against exp_9's reveal_kdm_ard_23col: set_precision=0.823, macro_f1=0.599"
+}
