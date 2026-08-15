@@ -1,0 +1,5 @@
+config_id,true_label,pred_label,count
+manhattan_fuzzy_confidence_inverse_distance_k3,0,0,21
+manhattan_fuzzy_confidence_inverse_distance_k3,0,1,13
+manhattan_fuzzy_confidence_inverse_distance_k3,1,0,17
+manhattan_fuzzy_confidence_inverse_distance_k3,1,1,37

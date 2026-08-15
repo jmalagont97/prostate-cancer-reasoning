@@ -1,0 +1,93 @@
+{
+  "config_id": "manhattan_fuzzy_confidence_uniform_k11",
+  "loo_summary": {
+    "accuracy": {
+      "mean": 0.6590909090909091,
+      "std": 0.4767312946227961,
+      "min": 0.0,
+      "max": 1.0,
+      "n_valid": 88
+    },
+    "balanced_accuracy": {
+      "mean": 0.6590909090909091,
+      "std": 0.4767312946227961,
+      "min": 0.0,
+      "max": 1.0,
+      "n_valid": 88
+    },
+    "sensitivity": {
+      "mean": 0.48863636363636365,
+      "std": 0.502735463945467,
+      "min": 0.0,
+      "max": 1.0,
+      "n_valid": 88
+    },
+    "specificity": {
+      "mean": 0.17045454545454544,
+      "std": 0.3781865655597855,
+      "min": 0.0,
+      "max": 1.0,
+      "n_valid": 88
+    },
+    "precision_yes": {
+      "mean": 0.48863636363636365,
+      "std": 0.502735463945467,
+      "min": 0.0,
+      "max": 1.0,
+      "n_valid": 88
+    },
+    "F1_yes": {
+      "mean": 0.48863636363636365,
+      "std": 0.502735463945467,
+      "min": 0.0,
+      "max": 1.0,
+      "n_valid": 88
+    },
+    "F1_no": {
+      "mean": 0.17045454545454544,
+      "std": 0.3781865655597855,
+      "min": 0.0,
+      "max": 1.0,
+      "n_valid": 88
+    },
+    "Macro_F1": {
+      "mean": 0.32954545454545453,
+      "std": 0.23836564731139806,
+      "min": 0.0,
+      "max": 0.5,
+      "n_valid": 88
+    },
+    "MCC": {
+      "mean": 0.0,
+      "std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "n_valid": 88
+    },
+    "Brier": {
+      "mean": 0.22429725048011484,
+      "std": 0.20254427543159068,
+      "min": 0.0,
+      "max": 0.8264462809917354,
+      "n_valid": 88
+    },
+    "ROC_AUC": {
+      "mean": NaN,
+      "std": NaN,
+      "min": NaN,
+      "max": NaN,
+      "n_valid": 0
+    },
+    "PR_AUC": {
+      "mean": NaN,
+      "std": NaN,
+      "min": NaN,
+      "max": NaN,
+      "n_valid": 0
+    }
+  },
+  "loo_pooled": {
+    "ROC_AUC": 0.6707516339869282,
+    "PR_AUC": 0.7908747448758432
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "selected_config": {
+    "distance": "manhattan",
+    "rule": "fuzzy_confidence",
+    "weight": "uniform",
+    "k": 11
+  },
+  "selection_metric": "Macro_F1",
+  "tiebreak_1": "F1_yes",
+  "tiebreak_2": "balanced_accuracy",
+  "source": "mccv",
+  "config_id": "manhattan_fuzzy_confidence_uniform_k11"
+}
