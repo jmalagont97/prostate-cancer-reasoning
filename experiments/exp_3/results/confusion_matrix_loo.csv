@@ -1,5 +1,0 @@
-config_id,true_label,pred_label,count
-manhattan_fuzzy_confidence_uniform_k11,0,0,15
-manhattan_fuzzy_confidence_uniform_k11,0,1,19
-manhattan_fuzzy_confidence_uniform_k11,1,0,11
-manhattan_fuzzy_confidence_uniform_k11,1,1,43
