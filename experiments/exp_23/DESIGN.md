@@ -1,5 +1,5 @@
 # Experiment Design: Tabular KDM (Kernel Density Matrix) Biopsy Decision Prediction
-**Experiment**: experiments/exp_23/ · **Project**: pathology-reasoning · **Date**: 2026-08-18 · **Status**: Draft
+**Experiment**: experiments/exp_23/ · **Project**: pathology-reasoning · **Date**: 2026-08-18 · **Status**: Complete
 
 ---
 

@@ -1,0 +1,26 @@
+{
+    "arm_a_hard": {
+        "sigma_mult": 2.0,
+        "x_train": false,
+        "y_train": false,
+        "encoder": "linear",
+        "source": "experiments/exp_23/results/best_hparams.json (frozen, not re-swept)"
+    },
+    "arm_b_soft": {
+        "sigma_mult": 2.0,
+        "x_train": false,
+        "y_train": false,
+        "encoder": "identity",
+        "source": "experiments/exp_23/results/best_hparams.json (frozen, not re-swept)"
+    },
+    "arm_c_smoothed_hard": {
+        "sigma_mult": 2.0,
+        "eps": 0.2,
+        "x_train": false,
+        "y_train": true,
+        "encoder": "linear",
+        "mccv_mean_macro_f1": 0.5973208436088872,
+        "mccv_std_macro_f1": 0.11839495380817262,
+        "mccv_mean_accuracy": 0.6505555555555556
+    }
+}
