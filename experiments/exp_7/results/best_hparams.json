@@ -1,8 +1,0 @@
-{
-    "max_features": "500",
-    "representation": "pca",
-    "n_neighbors": 1,
-    "weights": "uniform",
-    "metric": "cosine",
-    "mean_macro_f1": 0.6329213173950083
-}

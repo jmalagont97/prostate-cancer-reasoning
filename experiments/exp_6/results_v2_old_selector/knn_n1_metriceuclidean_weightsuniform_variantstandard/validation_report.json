@@ -1,0 +1,16 @@
+{
+  "all_passed": true,
+  "checks": {
+    "input_shape": true,
+    "usable_cases": true,
+    "class_balance": true,
+    "no_nan": true,
+    "no_inf": true,
+    "mccv_configs": true,
+    "mccv_splits": true,
+    "loo_folds": true,
+    "selected_one_config": true,
+    "no_leakage": true,
+    "confusion_matrix_figures": true
+  }
+}

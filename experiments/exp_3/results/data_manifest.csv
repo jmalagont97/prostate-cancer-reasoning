@@ -1,0 +1,7 @@
+file,path,sha256
+inputs.csv,/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/inputs.csv,7545d3ede798acf3b435c3c30239a2446e1e6b7f66bacd50b7a111179ed34cc7
+ground_truth.csv,/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/ground_truth.csv,e5f28c76d7e85d01d815248d1515c4e0023fd743096d25aff7e05f60410d8d84
+mccv_loocv_splits.csv,/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/mccv_loocv_splits.csv,eda3391edde4d07ac5e79d0a521f0a1efc7cc6ff29b5457edc6aef0544132354
+main_tabular.csv,/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/main_tabular.csv,bc47cc7b187dab062af2d638a9edb923ef1b1442fbe1b08b1fbf418fe5ab34a3
+full_prompt_narrative.csv,/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/full_prompt_narrative.csv,09ac4dd17ae58113f4340607cc826e554a2ea05610ab90a0e16cf570ce80680d
+images.csv,/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/images.csv,281ae24ba202b92e9b0bd1fa1ff0fd44163342564d8b52ec55e648f5ad03f77c

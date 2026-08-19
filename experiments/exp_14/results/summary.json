@@ -1,0 +1,61 @@
+{
+  "experiment": "exp_14_ici_tree_canonical_v4",
+  "version": "v4_confidence_weighted",
+  "ici_formula": "ICI = 2 * |p_bar - 0.5| * (1 - 2*sigma)",
+  "base_model": "ConfidenceWeightedKNN (trained on target_biopsy_decision_binary)",
+  "cohort_size": 88,
+  "confidence_distribution": {
+    "uncertain": 14,
+    "borderline": 18,
+    "clear": 56
+  },
+  "configurations": {
+    "tree_none": {
+      "params": {
+        "class_weight": null
+      },
+      "moe_abs": 0.474174277452966,
+      "f1_macro": 0.3114468505772854,
+      "valid_folds": 50,
+      "valid_rate": 1.0,
+      "t1_median": 0.08661342225968838,
+      "t2_median": 0.3986195996403694
+    },
+    "tree_balanced": {
+      "params": {
+        "class_weight": "balanced"
+      },
+      "moe_abs": 0.40642320642320645,
+      "f1_macro": 0.2975954675722324,
+      "valid_folds": 50,
+      "valid_rate": 1.0,
+      "t1_median": 0.08117861859500408,
+      "t2_median": 0.35705942660570145
+    }
+  },
+  "mccv_selection": {
+    "best_config": "tree_balanced",
+    "selection_method": "moe_abs_min",
+    "selection_rule": [
+      "valid_structure_rate == 100%",
+      "MOE_abs < baseline",
+      "no zero recall",
+      "minimize MOE_abs",
+      "tiebreak: maximize F1_macro"
+    ]
+  },
+  "loo_best_config": {
+    "config": "tree_balanced",
+    "params": {
+      "class_weight": "balanced"
+    },
+    "moe_abs": 0.416005291005291,
+    "f1_macro": 0.22302534842091803,
+    "valid_structure_rate": 1.0
+  },
+  "baseline_mccv": {
+    "moe_abs": 0.5,
+    "f1_macro": 0.2626262626262626,
+    "n_predictions": 900
+  }
+}

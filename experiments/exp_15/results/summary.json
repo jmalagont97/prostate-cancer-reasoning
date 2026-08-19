@@ -1,0 +1,76 @@
+{
+  "experiment": "exp_15_feature_families_canonical_v2",
+  "version": "v2_confidence_weighted",
+  "base_model": "ConfidenceWeightedKNN (trained on target_biopsy_decision_binary)",
+  "cohort_size": 88,
+  "confidence_distribution": {
+    "uncertain": 14,
+    "borderline": 18,
+    "clear": 56
+  },
+  "configurations": {
+    "ici_only_none": {
+      "family": "ici_only",
+      "class_weight": null,
+      "moe_abs": 0.474174277452966,
+      "f1_macro": 0.3114468505772854
+    },
+    "ici_only_balanced": {
+      "family": "ici_only",
+      "class_weight": "balanced",
+      "moe_abs": 0.40642320642320645,
+      "f1_macro": 0.2975954675722324
+    },
+    "p_only_none": {
+      "family": "p_only",
+      "class_weight": null,
+      "moe_abs": 0.4904433150334789,
+      "f1_macro": 0.28226562367739055
+    },
+    "p_only_balanced": {
+      "family": "p_only",
+      "class_weight": "balanced",
+      "moe_abs": 0.4006397518692601,
+      "f1_macro": 0.3172009918003372
+    },
+    "ici_plus_p_none": {
+      "family": "ici_plus_p",
+      "class_weight": null,
+      "moe_abs": 0.46431772538329913,
+      "f1_macro": 0.3042627799929944
+    },
+    "ici_plus_p_balanced": {
+      "family": "ici_plus_p",
+      "class_weight": "balanced",
+      "moe_abs": 0.4122864840077955,
+      "f1_macro": 0.30235711069859456
+    }
+  },
+  "family_winners": {
+    "ici_only": "ici_only_balanced",
+    "p_only": "p_only_balanced",
+    "ici_plus_p": "ici_plus_p_balanced"
+  },
+  "baseline_mccv": {
+    "moe_abs": 0.5,
+    "f1_macro": 0.2626262626262626,
+    "n_predictions": 900
+  },
+  "loo_results": {
+    "ici_only_balanced": {
+      "family": "ici_only",
+      "moe_abs": 0.416005291005291,
+      "f1_macro": 0.22302534842091803
+    },
+    "p_only_balanced": {
+      "family": "p_only",
+      "moe_abs": 0.376984126984127,
+      "f1_macro": 0.36329337517792526
+    },
+    "ici_plus_p_balanced": {
+      "family": "ici_plus_p",
+      "moe_abs": 0.42824074074074076,
+      "f1_macro": 0.25020020020020023
+    }
+  }
+}

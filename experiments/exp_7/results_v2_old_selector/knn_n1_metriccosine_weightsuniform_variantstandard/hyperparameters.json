@@ -1,0 +1,7 @@
+{
+  "n_neighbors": 1,
+  "metric": "cosine",
+  "weights": "uniform",
+  "variant": "standard",
+  "preprocessing": "StandardScaler per fold (fit on train only)"
+}

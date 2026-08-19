@@ -1,42 +1,62 @@
-# Implementation Plan: Diagnostic Confidence Prediction via Class-Weighted Fuzzy ICI Meta-Thresholding (MCCV & LOOCV)
-**Experiment**: experiments/exp_17/ · **Project**: pathology-reasoning · **Date**: 2026-08-05 · **Status**: Approved
+# Implementation Plan: Decision Risk Theory for Clinical Confidence Prediction (exp_17)
+
+**Experiment**: `experiments/exp_17/`  
+**Design**: `experiments/exp_17/DESIGN.md`  
+**Date**: 2026-08-18  
+**Status**: Approved  
 
 ---
 
-## 1. Code Changes & Additions
+## 1. Overview & Architecture
 
-### New Script: `experiments/exp_17/scripts/train.py`
-This script implements the Class-Weighted 1D Decision Tree Meta-Thresholding pipeline on Fuzzy ICI:
+This implementation executes `exp_17`, evaluating a 50-condition grid of Decision Risk metrics \(\Omega(c_{\text{fn}}, \lambda)\) discretized by a 1D `DecisionTreeClassifier` to predict `target_confidence` (uncertain / borderline / clear) on $N=88$ usable cases.
 
-1. **Load Out-of-Fold Predictions & Target Data**:
-   - Out-of-fold soft probabilities ($\tilde{p}_{\text{tab}}, \tilde{p}_{\text{mri}}, \tilde{p}_{\text{text}}$) from `experiments/exp_16/results/oof_predictions.csv`.
-   - Expert Confidence annotations from `data/chimera26/preprocessed/task1/clinical_reasoning.csv` (`confidence` column: `uncertain`=0, `borderline`=1, `clear`=2).
-   - MCCV Split Design: `experiments/exp_4/results/mccv_design.csv` (100 splits).
-
-2. **Compute Continuous Fuzzy Inter-Modality Conflict Index ($ICI_{\text{fuzzy}}$)**:
-   - Compute mean prediction across modalities for patient $i$:
-     $$\bar{p}_i = \frac{\tilde{p}_{\text{tab}, i} + \tilde{p}_{\text{mri}, i} + \tilde{p}_{\text{text}, i}}{3}$$
-   - Calculate explicit inter-modality variance:
-     $$ICI_{\text{fuzzy}, i} = \frac{1}{3} \left[ (\tilde{p}_{\text{tab}, i} - \bar{p}_i)^2 + (\tilde{p}_{\text{mri}, i} - \bar{p}_i)^2 + (\tilde{p}_{\text{text}, i} - \bar{p}_i)^2 \right]$$
-
-3. **Phase A (100 MCCV Splits Decision Tree Meta-Thresholding)**:
-   - For each split $s \in [1..100]$, train `DecisionTreeClassifier(max_depth=2, class_weight='balanced', random_state=42)` on $ICI_{\text{fuzzy}, \text{train}}$.
-   - Extract split thresholds $\tau_{1, s}, \tau_{2, s}$.
-   - Compute average meta-thresholds $\bar{\tau}_1, \bar{\tau}_2$.
-
-4. **Phase B (Frozen LOOCV Evaluation - 88 Folds)**:
-   - Freeze meta-thresholds $(\bar{\tau}_1, \bar{\tau}_2)$.
-   - Predict 3-class confidence out-of-fold for each patient:
-     - $ICI_{\text{fuzzy}, i} < \bar{\tau}_1 \implies \text{uncertain}$
-     - $\bar{\tau}_1 \le ICI_{\text{fuzzy}, i} < \bar{\tau}_2 \implies \text{borderline}$
-     - $ICI_{\text{fuzzy}, i} \ge \bar{\tau}_2 \implies \text{clear}$
-   - Compute 3-class Macro-F1, Accuracy, Spearman $\rho$, and 3x3 confusion matrix.
+The script is self-contained in `experiments/exp_17/scripts/run_decision_risk_experiment.py` and uses `tmux` session 0 for persistent background execution with real-time log outputs.
 
 ---
 
-## 2. Command Lines
+## 2. Key Components & Implementation Details
 
-### Execution Command
-```bash
-/home/jmalagont/miniconda3/envs/histo-DL/bin/python3 experiments/exp_17/scripts/train.py
-```
+### A. Data & Inputs
+- `inputs.csv` ($195 \times 1077$), `ground_truth.csv` ($195 \times 27$), `mccv_loocv_splits.csv` ($195 \times 56$).
+- Target: `target_confidence` mapped to ordinal integer: `{uncertain: 0, borderline: 1, clear: 2}`.
+- Decision Target: `target_biopsy_decision_binary` $\in \{0, 1\}$.
+- Base model weights: `c_clear = 1.0`, `c_borderline = 0.5`, `c_uncertain = 0.25`.
+
+### B. Frozen Base Multimodal Ensemble (Subtask 1.1)
+- **Tabular ($T$):** 21 frozen variables (exp_5), zero-fill + indicators, MinMax, OHE. `ConfidenceWeightedKNN(k=1, metric='cosine', weights='uniform', variant='confidence_weighted')`.
+- **MRI ($M$):** 1024-dim embedding, PCA $n_{\text{components}}=1$ fit on train fold only. `ConfidenceWeightedKNN(k=1, metric='euclidean', weights='distance', variant='confidence_weighted')`.
+- **Text ($X$):** spaCy `en_core_web_sm` preprocessing (numeric removal, negation-protected stopwords), TF-IDF $\text{max\_features}=2000$. `ConfidenceWeightedKNN(k=3, metric='cosine', weights='distance', variant='confidence_weighted')`.
+
+### C. Inner OOF Protocol & Continuous Decision Risk Calculation
+- For each split of 50 MCCV splits (70 train / 18 val):
+  1. Perform inner 3-fold Stratified K-Fold on the 70 training cases to obtain out-of-fold $p_T, p_M, p_X$ for training cases.
+  2. Train base KNN models on full 70-case train set; predict $p_T, p_M, p_X$ on 18 val cases.
+  3. Calculate continuous decision risk \(\Omega(c_{\text{fn}}, \lambda)\):
+     - \(\bar{p} = (p_T + p_M + p_X) / 3\)
+     - \(\sigma = \text{std}(p_T, p_M, p_X, \text{ddof}=0)\)
+     - \(R_{\text{margen}} = \frac{\min(\bar{p} c_{\text{fn}}, \; (1-\bar{p})(1-c_{\text{fn}}))}{c_{\text{fn}} (1 - c_{\text{fn}})}\)
+     - \(R_{\text{conflicto}} = 2 \cdot \sigma\)
+     - \(\Omega = (1 - \lambda) \cdot R_{\text{margen}} + \lambda \cdot R_{\text{conflicto}}\)
+
+### D. 1D Decision Tree & Grid Evaluation
+- `DecisionTreeClassifier(max_depth=2, max_leaf_nodes=3, min_samples_leaf=5, random_state=42, class_weight=cw)` fit on \(\Omega_{\text{train}} \to \text{target\_confidence}_{\text{train}}\).
+- Grid: $c_{\text{fn}} \in \{0.20, 0.35, 0.50, 0.65, 0.80\} \times \lambda \in \{0.00, 0.25, 0.50, 0.75, 1.00\} \times \text{class\_weight} \in \{\text{None}, \text{"balanced"}\}$ (50 conditions).
+- Primary metric: \(\text{MOE}_{\text{abs}}\) (Balanced Ordinal Error).
+- Secondary metric (tiebreaker): \(\text{F1}_{\text{macro}}\).
+
+### E. LOO Evaluation & Output Generation
+- Single winning MCCV condition evaluated on 88 LOO folds (inner 3-fold OOF inside each 87-case train fold).
+- Outputs saved to `experiments/exp_17/results/`:
+  - `summary.json`, `evaluation_scorecard.csv`, `per_fold.csv`, `predictions_mccv.csv`, `predictions_loo.csv`, `confusion_matrices.json`, `git_commit.txt`.
+- Visualizations saved to `experiments/exp_17/reports/figures/`:
+  - `confusion_matrices_mccv.png`, `confusion_matrix_loo_selected.png`, `confusion_matrix_loo_selected_normalized.png`.
+
+---
+
+## 3. Execution Plan
+
+1. Create `experiments/exp_17/scripts/run_decision_risk_experiment.py`.
+2. Launch script inside `tmux` session 0:
+   `tmux send-keys -t 0 "python3 experiments/exp_17/scripts/run_decision_risk_experiment.py" C-m`
+3. Monitor progress in real time.

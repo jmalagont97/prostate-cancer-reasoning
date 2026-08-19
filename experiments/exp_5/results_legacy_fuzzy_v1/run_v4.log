@@ -1,0 +1,90 @@
+══════════════════════════════════════════════════════════════════════
+exp_5: KNN + Correlation Pruning
+══════════════════════════════════════════════════════════════════════
+
+[1/6] Loading data...
+  Cohort: 88 cases, 54 yes / 34 no
+  Confidence: {'clear': 56, 'borderline': 18, 'uncertain': 14}
+  Features: 27 columns (4 categorical)
+
+[2/6] MCCV condition: no_prune (no pruning) — 72 configs × 50 splits
+    MCCV split 10/50  (features=27)
+    MCCV split 20/50  (features=27)
+    MCCV split 30/50  (features=27)
+    MCCV split 40/50  (features=27)
+    MCCV split 50/50  (features=27)
+    Best: no_prune_knn_n1_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.6453 ± 0.1040
+
+[2/6] MCCV condition: tau_0.30 (threshold=0.3) — 72 configs × 50 splits
+    MCCV split 10/50  (features=17)
+    MCCV split 20/50  (features=18)
+    MCCV split 30/50  (features=19)
+    MCCV split 40/50  (features=18)
+    MCCV split 50/50  (features=18)
+    Best: tau_0.30_knn_n1_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.6585 ± 0.1099
+
+[2/6] MCCV condition: tau_0.60 (threshold=0.6) — 72 configs × 50 splits
+    MCCV split 10/50  (features=21)
+    MCCV split 20/50  (features=21)
+    MCCV split 30/50  (features=21)
+    MCCV split 40/50  (features=21)
+    MCCV split 50/50  (features=21)
+    Best: tau_0.60_knn_n1_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.6665 ± 0.0990
+
+[2/6] MCCV condition: tau_0.80 (threshold=0.8) — 72 configs × 50 splits
+    MCCV split 10/50  (features=22)
+    MCCV split 20/50  (features=23)
+    MCCV split 30/50  (features=22)
+    MCCV split 40/50  (features=22)
+    MCCV split 50/50  (features=22)
+    Best: tau_0.80_knn_n1_metriceuclidean_weightsuniform_variantstandard
+    F1_macro=0.6645 ± 0.1010
+
+[2/6] MCCV condition: tau_0.90 (threshold=0.9) — 72 configs × 50 splits
+    MCCV split 10/50  (features=24)
+    MCCV split 20/50  (features=25)
+    MCCV split 30/50  (features=24)
+    MCCV split 40/50  (features=25)
+    MCCV split 50/50  (features=24)
+    Best: tau_0.90_knn_n1_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.6371 ± 0.1064
+
+[3/6] Cross-condition selection...
+  Global best: tau_0.60_knn_n1_metriccosine_weightsuniform_variantstandard
+  F1_macro=0.6665 ± 0.0990
+  F1_yes  =0.7377 ± 0.0947
+  Balanced_acc=0.6704
+  MCC     =0.3577
+
+  Top 5 overall:
+    1. tau_0.60_knn_n1_metriccosine_weightsuniform_variantstandard: F1_macro=0.6665, F1_yes=0.7377
+    2. tau_0.60_knn_n1_metriccosine_weightsuniform_variantconfidence_weighted: F1_macro=0.6665, F1_yes=0.7377
+    3. tau_0.60_knn_n1_metriccosine_weightsdistance_variantstandard: F1_macro=0.6665, F1_yes=0.7377
+    4. tau_0.60_knn_n1_metriccosine_weightsdistance_variantconfidence_weighted: F1_macro=0.6665, F1_yes=0.7377
+    5. tau_0.80_knn_n1_metriceuclidean_weightsuniform_variantstandard: F1_macro=0.6645, F1_yes=0.7312
+
+[4/6] LOO intersection for tau_0.60...
+  MCCV selected vars per split: [21, 21, 21, 21, 21]...
+  MCCV set sizes: min=21, max=22, mean=21.0
+  LOO intersection: 21 variables
+
+[5/6] LOO evaluation (88 folds)...
+  LOO: 20/88 folds done
+  LOO: 40/88 folds done
+  LOO: 60/88 folds done
+  LOO: 80/88 folds done
+  LOO F1_macro=0.6885
+  LOO F1_yes  =0.7593
+  LOO Balanced_acc=0.6885
+  LOO MCC     =0.3769
+  LOO Brier   =0.7045 (1-Brier), 0.2955 (conv.)
+
+[6/6] Writing artefacts...
+
+  Artefacts written to experiments/exp_5/results/tau_0.60_knn_n1_metriccosine_weightsuniform_variantstandard/
+  Total time: 9.9 min
+  Done.
+══════════════════════════════════════════════════════════════════════

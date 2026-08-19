@@ -1,0 +1,65 @@
+{
+  "experiment": "exp_20",
+  "description": "Fast Vectorized Permutation SHAP Significance Thresholding",
+  "n_permutations": 500,
+  "elapsed_seconds": 459.403258562088,
+  "mccv_metrics": {
+    "cond_1_raw_shap": {
+      "mean_f1_sections": 0.5779325171432574,
+      "std_f1_sections": 0.028941622291650437,
+      "mean_moe_weights": 0.2806014364720247,
+      "std_moe_weights": 0.02357900162841024
+    },
+    "cond_2_zscore_nogate": {
+      "mean_f1_sections": 0.5779325171432574,
+      "std_f1_sections": 0.028941622291650437,
+      "mean_moe_weights": 0.28063892675951496,
+      "std_moe_weights": 0.02343226344760794
+    },
+    "cond_3_zscore_gated": {
+      "mean_f1_sections": 0.1318124251946435,
+      "std_f1_sections": 0.04919862024111338,
+      "mean_moe_weights": 0.4799065719048561,
+      "std_moe_weights": 0.04026534620091602
+    },
+    "cond_4_pvalue_desc": {
+      "mean_f1_sections": 0.5779325171432574,
+      "std_f1_sections": 0.028941622291650437,
+      "mean_moe_weights": 0.28128989261464743,
+      "std_moe_weights": 0.024381902936651517
+    },
+    "cond_5_pvalue_gated": {
+      "mean_f1_sections": 0.13209564959551498,
+      "std_f1_sections": 0.04998540351201163,
+      "mean_moe_weights": 0.48102996348241445,
+      "std_moe_weights": 0.039803145733821044
+    }
+  },
+  "loo_metrics": {
+    "cond_1_raw_shap": {
+      "loo_f1_sections": 0.5775385757521947,
+      "loo_moe_weights": 0.30262493596872203,
+      "loo_f1_weights_macro": 0.20328865209746763
+    },
+    "cond_2_zscore_nogate": {
+      "loo_f1_sections": 0.5775385757521947,
+      "loo_moe_weights": 0.30288333390153854,
+      "loo_f1_weights_macro": 0.20253489695286744
+    },
+    "cond_3_zscore_gated": {
+      "loo_f1_sections": 0.11768852413136867,
+      "loo_moe_weights": 0.44143097389964864,
+      "loo_f1_weights_macro": 0.0952508627873622
+    },
+    "cond_4_pvalue_desc": {
+      "loo_f1_sections": 0.5775385757521947,
+      "loo_moe_weights": 0.3000117287241678,
+      "loo_f1_weights_macro": 0.2052502775867545
+    },
+    "cond_5_pvalue_gated": {
+      "loo_f1_sections": 0.11768852413136867,
+      "loo_moe_weights": 0.44199214112748264,
+      "loo_f1_weights_macro": 0.09284284223960107
+    }
+  }
+}

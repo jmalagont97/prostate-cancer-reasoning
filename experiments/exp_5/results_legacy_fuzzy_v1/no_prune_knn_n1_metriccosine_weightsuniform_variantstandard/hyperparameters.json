@@ -1,0 +1,8 @@
+{
+  "condition": "no_prune",
+  "correlation_threshold": null,
+  "n_neighbors": 1,
+  "metric": "cosine",
+  "weights": "uniform",
+  "variant": "standard"
+}

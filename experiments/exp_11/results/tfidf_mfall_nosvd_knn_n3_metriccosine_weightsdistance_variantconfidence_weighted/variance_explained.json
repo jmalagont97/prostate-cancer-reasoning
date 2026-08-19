@@ -1,0 +1,22 @@
+{
+  "mfall_svd1": {
+    "mean_var_explained": 0.0017335387163561072,
+    "std_var_explained": 0.00015106920909756764,
+    "n_valid_splits": 50
+  },
+  "mfall_svd20": {
+    "mean_var_explained": 0.3963179077435075,
+    "std_var_explained": 0.0018319457994432457,
+    "n_valid_splits": 50
+  },
+  "mfall_svd40": {
+    "mean_var_explained": 0.6912753168174792,
+    "std_var_explained": 0.0012669871056486166,
+    "n_valid_splits": 50
+  },
+  "mfall_svd60": {
+    "mean_var_explained": 0.915447028059644,
+    "std_var_explained": 0.0007539858125368721,
+    "n_valid_splits": 50
+  }
+}

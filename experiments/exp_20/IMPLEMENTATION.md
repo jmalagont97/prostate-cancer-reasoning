@@ -1,51 +1,34 @@
-# Implementation Plan: Clinical Feature Relevance Attribution via Mode/Median Perturbation (MCCV & LOOCV)
-**Experiment**: experiments/exp_20/ · **Project**: pathology-reasoning · **Date**: 2026-08-05 · **Status**: Approved
+# Implementation Plan: Permutation SHAP Significance Thresholding (Fast Vectorized Engine)
+
+**Experiment**: `experiments/exp_20/`  
+**Target File**: `experiments/exp_20/scripts/run_permuted_shap_experiment.py`  
 
 ---
 
-## 1. Code Changes & Additions
+## 1. Overview
+This script implements **Fast Vectorized Permutation SHAP Significance Thresholding** for CHIMERA Task 1 Subtask 1.3 (Clinical Relevance Weights & Section Reveal Sequences).
 
-### New Script: `experiments/exp_20/scripts/train.py`
-This script implements the leak-free Two-Phase Feature Relevance Attribution pipeline:
-
-1. **Load Datasets & Targets**:
-   - Tabular Clinical Data: `data/chimera26/preprocessed/task1/clinical_data_tabular.csv`.
-   - Clinical Reasoning Annotations: `data/chimera26/preprocessed/task1/clinical_reasoning.csv` (`confidence` and `weight_*` columns).
-   - Biopsy Decision Target: `data/chimera26/preprocessed/task1/biopsy_decision.csv`.
-   - MCCV Design: `experiments/exp_4/results/mccv_design.csv` (100 splits).
-   - Filter to labeled complete cases ($N=88$).
-
-2. **Map Ordinal Ground Truth Relevance Annotations (0..3)**:
-   - Scale: `not_used` $\implies 0$, `noted` $\implies 1$, `important` $\implies 2$, `decisive` $\implies 3$.
-   - Target columns evaluated ($j \in \{1..10\}$):
-     `weight_age`, `weight_psa`, `weight_vol`, `weight_pirads`, `weight_dre`, `weight_psad`, `weight_psav`, `weight_psap`, `weight_comorbidity`, `weight_cspca`.
-
-3. **Construct Soft Targets ($\tilde{y}_k$) for Tabular Fuzzy KNN**:
-   - `clear` $\implies c_k = 1.00$, `borderline` $\implies c_k = 0.50$, `uncertain` $\implies c_k = 0.25$.
-   - $y=1 \implies \tilde{y} = 0.50 + 0.50 \cdot c_k$, $y=0 \implies \tilde{y} = 0.50 - 0.50 \cdot c_k$.
-
-4. **Phase A (100 MCCV Splits Feature-Independent Meta-Threshold Learning)**:
-   - For each split $s \in [1..100]$, train Tabular Fuzzy KNN ($k=1$, uniform, euclidean) on $X_{\text{train}}$.
-   - Compute baseline predictions $\tilde{p}_{\text{base}, k}$.
-   - For each feature $j \in \{1..10\}$:
-     - Perturb feature $j$ using training set median (continuous) or mode (categorical) $\hat{x}_{j, \text{train}}^{\text{mode/median}}$.
-     - Predict perturbed soft probability $\tilde{p}_{\text{perturbed}, k}^{(j)}$.
-     - Calculate displacement $\Delta p_{s, k, j} = |\tilde{p}_{\text{base}, k} - \tilde{p}_{\text{perturbed}, k}^{(j)}|$.
-     - **CRITICAL**: Fit an **INDEPENDENT 1D `DecisionTreeClassifier(max_depth=3, class_weight='balanced', random_state=42)`** strictly on feature $j$'s training displacements $\Delta p_{s, k, j}$ vs `weight_*[j]` ground truth annotations to extract feature-specific cut-points $(\tau_{1, s}^{(j)}, \tau_{2, s}^{(j)}, \tau_{3, s}^{(j)})$.
-   - Average cut-points over 100 splits to yield 10 independent feature-specific meta-threshold sets: $(\bar{\tau}_1^{(j)}, \bar{\tau}_2^{(j)}, \bar{\tau}_3^{(j)})$.
-
-5. **Phase B (Frozen LOOCV Out-of-Fold Evaluation - 88 Folds)**:
-   - Freeze the 10 meta-threshold sets $(\bar{\tau}_1^{(j)}, \bar{\tau}_2^{(j)}, \bar{\tau}_3^{(j)})$.
-   - For each held-out test patient $i \in [1..88]$ in LOOCV, retrain Tabular Fuzzy KNN on 87 cases.
-   - Compute out-of-fold feature displacement $\Delta p_{i, j}$.
-   - Apply frozen meta-thresholds to predict 4-class ordinal relevance level (0..3).
-   - Evaluate Spearman rank correlation ($\rho$), Accuracy, and 4-class Macro-F1 per feature.
+It evaluates 5 experimental conditions:
+1. `cond_1_raw_shap`: Raw SHAP $\phi_{i, k}$ without gating (Baseline control matching `exp_19`).
+2. `cond_2_zscore_nogate`: Z-score $Z_{i, k}$ without gating.
+3. `cond_3_zscore_gated`: P-value gated ($p_{i, k} \ge 0.05 \implies 0$) + Z-score thresholding.
+4. `cond_4_pvalue_desc`: Significance descriptor $S_{i, k} = 1 - p_{i, k}$.
+5. `cond_5_pvalue_gated`: P-value gated ($p_{i, k} \ge 0.05 \implies 0$) + Significance descriptor $S_{i, k}$ thresholding.
 
 ---
 
-## 2. Command Lines
+## 2. Key Components
+- **Dataset Loading & Preprocessing**: Identical to `exp_19` ($N=88$ clean cohort, 21 pruned features $T_{21}$, `ConfidenceWeightedKNN` baseline).
+- **Primary SHAP Extraction**: Compute observed Kernel SHAP attributions $\Phi_{\text{obs}}$ once per training split.
+- **Fast Vectorized Permutation Engine ($B=500$)**:
+  Perform $B=500$ matrix shuffles directly on attribution matrix $\Phi_{\text{train}}$ in NumPy:
+  $$p_{i, k} = \frac{\sum_{b=1}^{B} \mathbb{I}(|\Phi_{i, k}^{(\pi_b)}| \ge |\Phi_{i, k}^{\text{obs}}|) + 1}{B + 1}, \quad S_{i, k} = 1 - p_{i, k}, \quad Z_{i, k} = \frac{\Phi_{i, k}^{\text{obs}} - \mu_{k}^{\text{null}}}{\sigma_{k}^{\text{null}} + \epsilon}$$
+- **Global 3-Threshold Grid Search**: Exhaustive 3-threshold tuple $(\tau_{1, k}^*, \tau_{2, k}^*, \tau_{3, k}^*)$ per target variable on 50 MCCV splits (70 train / 18 val).
+- **88-Fold LOOCV Audit**: Evaluate out-of-fold section reveal sequence Macro F1 ($\text{F1}_{\text{sections}}^{\text{LOO}}$) and relevance weights ordinal error ($\text{MOE}_{\text{abs}}^{\text{weights}}$).
 
-### Execution Command
-```bash
-/home/jmalagont/miniconda3/envs/histo-DL/bin/python3 experiments/exp_20/scripts/train.py
-```
+---
+
+## 3. Real-Time Output & Artifacts
+- Real-time logging with explicit `flush=True` print statements showing percentage progress per phase.
+- Saves results to `experiments/exp_20/results/summary.json`.
+- Records git commit hash in `experiments/exp_20/results/git_commit.txt`.

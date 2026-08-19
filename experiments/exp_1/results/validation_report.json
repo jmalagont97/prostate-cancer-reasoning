@@ -1,0 +1,76 @@
+{
+  "validation": {
+    "inputs": {
+      "name": "inputs",
+      "shape": [
+        195,
+        1077
+      ],
+      "expected_shape": [
+        195,
+        1077
+      ],
+      "passed": [
+        "shape_match",
+        "no_collection_columns",
+        "unique_case_ids"
+      ],
+      "errors": [],
+      "all_passed": true
+    },
+    "ground_truth": {
+      "name": "ground_truth",
+      "shape": [
+        195,
+        27
+      ],
+      "expected_shape": [
+        195,
+        27
+      ],
+      "passed": [
+        "shape_match",
+        "no_collection_columns",
+        "unique_case_ids"
+      ],
+      "errors": [],
+      "all_passed": true
+    }
+  },
+  "diff": {
+    "inputs": {
+      "name": "inputs",
+      "shapes_match": true,
+      "new_shape": [
+        195,
+        1077
+      ],
+      "ref_shape": [
+        195,
+        1077
+      ],
+      "missing_cols": [],
+      "extra_cols": [],
+      "columns_match": true,
+      "max_numeric_diff": 3.552713678800501e-15,
+      "values_identical": "True"
+    },
+    "ground_truth": {
+      "name": "ground_truth",
+      "shapes_match": true,
+      "new_shape": [
+        195,
+        27
+      ],
+      "ref_shape": [
+        195,
+        27
+      ],
+      "missing_cols": [],
+      "extra_cols": [],
+      "columns_match": true,
+      "max_numeric_diff": 0.0,
+      "values_identical": true
+    }
+  }
+}

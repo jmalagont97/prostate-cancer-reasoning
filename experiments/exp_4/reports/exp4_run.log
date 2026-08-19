@@ -1,0 +1,48 @@
+══════════════════════════════════════════════════════════════════════
+exp_4: KNN on all tabular variables
+══════════════════════════════════════════════════════════════════════
+
+[1/5] Loading data...
+  Cohort: 88 cases, 54 yes / 34 no
+  Confidence: {'clear': 56, 'borderline': 18, 'uncertain': 14}
+  Features: 27 columns
+
+[2/5] MCCV search (72 configs × 50 splits)...
+  72 configurations × 50 splits = 3600 evaluations
+  MCCV: 10/50 splits done
+  MCCV: 20/50 splits done
+  MCCV: 30/50 splits done
+  MCCV: 40/50 splits done
+  MCCV: 50/50 splits done
+
+[3/5] Selecting best configuration...
+  Best: knn_n1_metriccosine_weightsuniform_variantstandard
+  F1_macro=0.6453 ± 0.1040
+  F1_yes  =0.7263 ± 0.0947
+  Balanced_acc=0.6496
+  MCC     =0.3100
+
+  Top 5:
+    1. knn_n1_metriccosine_weightsuniform_variantstandard: F1_macro=0.6453, F1_yes=0.7263
+    2. knn_n1_metriccosine_weightsuniform_variantconfidence_weighted: F1_macro=0.6453, F1_yes=0.7263
+    3. knn_n1_metriccosine_weightsdistance_variantstandard: F1_macro=0.6453, F1_yes=0.7263
+    4. knn_n1_metriccosine_weightsdistance_variantconfidence_weighted: F1_macro=0.6453, F1_yes=0.7263
+    5. knn_n11_metriccosine_weightsuniform_variantstandard: F1_macro=0.6365, F1_yes=0.7544
+
+[4/5] LOO evaluation (best config only)...
+  LOO: 20/88 folds done
+  LOO: 40/88 folds done
+  LOO: 60/88 folds done
+  LOO: 80/88 folds done
+  LOO F1_macro=0.6506
+  LOO F1_yes  =0.7339
+  LOO Balanced_acc=0.6498
+  LOO MCC     =0.3013
+
+[5/5] Writing artefacts...
+  Saved: experiments/exp_4/results/knn_n1_metriccosine_weightsuniform_variantstandard/figures/confusion_matrix_mccv.png
+  Saved: experiments/exp_4/results/knn_n1_metriccosine_weightsuniform_variantstandard/figures/confusion_matrix_loo.png
+
+  Artefacts written to experiments/exp_4/results/knn_n1_metriccosine_weightsuniform_variantstandard/
+  Done.
+══════════════════════════════════════════════════════════════════════

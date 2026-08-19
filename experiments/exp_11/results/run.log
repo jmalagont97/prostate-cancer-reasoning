@@ -1,0 +1,72 @@
+======================================================================
+exp_11: TF-IDF + TruncatedSVD + KNN on clinical narrative text
+======================================================================
+
+[1/7] Loading data...
+  Cohort: 88 cases, 54 yes / 34 no
+  Confidence: {'clear': 56, 'borderline': 18, 'uncertain': 14}
+  Text samples: 88
+  Avg word count (raw): 198
+
+[2/7] Loading spaCy model...
+  spaCy model: en_core_web_sm v3.8.0, spacy=>=3.8.0,<3.9.0
+
+[3/7] Preprocessing text...
+    Preprocessed 50/88 texts
+    Preprocessed 88/88 texts
+  Avg word count (processed): 139
+
+[4/7] MCCV search (5 representations × 72 KNN × 50 splits)...
+  360 configurations × 50 splits = 18000 evaluations
+  MCCV: 5/50 splits done
+  MCCV: 10/50 splits done
+  MCCV: 15/50 splits done
+  MCCV: 20/50 splits done
+  MCCV: 25/50 splits done
+  MCCV: 30/50 splits done
+  MCCV: 35/50 splits done
+  MCCV: 40/50 splits done
+  MCCV: 45/50 splits done
+  MCCV: 50/50 splits done
+
+[5/7] Selecting best configuration...
+  Best: tfidf_mfall_nosvd_knn_n3_metriccosine_weightsdistance_variantconfidence_weighted
+  F1_macro=0.6465 +/- 0.1099
+  F1_yes  =0.7683 +/- 0.0737
+  Balanced_acc=0.6475
+  MCC     =0.3319
+
+  Top 5:
+    1. tfidf_mfall_nosvd_knn_n3_metriccosine_weightsdistance_variantconfidence_weighted: F1_macro=0.6465, brier_score=0.2192, F1_yes=0.7683
+    2. tfidf_mfall_nosvd_knn_n3_metriceuclidean_weightsdistance_variantconfidence_weighted: F1_macro=0.6465, brier_score=0.2196, F1_yes=0.7683
+    3. tfidf_mfall_nosvd_knn_n3_metriceuclidean_weightsuniform_variantconfidence_weighted: F1_macro=0.6331, brier_score=0.2200, F1_yes=0.7497
+    4. tfidf_mfall_nosvd_knn_n3_metriccosine_weightsuniform_variantconfidence_weighted: F1_macro=0.6331, brier_score=0.2200, F1_yes=0.7497
+    5. tfidf_mfall_svd20_knn_n15_metriceuclidean_weightsuniform_variantconfidence_weighted: F1_macro=0.6289, brier_score=0.2159, F1_yes=0.7572
+
+  Variance explained by SVD (mean over 50 splits):
+    mfall_svd1: 0.17% (+/- 0.02%)
+    mfall_svd20: 39.63% (+/- 0.18%)
+    mfall_svd40: 69.13% (+/- 0.13%)
+    mfall_svd60: 91.54% (+/- 0.08%)
+
+[6/7] LOO evaluation (best config only)...
+  LOO: 20/88 folds done
+  LOO: 40/88 folds done
+  LOO: 60/88 folds done
+  LOO: 80/88 folds done
+  LOO F1_macro=0.6613
+  LOO F1_yes  =0.7652
+  LOO Balanced_acc=0.6574
+  LOO MCC     =0.3324
+  LOO Brier   =0.7781 (1-Brier), 0.2219 (conv.)
+
+[7/7] Generating confusion matrix figures...
+  Confusion matrix figures saved to experiments/exp_11/reports/figures/
+
+  Writing artefacts...
+
+  Artefacts written to experiments/exp_11/results/tfidf_mfall_nosvd_knn_n3_metriccosine_weightsdistance_variantconfidence_weighted/
+  Figures written to experiments/exp_11/reports/figures/
+  Total time: 9.4 min
+  Done.
+======================================================================

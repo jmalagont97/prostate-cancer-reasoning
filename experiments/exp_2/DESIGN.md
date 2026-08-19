@@ -1,78 +1,83 @@
-# Experiment Design: Task 1 Multimodal Preprocessing and Tabularization
-
+# Experiment Design: Clean Cohort Selection, Missingness Exclusion & Rigorous Validation Protocol (MCCV + LOOCV)
 **Experiment**: experiments/exp_2/  
 **Project**: pathology-reasoning  
-**Date**: 2026-07-20  
-**Author**: Co-Investigator (Gemini Expert on Digital Pathology & Deep Learning)  
+**Date**: 2026-08-09  
+**Author**: Antigravity & Principal Investigator  
 **Status**: Draft
 
 ---
 
 ## 1. Hypothesis
-Preprocessing and tabularizing all multimodal sources (MRI embeddings, structured text prompts, lab tables, targets, and reasoning justifications) into five synchronized CSV files containing all 195 cases (using `NONE` for missing data placeholders) will establish a standardized tabular framework that facilitates imputation analysis and subsequent machine learning modeling.
+Excluding unannotated cases ($N=102$), cases missing 1024D MRI embeddings ($N=4$), and the single case missing PI-RADS ($N=1$) defines a clean, fully usable labeled cohort of $N=88$ patient cases. Establishing a 50-repeat Monte Carlo Cross-Validation (MCCV) scheme for hyperparameter optimization paired with an 88-fold Leave-One-Out Cross-Validation (LOOCV) for out-of-fold generalization guarantees deterministic, zero-leakage validation splits for all downstream ML models.
 
-## 2. Experimental Setup
-*   **Dataset**: Chimera26 Task 1 raw dataset located at `data/chimera26/raw/task1/`.
-*   **Preprocessed Target Directory**: `data/chimera26/preprocessed/task1/`
-*   **Analysis Code**: Python preprocessing script to be implemented in `experiments/exp_2/scripts/preprocess.py`.
-*   **Hardware**: CPU for reading and parsing JSON, building Pandas DataFrames, and exporting to CSV.
+---
 
-## 3. File Layout for This Experiment
-```
-experiments/exp_2/
-├── DESIGN.md                  ← this file (experiment design only)
-├── scripts/
-│   └── preprocess.py          ← Preprocessing script (decided in implementation plan)
-├── results/
-│   └── preprocessing_metrics.json ← output check metrics (shape, file counts, verification status)
-└── reports/
-    └── summary.md             ← final preprocessing summary report
-```
+## 2. Cohort Selection & Exclusion Criteria (Part 1)
 
-All preprocessing scripts and outputs reference paths relative to the experiment root.
+### 2.1 Exhaustive Exclusion Rules
+Analysis of `data/chimera26/preprocessed/task1/inputs.csv` ($195 \times 1077$, per `exp_1` validation report) and `ground_truth.csv` ($195 \times 27$) establishes the following strict exclusion hierarchy:
 
-## 4. Baselines
-*   **Baseline**: N/A (Data Preprocessing).
+1. **Exclusion Rule A (Missing MRI Embeddings):** Exclude $N=4$ patient cases lacking 1024D foundation model MRI embeddings (`mri_emb_*`):
+   - `PT-pseudo_4bfd4ec864d8`
+   - `PT-pseudo_4d54f04e26ae`
+   - `PT-pseudo_7dbdcd6f9064`
+   - `PT-pseudo_8636aa471ef7`
+2. **Exclusion Rule B (Missing PI-RADS Score):** Exclude $N=1$ patient case missing the core PI-RADS clinical score (`cli_pirads`):
+   - `PT-pseudo_3646e0a2ae13`
+3. **Exclusion Rule C (Unlabeled / Held-out Test Cases):** Exclude $N=102$ unannotated cases lacking ground truth target labels (`NaN` in `ground_truth.csv`).
 
-## 5. Proposed Conditions (Preprocessing Outputs)
-We will build a pipeline script to ingest the 195 folders in `data/chimera26/raw/task1` and output 5 synchronized CSV files in `data/chimera26/preprocessed/task1/`. All CSVs must contain exactly 195 rows (plus header), sorted by patient ID, with missing entries explicitly marked as `NONE`.
+### 2.2 Cohort Summary Table ($N=195$)
 
-*   **File 1: `mri_embeddings.csv`**
-    *   **Structure**: Columns: `patient_id`, followed by 1024 columns (`mri_feat_0` to `mri_feat_1023`).
-    *   **Details**: Flat numerical representation of the 1024-D MRI embedding. If missing, all feature columns will contain `NONE`.
-*   **File 2: `clinical_prompts.csv`**
-    *   **Structure**: Columns: `patient_id`, `clinical_prompt_text`.
-    *   **Details**: Unstructured patient clinical narrative (concatenated note sections from `structured-prompt.json` chief complaint, history, and physical examination) in a single column.
-*   **File 3: `clinical_data_tabular.csv`**
-    *   **Structure**: Columns: `patient_id`, `age`, `psa`, `vol`, `pirads`, `psad`, `psav`, `psap`, `dre`.
-    *   **Details**: Standard patient variables extracted from `structured-prompt.json` or `prostate-biopsy-decision-clinical-data.json`.
-*   **File 4: `clinical_reasoning.csv`**
-    *   **Structure**: Columns: `patient_id`, `reasoning_text`, `confidence`, and weights for key variables (e.g. `weight_psad`, `weight_vol`, `weight_pirads`, `weight_dre`, `weight_fh`, `weight_comorbidity`, `weight_cspca`, `weight_age`, `weight_bx`, `weight_psa`).
-    *   **Details**: Justification rationale, weights, and confidence levels extracted from `prostate-biopsy-decision-reasoning.json`. Only available for the 91 labeled cases.
-*   **File 5: `biopsy_decision.csv`**
-    *   **Structure**: Columns: `patient_id`, `biopsy_decision`.
-    *   **Details**: Binary target value (`yes` or `no`). Test set (unlabeled) cases will contain `NONE`.
+| Cohort Status Category | Case Count ($N$) | Percentage (%) | Experimental Role & Handling |
+|---|---|---|---|
+| **`usable_labeled`** | **88** | **45.1%** | **Clean Labeled Cohort.** Used for hyperparameter tuning (MCCV) and out-of-fold evaluation (LOOCV). |
+| **`unlabeled_test`** | **102** | **52.3%** | **Unannotated Test Set.** Reserved strictly for unannotated inference pipelines. |
+| **`excluded_missing_mri`** | **4** | **2.1%** | **Excluded.** Missing 1024D image representation vectors. |
+| **`excluded_missing_pirads`** | **1** | **0.5%** | **Excluded.** Missing primary PI-RADS radiological score. |
+| **Total Population** | **195** | **100.0%** | — |
 
-## 6. Evaluation Protocol
-We will programmatically verify the generated files inside `data/chimera26/preprocessed/task1/`:
-*   **Row Verification**: Check that each file has exactly 195 lines (excluding header).
-*   **Index Alignment**: Verify that the set of `patient_id` matches exactly across all 5 files.
-*   **Missing Value Representation**: Verify that missing fields contain the string `'NONE'`.
-*   **Data Outputs**: Write verification status, size on disk, and column schemas into `results/preprocessing_metrics.json`.
+### 2.3 Downstream Imputation Policy
+All other non-excluded missing data across the $N=88$ usable labeled cohort will be handled via downstream imputation during model training:
+- **`cli_bx` (Biopsies Previas, 26.4% `NaN` en etiquetados):** Mapeado explícitamente como categoría válida `"No Prior Biopsy"` (paciente virgen de biopsia).
+- **`cli_fh` (Antecedente Familiar, 3.3% `NaN` en etiquetados):** Imputado con la categoría `"Unknown / 0"`.
 
-## 7. Expected Results & Decision Rules
-*   **Success Criterion**: All 5 CSV files are successfully written with exactly 195 rows, identical patient ID order, and proper missingness representations. This will allow `exp_3` to execute model design and imputation protocols seamlessly.
+---
 
-## 8. Risks & Mitigations
-*   **Risk**: Text formatting anomalies (commas, double-quotes, or newlines in clinical narratives breaking standard CSV row parsers).  
-    *   **Mitigation**: Use Pandas `DataFrame.to_csv` with standard double-quoting (`quoting=csv.QUOTE_MINIMAL`) to handle text escaping automatically.
+## 3. Experimental Validation Protocol (Part 2)
 
-## 9. Reproducibility Checklist
-- [ ] Preprocessing code preserved as `preprocess.py`
-- [ ] Output verification metrics saved under `results/preprocessing_metrics.json`
-- [ ] Working tree clean at run time
-- [ ] **Git commit hash recorded** to `results/git_commit.txt` before execution
+### 3.1 Monte Carlo Cross-Validation (MCCV) for Hyperparameter Search
+- **Protocol**: 50 Repeated Random Stratified Splits ($80\%$ Train / $20\%$ Validation) on the $N=88$ usable labeled cohort.
+- **Stratification Target**: `target_biopsy_decision_binary` (preserves 0/1 class balance across all 50 splits).
+- **Purpose**: Selects optimal model hyperparameters (e.g. learning rate, regularization, tree depth, weights) that maximize average Macro-F1 across 50 independent random validation folds without validation leak.
 
-## 10. Next Steps
-1.  Review and accept this experiment design plan.
-2.  Once approved, produce an **implementation plan** (in plan mode) to create `experiments/exp_2/scripts/preprocess.py` to tabularize the 5 files.
+### 3.2 Leave-One-Out Cross-Validation (LOOCV) for Final Performance Evaluation
+- **Protocol**: 88-fold LOOCV across all $N=88$ usable labeled cases (Train on $N-1=87$, test on 1).
+- **Hyperparameter Injection**: In each LOOCV fold, models execute using the optimal hyperparameters selected via MCCV.
+- **Purpose**: Delivers unbiased out-of-fold predictions for every single usable labeled patient case.
+
+### 3.3 Permanent Split CSV Storage
+The explicit split assignments, fold indices, and exclusion statuses are permanently stored at:
+[`data/chimera26/preprocessed/task1/mccv_loocv_splits.csv`](file:///home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/mccv_loocv_splits.csv) ($195 \times 56$).
+
+Columns:
+- `case_id`: Patient identifier
+- `cohort_status`: `usable_labeled` (88), `unlabeled_test` (102), `excluded_missing_mri` (4), `excluded_missing_pirads` (1)
+- `has_gt`, `has_mri`, `has_pirads`: Flags (1/0)
+- `loocv_fold`: Fold index $0 \dots 87$ (-1 for excluded)
+- `mccv_split_00` ... `mccv_split_49`: Train (0) vs Validation (1) assignments (-1 for excluded) for 50 repeats.
+
+---
+
+## 4. Reproducibility Checklist
+- [x] Strict exclusion rules applied ($N=4$ missing MRI, $N=1$ missing PI-RADS).
+- [x] Usable clean cohort established at $N=88$ cases.
+- [x] Imputation policy defined for non-excluded variables (`bx`, `fh`).
+- [x] Random seed fixed (42) for reproducible StratifiedShuffleSplit.
+- [x] Split CSV generated and stored at `data/chimera26/preprocessed/task1/mccv_loocv_splits.csv`.
+- [x] Git commit hash recorded in `experiments/exp_2/results/git_commit.txt` (`702fc02`, HEAD at execution).
+
+---
+
+## 5. Next Steps
+1. Review and accept this clean experiment design (`DESIGN.md`).
+2. Proceed to model baseline implementations using `mccv_loocv_splits.csv`.

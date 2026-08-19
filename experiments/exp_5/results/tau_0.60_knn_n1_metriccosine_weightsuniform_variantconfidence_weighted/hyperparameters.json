@@ -1,0 +1,8 @@
+{
+  "condition": "tau_0.60",
+  "correlation_threshold": 0.6,
+  "n_neighbors": 1,
+  "metric": "cosine",
+  "weights": "uniform",
+  "variant": "confidence_weighted"
+}

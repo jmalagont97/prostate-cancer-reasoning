@@ -1,0 +1,27 @@
+{
+  "experiment": "exp_17",
+  "description": "Decision Risk Theory for Clinical Confidence Prediction",
+  "git_commit": "702fc02e009f63cb692425e4148e2d84f89ec16a project restart",
+  "n_usable_cohort": 88,
+  "baseline_majority_clear": {
+    "moe_abs": 0.5,
+    "f1_macro": 0.2626262626262626
+  },
+  "selected_config": {
+    "config_name": "c_fn_0.80_lambda_0.00_cw_balanced",
+    "c_fn": 0.8,
+    "c_fp": 0.2,
+    "lambda": 0.0,
+    "class_weight": "balanced",
+    "mccv_pooled_moe_abs": 0.4034940621006194,
+    "mccv_pooled_f1_macro": 0.32117310517082226,
+    "loo_moe_abs": 0.3796296296296296,
+    "loo_f1_macro": 0.37027310924369744,
+    "loo_recalls": {
+      "uncertain": 0.35714285714030614,
+      "borderline": 0.22222222222098767,
+      "clear": 0.5535714285704401
+    }
+  },
+  "total_runtime_seconds": 107.05
+}

@@ -1,0 +1,19 @@
+{
+  "config": "no_prune_knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted",
+  "condition": "no_prune",
+  "metrics": {
+    "f1_macro": 0.5731115731115731,
+    "f1_yes": 0.6846846846846847,
+    "balanced_accuracy": 0.5724400871459695,
+    "mcc": 0.14768181577504547,
+    "sensitivity": 0.7037037037037037,
+    "specificity": 0.4411764705882353,
+    "precision_yes": 0.6666666666666666,
+    "accuracy": 0.6022727272727273,
+    "pr_auc": 0.6238646804979111,
+    "roc_auc": 0.5343137254901961,
+    "brier": 0.6535866480418246,
+    "brier_score": 0.3464133519581753,
+    "ece": 0.27698863587296574
+  }
+}

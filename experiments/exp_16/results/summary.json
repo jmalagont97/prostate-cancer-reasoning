@@ -1,0 +1,63 @@
+{
+  "experiment": "exp_16_ici_regressor_canonical_v2",
+  "version": "v2_confidence_weighted",
+  "base_model": "ConfidenceWeightedKNN (trained on target_biopsy_decision_binary)",
+  "cohort_size": 88,
+  "confidence_distribution": {
+    "uncertain": 14,
+    "borderline": 18,
+    "clear": 56
+  },
+  "configurations": {
+    "reg_l1_none": {
+      "params": {
+        "criterion": "absolute_error",
+        "use_weights": false
+      },
+      "moe_abs": 0.47460428157149465,
+      "f1_macro": 0.3027506499748749
+    },
+    "reg_l1_balanced": {
+      "params": {
+        "criterion": "absolute_error",
+        "use_weights": true
+      },
+      "moe_abs": 0.3614618229372328,
+      "f1_macro": 0.20840395652989355
+    },
+    "reg_l2_none": {
+      "params": {
+        "criterion": "squared_error",
+        "use_weights": false
+      },
+      "moe_abs": 0.4095487238929862,
+      "f1_macro": 0.2949670665492596
+    },
+    "reg_l2_balanced": {
+      "params": {
+        "criterion": "squared_error",
+        "use_weights": true
+      },
+      "moe_abs": 0.3479910496303939,
+      "f1_macro": 0.18380397999607312
+    }
+  },
+  "mccv_selection": {
+    "best_config": "reg_l2_balanced",
+    "selection_method": "moe_abs_min"
+  },
+  "loo_best_config": {
+    "config": "reg_l2_balanced",
+    "params": {
+      "criterion": "squared_error",
+      "use_weights": true
+    },
+    "moe_abs": 0.35813492063492064,
+    "f1_macro": 0.13275613275613277
+  },
+  "baseline_mccv": {
+    "moe_abs": 0.5,
+    "f1_macro": 0.2626262626262626,
+    "n_predictions": 900
+  }
+}

@@ -1,8 +1,0 @@
-{
-    "k": 1,
-    "weights": "uniform",
-    "metric": "euclidean",
-    "mccv_mean_macro_f1": 0.6116587736585515,
-    "mccv_std_macro_f1": 0.11440367647815654,
-    "mccv_mean_accuracy": 0.6444444444444444
-}

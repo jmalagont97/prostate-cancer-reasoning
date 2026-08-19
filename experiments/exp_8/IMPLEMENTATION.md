@@ -1,45 +1,80 @@
-# Implementation Plan: Multimodal Late Fusion Soft-Voting LOOCV Evaluation
-**Experiment**: experiments/exp_8/ · **Project**: pathology-reasoning · **Date**: 2026-08-04 · **Status**: Approved
+# Implementation Plan — Experiment 8
+
+**Experiment**: KNN + Spearman Correlation Pruning on MRI Embedding  
+**Script**: `experiments/exp_8/scripts/run_mri_embedding_pruning_experiment.py`  
+**Runtime**: tmux session 0, real-time stdout  
+**Expected time**: ~10–30 min (Spearman matrix is O(1024²) per fold × 250 folds)
 
 ---
 
-## 1. Code Changes & Additions
+## 1. Script Structure
 
-### New Script: `experiments/exp_8/scripts/train.py`
-This script implements the Leave-One-Out Cross-Validation (LOOCV) loop for Late Fusion Soft Voting across the 3 optimal unimodal models:
-1. **Load Data**:
-   - Tabular dataset: `data/chimera26/preprocessed/task1/tabular_imputed.csv`.
-   - MRI Embeddings: `data/chimera26/preprocessed/task1/mri_embeddings.csv`.
-   - Clinical Prompts: `data/chimera26/preprocessed/task1/clinical_prompts.csv`.
-   - Biopsy decision targets: `data/chimera26/preprocessed/task1/biopsy_decision.csv`.
-   - MCCV design splits: `experiments/exp_4/results/mccv_design.csv`.
-2. **Alignment & Audit**:
-   - Align by `patient_id` and filter to the 88 complete-case labeled cohort.
-3. **LOOCV Unimodal Out-of-Fold Probability Generation (88 folds)**:
-   - For each fold:
-     - **Tabular Model**: Fit `MinMaxScaler` on numerical features, `OneHotEncoder` on `dre`, train KNN ($k=3$, `uniform`, `euclidean`) on 87 cases, predict probability $P_{\text{tabular}}$.
-     - **MRI Model**: Fit `MinMaxScaler` and `EmbedKit(mode="supervised", target_dim=384)` on 87 cases, train KNN ($k=3$, `uniform`, `euclidean`), predict probability $P_{\text{mri}}$.
-     - **Text Model**: Process text with spaCy (`en_core_web_sm`: lowercasing, stop words removal, punctuation removal, lemmatization), fit `TfidfVectorizer(max_features=500, norm='l2')` and `PCA(n_components=0.90)` on 87 cases, train KNN ($k=1$, `uniform`, `cosine`), predict probability $P_{\text{text}}$.
-     - Store $P_{\text{tabular}}$, $P_{\text{mri}}$, and $P_{\text{text}}$ in an out-of-fold matrix.
-4. **Late Fusion Soft-Voting Evaluation**:
-   - **Equal Trimodal**: $P = \frac{1}{3} (P_{\text{tabular}} + P_{\text{mri}} + P_{\text{text}})$.
-   - **Weighted Trimodal**: Grid sweep weights $w_{\text{tab}}, w_{\text{mri}}, w_{\text{text}} \in [0, 1]$ (step 0.05) subject to $\sum w = 1$.
-   - **Bimodal Ablations**:
-     - Tabular + Text ($w_{\text{mri}} = 0$)
-     - Tabular + MRI ($w_{\text{text}} = 0$)
-     - Text + MRI ($w_{\text{tab}} = 0$)
-5. **Metrics & Outputs**:
-   - Compute Macro-F1, accuracy, sensitivity, specificity, and AUROC for all fusion conditions.
-   - Save metrics to `results/loocv_metrics.json` and predictions to `results/loocv_predictions.csv`.
-   - Generate ROC curves comparing unimodal vs bimodal vs trimodal to `reports/figures/roc_curves.png`.
-   - Generate confusion matrix plot to `reports/figures/confusion_matrix.png`.
-   - Generate summary report `reports/summary.md`.
+Adapted from `exp_5/scripts/run_knn_pruning_experiment.py` (pruning logic) +
+`exp_6/scripts/run_knn_image_embedding_experiment.py` (MRI embedding loading +
+confusion matrix figures).
 
----
+### Key Differences from exp_5
 
-## 2. Command Lines
+| Aspect | exp_5 | exp_8 |
+|--------|-------|-------|
+| Input | main_tabular.csv (27 mixed features) | images.csv (1024 numeric dims) |
+| Association | Mixed-type Spearman (num×num, cat×num, cat×cat) | Pure numeric `spearmanr(X)` |
+| Essential vars | 10 clinical vars always kept | None |
+| Missingness | >50% NaN → drop | Not applicable (no NaN) |
+| Categoricals | OHE with sentinel handling | Not applicable |
+| Scaling | MinMaxScaler on numerics | None (raw embedding) |
+| Missingness indicators | `__is_missing` columns | Not applicable |
 
-### Execution Command
-```bash
-/home/jmalagont/miniconda3/envs/histo-DL/bin/python3 experiments/exp_8/scripts/train.py
+### Key Differences from exp_6
+
+| Aspect | exp_6 | exp_8 |
+|--------|-------|-------|
+| Pruning | None | Spearman + hierarchical clustering |
+| Conditions | 1 (1024D raw) | 5 (no_prune + 4 τ thresholds) |
+| LOO | Direct 1024D | Fixed intersection of MCCV-selected dims |
+
+## 2. Pruning Pipeline (per MCCV fold)
+
+```python
+# X_emb_train: (70, 1024) raw, no scaling
+rho, _ = spearmanr(X_emb_train)   # (1024, 1024)
+A = np.abs(rho)
+D = 1.0 - A
+np.fill_diagonal(D, 0)
+D = np.maximum(D, 0)
+condensed = squareform(D, checks=False)
+Z = linkage(condensed, method="complete")
+labels = fcluster(Z, t=(1 - tau), criterion="distance")
+# For each cluster → select medoid → collect retained dim indices
 ```
+
+## 3. KNN Evaluation
+
+Same as exp_6: 72 configs, ConfidenceWeightedKNN for fuzzy variant, same metrics
+suite. Applied to the pruned (reduced) embedding matrix.
+
+## 4. LOO Evaluation
+
+- Compute intersection of retained dimensions across 50 MCCV folds.
+- If intersection is empty → skip LOO for that condition, report as non-evaluable.
+- Otherwise, apply the fixed intersection as column mask on the full 1024D embedding
+  for each LOO fold's train/test split.
+
+## 5. Artefacts
+
+- `config_log.json` with per-config mean metrics (all conditions).
+- `pruning_report.json` with per-condition set sizes, union, intersection.
+- `feature_frequency_<condition>.csv` with per-dimension retention frequency.
+- `summary_selection.json` with global best config, MCCV and LOO metrics.
+- Confusion matrix PNG + PDF for the global best config.
+- Validation report with all sanity checks.
+- Git commit hash.
+
+## 6. Launch
+
+```bash
+conda activate histo-DL
+tmux new-session -d -s 0 "python3 experiments/exp_8/scripts/run_mri_embedding_pruning_experiment.py 2>&1 | tee experiments/exp_8/run_output.log"
+```
+
+Progress printed to stdout in real time (every 10 splits per condition).

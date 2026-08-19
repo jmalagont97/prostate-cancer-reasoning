@@ -1,0 +1,24 @@
+{
+  "biopsy_decision": "yes",
+  "confidence": "borderline",
+  "variable_weights": {
+    "age": "noted",
+    "fh": "noted",
+    "cspca": "noted",
+    "pirads": "noted",
+    "vol": "noted",
+    "psa": "noted",
+    "comorbidity": "not_used",
+    "psad": "noted",
+    "dre": "noted",
+    "bx": "noted"
+  },
+  "reveal_sequence": [
+    "radiology_report",
+    "laboratory_results",
+    "psa_trend",
+    "family_history",
+    "pathology_report"
+  ],
+  "free_text": "A biopsy is strongly indicated due to the high suspicion level (PI-RADS 5) and elevated PSA (10.0 ng/mL) in an elderly patient, necessitating tissue diagnosis for definitive management."
+}

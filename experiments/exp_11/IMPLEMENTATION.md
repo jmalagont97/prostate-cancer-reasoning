@@ -1,42 +1,34 @@
-# Implementation Plan: Out-of-Fold Diagnostic Confidence Prediction via Dynamic Fold-Level LOOCV Decision Tree Thresholding
-**Experiment**: experiments/exp_11/ · **Project**: pathology-reasoning · **Date**: 2026-08-05 · **Status**: Approved
+# Implementation Plan: exp_11 — TF-IDF + TruncatedSVD + KNN
 
----
+**Experiment**: experiments/exp_11/  
+**Project**: pathology-reasoning  
+**Date**: 2026-08-17  
+**Status**: Complete
 
-## 1. Code Changes & Additions
+## Script
+`experiments/exp_11/scripts/run_tfidf_svd_knn_experiment.py`
 
-### New Script: `experiments/exp_11/scripts/train.py`
-This script implements the pure end-to-end LOOCV dynamic thresholding pipeline for predicting medical diagnostic confidence (`confidence` column in `clinical_reasoning.csv`):
+Single self-contained script (no external src/ dependencies). Based on exp_10's `run_tfidf_knn_experiment.py`.
 
-1. **Load & Align Datasets**:
-   - Tabular: `data/chimera26/preprocessed/task1/clinical_data_tabular.csv`.
-   - MRI Embeddings: `data/chimera26/preprocessed/task1/mri_embeddings.csv`.
-   - Clinical Prompts: `data/chimera26/preprocessed/task1/clinical_prompts.csv`.
-   - Clinical Reasoning Target: `data/chimera26/preprocessed/task1/clinical_reasoning.csv` (`confidence` column).
-   - Filter to the $N=88$ labeled complete-case cohort with valid `confidence` annotations (`clear`: 56, `borderline`: 18, `uncertain`: 14).
+### Key Changes from exp_10
+1. **TruncatedSVD** after TF-IDF, before KNN:
+   - `n_components ∈ {None, 1, 20, 40, 60}` (None = no SVD control)
+   - `random_state=42`, `n_iter=5`, `algorithm="randomized"`
+2. **L2 normalization** after SVD (fixed, not a hyperparameter)
+3. **Config name** includes SVD info: `tfidf_mfall_svd{comp}_knn_...` or `tfidf_mfall_nosvd_knn_...`
+4. **Grid**: 5 SVD conditions × 72 KNN = 360 configs
+5. **Variance explained** reported per representation (diagnostic only)
+6. **max_features=None** always (full vocabulary)
 
-2. **Pure Dynamic LOOCV Loop (88 Folds)**:
-   - For each fold $i \in \{1, \dots, 88\}$:
-     - **Step 1**: Train Tabular, MRI, and Text KNN models on 87 training cases.
-     - **Step 2**: Generate unimodal predictions for the 87 training cases and compute $ICI_{\text{train}}$.
-     - **Step 3**: Fit `DecisionTreeClassifier(max_depth=2, class_weight='balanced', random_state=42)` dynamically on $ICI_{\text{train}}$ vs `confidence` of the 87 training cases.
-     - **Step 4**: Extract dynamic local thresholds $(\tau_1^{(i)}, \tau_2^{(i)})$ for fold $i$.
-     - **Step 5**: Predict probabilities for held-out patient $i$, compute $ICI_{\text{test}}^{(i)}$.
-     - **Step 6**: Classify patient $i$ applying dynamic local fold thresholds $(\tau_1^{(i)}, \tau_2^{(i)})$.
-
-3. **Evaluation & Artifact Generation**:
-   - Save fold-by-fold learned thresholds to `experiments/exp_11/results/dynamic_thresholds_per_fold.csv`.
-   - Compute out-of-fold 3-class Macro-F1, Accuracy, Spearman rank correlation ($\rho$), and 3x3 confusion matrix.
-   - Save metrics to `results/loocv_confidence_metrics.json` and predictions to `results/loocv_confidence_predictions.csv`.
-   - Plot threshold evolution across folds to `reports/figures/dynamic_thresholds_evolution.png`.
-   - Plot 3x3 confusion matrix to `reports/figures/confusion_matrix_3class.png`.
-   - Generate summary report `reports/summary.md`.
-
----
-
-## 2. Command Lines
-
-### Execution Command
-```bash
-/home/jmalagont/miniconda3/envs/histo-DL/bin/python3 experiments/exp_11/scripts/train.py
-```
+### Artefacts
+- `results/<winner>/config_log.json` (all 360 configs)
+- `results/<winner>/metrics_mccv.json`
+- `results/<winner>/metrics_loo.json`
+- `results/<winner>/hyperparameters.json` (includes SVD params)
+- `results/<winner>/oof_predictions_mccv.csv`
+- `results/<winner>/oof_predictions_loo.csv`
+- `results/<winner>/confusion_matrices.json`
+- `results/<winner>/validation_report.json` (all_passed: true)
+- `results/<winner>/variance_explained.json`
+- `results/summary_selection.json`
+- `results/config_log.json`

@@ -1,4 +1,4 @@
-# Experiments Index — Pathology Reasoning Project
+# Experiments Index — Pathology Reasoning (CHIMERA Task 1)
 
 Layout: each `exp_<n>/` holds `DESIGN.md` (research design) → `IMPLEMENTATION.md` (build plan)
 → `results/<condition>/` (runs) → `reports/summary.md` (write-up). See any `DESIGN.md` for detail.
