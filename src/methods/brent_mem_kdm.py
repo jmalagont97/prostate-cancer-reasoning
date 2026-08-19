@@ -53,6 +53,43 @@ normalize — for every sigma the search tries. `scripts/verify_brent_mem_kdm.py
 checks this reduction against a real `MemKDM.predict_proba` at both search
 bounds (where the clamp is most likely to bite) and the center.
 
+--------------------------------------------------------------------------
+Optional k-NN truncation (`knn_k`)
+--------------------------------------------------------------------------
+`BrentMemKDM(knn_k=k)` retrieves, per query, the `k` memory points with the
+largest product-kernel value (smallest `expo = sum_m d_mj^2/sigma_m^2` —
+`knn_metric="kernel"`, the only value implemented) and applies the exact same
+BrentMemKDM computation to only those `k`. Two things change relative to the
+whole-memory path above, both load-bearing:
+
+  - The divisor. `raw_j = k_j^2 / n_train` is computed BEFORE the `KDM_EPS`
+    clamp (module docstring above), so truncating the sum to `k` points
+    without also changing the divisor to `k_eff = min(k, n_train)` would
+    silently renormalize over the wrong population whenever the clamp is
+    live (`k2 < KDM_EPS * divisor`) — exactly the regime `exp_28`'s search
+    landed in (`sigma_mult` 0.20-0.23, below every prior discrete grid
+    point). `k_eff` is what makes the fast path equal a sub-`MemKDM` built
+    with `n_comp = k_eff`, and what makes `knn_k >= n_train` identical to
+    `knn_k=None`.
+  - The neighbor set must be the SAME set in the fast (`_FoldCache`) and
+    exact per-query (`_knn_submodel`) paths, or the two would only agree by
+    coincidence. Both call `_topk_neighbors(expo, k)` — one helper, one
+    tie-breaking rule (index order via `np.argpartition`, deterministic).
+
+At `k=1`, `label_smoothing=0`, hard targets: the truncated mixture has a
+single weight that normalizes to 1, so `p1 = y_soft[nearest]` exactly,
+independent of sigma — i.e. this reduces exactly to a 1-NN classifier, the
+same computation `exp_28`'s KNN reference arms compute. `knn_k` is therefore
+a continuous family with `k=1` (1-NN) and `k=n_train` (the model above) as
+its two ends.
+
+`_sigma_ref_per_modality` (the search-bounds anchor) is NOT k-subsetted — it
+stays a property of the full training fold, both because the leak-free
+bounds argument depends on the full-fold scale and because `_sigma_from_knn`
+(mean distance to the 3rd-NN) is undefined for `k < 4`. `k` itself is never
+Brent-searched (Brent is a 1-D continuous method; `k` is discrete) — a
+caller sweeps `k` in an outer loop, running one Brent sigma-search per `k`.
+
 This module must never import `src/evaluation` (same rule as `mem_kdm.py`).
 """
 from __future__ import annotations
@@ -67,8 +104,14 @@ from sklearn.metrics import accuracy_score, brier_score_loss, roc_auc_score
 
 from kdm.init import _sigma_from_knn
 
-from .base import Modalities, Targets
-from .mem_kdm import EncoderSpec, KernelSpec, MemKDM, smooth
+from .base import (
+    Modalities,
+    Targets,
+    apply_meta_thresholds,
+    fit_meta_thresholds_safe,
+    fit_predict_heldout_trees,
+)
+from .mem_kdm import PARTICLE_SIGNAL_NAMES, EncoderSpec, KernelSpec, MemKDM, _best_1d_key, smooth
 
 MIN_SIGMA = 1e-3
 """`RBFKernelLayer`'s structural floor (`sigma = softplus(raw) + min_sigma`);
@@ -253,6 +296,57 @@ def _sq_dist_rbf(A: np.ndarray, B: np.ndarray) -> np.ndarray:
     return dist2.astype(np.float32)
 
 
+def _topk_neighbors(expo: np.ndarray, k: int) -> np.ndarray:
+    """Indices of the `k` smallest entries of `expo` along the last axis —
+    equivalently the `k` memory points with the largest product-kernel value
+    (largest `exp(-expo)`). Single source of truth for "which points are the
+    k nearest neighbors" (module docstring's k-NN section): both
+    `_FoldCache.probs`'s knn branch (fast path) and `_knn_submodel` (exact
+    per-query path) call this, so the two paths always agree on the neighbor
+    set rather than only on the formula. `np.argpartition`'s tie-breaking is
+    by index — an arbitrary but deterministic choice among equidistant
+    points, and both paths make the SAME choice because both call this."""
+    n_train = expo.shape[-1]
+    k = min(int(k), n_train)
+    if k == n_train:
+        return np.argsort(expo, axis=-1)
+    part = np.argpartition(expo, k - 1, axis=-1)[..., :k]
+    part_expo = np.take_along_axis(expo, part, axis=-1)
+    order = np.argsort(part_expo, axis=-1)
+    return np.take_along_axis(part, order, axis=-1)
+
+
+def _knn_submodel(
+    X_train: dict, y_soft_train: np.ndarray, modality_order: list, sigmas: dict, k: int, x_row: dict,
+    label_smoothing: float = 0.0, seed: int = 0,
+) -> tuple:
+    """Builds and fits a `k_eff`-memory `MemKDM` for ONE query row `x_row`
+    (a dict of `(1, dim)` arrays), retrieving its nearest neighbors by the
+    same `expo` rule `_FoldCache.probs`'s knn branch uses (via
+    `_topk_neighbors`, so the fast and exact per-query paths always agree on
+    the neighbor set). Shared by `_TorchScorer.score(knn_k=...)` (the exact
+    reference `scripts/verify_brent_mem_kdm.py` checks the fast path
+    against) and `BrentMemKDM._knn_signals` (the actual knn-mode prediction
+    path) — "apply BrentMemKDM to the k retrieved neighbors" means exactly
+    the same computation in both places. Returns `(fitted MemKDM,
+    neighbor_indices)`."""
+    n_train = len(y_soft_train)
+    k_eff = min(int(k), n_train)
+    expo = np.zeros((1, n_train), dtype=np.float32)
+    for m in modality_order:
+        d2 = _sq_dist_rbf(np.asarray(x_row[m]), np.asarray(X_train[m]))
+        expo += d2 / (float(sigmas[m]) ** 2)
+    nbr = _topk_neighbors(expo, k_eff)[0]
+    kernels = {m: KernelSpec(sigma=float(sigmas[m]), trainable=False) for m in modality_order}
+    encoders = {m: EncoderSpec("identity") for m in modality_order}
+    sub_X = {m: np.asarray(X_train[m])[nbr] for m in modality_order}
+    sub_y = np.asarray(y_soft_train)[nbr]
+    model = MemKDM(kernels=kernels, encoders=encoders, x_train=False, y_train=False, w_train=False,
+                    label_smoothing=label_smoothing, seed=seed)
+    model.fit(sub_X, Targets(y_binary=np.zeros(len(sub_y), dtype=int), y_soft=sub_y))
+    return model, nbr
+
+
 class _FoldCache:
     """Precomputes, once, the per-fold per-modality squared-distance
     matrices `(n_val, n_train)`; every subsequent sigma evaluation is a
@@ -276,12 +370,20 @@ class _FoldCache:
             shape = (len(f.y_val), len(f.y_soft_train))
             self._groups.setdefault(shape, []).append(i)
 
-    def probs(self, sigmas: dict) -> list:
+    def probs(self, sigmas: dict, knn_k: int | None = None) -> list:
         """Per-fold class-1 probability arrays `(n_val,)`, via the fast
         Nadaraya-Watson reduction (module docstring). The single place the
         fast-path math lives — `score()` calls this, and
         `scripts/verify_brent_mem_kdm.py` compares it directly against a
-        real `MemKDM.predict_proba`."""
+        real `MemKDM.predict_proba`.
+
+        `knn_k=None` (default) takes the whole-memory path below, byte-for-
+        byte unchanged. `knn_k=k` truncates each query's mixture to its
+        `k_eff = min(k, n_train)` nearest memory points (module docstring's
+        k-NN section) — `_topk_neighbors` on `expo` selects them, the
+        `1/n_train` divisor becomes `1/k_eff`, and the `KDM_EPS` clamp /
+        normalize / contraction against `y_eff` are applied to the truncated
+        set instead of the full one."""
         out = [None] * self.n_folds
         for (n_val, n_train), idxs in self._groups.items():
             expo = np.zeros((len(idxs), n_val, n_train), dtype=np.float32)
@@ -289,18 +391,32 @@ class _FoldCache:
                 sigma2 = float(sigmas[m]) ** 2
                 stacked = np.stack([self.dist2[m][i] for i in idxs], axis=0)
                 expo += stacked / sigma2
-            k2 = np.exp(-expo)
-            raw = k2 / n_train  # the uniform comp_w=1/n_comp factor, applied BEFORE the clamp below
-            np.maximum(raw, KDM_EPS, out=raw)
-            w = raw / raw.sum(-1, keepdims=True)
             y_eff_stack = np.stack([self.y_eff[i] for i in idxs], axis=0)
-            p1 = np.clip(np.einsum("gvt,gt->gv", w, y_eff_stack), 0.0, 1.0)
+
+            if knn_k is None:
+                k2 = np.exp(-expo)
+                raw = k2 / n_train  # the uniform comp_w=1/n_comp factor, applied BEFORE the clamp below
+                np.maximum(raw, KDM_EPS, out=raw)
+                w = raw / raw.sum(-1, keepdims=True)
+                p1 = np.clip(np.einsum("gvt,gt->gv", w, y_eff_stack), 0.0, 1.0)
+            else:
+                k_eff = min(int(knn_k), n_train)
+                nbr_idx = _topk_neighbors(expo, k_eff)  # (len(idxs), n_val, k_eff)
+                expo_k = np.take_along_axis(expo, nbr_idx, axis=-1)
+                k2 = np.exp(-expo_k)
+                raw = k2 / k_eff  # the k_eff-uniform comp_w factor, applied BEFORE the clamp below
+                np.maximum(raw, KDM_EPS, out=raw)
+                w = raw / raw.sum(-1, keepdims=True)
+                g_idx = np.arange(len(idxs))[:, None, None]
+                y_eff_k = y_eff_stack[g_idx, nbr_idx]  # (len(idxs), n_val, k_eff)
+                p1 = np.clip(np.einsum("gvk,gvk->gv", w, y_eff_k), 0.0, 1.0)
+
             for j, i in enumerate(idxs):
                 out[i] = p1[j]
         return out
 
-    def score(self, sigmas: dict, metric, threshold: float, aggregate: str):
-        p1_per_fold = self.probs(sigmas)
+    def score(self, sigmas: dict, metric, threshold: float, aggregate: str, knn_k: int | None = None):
+        p1_per_fold = self.probs(sigmas, knn_k=knn_k)
         per_fold = np.empty(self.n_folds, dtype=np.float64)
         is_named = isinstance(metric, str)
         entry = METRICS[metric] if is_named else None
@@ -336,21 +452,34 @@ class _TorchScorer:
         self.label_smoothing = label_smoothing
         self.seed = seed
 
-    def score(self, sigmas: dict, metric, threshold: float, aggregate: str):
+    def score(self, sigmas: dict, metric, threshold: float, aggregate: str, knn_k: int | None = None):
         per_fold = np.empty(len(self.folds), dtype=np.float64)
         is_named = isinstance(metric, str)
         entry = METRICS[metric] if is_named else None
         for i, f in enumerate(self.folds):
-            kernels = {m: KernelSpec(sigma=float(sigmas[m]), trainable=False) for m in self.modality_order}
-            encoders = {m: EncoderSpec("identity") for m in self.modality_order}
-            model = MemKDM(kernels=kernels, encoders=encoders, x_train=False, y_train=False, w_train=False,
-                            label_smoothing=self.label_smoothing, seed=self.seed)
-            # `Targets.y_binary` is evaluation-only and never read by `MemKDM.fit` (see base.py); this
-            # dummy same-length-as-y_soft array is filler, not a semantic input.
-            dummy_y_binary = np.zeros(len(f.y_soft_train), dtype=int)
-            model.fit(f.X_train, Targets(y_binary=dummy_y_binary, y_soft=f.y_soft_train))
-            probs = model.predict_proba(f.X_val)
-            p1 = probs[:, 1]
+            if knn_k is None:
+                kernels = {m: KernelSpec(sigma=float(sigmas[m]), trainable=False) for m in self.modality_order}
+                encoders = {m: EncoderSpec("identity") for m in self.modality_order}
+                model = MemKDM(kernels=kernels, encoders=encoders, x_train=False, y_train=False, w_train=False,
+                                label_smoothing=self.label_smoothing, seed=self.seed)
+                # `Targets.y_binary` is evaluation-only and never read by `MemKDM.fit` (see base.py); this
+                # dummy same-length-as-y_soft array is filler, not a semantic input.
+                dummy_y_binary = np.zeros(len(f.y_soft_train), dtype=int)
+                model.fit(f.X_train, Targets(y_binary=dummy_y_binary, y_soft=f.y_soft_train))
+                probs = model.predict_proba(f.X_val)
+                p1 = probs[:, 1]
+            else:
+                # Exact per-query knn path: one fresh k_eff-memory MemKDM per val row, via the same
+                # `_knn_submodel` helper the fast path's `probs(knn_k=...)` is checked against.
+                n_val = len(f.y_val)
+                p1 = np.empty(n_val, dtype=np.float64)
+                for j in range(n_val):
+                    x_row = {m: np.asarray(f.X_val[m])[j:j + 1] for m in self.modality_order}
+                    sub_model, _nbr = _knn_submodel(f.X_train, f.y_soft_train, self.modality_order, sigmas,
+                                                     knn_k, x_row, label_smoothing=self.label_smoothing,
+                                                     seed=self.seed)
+                    p1[j] = sub_model.predict_proba(x_row)[0, 1]
+                probs = _to_2col(p1)
             if is_named:
                 per_fold[i] = entry.scalar(f.y_val, p1, threshold)
             else:
@@ -499,6 +628,9 @@ class SigmaSearchResult:
     strategy: str
     metric: str
     trace: list = field(default_factory=list)
+    knn_k: int | None = None
+    """`None` = whole-memory (default); an int = per-query k-NN truncation
+    (module docstring's k-NN section) used while fitting this result."""
 
 
 def run_brent_search(
@@ -515,12 +647,17 @@ def run_brent_search(
     label_smoothing: float = 0.0,
     threshold: float = 0.50,
     backend: str = "auto",
+    knn_k: int | None = None,
 ) -> SigmaSearchResult:
     """Global Brent search for one sigma per modality, maximizing the mean
     (or `aggregate`) `metric` over `folds`. `backend="auto"`/`"fast"` uses the
     Nadaraya-Watson reduction (module docstring); `"torch"` fits a real
     `MemKDM` per fold per evaluation — exact, ~1000x slower, intended for
-    verification, not routine searches.
+    verification, not routine searches. `knn_k` (module docstring's k-NN
+    section): `None` scores every sigma candidate against the whole memory
+    (unchanged); an int truncates each query to its `k_eff = min(knn_k,
+    n_train)` nearest memory points before scoring — `k` itself is not
+    searched here, sweep it in an outer loop.
     """
     modality_order = list(modality_order)
     if isinstance(metric, str) and metric not in METRICS:
@@ -535,7 +672,7 @@ def run_brent_search(
         raise ValueError(f"unknown backend: {backend!r}")
 
     def cache_score_fn(sigmas):
-        return scorer.score(sigmas, metric, threshold, aggregate)
+        return scorer.score(sigmas, metric, threshold, aggregate, knn_k=knn_k)
 
     sigma_ref = _sigma_ref_per_modality(folds, modality_order)
     bounds = {m: _bounds_for_modality(sigma_ref[m], bounds_mult) for m in modality_order}
@@ -561,6 +698,7 @@ def run_brent_search(
         strategy=strategy,
         metric=metric if isinstance(metric, str) else "custom",
         trace=tracker.trace,
+        knn_k=knn_k,
     )
 
 
@@ -574,6 +712,17 @@ class BrentMemKDM:
     `trainable=False` means `MemKDM.fit` takes the zero-trainable-parameters
     branch, mem_kdm.py's `has_trainable` check — so `fit` is deterministic
     and seed-independent; a consuming experiment needs no seed averaging).
+
+    `knn_k` (module docstring's k-NN section, default `None`): when set,
+    `fit` does not build one whole-memory `MemKDM` — instead it stores the
+    training data, and every predict/uncertainty call retrieves each query's
+    `k_eff = min(knn_k, n_train)` nearest memory points (by kernel value,
+    `knn_metric="kernel"` — the only value implemented) and fits a fresh
+    `k_eff`-memory `MemKDM` on just that subset (`_knn_submodel`). `knn_k`
+    must be set in `__init__` (not `search()`): `experiments/exp_28` builds
+    instances via `m = BrentMemKDM(); m.sigmas_ = {...}; m.modality_order =
+    [...]; m.fit(...)`, bypassing `search()` entirely, so any state `search()`
+    alone set would silently leave that call pattern unrestricted.
     """
 
     def __init__(
@@ -591,6 +740,8 @@ class BrentMemKDM:
         modality_order: list | None = None,
         backend: str = "auto",
         seed: int = 0,
+        knn_k: int | None = None,
+        knn_metric: str = "kernel",
     ):
         self.metric = metric
         self.strategy = strategy
@@ -605,11 +756,20 @@ class BrentMemKDM:
         self.modality_order = list(modality_order) if modality_order is not None else None
         self.backend = backend
         self.seed = seed
+        self.knn_k = knn_k
+        if knn_metric != "kernel":
+            raise ValueError(f"unknown knn_metric: {knn_metric!r}; only 'kernel' is implemented")
+        self.knn_metric = knn_metric
 
         self.sigmas_: dict | None = None
         self.result_: SigmaSearchResult | None = None
         self._inner: MemKDM | None = None
+        self._confidence: dict | None = None
         self.target_informed = False
+
+        # knn-mode fitted state (self._inner stays None in this mode).
+        self._train_X: Modalities | None = None
+        self._train_y_soft: np.ndarray | None = None
 
     # ---------------------------------------------------------------- search
     def search(self, folds: list, modality_order: list | None = None) -> SigmaSearchResult:
@@ -621,7 +781,7 @@ class BrentMemKDM:
             folds, order, metric=self.metric, strategy=self.strategy, bounds_mult=self.bounds_mult,
             n_prescan=self.n_prescan, xatol=self.xatol, maxiter=self.maxiter, max_rounds=self.max_rounds,
             aggregate=self.aggregate, label_smoothing=self.label_smoothing, threshold=self.threshold,
-            backend=self.backend,
+            backend=self.backend, knn_k=self.knn_k,
         )
         self.sigmas_ = dict(self.result_.sigmas)
         return self.result_
@@ -638,8 +798,17 @@ class BrentMemKDM:
         return MemKDM(kernels=kernels, encoders=encoders, **params)
 
     def fit(self, X: Modalities, targets: Targets) -> "BrentMemKDM":
-        self._inner = self.to_memkdm().fit(X, targets)
-        self.target_informed = self._inner.target_informed
+        if self.knn_k is None:
+            self._inner = self.to_memkdm().fit(X, targets)
+            self.target_informed = self._inner.target_informed
+            return self
+        if self.sigmas_ is None:
+            raise RuntimeError("BrentMemKDM.search() must be called before fit() (or sigmas_/modality_order set directly)")
+        self._inner = None
+        self._train_X = {m: np.asarray(X[m]) for m in self.modality_order}
+        self._train_y_soft = np.clip(np.asarray(targets.y_soft, dtype=np.float32), 0.0, 1.0)
+        self.target_informed = bool(targets.soft_from_confidence)
+        self._confidence = None
         return self
 
     def _require_fit(self) -> MemKDM:
@@ -647,25 +816,93 @@ class BrentMemKDM:
             raise RuntimeError("BrentMemKDM.fit() must be called before predict/uncertainty methods")
         return self._inner
 
+    def _require_knn_fit(self) -> tuple:
+        if self._train_X is None:
+            raise RuntimeError("BrentMemKDM.fit() must be called before predict/uncertainty methods")
+        return self._train_X, self._train_y_soft
+
+    # -------------------------------------------------------------- knn mode
+    def _knn_signals(self, X: Modalities) -> dict:
+        """knn-mode `uncertainty_signals`: for each query row, retrieves its
+        `k_eff` nearest memory points and fits a fresh `k_eff`-memory
+        `MemKDM` on just that subset (`_knn_submodel`), then reads that
+        submodel's own `uncertainty_signals` on the single row. Concatenated
+        over rows into the same dict shape `mem_kdm.extract_particle_signals`
+        returns. `log_marginal` here is over `k_eff` components rather than
+        `n_train`, so its scale differs from non-knn mode — the meta-
+        threshold heads below refit thresholds against this model's own
+        signals regardless, so that is a documentation note, not a
+        correctness issue."""
+        X_train, y_soft_train = self._require_knn_fit()
+        n_val = len(np.asarray(X[self.modality_order[0]]))
+        collected = {key: [] for key in ("probs",) + PARTICLE_SIGNAL_NAMES}
+        for i in range(n_val):
+            x_row = {m: np.asarray(X[m])[i:i + 1] for m in self.modality_order}
+            model, _nbr = _knn_submodel(X_train, y_soft_train, self.modality_order, self.sigmas_, self.knn_k,
+                                         x_row, label_smoothing=self.label_smoothing, seed=self.seed)
+            sig = model.uncertainty_signals(x_row)
+            for key in collected:
+                collected[key].append(sig[key][0])
+        return {key: (np.stack(vals, axis=0) if key == "probs" else np.array(vals))
+                for key, vals in collected.items()}
+
     # ------------------------------------------------------------- predict
     def predict_proba(self, X: Modalities) -> np.ndarray:
-        return self._require_fit().predict_proba(X)
+        if self.knn_k is None:
+            return self._require_fit().predict_proba(X)
+        return self._knn_signals(X)["probs"]
 
     def predict(self, X: Modalities, threshold: float = 0.50) -> np.ndarray:
-        return self._require_fit().predict(X, threshold=threshold)
+        if self.knn_k is None:
+            return self._require_fit().predict(X, threshold=threshold)
+        return (self.predict_proba(X)[:, 1] >= threshold).astype(int)
 
     def uncertainty_signals(self, X: Modalities) -> dict:
-        return self._require_fit().uncertainty_signals(X)
+        if self.knn_k is None:
+            return self._require_fit().uncertainty_signals(X)
+        return self._knn_signals(X)
 
     # ---------------------------------------------------------- confidence
     def fit_confidence(self, y_conf: np.ndarray, splits: list, head: str = "meta_threshold_1d",
                         X: Modalities | None = None, key: str | None = None) -> "BrentMemKDM":
-        self._require_fit().fit_confidence(y_conf, splits, head=head, X=X, key=key)
+        if self.knn_k is None:
+            self._require_fit().fit_confidence(y_conf, splits, head=head, X=X, key=key)
+            return self
+        if X is None:
+            raise ValueError("fit_confidence requires X (the data to compute uncertainty_signals on)")
+        signals = self._knn_signals(X)
+        if head == "meta_threshold_1d":
+            sig_key = key or _best_1d_key(signals, y_conf, splits)
+            thr = fit_meta_thresholds_safe(signals[sig_key], y_conf, splits)
+            self._confidence = {"head": head, "key": sig_key, "thr": thr}
+        elif head == "multivariate_heldout":
+            keys = sorted(k for k in signals if k != "probs")
+            S = np.stack([signals[k] for k in keys], axis=1)
+            pred, votes = fit_predict_heldout_trees(S, y_conf, splits)
+            self._confidence = {"head": head, "keys": keys, "_heldout_pred": pred, "_heldout_votes": votes}
+        else:
+            raise ValueError(f"unknown confidence head: {head!r}")
         return self
 
     def predict_confidence(self, X: Modalities | None = None) -> np.ndarray:
-        return self._require_fit().predict_confidence(X)
+        if self.knn_k is None:
+            return self._require_fit().predict_confidence(X)
+        if self._confidence is None:
+            raise RuntimeError("BrentMemKDM.fit_confidence() must be called before predict_confidence")
+        head = self._confidence["head"]
+        if head == "meta_threshold_1d":
+            if X is None:
+                raise ValueError("predict_confidence requires X for head='meta_threshold_1d'")
+            signal = self._knn_signals(X)[self._confidence["key"]]
+            return apply_meta_thresholds(signal, self._confidence["thr"])
+        if head == "multivariate_heldout":
+            return self._confidence["_heldout_pred"]
+        raise ValueError(f"unknown confidence head: {head!r}")
 
     # --------------------------------------------------------------- kernel
     def kernel_params(self) -> dict:
-        return self._require_fit().kernel_params()
+        if self.knn_k is None:
+            return self._require_fit().kernel_params()
+        if self.sigmas_ is None:
+            raise RuntimeError("BrentMemKDM.search() must be called before kernel_params() (or sigmas_ set directly)")
+        return {m: KernelSpec(sigma=self.sigmas_[m], trainable=False) for m in self.modality_order}

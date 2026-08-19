@@ -16,11 +16,18 @@ Checks:
   4. Nested 2-/3-modality smoke test — trace/recursion levels well-formed, `result.score` equals the
      tracked best leaf evaluation.
   5. Determinism — two identical runs return bit-identical sigma*.
+  6. knn truncation (`knn_k`, brent_mem_kdm.py's k-NN section) — five sub-checks: (a) k=1 closed form
+     (p1 = y_soft_train[nearest], independent of sigma — pins truncation, divisor, and clamp at once);
+     (b) knn_k=None is bit-exact against the implicit default (guards the early-return branch); (c)
+     k >= n_train agrees with knn_k=None (float32 gather-vs-direct-sum noise expected, not bit-exact);
+     (d) fast-vs-torch agreement under truncation, via `_knn_submodel`, at the same lower/center/upper
+     sigma regimes as check 1 (the lower bound is where the KDM_EPS clamp is live under truncation);
+     (e) determinism.
 
 Usage:
     conda activate pytorch                              # NOT histo-DL (see project memory)
-    python scripts/verify_brent_mem_kdm.py               # all 5 checks
-    python scripts/verify_brent_mem_kdm.py --quick        # checks 1, 2, 4 only (skips the 100-split search)
+    python scripts/verify_brent_mem_kdm.py               # all 6 checks
+    python scripts/verify_brent_mem_kdm.py --quick        # checks 1, 2, 4, 6 only (skips the 100-split search)
 """
 from __future__ import annotations
 
@@ -42,7 +49,7 @@ from src.evaluation.data import (  # noqa: E402
 from src.evaluation.protocol import iter_mccv_splits  # noqa: E402
 from src.methods.base import Targets  # noqa: E402
 from src.methods.brent_mem_kdm import (  # noqa: E402
-    Fold, _FoldCache, _bounds_for_modality, _sigma_ref_per_modality,
+    Fold, _FoldCache, _bounds_for_modality, _knn_submodel, _sigma_ref_per_modality,
     binary_macro_f1, run_brent_search,
 )
 from src.methods.mem_kdm import EncoderSpec, KernelSpec, MemKDM  # noqa: E402
@@ -128,6 +135,81 @@ def check_fast_vs_torch(folds: list, mods: list, rng: np.random.Generator) -> No
         max_err = float(np.abs(p_fast - p_torch).max())
         check(f"fast-vs-torch exactness [{label}] regime={regime_name}", max_err < FAST_VS_TORCH_TOL,
               f"max|Δp|={max_err:.2e} (tol={FAST_VS_TORCH_TOL:.0e})")
+
+
+# ---------------------------------------------------------------------------
+# Check 6 — knn truncation (brent_mem_kdm.py's k-NN section)
+# ---------------------------------------------------------------------------
+# Same regime as FAST_VS_TORCH_TOL and for the same reason: near KDM_EPS's clamp (live at small sigma,
+# which is exactly where truncation's divisor change matters most) two independent float32
+# implementations agree loosely, not bit-exactly.
+KNN_FAST_VS_TORCH_TOL = 1e-3
+
+
+def check_knn_truncation(folds: list, mods: list, rng: np.random.Generator) -> None:
+    sigma_ref = _sigma_ref_per_modality(folds, mods)
+    bounds = {m: _bounds_for_modality(sigma_ref[m], (1.0 / 32, 32.0)) for m in mods}
+    cache = _FoldCache(folds, mods, label_smoothing=0.0)
+    label = "+".join(mods)
+    n_train = len(folds[0].y_soft_train)
+
+    regimes = {
+        "lower_bound": {m: bounds[m][0] for m in mods},
+        "sigma_ref": {m: sigma_ref[m] for m in mods},
+        "upper_bound": {m: bounds[m][1] for m in mods},
+    }
+
+    # (a) k=1 closed form: p1 = y_soft_train[nearest], independent of sigma — pins the truncation, the
+    # divisor, and the clamp all at once (see brent_mem_kdm.py's module docstring).
+    for regime_name, sigmas in regimes.items():
+        p1_k1 = cache.probs(sigmas, knn_k=1)
+        max_err = 0.0
+        for i, f in enumerate(folds):
+            expo = np.zeros((len(f.y_val), n_train), dtype=np.float64)
+            for m in mods:
+                d2 = ((np.asarray(f.X_val[m])[:, None, :] - np.asarray(f.X_train[m])[None, :, :]) ** 2).sum(-1)
+                expo += d2 / (float(sigmas[m]) ** 2)
+            nearest = np.argmin(expo, axis=-1)
+            expected = f.y_soft_train[nearest]
+            max_err = max(max_err, float(np.abs(p1_k1[i] - expected).max()))
+        check(f"knn k=1 closed form [{label}] regime={regime_name}", max_err < 1e-5, f"max|Δ|={max_err:.2e}")
+
+    # (b) knn_k=None is bit-exact against the implicit default (guards the early-return branch).
+    sigmas_center = regimes["sigma_ref"]
+    p1_default = cache.probs(sigmas_center)
+    p1_explicit_none = cache.probs(sigmas_center, knn_k=None)
+    same = all(np.array_equal(a, b) for a, b in zip(p1_default, p1_explicit_none))
+    check(f"knn_k=None bit-exact vs default call [{label}]", same)
+
+    # (c) k >= n_train agrees with knn_k=None. Not bit-exact: the truncated branch gathers columns
+    # then sums (via einsum over a k-length axis) while the untruncated branch sums the full row
+    # directly — a different float32 accumulation order, same as check (b)'s absence of this gap shows.
+    p1_full_k = cache.probs(sigmas_center, knn_k=n_train * 10)
+    max_err = max(float(np.abs(a - b).max()) for a, b in zip(p1_default, p1_full_k))
+    check(f"knn k>=n_train equiv to knn_k=None [{label}]", max_err < 1e-4, f"max|Δ|={max_err:.2e}")
+
+    # (d) fast-vs-torch agreement under truncation, via the exact per-query `_knn_submodel` path, at
+    # the same lower/center/upper sigma regimes check 1 uses — the lower bound is where KDM_EPS's
+    # clamp is live under truncation and where a wrong divisor would show up.
+    f0 = folds[0]
+    for k in (1, min(5, n_train)):
+        for regime_name, sigmas in regimes.items():
+            p_fast = cache.probs(sigmas, knn_k=k)[0]
+            max_err = 0.0
+            for v in range(len(f0.y_val)):
+                x_row = {m: np.asarray(f0.X_val[m])[v:v + 1] for m in mods}
+                sub_model, _nbr = _knn_submodel(f0.X_train, f0.y_soft_train, mods, sigmas, k, x_row,
+                                                 label_smoothing=0.0, seed=0)
+                p_exact = sub_model.predict_proba(x_row)[0, 1]
+                max_err = max(max_err, float(abs(p_exact - p_fast[v])))
+            check(f"knn fast-vs-torch [{label}] k={k} regime={regime_name}", max_err < KNN_FAST_VS_TORCH_TOL,
+                  f"max|Δp|={max_err:.2e} (tol={KNN_FAST_VS_TORCH_TOL:.0e})")
+
+    # (e) determinism — ties in argpartition/argsort resolve the same way every time.
+    r1 = cache.probs(sigmas_center, knn_k=3)
+    r2 = cache.probs(sigmas_center, knn_k=3)
+    same = all(np.array_equal(a, b) for a, b in zip(r1, r2))
+    check(f"knn determinism [{label}]", same)
 
 
 # ---------------------------------------------------------------------------
@@ -254,6 +336,13 @@ def main(quick: bool = False) -> int:
 
     print("\n=== Check 4: nested smoke test ===")
     check_nested_smoke(cohort, cleaned_texts, targets.y_soft, all_splits)
+
+    print("\n=== Check 6: knn truncation ===")
+    check_knn_truncation(build_folds(cohort, cleaned_texts, targets.y_soft, small_splits, ["tab"], {}), ["tab"], rng)
+    check_knn_truncation(
+        build_folds(cohort, cleaned_texts, targets.y_soft, small_splits, ["tab", "mri"], {"mri": "pca90_l2"}),
+        ["tab", "mri"], rng,
+    )
 
     if not quick:
         print("\n=== Check 3: unimodal tab sanity vs exp_27-style grid ===")
