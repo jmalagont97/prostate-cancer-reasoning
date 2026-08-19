@@ -1,0 +1,72 @@
+{
+  "best_config": "fusion_T+M+X_w0.30_0.30_0.40",
+  "best_weights": {
+    "T": 0.3,
+    "M": 0.3,
+    "X": 0.4
+  },
+  "best_active_modalities": [
+    "T",
+    "M",
+    "X"
+  ],
+  "best_mccv_metrics": {
+    "f1_macro": 0.6968273095510006,
+    "f1_yes": 0.7879871623757206,
+    "balanced_accuracy": 0.6972727272727272,
+    "mcc": 0.4219690080681206,
+    "sensitivity": 0.8345454545454545,
+    "specificity": 0.5599999999999999,
+    "precision_yes": 0.7551542901542903,
+    "accuracy": 0.7277777777777777,
+    "pr_auc": 0.8511783436409104,
+    "roc_auc": 0.7651948051948051,
+    "brier": 0.8066648304590971,
+    "brier_score": 0.19333516954090285,
+    "ece": 0.21743839810219354
+  },
+  "loo_metrics": {
+    "f1_macro": 0.7575757575757576,
+    "f1_yes": 0.8181818181818182,
+    "balanced_accuracy": 0.7549019607843137,
+    "mcc": 0.516024720924339,
+    "sensitivity": 0.8333333333333334,
+    "specificity": 0.6764705882352942,
+    "precision_yes": 0.8035714285714286,
+    "accuracy": 0.7727272727272727,
+    "pr_auc": 0.8429324212069237,
+    "roc_auc": 0.781590413943355,
+    "brier": 0.8163982101491268,
+    "brier_score": 0.18360178985087316,
+    "ece": 0.08675025834048353
+  },
+  "total_weight_grid_candidates": 231,
+  "total_mccv_splits": 50,
+  "total_loo_folds": 88,
+  "tabular_features": [
+    "cli_age",
+    "cli_allergies_count",
+    "cli_bx",
+    "cli_comorbidity_count",
+    "cli_cspca",
+    "cli_dre",
+    "cli_fh_binary",
+    "cli_ipss_score",
+    "cli_months",
+    "cli_pirads",
+    "cli_psa",
+    "cli_psad",
+    "cli_psav",
+    "cli_vol",
+    "vit_bp_diastolic",
+    "vit_bp_systolic",
+    "vit_heart_rate_bpm",
+    "vit_height_cm",
+    "vit_smoking_pack_years",
+    "vit_smoking_status",
+    "vit_weight_kg"
+  ],
+  "selection_criterion": "F1_macro (primary) \u2192 brier_score (tie-break) \u2192 F1_yes \u2192 balanced_accuracy \u2192 MCC",
+  "guardrail": "F1_yes (official primary from docs/EVALUATION.md)",
+  "fixed_tabular_contract": "21 features from exp_5 intersection, no correlation-pruning rerun"
+}

@@ -1,94 +1,188 @@
-# Experiment Design: MRI KNN Representation Sweep (MCCV) & LOOCV Evaluation
-**Experiment**: experiments/exp_6/ · **Project**: pathology-reasoning · **Date**: 2026-08-04 · **Status**: Complete
+# Experiment Design: KNN on Full MRI Embedding (exp_6)
+**Experiment**: experiments/exp_6/
+**Project**: pathology-reasoning
+**Date**: 2026-08-16
+**Author**: Principal Investigator & Co-Investigator
+**Status**: Complete
 
 ---
 
 ## 1. Hypothesis
-Applying noise-filtering or metric-alignment projection methods (PCA, unsupervised EmbedKit, supervised EmbedKit, or Correlation Pruning) to 1024-dimensional raw MRI embeddings will mitigate high-dimensional metric pathologies (such as hubness and loss of contrast), resulting in higher out-of-fold generalization performance under a K-Nearest Neighbors classifier compared to raw embeddings, when optimized over 100 MCCV splits and evaluated via LOOCV.
+
+A KNN classifier applied directly to the full 1024-dimensional MRI embedding
+(`images.csv`), without any PCA, dimensionality reduction, pruning, or feature-wise
+scaling, can predict `target_biopsy_decision_binary` with performance comparable
+to or exceeding the tabular KNN baseline (`exp_5`: MCCV `F1_macro=0.6665`).
 
 ## 2. Experimental Setup
-- **Dataset**:
-  - MRI Embeddings: `data/chimera26/preprocessed/task1/mri_embeddings.csv` (1024 features)
-  - Targets: `data/chimera26/preprocessed/task1/biopsy_decision.csv`
-  - Complete cases: 190 patients (excluding the 5 audit failures).
-- **Validation Splitting**:
-  - Phase A: 100-split Monte Carlo Cross-Validation (`experiments/exp_4/results/mccv_design.csv`). Labeled cohort ($N=88$ complete cases) partitioned into 70 train and 18 validation.
-  - Phase B: Leave-One-Out Cross-Validation (88 folds) over the 88 labeled complete cases.
-- **Preprocessing Pipeline (per split/fold)**:
-  - Input features are scaled using `MinMaxScaler` onto $[0, 1]$ interval.
-  - To prevent data leakage, all representation learners (PCA, EmbedKit projections, Correlation calculations) must be fit strictly on the training partition of each split/fold and applied to the validation/test partition.
-- **Data Representation Techniques**:
-  1. **Raw**: No reduction. Scale features to $[0, 1]$.
-  2. **PCA (90%)**: Fit PCA on training split, select components conserving $\ge 90\%$ cumulative variance, project train and validation sets.
-  3. **EmbedKit Unsupervised**: MLP Projector with `target_dim="auto"` (auto-detected via EmbedKit diagnostics TwoNN) trained using self-supervised contrastive combined loss. Fit dynamically per training split (60 epochs, seed 42).
-  4. **EmbedKit Supervised**: MLP Projector with `target_dim="auto"` (auto-detected via EmbedKit diagnostics TwoNN) trained using supervised CombinedLoss (with SupConLoss) using target biopsy labels. Fit dynamically per training split (60 epochs, seed 42).
-  5. **Correlation Pruning**: Compute Pearson correlation matrix on training splits. Drop highly collinear features ($|r| > \theta$) sweeping correlation threshold $\theta \in [0.70, 0.80, 0.90, 0.95]$.
-- **Classifier Sweep Space (KNN)**:
-  - Neighbors $k \in \{1, 3, 5, 7, 9, 11, 15, 21\}$.
-  - Weights: `['uniform', 'distance']`.
-  - Metric: `['euclidean', 'cosine']`.
 
-## 3. File Layout for This Experiment
+### 2.1 Data
+
+- **Feature matrix**: `data/chimera26/preprocessed/task1/images.csv` (195 × 1025)
+  - `case_id` + `mri_emb_0` … `mri_emb_1023` (1024 components)
+- **Target**: `data/chimera26/preprocessed/task1/ground_truth.csv` → `target_biopsy_decision_binary`
+- **Confidence weights**: `data/chimera26/preprocessed/task1/ground_truth.csv` → `target_confidence`
+- **Splits**: `data/chimera26/preprocessed/task1/mccv_loocv_splits.csv` (frozen)
+
+### 2.2 Cohort
+
+- **N = 88** `usable_labeled` cases (4 cases without MRI excluded by `exp_2`)
+- **Class balance**: 54 yes / 34 no
+- **Confidence distribution**: clear=56, borderline=18, uncertain=14
+
+### 2.3 Input characteristics
+
+- Raw embeddings: range ≈ [-28.85, 10.22], row norms 40.72–72.70
+- No NaN, no infinite values in the usable cohort
+- No feature-wise scaling applied (MinMaxScaler explicitly excluded)
+
+## 3. Preprocessing (per fold, leak-safe)
+
+### 3.1 Input validation (hard)
+
+1. `images.csv` shape: exactly 195 × 1025
+2. Usable MRI matrix: exactly 88 × 1024
+3. Column names: exactly `mri_emb_0` … `mri_emb_1023`
+4. All values finite (no NaN, no Inf) → abort if violated
+
+### 3.2 Feature extraction
+
+- Select `mri_emb_0` … `mri_emb_1023` columns from `images.csv`
+- Convert to `float64`
+- No MinMax scaling, no standardization, no L2 normalization
+- No PCA, no pruning, no feature selection, no dimension removal
+- The KNN operates on the raw 1024-dimensional coordinate space
+
+## 4. KNN Configurations
+
+| Hyperparameter | Values | Count |
+|---|---|---|
+| `n_neighbors` | 1, 3, 5, 7, 9, 11, 15, 21, 31 | 9 |
+| Distance metric | `euclidean`, `cosine` | 2 |
+| Spatial weighting | `uniform`, `distance` (inverse) | 2 |
+| Confidence variant | `standard`, `confidence_weighted` | 2 |
+
+**Grid**: 9 × 2 × 2 × 2 = **72 configurations**.
+**Total**: 72 configs × 50 MCCV splits = **3,600 evaluations**.
+
+## 5. Validation Protocol
+
+### 5.1 MCCV (selection)
+
+- 50 splits, frozen in `mccv_loocv_splits.csv` (80/20, stratified, seed=42).
+- Train: 70 cases. Validation: 18 cases.
+- MinMaxScaler is NOT applied; raw embeddings used directly.
+- All 72 configurations evaluated per split.
+
+### 5.2 Selection rule (v3: lexicographic F1→Brier)
+
+1. **Primary**: highest mean `F1_macro` across 50 MCCV splits.
+2. **Tie-break 1**: lowest mean `brier_score` (conventional: `mean((p-y)^2)`, lower = better).
+3. **Tie-break 2**: highest mean `F1_yes`.
+4. **Tie-break 3**: highest mean balanced accuracy.
+5. **Tie-break 4**: highest mean MCC.
+
+### 5.3 LOO (sanity check)
+
+- 88 folds, fixed by `loocv_fold`.
+- **Only the single best configuration** from MCCV.
+- Hyperparameters frozen; no tuning on LOO.
+- Output: out-of-fold predictions (binary + probability) for all 88 cases.
+
+## 6. Metrics
+
+All metrics from `docs/EVALUATION.md` §3.1:
+
+| Metric | Role |
+|---|---|
+| **Macro-F1** | Primary selection criterion (local) |
+| **F1_yes** | Official primary (guardrail) |
+| Balanced accuracy | Balance guardrail |
+| MCC | Correlation coefficient |
+| Sensitivity (recall of yes) | Secondary |
+| Specificity (recall of no) | Secondary |
+| Precision of yes | Secondary |
+| Decision accuracy | Secondary |
+| PR-AUC | Threshold-free ranking |
+| ROC-AUC | Threshold-free ranking |
+| Brier (1 - Brier) | Historical compat. |
+| Brier score (conv.) | Calibration (lower=better) |
+| ECE | Calibration |
+| Classification report | Diagnostic |
+| Confusion matrix | Diagnostic |
+
+## 7. Confusion Matrix Figures
+
+Generated as explicit PNG + PDF figures:
+
+1. **MCCV pooled** (absolute counts): 900 predictions accumulated across 50 splits.
+2. **MCCV pooled** (normalized by true class): row-wise percentages.
+3. **LOO** (absolute counts): 88 predictions, one per case.
+4. **LOO** (normalized by true class): row-wise percentages.
+
+Each figure includes axis labels `no` / `yes`, count annotations, percentage annotations
+on normalized versions, and a title identifying modality and validation type.
+
+## 8. Artefacts
+
 ```
 experiments/exp_6/
-├── DESIGN.md                  ← this file (experiment design)
-├── IMPLEMENTATION.md          ← build plan (added in plan mode)
+├── DESIGN.md
+├── IMPLEMENTATION.md
 ├── scripts/
-│   └── train.py               ← grid search sweep + LOOCV script
+│   └── run_knn_image_embedding_experiment.py
 ├── results/
-│   ├── grid_search_results.csv ← metrics per representation and parameter combination over 100 splits
-│   ├── best_hparams.json       ← best selected representation and hyperparameters
-│   ├── loocv_metrics.json      ← final out-of-fold metrics of Phase B
-│   └── loocv_predictions.csv   ← final out-of-fold predictions
+│   ├── summary_selection.json
+│   ├── config_log.json
+│   └── <config_name>/
+│       ├── metrics_mccv.json
+│       ├── metrics_loo.json
+│       ├── hyperparameters.json
+│       ├── oof_predictions_mccv.csv
+│       ├── oof_predictions_loo.csv
+│       ├── validation_report.json
+│       └── git_commit.txt
 └── reports/
     ├── figures/
-    │   ├── grid_search_curves.png  ← validation metric curves across representations
-    │   └── confusion_matrix.png     ← confusion matrix of final LOOCV
-    └── summary.md             ← write-up of results and optimal representation
+    │   ├── confusion_matrices.png
+    │   └── confusion_matrices.pdf
+    └── summary.md
 ```
 
-## 4. Baselines
-| Baseline | Config file | Expected metric range |
-|----------|------------|----------------------|
-| Unimodal Tabular KNN (exp_5 LOOCV) | `experiments/exp_5/results/loocv_metrics.json` | Macro-F1 = 0.6333 |
-| Unimodal MRI KNN (legacy exp_15 5-fold) | N/A | Macro-F1 $\sim$ 0.54 |
+## 9. Expected Results & Decision Rules
 
-## 5. Proposed Conditions
-| Condition ID | Representation | Validation Strategy | Search Space |
-|:---|:---|:---|:---|
-| **COND-01-Raw** | Raw [0, 1] | 100 MCCV Splits | $k$, weights, metric |
-| **COND-02-PCA** | PCA (variance $\ge 90\%$) | 100 MCCV Splits | $k$, weights, metric |
-| **COND-03-EmbedKit-Unsup** | Unsupervised contrastive MLP (auto dim) | 100 MCCV Splits | $k$, weights, metric |
-| **COND-04-EmbedKit-Sup** | Supervised Triplet MLP (auto dim) | 100 MCCV Splits | $k$, weights, metric |
+| Outcome | F1_macro (MCCV) | Interpretation |
+|---|---|---|
+| MRI >> Tabular | >= 0.6865 | MRI alone is superior → proceed to multimodal fusion |
+| MRI ≈ Tabular | 0.6465–0.6865 | MRI has comparable signal → include in fusion |
+| MRI < Tabular | < 0.6465 | MRI alone insufficient under this KNN → still include in fusion |
 
-| **COND-05-Corr-Prune** | Collinear drop ($|r| > \theta$) | 100 MCCV Splits | $\theta \in [0.7, 0.8, 0.9, 0.95]$, $k$, weights, metric |
-| **COND-06-LOOCV-Eval** | Optimal Best Representation + KNN | LOOCV (88 folds) | Frozen optimal configuration |
+Note: even if MRI alone is inferior, it may still contribute positively in multimodal
+fusion (`exp_8`).
 
-## 6. Evaluation Protocol
-- **Primary Metric**: Macro-F1 score.
-- **Secondary Metrics**: Accuracy, Sensitivity, Specificity.
-- **Phase A (Sweep)**:
-  - For each representation technique and KNN configuration, run the 100 MCCV split evaluations.
-  - For EmbedKit conditions (`COND-03` and `COND-04`), the dynamic latent dimension determined by `target_dim="auto"` must be recorded and logged for each split.
-  - Average the metrics across all 100 splits.
-  - Choose the configuration (Representation + $k$ + weights + metric) maximizing mean validation Macro-F1.
-- **Phase B (LOOCV)**:
-  - Freeze the optimal configuration. If an EmbedKit representation is selected, its latent dimension parameter (`target_dim`) for LOOCV will be frozen to the mode (most frequent value) of the latent dimensions resolved across the 100 MCCV splits of the winning configuration in Phase A.
-  - Execute a final Leave-One-Out validation loop (88 folds) over the labeled cohort.
-  - Calculate out-of-fold predictions, probabilities, metrics, and save outputs.
+## 10. Risks
 
-## 7. Risks & Mitigations
-- **Risk: EmbedKit Execution Time**: Training contrastive MLPs dynamically on 100 splits of 70 training samples can be slow if done sequentially.
-  - *Mitigation*: Set epochs to a reasonable limit (e.g. 60 epochs) and optimize the PyTorch loop without unnecessary logging. Ensure GPU/CPU batch operations are fast.
-- **Risk: PCA Variance Collapse**: If the features are extremely correlated, PCA explaining 90% variance might yield very few components (e.g., $<5$ components), which could discard predictive detail.
-  - *Mitigation*: Programmatically log the number of selected PCA components per split to analyze component dimensionality.
+| Risk | Mitigation |
+|---|---|
+| 1024 dimensions vs 70 training cases | Report MCCV variability; do not interpret LOO as external validation |
+| Concentration of distances in high dim | Compare cosine vs euclidean within grid |
+| Feature-wise scaling may help | Documented as future experiment; this experiment intentionally tests raw embeddings |
+| `F1_yes` differs from selection criterion | Report both; document selection by `F1_macro` |
+| Confusion matrix labeled as independent | MCCV pooled explicitly labeled as 900 accumulated predictions |
 
-## 8. Reproducibility Checklist
-- [x] Random seeds fixed (`random_state=42` for PCA, PyTorch weights, EmbedKit training)
-- [ ] Training script placed under `scripts/`
-- [ ] Output metrics and plots saved to `results/` and `reports/`
-- [ ] **Git commit hash recorded** — run `git log -1 --format="%H %s" > results/git_commit.txt` before execution
+## 11. Reproducibility Checklist
 
-## 9. Next Steps
-1. Review and accept this experiment plan (hypothesis, representation methods, LOOCV evaluation).
-2. Once accepted, produce an **implementation plan** (in plan mode) to write `scripts/train.py` and run it to search representations and execute final LOOCV evaluation.
+- [ ] Random seeds: N/A (KNN is deterministic given frozen splits)
+- [ ] Dataset version recorded (SHA-256 of `images.csv`, `ground_truth.csv`, `mccv_loocv_splits.csv`)
+- [ ] Git commit hash recorded
+- [ ] Environment: conda `histo-DL` (Python 3.11.15, sklearn 1.9.0, pandas 3.0.3, scipy 1.17.1)
+- [ ] Working tree state documented
+
+## 12. Next Steps
+
+1. Review and accept this experiment plan.
+2. Produce implementation plan (saved as `IMPLEMENTATION.md`).
+3. Implement `run_knn_image_embedding_experiment.py`.
+4. Execute MCCV search, LOO evaluation, and figure generation.
+5. Compare results with `exp_4` and `exp_5` tabular baselines.
+6. Update `experiments/INDEX.md` and hidden logbooks.

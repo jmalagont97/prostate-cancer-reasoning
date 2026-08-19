@@ -1,42 +1,64 @@
-# Implementation Plan: Diagnostic Confidence Prediction via Class-Weighted Hybrid Composite ICI Meta-Thresholding (MCCV & LOOCV)
-**Experiment**: experiments/exp_19/ · **Project**: pathology-reasoning · **Date**: 2026-08-05 · **Status**: Approved
+# Implementation Plan: SHAP / Distance-Attribution Exhaustive Threshold Optimization for Clinical Relevance (exp_19)
+
+**Experiment**: `experiments/exp_19/`  
+**Design**: `experiments/exp_19/DESIGN.md`  
+**Date**: 2026-08-18  
+**Status**: Approved  
 
 ---
 
-## 1. Code Changes & Additions
+## 1. Overview & Architecture
 
-### New Script: `experiments/exp_19/scripts/train.py`
-This script implements the Class-Weighted 1D Decision Tree Meta-Thresholding pipeline on Hybrid Composite ICI:
+This implementation executes `exp_19`, evaluating an 8-condition grid of feature attributions \(\psi_{i, k}\) discretized via **Global Exhaustive 3-Threshold Optimization** \((\tau_{1, k}^*, \tau_{2, k}^*, \tau_{3, k}^*)\) per variable for the 10 official clinical relevance targets on $N=88$ usable cases.
 
-1. **Load Out-of-Fold Predictions & Target Data**:
-   - Out-of-fold probabilities ($\tilde{p}_{\text{tab\_fuzzy}}, p_{\text{mri\_hard}}, p_{\text{text\_hard}}$) from `experiments/exp_18/results/oof_predictions.csv`.
-   - Expert Confidence annotations from `data/chimera26/preprocessed/task1/clinical_reasoning.csv` (`confidence` column: `uncertain`=0, `borderline`=1, `clear`=2).
-   - MCCV Split Design: `experiments/exp_4/results/mccv_design.csv` (100 splits).
-
-2. **Compute Composite Hybrid Reliability Index ($ICI_{\text{hybrid}}$)**:
-   - Calculate $p_{\text{mean}, i} = \frac{\tilde{p}_{\text{tab\_fuzzy}, i} + p_{\text{mri\_hard}, i} + p_{\text{text\_hard}, i}}{3}$.
-   - Calculate $\sigma_{p, i} = \sqrt{\frac{1}{3} [(\tilde{p}_{\text{tab\_fuzzy}, i} - p_{\text{mean}, i})^2 + (p_{\text{mri\_hard}, i} - p_{\text{mean}, i})^2 + (p_{\text{text\_hard}, i} - p_{\text{mean}, i})^2]}$.
-   - Calculate $\delta_i = |p_{\text{mean}, i} - 0.50|$.
-   - Calculate $ICI_{\text{hybrid}, i} = (2.0 \cdot |p_{\text{mean}, i} - 0.50|) \cdot (1.0 - 2.0 \cdot \sigma_{p, i})$.
-
-3. **Phase A (100 MCCV Splits Decision Tree Meta-Thresholding)**:
-   - For each split $s \in [1..100]$, train `DecisionTreeClassifier(max_depth=2, class_weight='balanced', random_state=42)` on $ICI_{\text{hybrid}, \text{train}}$.
-   - Extract split thresholds $\tau_{1, s}, \tau_{2, s}$.
-   - Compute average meta-thresholds $\bar{\tau}_1, \bar{\tau}_2$.
-
-4. **Phase B (Frozen LOOCV Evaluation - 88 Folds)**:
-   - Freeze meta-thresholds $(\bar{\tau}_1, \bar{\tau}_2)$.
-   - Predict 3-class confidence out-of-fold for each patient:
-     - $ICI_{\text{hybrid}, i} < \bar{\tau}_1 \implies \text{uncertain}$
-     - $\bar{\tau}_1 \le ICI_{\text{hybrid}, i} < \bar{\tau}_2 \implies \text{borderline}$
-     - $ICI_{\text{hybrid}, i} \ge \bar{\tau}_2 \implies \text{clear}$
-   - Compute 3-class Macro-F1, Accuracy, Spearman $\rho$, and 3x3 confusion matrix.
+The script is self-contained in `experiments/exp_19/scripts/run_shap_relevance_experiment.py` and runs on `tmux` session 0 using the `histo-DL` environment (`/home/jmalagont/miniconda3/envs/histo-DL/bin/python`) for persistent background execution with real-time log outputs.
 
 ---
 
-## 2. Command Lines
+## 2. Key Components & Implementation Details
 
-### Execution Command
-```bash
-/home/jmalagont/miniconda3/envs/histo-DL/bin/python3 experiments/exp_19/scripts/train.py
-```
+### A. Data & Targets
+- `inputs.csv` ($195 \times 1077$), `ground_truth.csv` ($195 \times 27$), `mccv_loocv_splits.csv` ($195 \times 56$).
+- Targets: 10 official relevance variables `target_code_weight_*` $\in \{0, 1, 2, 3\}$ (`not_used`, `noted`, `important`, `decisive`).
+  Variables: `age`, `fh`, `cspca`, `pirads`, `vol`, `psa`, `comorbidity`, `psad`, `dre`, `bx`.
+- Section Targets: `target_reveal_sequence_json` ($\in 6 \text{ sections}$).
+
+### B. Frozen Tabular Base Model (Subtask 1.1)
+- 21 frozen variables (exp_5), zero-fill + indicators, MinMax, OHE.
+- `ConfidenceWeightedKNN(k=1, metric='cosine', weights='uniform', variant='confidence_weighted')`.
+
+### C. Feature Attribution Methods \(\psi_{i, k}\)
+- **`knn_distance_attribution`:** Difference magnitude $|x_{i, k} - x_{\text{nn}, k}|$ to the nearest neighbor.
+- **`shap_kernel`:** `shap.KernelExplainer` local attribution on output probability $p_{\text{biopsy}}$.
+
+### D. Global Exhaustive 3-Threshold Optimizer
+- `fit_exhaustive_3thresholds(psi_train_k, y_train_k, mode)`:
+  - Generate candidate thresholds from sorted unique values of \(\psi_{k}\).
+  - Evaluate all valid 3-threshold tuples \((\tau_1, \tau_2, \tau_3)\) with \(\tau_1 < \tau_2 < \tau_3\).
+  - Categorize \(\psi_k \to \hat{c}_{i, k} \in \{0, 1, 2, 3\}\).
+  - Minimize loss: \(\text{loss} = \text{MOE}_{\text{abs}}(y_{\text{train}, k}, \hat{c}_k) - 0.001 \cdot \text{F1}_{\text{macro}}(y_{\text{train}, k}, \hat{c}_k)\).
+  - Vectorized NumPy execution for ultra-fast fold processing.
+
+### E. Section Reveal Sequence Derivation
+- Rule-based section activation from predicted 10 relevance weights \(\hat{\mathbf{c}}\):
+  - `radiology_report`: \(\max(\text{pirads}, \text{psad}, \text{vol}, \text{cspca}) \ge 1\)
+  - `laboratory_results`: \(\text{dre} \ge 1\)
+  - `psa_trend`: \(\text{psa} \ge 1\)
+  - `family_history`: \(\text{fh} \ge 1\)
+  - `pathology_report`: \(\text{bx} \ge 1\)
+  - `previous_notes`: \(\text{comorbidity} \ge 1 \text{ or } \text{age} \ge 2\)
+
+### F. Grid Evaluation & LOO Final Audit
+- Grid: 8 conditions across attribution methods $\times$ threshold modes $\times$ scaling options.
+- Primary metric: \(\text{MOE}_{\text{abs}}^{\text{weights}}\) across the 10 variables.
+- Secondary metric: Section \(\text{F1}_{\text{macro}}\).
+- Outputs saved to `experiments/exp_19/results/` and figures saved to `experiments/exp_19/reports/figures/`.
+
+---
+
+## 3. Execution Plan
+
+1. Create `experiments/exp_19/scripts/run_shap_relevance_experiment.py`.
+2. Launch script inside `tmux` session 0 using `histo-DL` environment:
+   `tmux send-keys -t 0 "/home/jmalagont/miniconda3/envs/histo-DL/bin/python experiments/exp_19/scripts/run_shap_relevance_experiment.py 2>&1 | tee experiments/exp_19/results/output.log" C-m`
+3. Monitor progress in real time.

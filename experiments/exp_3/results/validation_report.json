@@ -1,0 +1,178 @@
+{
+  "views": {
+    "main_tabular": {
+      "shape": [
+        195,
+        28
+      ]
+    },
+    "full_prompt_narrative": {
+      "shape": [
+        195,
+        2
+      ]
+    },
+    "images": {
+      "shape": [
+        195,
+        1025
+      ]
+    }
+  },
+  "relevance_variables": {
+    "age": "cli_age",
+    "fh": "cli_fh_binary",
+    "cspca": "cli_cspca",
+    "pirads": "cli_pirads",
+    "vol": "cli_vol",
+    "psa": "cli_psa",
+    "comorbidity": "cli_comorbidity_count",
+    "psad": "cli_psad",
+    "dre": "cli_dre",
+    "bx": "cli_bx"
+  },
+  "determinism": {
+    "views_identical": true,
+    "passed": true
+  },
+  "validations": {
+    "rows_and_unique_ids": {
+      "main_tabular": {
+        "n_rows": 195,
+        "expected_rows": 195,
+        "case_id_unique": true,
+        "passed": true
+      },
+      "full_prompt_narrative": {
+        "n_rows": 195,
+        "expected_rows": 195,
+        "case_id_unique": true,
+        "passed": true
+      },
+      "images": {
+        "n_rows": 195,
+        "expected_rows": 195,
+        "case_id_unique": true,
+        "passed": true
+      }
+    },
+    "shared_case_set": {
+      "all_same": true,
+      "n_cases": 195
+    },
+    "ten_relevance_variables_present": {
+      "expected": [
+        "age",
+        "bx",
+        "comorbidity",
+        "cspca",
+        "dre",
+        "fh",
+        "pirads",
+        "psa",
+        "psad",
+        "vol"
+      ],
+      "missing": [],
+      "passed": true
+    },
+    "no_duplicate_features": {
+      "duplicates": [],
+      "passed": true
+    },
+    "no_gt_leak": {
+      "leaked_columns": {},
+      "passed": true
+    },
+    "round_trip_faithful": {
+      "main_tabular": {
+        "passed": true,
+        "shape": [
+          195,
+          28
+        ]
+      },
+      "full_prompt_narrative": {
+        "passed": true,
+        "shape": [
+          195,
+          2
+        ]
+      },
+      "images": {
+        "passed": true,
+        "shape": [
+          195,
+          1025
+        ]
+      }
+    },
+    "images_missing_mri": {
+      "n_all_nan_rows": 4,
+      "expected_n": 4,
+      "all_nan_cases": [
+        "PT-pseudo_4bfd4ec864d8",
+        "PT-pseudo_4d54f04e26ae",
+        "PT-pseudo_7dbdcd6f9064",
+        "PT-pseudo_8636aa471ef7"
+      ],
+      "expected_cases": [
+        "PT-pseudo_4bfd4ec864d8",
+        "PT-pseudo_4d54f04e26ae",
+        "PT-pseudo_7dbdcd6f9064",
+        "PT-pseudo_8636aa471ef7"
+      ],
+      "passed": true
+    },
+    "expected_shapes": {
+      "main_tabular": {
+        "actual": [
+          195,
+          28
+        ],
+        "expected": [
+          195,
+          28
+        ],
+        "passed": true
+      },
+      "full_prompt_narrative": {
+        "actual": [
+          195,
+          2
+        ],
+        "expected": [
+          195,
+          2
+        ],
+        "passed": true
+      },
+      "images": {
+        "actual": [
+          195,
+          1025
+        ],
+        "expected": [
+          195,
+          1025
+        ],
+        "passed": true
+      }
+    },
+    "all_passed": true,
+    "untouched_artifacts": {
+      "ground_truth_unchanged": true,
+      "mccv_loocv_splits_unchanged": true
+    }
+  },
+  "outputs": {
+    "views": [
+      "/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/main_tabular.csv",
+      "/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/full_prompt_narrative.csv",
+      "/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/images.csv"
+    ],
+    "validation_report": "/home/jmalagont/project/pathology-reasoning/experiments/exp_3/results/validation_report.json",
+    "data_manifest": "/home/jmalagont/project/pathology-reasoning/experiments/exp_3/results/data_manifest.csv",
+    "git_commit_txt": "/home/jmalagont/project/pathology-reasoning/experiments/exp_3/results/git_commit.txt"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "n_neighbors": 1,
+  "metric": "cosine",
+  "weights": "uniform",
+  "variant": "confidence_weighted"
+}

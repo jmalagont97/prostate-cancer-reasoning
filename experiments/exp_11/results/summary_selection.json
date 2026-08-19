@@ -1,0 +1,67 @@
+{
+  "best_config": "tfidf_mfall_nosvd_knn_n3_metriccosine_weightsdistance_variantconfidence_weighted",
+  "best_mccv_metrics": {
+    "f1_macro": 0.6464815801820311,
+    "f1_yes": 0.7683006692603948,
+    "balanced_accuracy": 0.6475324675324675,
+    "mcc": 0.3318861974747084,
+    "sensitivity": 0.8436363636363636,
+    "specificity": 0.4514285714285713,
+    "precision_yes": 0.7109115329115329,
+    "accuracy": 0.6911111111111111,
+    "pr_auc": 0.7897349986614692,
+    "roc_auc": 0.6854545454545454,
+    "brier": 0.78075716010077,
+    "brier_score": 0.21924283989922988,
+    "ece": 0.22667228894328578
+  },
+  "loo_metrics": {
+    "f1_macro": 0.6612972202423378,
+    "f1_yes": 0.7652173913043478,
+    "balanced_accuracy": 0.6574074074074074,
+    "mcc": 0.33238751329420585,
+    "sensitivity": 0.8148148148148148,
+    "specificity": 0.5,
+    "precision_yes": 0.7213114754098361,
+    "accuracy": 0.6931818181818182,
+    "pr_auc": 0.7530988777161892,
+    "roc_auc": 0.6840958605664488,
+    "brier": 0.7781460577918788,
+    "brier_score": 0.22185394220812119,
+    "ece": 0.14720154523767573
+  },
+  "total_configs_evaluated": 360,
+  "total_mccv_splits": 50,
+  "total_loo_folds": 88,
+  "input_modality": "clinical_narrative_tfidf_svd",
+  "max_features": "None (full vocabulary)",
+  "n_components_grid": [
+    1,
+    20,
+    40,
+    60
+  ],
+  "preprocessing": "lowercase, remove special chars, remove stopwords, lemmatize",
+  "svd_params": {
+    "random_state": 42,
+    "n_iter": 5,
+    "algorithm": "randomized"
+  },
+  "tfidf_params": {
+    "ngram_range": [
+      1,
+      1
+    ],
+    "min_df": 1,
+    "max_df": 1.0,
+    "use_idf": true,
+    "smooth_idf": true,
+    "norm": "l2"
+  },
+  "selection_criterion": "F1_macro (primary) \u2192 brier_score (tie-break) \u2192 F1_yes \u2192 balanced_accuracy \u2192 MCC",
+  "guardrail": "F1_yes (official primary from docs/EVALUATION.md)",
+  "fuzzy_revision": "v2 (probability-smoothing)",
+  "selector_revision": "v3 (lexicographic F1\u2192Brier)",
+  "exp10_baseline_mccv_f1_macro": 0.6158,
+  "exp10_baseline_loo_f1_macro": 0.6085
+}

@@ -1,0 +1,21 @@
+{
+  "n_neighbors": 3,
+  "metric": "cosine",
+  "weights": "distance",
+  "variant": "confidence_weighted",
+  "max_features": 2000,
+  "tfidf_params": {
+    "ngram_range": [
+      1,
+      1
+    ],
+    "min_df": 1,
+    "max_df": 1.0,
+    "use_idf": true,
+    "smooth_idf": true,
+    "norm": "l2"
+  },
+  "preprocessing": "lowercase, remove special chars, remove stopwords, lemmatize",
+  "spacy_model": "en_core_web_sm",
+  "spacy_version": ">=3.8.0,<3.9.0"
+}

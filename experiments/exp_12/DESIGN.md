@@ -1,62 +1,70 @@
-# Experiment Design: Out-of-Fold Diagnostic Confidence Prediction via Multimodal Probability State Vector p = [p_tab, p_mri, p_text]
-**Experiment**: experiments/exp_12/ · **Project**: pathology-reasoning · **Date**: 2026-08-05 · **Status**: Complete
+# Experiment Design: Late Multimodal Fusion — Top-1 Winner per Modality (exp_12)
+**Experiment**: experiments/exp_12/ · **Project**: pathology-reasoning · **Date**: 2026-08-17 · **Status**: Approved
 
 ---
 
 ## 1. Hypothesis
-Replacing the 1D scalar $ICI$ with the full 3D unimodal output probability vector $\mathbf{p} = [p_{\text{tab}}, p_{\text{mri}}, p_{\text{text}}]^T$ as input to a class-weighted Decision Tree (`DecisionTreeClassifier(max_depth=3, class_weight='balanced')`) trained locally within each Leave-One-Out (LOOCV) fold will preserve multi-dimensional modal interactions and modal dominance, significantly improving out-of-fold 3-class Macro-F1 (target $\ge 0.50$) compared to 1D $ICI$ baselines without data leakage or optimism bias.
 
-## 2. Experimental Setup
-- **Dataset**:
-  - Tabular Data: `data/chimera26/preprocessed/task1/clinical_data_tabular.csv`
-  - MRI Embeddings: `data/chimera26/preprocessed/task1/mri_embeddings.csv`
-  - Clinical Prompts: `data/chimera26/preprocessed/task1/clinical_prompts.csv`
-  - Reasoning Annotations: `data/chimera26/preprocessed/task1/clinical_reasoning.csv` (`confidence` target column)
-  - Cohort: $N=88$ labeled complete-case patients with valid `confidence` annotations (`clear`: 56, `borderline`: 18, `uncertain`: 14).
-- **Validation Harness (End-to-End LOOCV - 88 Folds)**:
-  - For each fold $i \in \{1, \dots, 88\}$:
-    - Train Tabular, MRI, and Text KNN models on 87 training cases.
-    - Generate unimodal output probabilities $\mathbf{p}_{\text{train}} = [p_{\text{tab}}, p_{\text{mri}}, p_{\text{text}}] \in \mathbb{R}^{87 \times 3}$ for the 87 training cases.
-    - Fit `DecisionTreeClassifier(max_depth=3, class_weight='balanced', random_state=42)` on $\mathbf{p}_{\text{train}}$ vs `confidence` of the 87 training cases.
-    - Predict unimodal probabilities $\mathbf{p}_{\text{test}}^{(i)} \in \mathbb{R}^3$ for held-out test patient $i$.
-    - Classify confidence of test patient $i$ applying the fold's decision tree model.
+La fusión tardía de las tres modalidades (tabular, MRI, texto) promediando sus probabilidades de los modelos ganadores individuales mejora el rendimiento frente a cualquier modalidad individual, siempre que los errores sean parcialmente independientes. La combinación tabular + texto es la candidata más fuerte.
 
-## 3. Mathematical Formulation
-For each patient $i$, the uncertainty state vector is:
-$$\mathbf{p}^{(i)} = \begin{bmatrix} p_{\text{tab}}^{(i)} \\ p_{\text{mri}}^{(i)} \\ p_{\text{text}}^{(i)} \end{bmatrix} \in [0, 1]^3$$
+## 2. Modalidades y modelos congelados
 
-Inverse Class Weighting in Decision Tree:
-$$w_k = \frac{N_{\text{train}}}{3 \cdot N_{k, \text{train}}}$$
-where $w_{\text{clear}} \approx 0.52$, $w_{\text{borderline}} \approx 1.63$, and $w_{\text{uncertain}} \approx 2.10$.
+Cada modalidad utiliza exactamente el modelo ganador previamente seleccionado. No hay búsqueda de hiperparámetros dentro de exp_12.
 
-## 4. File Layout for This Experiment
-```
-experiments/exp_12/
-├── DESIGN.md                  ← this file (experiment design)
-├── IMPLEMENTATION.md          ← build plan (added in plan mode)
-├── scripts/
-│   └── train.py               ← 3D probability vector LOOCV evaluation script
-├── results/
-│   ├── feature_importances.json       ← mean feature importances of p_tab, p_mri, p_text
-│   ├── loocv_confidence_metrics.json  ← 3-class F1-Macro, Accuracy, Spearman rho
-│   └── loocv_confidence_predictions.csv ← patient-level probabilities, predicted & ground-truth confidence
-└── reports/
-    ├── figures/
-    │   ├── feature_importance_bar.png  ← bar plot of modal probability feature importances
-    │   └── confusion_matrix_3class.png ← 3x3 confusion matrix of confidence predictions
-    └── summary.md             ← write-up of 3D probability vector confidence prediction results
+### Tabular (exp_5)
+- **Variables**: 21 tras tau_0.60 (intersección MCCV).
+- **Pruning**: Spearman correlation pruning, clustering complete linkage, representantes por regla de variables esenciales.
+- **Preprocesamiento**: zero-fill + indicadores de ausencia, one-hot, MinMax.
+- **KNN**: k=1, cosine, uniform, confidence_weighted (fuzzy v2).
+
+### MRI (exp_9)
+- **Embedding**: 1024 dimensiones de images.csv.
+- **PCA**: n_components=1 (fit per fold en entrenamiento).
+- **KNN**: k=1, euclidean, distance, confidence_weighted (fuzzy v2).
+
+### Texto (exp_10 corregido)
+- **Preprocesamiento textual**: lowercase, remove special chars, remove numeric tokens (digits + written numbers), remove stopwords (protect negations), lemmatize (spaCy en_core_web_sm v3.8.0).
+- **TF-IDF**: max_features=2000, ngram_range=(1,1), norm=l2.
+- **KNN**: k=3, cosine, distance, confidence_weighted (fuzzy v2).
+
+## 3. Protocolo MCCV (selección)
+
+50 splits estratificados, 70/18. Para cada split:
+1. Ajustar cada modelo solo con el conjunto de entrenamiento.
+2. Generar probabilidad para los 18 casos de validación.
+3. Para las 7 combinaciones no vacías de modalidades, promediar sus probabilidades.
+4. Calcular métricas sobre las 18 predicciones de validación.
+
+Combinaciones:
+- T, M, X, T+M, T+X, M+X, T+M+X
+
+## 4. Regla de selección
+
+```text
+F1_macro → brier_score (↓) → F1_yes → balanced_accuracy → MCC
 ```
 
-## 5. Evaluation Protocol & Decision Rules
-- **Primary Metric**: Out-of-fold 3-class Macro-F1 score under LOOCV.
-- **Secondary Metrics**: Accuracy, Spearman rank correlation ($\rho$), 3x3 Confusion Matrix, Modal Feature Importances.
+La selección se basa exclusivamente en las métricas MCCV.
 
-## 6. Reproducibility Checklist
-- [x] Random seeds fixed (`random_state=42`)
-- [ ] Feature importances saved in `results/feature_importances.json`
-- [ ] Predictions and metrics logged to `results/`
-- [ ] **Git commit hash recorded** — run `git log -1 --format="%H %s" > results/git_commit.txt` before execution
+## 5. Protocolo LOO (final)
 
-## 7. Next Steps
-1. Review and accept this experiment plan.
-2. Once accepted, produce an **implementation plan** (in plan mode) to write `scripts/train.py` and run the experiment.
+88 folds con hiperparámetros congelados. Ajuste desde cero de cada modalidad incluida en la combinación ganadora, en cada fold. La intersección de variables tabulares se computa a partir de las 50 selecciones MCCV (misma convención de exp_5).
+
+## 6. Métricas por combinación
+
+- F1_macro (selección), brier_score, F1_yes, balanced_accuracy, MCC, sensibilidad, especificidad, PR-AUC, ROC-AUC, ECE, matriz de confusión.
+- Diversidad: correlación probabilística entre modalidades, tasa de desacuerdo de etiquetas.
+
+## 7. Artefactos
+
+- summary_selection.json, config_log.json, fusion_report.json.
+- Por combinación ganadora: oof_predictions_mccv.csv, oof_predictions_loo.csv, confusion_matrices.json, validation_report.json.
+- Por modalidad: oof_predictions_mccv.csv y oof_predictions_loo.csv individuales.
+
+## 8. Validaciones
+
+- Cohorte usable_labeled 88 casos.
+- 50 splits MCCV, cada uno 70/18 y ambas clases presentes.
+- 88 folds LOO, exactamente 1 caso por fold.
+- Sin fuga de datos: pruning, PCA y TF-IDF ajustados solo en entrenamiento.
+- Probabilidades en [0, 1], promediar solo probabilidades (umbral 0.5).

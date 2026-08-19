@@ -1,0 +1,184 @@
+======================================================================
+exp_12: Late Multimodal Fusion — top-1 winner per modality
+======================================================================
+
+[1/9] Loading data...
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:861: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  img_df = img_df.set_index("case_id").loc[case_ids].reset_index()
+  Cohort: 88 cases, 54 yes / 34 no
+  Tabular features: 27 (4 categorical)
+  MRI embedding: 1024 dims
+  Text samples: 88
+
+[2/9] Loading spaCy model...
+  spaCy model: en_core_web_sm v3.8.0, spacy=>=3.8.0,<3.9.0
+
+[3/9] Preprocessing text...
+    Preprocessed 50/88 texts
+    Preprocessed 88/88 texts
+
+[4/9] MCCV — Tabular (tau=0.60, k=1, cosine, uniform, cw)...
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+    Tabular MCCV split 10/50  (features=21)
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+    Tabular MCCV split 20/50  (features=21)
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+    Tabular MCCV split 30/50  (features=21)
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+    Tabular MCCV split 40/50  (features=21)
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_12/scripts/run_late_fusion_experiment.py:330: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+    Tabular MCCV split 50/50  (features=21)
+
+[5/9] MCCV — MRI (PCA d=1, k=1, euclidean, distance, cw)...
+    MRI MCCV split 10/50  (PCA d=1)
+    MRI MCCV split 20/50  (PCA d=1)
+    MRI MCCV split 30/50  (PCA d=1)
+    MRI MCCV split 40/50  (PCA d=1)
+    MRI MCCV split 50/50  (PCA d=1)
+
+[6/9] MCCV — Text (TF-IDF mf=2000, k=3, cosine, distance, cw)...
+    Text MCCV split 10/50  (TF-IDF max_features=2000)
+    Text MCCV split 20/50  (TF-IDF max_features=2000)
+    Text MCCV split 30/50  (TF-IDF max_features=2000)
+    Text MCCV split 40/50  (TF-IDF max_features=2000)
+    Text MCCV split 50/50  (TF-IDF max_features=2000)
+
+[7/9] MCCV fusion — evaluating 7 combinations...
+  Best combination: T+M+X
+  F1_macro=0.7041 ± 0.1095
+  F1_yes  =0.7950 ± 0.0762
+  Balanced_acc=0.7042
+  MCC     =0.4395
+
+  Top 5 combinations:
+    1. T+M+X: F1_macro=0.7041, brier_score=0.1904, F1_yes=0.7950
+    2. T: F1_macro=0.6665, brier_score=0.2602, F1_yes=0.7377
+    3. T+X: F1_macro=0.6648, brier_score=0.1966, F1_yes=0.7484
+    4. T+M: F1_macro=0.6567, brier_score=0.2124, F1_yes=0.7095
+    5. X: F1_macro=0.6465, brier_score=0.2192, F1_yes=0.7683
+
+  Diversity (MCCV):
+    Prob corr T-M=-0.057, T-X=0.216, M-X=0.005
+    Disagree  T-M=0.449, T-X=0.376, M-X=0.444
+
+[8/9] LOO — winning combination T+M+X (88 folds, retrain from scratch)...
+    Tabular LOO intersection: 21 variables
+    Tabular LOO: 20/88 folds
+    Tabular LOO: 40/88 folds
+    Tabular LOO: 60/88 folds
+    Tabular LOO: 80/88 folds
+    MRI LOO: 20/88 folds
+    MRI LOO: 40/88 folds
+    MRI LOO: 60/88 folds
+    MRI LOO: 80/88 folds
+    Text LOO: 20/88 folds
+    Text LOO: 40/88 folds
+    Text LOO: 60/88 folds
+    Text LOO: 80/88 folds
+  LOO F1_macro=0.7683
+  LOO F1_yes  =0.8288
+  LOO Balanced_acc=0.7642
+  LOO MCC     =0.5385
+  LOO Brier   =0.8196 (1-Brier), 0.1804 (conv.)
+
+[9/9] Writing artefacts...
+
+  Artefacts written to experiments/exp_12/results/
+  Total time: 0.9 min
+  Done.
+======================================================================

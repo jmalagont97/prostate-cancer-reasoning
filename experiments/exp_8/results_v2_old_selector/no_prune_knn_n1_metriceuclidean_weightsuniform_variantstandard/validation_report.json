@@ -1,0 +1,17 @@
+{
+  "all_passed": true,
+  "checks": {
+    "input_shape": true,
+    "usable_cases": true,
+    "class_balance": true,
+    "no_nan": true,
+    "no_inf": true,
+    "conditions_evaluated": 5,
+    "total_mccv_evaluations": 18000,
+    "loo_folds": true,
+    "loo_intersection_empty": false,
+    "selected_one_config": true,
+    "no_leakage": true,
+    "confusion_matrix_figures": true
+  }
+}

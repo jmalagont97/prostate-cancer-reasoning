@@ -1,70 +1,78 @@
-# Experiment Design: Tabular Fuzzy KNN Sweep & LOOCV (Uncertainty-Guided Soft Targets)
-**Experiment**: experiments/exp_13/ · **Project**: pathology-reasoning · **Date**: 2026-08-05 · **Status**: Complete
+# Experiment Design: Late Multimodal Fusion with Learnable Modality Weights (exp_13)
+**Experiment**: experiments/exp_13/ · **Project**: pathology-reasoning · **Date**: 2026-08-17 · **Status**: Draft
 
 ---
 
 ## 1. Hypothesis
-Replacing binary hard targets ($y \in \{0, 1\}$) with expert uncertainty-guided soft targets ($\tilde{y} \in [0.0, 1.0]$) inside a Distance-Weighted Fuzzy KNN Regressor (`KNeighborsRegressor`) trained on tabular clinical data will attenuate dogmatic voting from uncertain neighbor cases, smoothing decision boundaries in ambiguous feature space regions and significantly improving out-of-fold biopsy prediction Macro-F1 (baseline `exp_5`: LOOCV Macro-F1 = **0.6333**) and probability calibration without data leakage.
+
+A vector of fixed, nonnegative, sum-to-one modality weights outperforms or matches the equal-weight fusion baseline while allowing zero-weight modality deactivation, given the fixed 21-variable tabular feature set inherited from `exp_5`.
 
 ## 2. Experimental Setup
-- **Dataset**:
-  - Tabular Data: `data/chimera26/preprocessed/task1/clinical_data_tabular.csv`
-  - Biopsy Decision Target: `data/chimera26/preprocessed/task1/biopsy_decision.csv` (`biopsy_decision` column, $N=195$)
-  - Clinical Reasoning Annotations: `data/chimera26/preprocessed/task1/clinical_reasoning.csv` (`confidence` column)
-  - Cohort: $N=88$ labeled complete-case cohort for LOOCV final evaluation, matching `exp_5`.
-- **Soft Target Formulation ($\tilde{y}_j$)**:
-  - Expert certainty weights derived from `confidence`:
-    - `clear`: $c_j = 1.00$
-    - `borderline`: $c_j = 0.50$
-    - `uncertain`: $c_j = 0.25$
-  - Continuous soft target mapping:
-    - Positive Biopsy ($y_j = 1$): $\tilde{y}_j = 0.50 + 0.50 \cdot c_j \in [0.625, 1.00]$
-    - Negative Biopsy ($y_j = 0$): $\tilde{y}_j = 0.50 - 0.50 \cdot c_j \in [0.00, 0.375]$
-- **Preprocessing**:
-  - Numerical Features (`age`, `psa`, `vol`, `pirads`, `psad`, `psav`, `psap`): `MinMaxScaler`
-  - Categorical Features (`dre`): `OneHotEncoder`
-- **Validation Harness**:
-  - **Phase A (MCCV Grid Search - 100 Splits)**: Evaluate 48 hyperparameter configurations over 100 Monte Carlo splits (`exp_4` design). Select optimal hyperparameters $(k^*, w^*, m^*)$ maximizing mean validation Macro-F1.
-  - **Phase B (LOOCV Final Evaluation - 88 Folds)**: Evaluate optimal Fuzzy KNN configuration in Leave-One-Out Cross-Validation. Decision threshold $\tilde{p} \ge 0.50 \implies \hat{y} = 1$.
 
-## 3. Hyperparameter Sweep Grid (Identical to `exp_5`)
-- `n_neighbors`: $[1, 3, 5, 7, 9, 11, 15, 21]$
-- `weights`: `['uniform', 'distance']`
-- `metric`: `['euclidean', 'manhattan', 'cosine']`
-- **Total Configurations**: $8 \times 2 \times 3 = 48$ models.
+- **Cohort**: 88 `usable_labeled` cases (54 yes / 34 no) with frozen splits from `data/chimera26/preprocessed/task1/mccv_loocv_splits.csv`.
+- **Tabular feature set**: the fixed intersection of 21 variables selected in `exp_5`, without rerunning Spearman correlation pruning, association-matrix computation, or `tau` search:
 
-## 4. File Layout for This Experiment
-```
-experiments/exp_13/
-├── DESIGN.md                  ← this file (experiment design)
-├── IMPLEMENTATION.md          ← build plan (added in plan mode)
-├── scripts/
-│   └── train.py               ← MCCV grid search & LOOCV evaluation script
-├── results/
-│   ├── best_hparams.json             ← optimal Fuzzy KNN parameters (k*, w*, m*)
-│   ├── grid_search_results.csv       ← mean Macro-F1 across 48 configurations
-│   ├── loocv_metrics.json            ← LOOCV metrics (Macro-F1, Accuracy, AUROC, etc.)
-│   ├── oof_predictions.csv           ← out-of-fold soft probabilities & predictions
-│   └── git_commit.txt                ← recorded git commit hash
-└── reports/
-    ├── figures/
-    │   ├── grid_search_curves.png    ← MCCV hyperparameter curves
-    │   ├── confusion_matrix.png      ← LOOCV 2x2 confusion matrix
-    │   └── roc_curve.png             ← LOOCV ROC curve
-    └── summary.md                    ← final report contrasting exp_13 vs exp_5
+```text
+cli_age
+cli_allergies_count
+cli_bx
+cli_comorbidity_count
+cli_cspca
+cli_dre
+cli_fh_binary
+cli_ipss_score
+cli_months
+cli_pirads
+cli_psa
+cli_psad
+cli_psav
+cli_vol
+vit_bp_diastolic
+vit_bp_systolic
+vit_heart_rate_bpm
+vit_height_cm
+vit_smoking_pack_years
+vit_smoking_status
+vit_weight_kg
 ```
 
-## 5. Evaluation Protocol & Decision Rules
-- **Primary Metric**: Out-of-fold 2-class Macro-F1 under LOOCV.
-- **Baseline to Beat**: `exp_5` Tabular Standard KNN (MCCV Mean Macro-F1 = **0.6218**, LOOCV Macro-F1 = **0.6333**, Accuracy = **68.18%**, Sensitivity = **0.8519**, Specificity = **0.4118**).
-- **Secondary Metrics**: Accuracy, Sensitivity (Recall), Specificity, AUROC, Brier Score (calibration).
+- **Tabular model**: KNN fuzzy v2 with `k=1`, cosine, uniform, confidence-weighted. Fold-local preprocessing only: missing indicators, zero-fill, one-hot encoding, and MinMax scaling on training data only.
+- **MRI model**: PCA `n_components=1` plus KNN fuzzy v2 with `k=1`, euclidean, distance, confidence-weighted.
+- **Text model**: TF-IDF `max_features=2000` plus KNN fuzzy v2 with `k=3`, cosine, distance, confidence-weighted.
+- **Fusion rule**: `p_fusion = w_T p_T + w_M p_M + w_X p_X`, with threshold 0.5.
+- **Hyperparameter search space**: simplex grid of nonnegative weights summing to 1, step 0.05, yielding 231 configurations.
+- **Automatic modality deactivation**: any weight equal to 0 disables that modality, so the 231 candidates include all meaningful modality subsets and recover the equal-weight fusion baseline.
 
-## 6. Reproducibility Checklist
-- [x] Random seeds fixed (`random_state=42`)
-- [ ] Config and scripts saved in `scripts/`
-- [ ] Grid search results logged to `results/grid_search_results.csv`
-- [ ] **Git commit hash recorded** — run `git log -1 --format="%H %s" > results/git_commit.txt` before execution
+## 3. Evaluation Protocol
 
-## 7. Next Steps
-1. Review and accept this experiment plan.
-2. Once accepted, produce an **implementation plan** (in plan mode) to write `scripts/train.py` and execute `exp_13`.
+- **MCCV**: 50 stratified splits, 70/18 train/validation. The three component models are trained per split; fusion probabilities are computed for all 231 candidate weight vectors.
+- **LOO**: 88 folds executed only for the single best configuration selected by MCCV.
+- **Primary selection metric**: F1 macro.
+- **Tie-break / guardrails**: `brier_score` (lower is better) → F1 yes → balanced accuracy → MCC.
+- **Threshold**: fixed at 0.5. No threshold search is allowed.
+
+## 4. Why not rerun correlation pruning
+
+`exp_5` already fixed the tabular feature set used for later stages. The objective of `exp_13` is to isolate the effect of modality weighting and modality deactivation, not to revisit the upstream variable-selection procedure. Consequently:
+
+- no Spearman association matrix is recomputed;
+- no clustering is performed;
+- no `tau` value is optimized;
+- `apply_pruning` is not executed.
+
+The tabular MCCV predictions are regenerated from scratch with the fixed 21-variable contract to preserve the no-reuse policy of this pipeline stage.
+
+## 5. Baselines to report
+
+The report must include at least the following rows:
+
+1. Best weighted fusion from the 231 candidates.
+2. Equal-weight fusion of T, M, and X as the reference to beat.
+3. The best combination per active modality subset (best T-only, best M-only, best X-only, best T+M, best T+X, best M+X, best T+M+X).
+4. All seven fusion conditions from `exp_12`.
+
+Because the fixed-feature tabular contract in `exp_13` differs from the fold-local pruning in `exp_12`, the reported uniform fusion baseline in `exp_13` should be treated as the direct experimental comparator, not `exp_12` itself.
+
+## 6. Next Step
+
+Accept this design, then produce an implementation plan for `experiments/exp_13/scripts/run_weighted_fusion_experiment.py` and for saving `experiments/exp_13/IMPLEMENTATION.md` before execution.

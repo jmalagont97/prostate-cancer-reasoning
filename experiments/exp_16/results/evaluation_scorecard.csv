@@ -1,0 +1,7 @@
+config,scope,moe_abs,f1_macro,n_predictions,eligible,selection_status
+reg_l1_none,MCCV_pooled,0.47460428157149465,0.3027506499748749,900,False,
+reg_l1_balanced,MCCV_pooled,0.3614618229372328,0.20840395652989355,900,True,
+reg_l2_none,MCCV_pooled,0.4095487238929862,0.2949670665492596,900,True,
+reg_l2_balanced,MCCV_pooled,0.3479910496303939,0.18380397999607312,900,True,selected
+reg_l2_balanced,LOO,0.35813492063492064,0.13275613275613277,88,,
+baseline_clear,baseline_MCCV,0.5,0.2626262626262626,900,,

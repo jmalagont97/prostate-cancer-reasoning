@@ -1,67 +1,84 @@
-# Experiment Design: Clinical Feature Relevance Attribution via Mode/Median Perturbation (MCCV & LOOCV)
-**Experiment**: experiments/exp_20/ · **Project**: pathology-reasoning · **Date**: 2026-08-05 · **Status**: Complete
+# Experiment Design: Permutation SHAP Significance Thresholding (Fast Vectorized Engine)
+**Experiment**: experiments/exp_20/  
+**Project**: pathology-reasoning (prostate-cancer-reasoning)  
+**Date**: 2026-08-19  
+**Author**: Experto en Machine Learning, Creación de Agentes y Razonamiento  
+**Status**: Draft  
 
 ---
 
 ## 1. Hypothesis
-Measuring the absolute probability displacement $\Delta p_{i, j} = |\tilde{p}_{\text{base}, i} - \tilde{p}_{\text{perturbed}, i}^{(j)}|$ resulting from masking feature $j$ with its training set mode/median using Tabular Fuzzy KNN (`exp_13`), and categorizing displacement into 4 discrete ordinal relevance levels (`not_used`=0, `noted`=1, `important`=2, `decisive`=3) via Class-Weighted Decision Tree meta-thresholds $(\bar{\tau}_1^{(j)}, \bar{\tau}_2^{(j)}, \bar{\tau}_3^{(j)})$ learned over 100 MCCV splits, will achieve statistically significant Spearman rank correlations ($\rho$) against expert urologist annotations (`weight_*` in `clinical_reasoning.csv`) without data leakage.
+Replacing raw Kernel SHAP attribution magnitudes with vectorized non-parametric **Permutation Significance Descriptors** ($S_{i, k} = 1 - p_{i, k}$) and Z-scores ($Z_{i, k}$) to gate nuisance non-informative features ($p_{i, k} \ge 0.05 \implies \text{not\_used}$) before global 3-threshold ordinal discretization improves out-of-fold Section Reveal Sequence Macro F1 ($\text{F1}_{\text{sections}}^{\text{LOO}} > 0.5775$) over `exp_19` while reducing execution time from ~30 minutes to **< 15 seconds**.
+
+---
 
 ## 2. Experimental Setup
-- **Core Model**: Tabular Fuzzy KNN ($k^*=1$, `uniform`, `euclidean`) trained on continuous soft targets $\tilde{y}_k \in [0.0, 1.0]$.
-- **Cohort**: $N=88$ labeled complete-case cohort.
-- **Clinical Target Features ($j \in \{1..10\}$)**:
-  `age`, `psa`, `vol`, `pirads`, `dre`, `psad`, `psav`, `psap`, `comorbidity`, `cspca`.
-- **Perturbation Procedure**:
-  - For categorical features (`dre`), replace feature value with training set mode $\hat{x}_{j, \text{train}}^{\text{mode}}$.
-  - For continuous features (`age`, `psa`, `vol`, `pirads`, `psad`, `psav`, `psap`), replace feature value with training set median $\hat{x}_{j, \text{train}}^{\text{median}}$.
-  - Compute displacement: $\Delta p_{i, j} = |\tilde{p}_{\text{base}, i} - \tilde{p}_{\text{perturbed}, i}^{(j)}|$.
-- **Two-Phase Harness (Leak-Free & Feature-Independent)**:
-  - **Phase A (100-Split MCCV Feature-Independent Meta-Threshold Learning)**:
-    - For each split $s \in [1..100]$, fit Tabular Fuzzy KNN on $X_{\text{train}}$ (70% cohort).
-    - Compute displacements $\Delta p_{s, k, j}$ on $X_{\text{train}}$.
-    - **CRITICAL**: For **EACH INDIVIDUAL FEATURE $j \in \{1..10\}$**, train an **INDEPENDENT 1D `DecisionTreeClassifier(max_depth=3, class_weight='balanced', random_state=42)`** strictly on feature $j$'s training displacements $\Delta p_{s, k, j}$ vs `weight_*[j]` ground truth annotations to extract feature-specific cut-points $(\tau_{1, s}^{(j)}, \tau_{2, s}^{(j)}, \tau_{3, s}^{(j)})$.
-    - Compute 10 independent feature-specific average meta-threshold tuples: $(\bar{\tau}_1^{(j)}, \bar{\tau}_2^{(j)}, \bar{\tau}_3^{(j)})$.
-  - **Phase B (Frozen LOOCV Out-of-Fold Evaluation - 88 Folds)**:
-    - Freeze the 10 independent meta-threshold sets $(\bar{\tau}_1^{(j)}, \bar{\tau}_2^{(j)}, \bar{\tau}_3^{(j)})$.
-    - For each held-out test patient $i \in [1..88]$ in LOOCV, retrain Fuzzy KNN on 87 cases.
-    - Compute out-of-fold feature displacement $\Delta p_{i, j}$.
-    - Predict ordinal relevance level (0..3):
-      - $\Delta p_{i, j} < \bar{\tau}_1^{(j)} \implies \text{not\_used}$ (0)
-      - $\bar{\tau}_1^{(j)} \le \Delta p_{i, j} < \bar{\tau}_2^{(j)} \implies \text{noted}$ (1)
-      - $\bar{\tau}_2^{(j)} \le \Delta p_{i, j} < \bar{\tau}_3^{(j)} \implies \text{important}$ (2)
-      - $\Delta p_{i, j} \ge \bar{\tau}_3^{(j)} \implies \text{decisive}$ (3)
-    - Evaluate Spearman rank correlation ($\rho$), Accuracy, and 4-class Macro-F1 per clinical feature.
+- **Dataset**: `data/chimera26/preprocessed/task1/` ($N=88$ clean cohort).
+  - Target 1: `target_code_weight_*` (10 clinical variables, ordinal grades 0=not_used, 1=noted, 2=important, 3=decisive).
+  - Target 2: `target_reveal_sequence_json` (Ordered section reveal lists).
+- **Validation Protocol**: Zero-leakage protocol matching `exp_2` / `exp_19`:
+  - 50-repeat Monte Carlo Cross-Validation (MCCV, 70 train / 18 val) for threshold selection.
+  - 88-fold Leave-One-Out Cross-Validation (LOOCV) for out-of-fold generalization audit.
+- **Base Decision Model**: Frozen `ConfidenceWeightedKNN` ($k=1$, Cosine distance, $T_{21}$ features from `exp_5`).
 
-## 3. File Layout for This Experiment
+---
+
+## 3. Fast Vectorized Permutation Engine Architecture
+To preserve 100% statistical rigor while eliminating the $\mathcal{O}(B \times 2^M)$ KernelSHAP recalculation bottleneck:
+
+1. **Primary SHAP Extraction**: Compute observed Kernel SHAP attributions $\Phi_{\text{obs}} \in \mathbb{R}^{N \times M}$ on training split $X_{\text{train}}$ once per fold.
+2. **Vectorized Null Permutation ($H_0$)**:
+   Perform $B=500$ fast column-wise sample shuffles directly on the attribution matrix $\Phi_{\text{train}}$:
+   $$\mu_{k}^{\text{null}} = \mathbb{E}_{\pi}\left[\Phi_{*, k}^{(\pi)}\right], \quad \sigma_{k}^{\text{null}} = \text{std}_{\pi}\left[\Phi_{*, k}^{(\pi)}\right]$$
+3. **Empirical P-Value & Significance Descriptor**:
+   For each test sample $i$ and variable $k$:
+   $$p_{i, k} = \frac{\sum_{b=1}^{B} \mathbb{I}\left(|\Phi_{i, k}^{(\pi_b)}| \ge |\Phi_{i, k}^{\text{obs}}|\right) + 1}{B + 1}, \quad S_{i, k} = 1 - p_{i, k}$$
+   $$Z_{i, k} = \frac{\Phi_{i, k}^{\text{obs}} - \mu_{k}^{\text{null}}}{\sigma_{k}^{\text{null}} + \epsilon}$$
+4. **P-Value Gating & Global 3-Threshold Discretization**:
+   - Hard Rule: If $p_{i, k} \ge 0.05 \implies \hat{y}_{i, k} = 0$ (`not_used`).
+   - If $p_{i, k} < 0.05$: Discretize continuous $Z_{i, k}$ (or $S_{i, k}$) using optimal thresholds $(\tau_{1, k}^*, \tau_{2, k}^*, \tau_{3, k}^*)$ found via grid search on MCCV.
+
+---
+
+## 4. File Layout for This Experiment
 ```
 experiments/exp_20/
-├── DESIGN.md                  ← this file (experiment design)
-├── IMPLEMENTATION.md          ← build plan (added in plan mode)
+├── DESIGN.md                  ← This file (research design)
+├── IMPLEMENTATION.md          ← Implementation plan (created in plan mode after approval)
 ├── scripts/
-│   └── train.py               ← feature perturbation + MCCV Decision Tree meta-thresholding + LOOCV script
+│   └── run_permuted_shap_experiment.py  ← Fast vectorized runner
 ├── results/
-│   ├── meta_thresholds.json         ← learned feature-specific balanced cut-points \bar{\tau}_{1..3}^{(j)}
-│   ├── feature_attribution_metrics.json ← per-feature Spearman \rho, F1, Accuracy metrics
-│   ├── oof_feature_attributions.csv  ← patient-level displacements and predicted vs GT weights
-│   └── git_commit.txt               ← recorded git commit hash
+│   ├── summary.json           ← Final LOO and MCCV metrics
+│   └── output.log             ← Real-time log file
 └── reports/
-    ├── figures/
-    │   ├── feature_displacement_distributions.png ← displacement distributions per feature
-    │   └── feature_importance_bar.png             ← per-feature Spearman correlation & F1 summary
-    └── summary.md                   ← final report summarizing clinical relevance alignment
+    └── summary.md             ← Formal academic report
 ```
 
-## 4. Evaluation Protocol & Decision Rules
-- **Primary Metric**: Spearman Rank Correlation ($\rho$) per feature $j$ between predicted relevance levels (0..3) and expert annotations (`weight_*`).
-- **Success Threshold**: Statistically significant positive rank correlation ($p < 0.05$) across major clinical features (`psa`, `pirads`, `vol`, `dre`).
-- **Secondary Metrics**: 4-class Macro-F1 and Accuracy per clinical feature.
+---
 
-## 5. Reproducibility Checklist
-- [x] Random seeds fixed (`random_state=42` for Decision Tree fitting)
-- [ ] Config and scripts saved in `scripts/`
-- [ ] Meta-thresholds logged to `results/meta_thresholds.json`
-- [ ] **Git commit hash recorded** — run `git log -1 --format="%H %s" > results/git_commit.txt` before execution
+## 5. Experimental Conditions (Grid Search)
 
-## 6. Next Steps
-1. Review and accept this experiment plan.
-2. Once accepted, produce an **implementation plan** (in plan mode) to write `scripts/train.py` and execute `exp_20`.
+| Condition | Descriptor Type | Gating Threshold ($p$) | Threshold Search Space |
+| :--- | :--- | :--- | :--- |
+| `cond_1_raw_shap` | Raw SHAP $\phi_{i, k}$ | None | Baseline `exp_19` control |
+| `cond_2_zscore_nogate` | Z-score $Z_{i, k}$ | None | Continuous Z-score 3-threshold search |
+| `cond_3_zscore_gated` | Z-score $Z_{i, k}$ | $p \ge 0.05 \implies 0$ | P-value gated + Z-score 3-threshold search |
+| `cond_4_pvalue_desc` | Significance $S_{i, k}$ | None | Direct 3-threshold search on $S_{i, k} \in [0, 1]$ |
+| `cond_5_pvalue_gated` | Significance $S_{i, k}$ | $p \ge 0.05 \implies 0$ | P-value gated + 3-threshold search on $S_{i, k}$ |
+
+---
+
+## 6. Evaluation Protocol & Decision Rules
+- **Primary Metric**: Section Reveal Sequence Macro F1 ($\text{F1}_{\text{sections}}$).
+- **Secondary Metric**: Relevance Weights Balanced Ordinal Error ($\text{MOE}_{\text{abs}}^{\text{weights}}$).
+- **Success Criteria**:
+  1. $\text{F1}_{\text{sections}}^{\text{LOO}} > 0.5775$ (outperforming `exp_19`).
+  2. Total script execution time $< 15 \text{ seconds}$.
+- **Git Traceability**: Log commit hash via `git log -1 --format="%H %s" > results/git_commit.txt`.
+
+---
+
+## 7. Next Steps
+1. User reviews and approves this `DESIGN.md`.
+2. Generate `IMPLEMENTATION.md` in plan mode for explicit user review.
+3. Execute `run_permuted_shap_experiment.py` in `tmux` session 0 and report final metrics.

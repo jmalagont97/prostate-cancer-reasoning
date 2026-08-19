@@ -1,0 +1,490 @@
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+/home/jmalagont/project/pathology-reasoning/experiments/exp_5/scripts/run_knn_pruning_experiment.py:111: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho, _ = spearmanr(d1[valid, i], d2[valid, j])
+══════════════════════════════════════════════════════════════════════
+exp_5: KNN + Correlation Pruning
+══════════════════════════════════════════════════════════════════════
+
+[1/6] Loading data...
+  Cohort: 88 cases, 54 yes / 34 no
+  Confidence: {'clear': 56, 'borderline': 18, 'uncertain': 14}
+  Features: 27 columns (4 categorical)
+
+[2/6] MCCV condition: no_prune (no pruning) — 72 configs × 50 splits
+    MCCV split 10/50  (features=27)
+    MCCV split 20/50  (features=27)
+    MCCV split 30/50  (features=27)
+    MCCV split 40/50  (features=27)
+    MCCV split 50/50  (features=27)
+    Best: no_prune_knn_n1_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.6453 ± 0.1040
+
+[2/6] MCCV condition: tau_0.80 (threshold=0.8) — 72 configs × 50 splits
+    MCCV split 10/50  (features=25)
+    MCCV split 20/50  (features=25)
+    MCCV split 30/50  (features=25)
+    MCCV split 40/50  (features=25)
+    MCCV split 50/50  (features=25)
+    Best: tau_0.80_knn_n1_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.6412 ± 0.1037
+
+[2/6] MCCV condition: tau_0.85 (threshold=0.85) — 72 configs × 50 splits
+    MCCV split 10/50  (features=25)
+    MCCV split 20/50  (features=25)
+    MCCV split 30/50  (features=25)
+    MCCV split 40/50  (features=25)
+    MCCV split 50/50  (features=25)
+    Best: tau_0.85_knn_n1_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.6412 ± 0.1037
+
+[2/6] MCCV condition: tau_0.90 (threshold=0.9) — 72 configs × 50 splits
+    MCCV split 10/50  (features=25)
+    MCCV split 20/50  (features=25)
+    MCCV split 30/50  (features=25)
+    MCCV split 40/50  (features=25)
+    MCCV split 50/50  (features=25)
+    Best: tau_0.90_knn_n1_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.6412 ± 0.1037
+
+[2/6] MCCV condition: tau_0.95 (threshold=0.95) — 72 configs × 50 splits
+    MCCV split 10/50  (features=25)
+    MCCV split 20/50  (features=25)
+    MCCV split 30/50  (features=25)
+    MCCV split 40/50  (features=25)
+    MCCV split 50/50  (features=25)
+    Best: tau_0.95_knn_n1_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.6412 ± 0.1037
+
+[3/6] Cross-condition selection...
+  Global best: no_prune_knn_n1_metriccosine_weightsuniform_variantstandard
+  F1_macro=0.6453 ± 0.1040
+  F1_yes  =0.7263 ± 0.0947
+  Balanced_acc=0.6496
+  MCC     =0.3100
+
+  Top 5 overall:
+    1. no_prune_knn_n1_metriccosine_weightsuniform_variantstandard: F1_macro=0.6453, F1_yes=0.7263
+    2. no_prune_knn_n1_metriccosine_weightsuniform_variantconfidence_weighted: F1_macro=0.6453, F1_yes=0.7263
+    3. no_prune_knn_n1_metriccosine_weightsdistance_variantstandard: F1_macro=0.6453, F1_yes=0.7263
+    4. no_prune_knn_n1_metriccosine_weightsdistance_variantconfidence_weighted: F1_macro=0.6453, F1_yes=0.7263
+    5. tau_0.80_knn_n1_metriccosine_weightsuniform_variantstandard: F1_macro=0.6412, F1_yes=0.7243
+
+[4/6] LOO intersection for no_prune...
+  MCCV selected vars per split: [27, 27, 27, 27, 27]...
+  MCCV set sizes: min=27, max=27, mean=27.0
+  LOO intersection: 27 variables
+
+[5/6] LOO evaluation (88 folds)...
+  LOO: 20/88 folds done
+  LOO: 40/88 folds done
+  LOO: 60/88 folds done
+  LOO: 80/88 folds done
+  LOO F1_macro=0.6506
+  LOO F1_yes  =0.7339
+  LOO Balanced_acc=0.6498
+  LOO MCC     =0.3013
+  LOO Brier   =0.6705 (1-Brier), 0.3295 (conv.)
+
+[6/6] Writing artefacts...
+
+  Artefacts written to experiments/exp_5/results/no_prune_knn_n1_metriccosine_weightsuniform_variantstandard/
+  Total time: 9.9 min
+  Done.
+══════════════════════════════════════════════════════════════════════

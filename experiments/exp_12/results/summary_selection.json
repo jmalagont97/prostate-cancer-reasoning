@@ -1,0 +1,45 @@
+{
+  "best_config": "fusion_T+M+X",
+  "best_mccv_metrics": {
+    "f1_macro": 0.7041043445352302,
+    "f1_yes": 0.7949939724145675,
+    "balanced_accuracy": 0.7041558441558442,
+    "mcc": 0.4394650669428464,
+    "sensitivity": 0.8454545454545455,
+    "specificity": 0.5628571428571427,
+    "precision_yes": 0.7591094183594184,
+    "accuracy": 0.7355555555555554,
+    "pr_auc": 0.8490119437900187,
+    "roc_auc": 0.7683116883116883,
+    "brier": 0.8096371528473644,
+    "brier_score": 0.19036284715263577,
+    "ece": 0.2044047163298297
+  },
+  "loo_metrics": {
+    "f1_macro": 0.7682605682605683,
+    "f1_yes": 0.8288288288288288,
+    "balanced_accuracy": 0.764161220043573,
+    "mcc": 0.5385389522623839,
+    "sensitivity": 0.8518518518518519,
+    "specificity": 0.6764705882352942,
+    "precision_yes": 0.8070175438596491,
+    "accuracy": 0.7840909090909091,
+    "pr_auc": 0.837727137982958,
+    "roc_auc": 0.7919389978213507,
+    "brier": 0.8196131879221659,
+    "brier_score": 0.18038681207783416,
+    "ece": 0.12254477475727406
+  },
+  "total_combos_evaluated": 7,
+  "total_mccv_splits": 50,
+  "total_loo_folds": 88,
+  "input_modalities": [
+    "tabular",
+    "mri",
+    "text"
+  ],
+  "selection_criterion": "F1_macro (primary) \u2192 brier_score (tie-break) \u2192 F1_yes \u2192 balanced_accuracy \u2192 MCC",
+  "guardrail": "F1_yes (official primary from docs/EVALUATION.md)",
+  "fuzzy_revision": "v2 (probability-smoothing)",
+  "selector_revision": "v3 (lexicographic F1\u2192Brier)"
+}

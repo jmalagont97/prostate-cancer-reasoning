@@ -1,0 +1,29 @@
+{
+  "experiment": "exp_18",
+  "description": "Global Exhaustive Threshold Optimization on Decision Risk",
+  "git_commit": "702fc02e009f63cb692425e4148e2d84f89ec16a project restart",
+  "n_usable_cohort": 88,
+  "baseline_majority_clear": {
+    "moe_abs": 0.5,
+    "f1_macro": 0.2626262626262626
+  },
+  "selected_config": {
+    "config_name": "c_fn_0.65_lambda_0.00_mode_exact_balanced_min_recall",
+    "c_fn": 0.65,
+    "c_fp": 0.35,
+    "lambda": 0.0,
+    "threshold_mode": "exact_balanced_min_recall",
+    "mccv_mean_moe_abs": 0.3183477402227402,
+    "mccv_std_moe_abs": 0.06647747278842715,
+    "mccv_pooled_moe_abs": 0.3315345553050471,
+    "mccv_pooled_f1_macro": 0.3157059620744505,
+    "loo_moe_abs": 0.3088624338624339,
+    "loo_f1_macro": 0.407843137254902,
+    "loo_recalls": {
+      "uncertain": 0.4999999999964286,
+      "borderline": 0.6111111111077161,
+      "clear": 0.2857142857137755
+    }
+  },
+  "total_runtime_seconds": 113.31
+}

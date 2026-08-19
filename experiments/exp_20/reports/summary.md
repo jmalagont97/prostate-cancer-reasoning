@@ -1,96 +1,46 @@
-# Clinical Feature Relevance Attribution via Mode/Median Perturbation (exp_20) Summary Report
+# Experiment 20 Final Report: Fast Permutation SHAP Significance Thresholding
 
-**Date**: 2026-08-05  
-**Model**: Feature-Independent Class-Weighted Decision Trees on Fuzzy KNN Probability Displacements  
-**Cohort**: Labeled Complete-Case Cohort ($N_{labeled} = 88$)  
+**Experiment**: `experiments/exp_20/`  
+**Date**: 2026-08-19  
+**Status**: Complete  
+**Verdict**: `✓ PASS` (Condition `cond_4_pvalue_desc` achieves lowest LOO Weight Ordinal Error $\text{MOE}_{\text{abs}} = 0.3000$ while preserving SOTA Section Reveal F1 = 0.5775)
 
-## 1. Feature-Independent Meta-Thresholds (100 MCCV Splits)
-| Clinical Feature | Meta-Threshold 1 ($\bar{\tau}_1$) | Meta-Threshold 2 ($\bar{\tau}_2$) | Meta-Threshold 3 ($\bar{\tau}_3$) |
-|:---|:---:|:---:|:---:|
-| **`age`** | `0.0737` | `0.2450` | `0.4031` |
-| **`psa`** | `0.3383` | `0.3850` | `0.4515` |
-| **`vol`** | `0.0650` | `0.2069` | `0.3887` |
-| **`pirads`** | `0.1356` | `0.4169` | `0.7041` |
-| **`psad`** | `0.1955` | `0.5216` | `0.5767` |
-| **`psav`** | `0.3728` | `0.6206` | `0.6759` |
-| **`psap`** | `0.3971` | `0.4450` | `0.5055` |
-| **`dre`** | `0.1269` | `0.3275` | `0.5575` |
+---
 
-## 2. Frozen LOOCV Out-of-Fold Performance Summary
-| Clinical Feature | Spearman Rank $\rho$ | p-value | 4-Class Macro-F1 | Accuracy | Mean Displacement $\Delta p$ |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **`age`** | `0.1965` | `6.6549e-02` | `0.1261` | `18.18%` | `0.2443` |
-| **`psa`** | `0.1840` | `8.6202e-02` | `0.0511` | `2.27%` | `0.0114` |
-| **`vol`** | `0.1694` | `1.1467e-01` | `0.1020` | `9.09%` | `0.1932` |
-| **`pirads`** | `-0.1660` | `1.2217e-01` | `0.1735` | `22.73%` | `0.3565` |
-| **`psad`** | `-0.0033` | `9.7581e-01` | `0.0578` | `11.36%` | `0.0298` |
-| **`psav`** | **`0.2617`** | `1.3788e-02` | `0.0891` | `3.41%` | `0.0227` |
-| **`psap`** | `-0.2052` | `5.5131e-02` | `0.0000` | `0.00%` | `0.0085` |
-| **`dre`** | **`0.4290`** | `3.0427e-05` | `0.1272` | `7.95%` | `0.1293` |
+## 1. Executive Summary
+Experiment 20 evaluated non-parametric **Permutation Significance Descriptors** ($S_{i, k} = 1 - p_{i, k}$) and Z-scores ($Z_{i, k}$) derived from $B=500$ sample-level permutations of SHAP attributions to replace raw max-normalized attributions in CHIMERA Subtask 1.3.
 
-## 3. Independent 4x4 Confusion Matrices per Clinical Feature (LOOCV)
+A 5-condition sweep was conducted across 50 MCCV splits (70 train / 18 val) and 88 LOO folds:
+1. **Continuous Significance Descriptors ($S_{i, k} = 1 - p_{i, k}$)** without hard binary gating (`cond_4`) improved relevance weight calibration, reducing LOO relevance weight ordinal error to **$\text{MOE}_{\text{abs}}^{\text{weights}} = 0.3000$** (vs $0.3026$ in `exp_19`) while maintaining the SOTA Section Reveal Sequence Macro F1 of **$\text{F1}_{\text{sections}}^{\text{LOO}} = 0.5775$**.
+2. **Hard P-Value Gating ($p \ge 0.05 \implies 0$)** (`cond_3` and `cond_5`) caused metric collapse ($\text{F1}_{\text{sections}}^{\text{LOO}} = 0.1177$). Because variables like `fh` and `comorbidity` are annotated as `1 (noted)` in >68% of cohort cases but carry low local SHAP variance, hard p-value gating incorrectly zeroes out essential section reveal triggers.
 
-### Feature: `age` (Spearman $\rho = 0.1965$, Macro-F1 = `0.1261`)
-| Ground Truth \ Predicted | not_used (0) | noted (1) | important (2) | decisive (3) | Total Real |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **not_used (0)** | **1** | 0 | 0 | 0 | 1 |
-| **noted (1)** | 19 | **0** | 6 | 3 | 28 |
-| **important (2)** | 26 | 2 | **14** | 14 | 56 |
-| **decisive (3)** | 2 | 0 | 0 | **1** | 3 |
+---
 
-### Feature: `psa` (Spearman $\rho = 0.1840$, Macro-F1 = `0.0511`)
-| Ground Truth \ Predicted | not_used (0) | noted (1) | important (2) | decisive (3) | Total Real |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **not_used (0)** | **1** | 0 | 0 | 0 | 1 |
-| **noted (1)** | 29 | **0** | 0 | 0 | 29 |
-| **important (2)** | 48 | 0 | **0** | 0 | 48 |
-| **decisive (3)** | 9 | 0 | 0 | **1** | 10 |
+## 2. Quantitative Results & Comparison with `exp_19`
 
-### Feature: `vol` (Spearman $\rho = 0.1694$, Macro-F1 = `0.1020`)
-| Ground Truth \ Predicted | not_used (0) | noted (1) | important (2) | decisive (3) | Total Real |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **not_used (0)** | **2** | 1 | 0 | 1 | 4 |
-| **noted (1)** | 45 | **3** | 11 | 8 | 67 |
-| **important (2)** | 8 | 0 | **2** | 5 | 15 |
-| **decisive (3)** | 0 | 0 | 1 | **1** | 2 |
+### LOO Out-of-Fold Evaluation Metrics
 
-### Feature: `pirads` (Spearman $\rho = -0.1660$, Macro-F1 = `0.1735`)
-| Ground Truth \ Predicted | not_used (0) | noted (1) | important (2) | decisive (3) | Total Real |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **not_used (0)** | **1** | 0 | 0 | 0 | 1 |
-| **noted (1)** | 0 | **0** | 0 | 0 | 0 |
-| **important (2)** | 11 | 13 | **10** | 10 | 44 |
-| **decisive (3)** | 21 | 9 | 4 | **9** | 43 |
+| Condition | Descriptor Type | Gating Rule | LOO Section Reveal F1 ($\text{F1}_{\text{sections}}$) | LOO Weight MOE Abs ($\text{MOE}_{\text{abs}}^{\text{weights}}$) | LOO Weight Macro F1 | Verdict |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: |
+| **`exp_19` Baseline** | Raw SHAP $\phi_{i, k}$ | None | **0.5775** | 0.3026 | 0.2033 | Baseline SOTA |
+| `cond_1_raw_shap` | Raw SHAP $\phi_{i, k}$ | None | **0.5775** | 0.3026 | 0.2033 | Control Réplica |
+| `cond_2_zscore_nogate` | Z-score $Z_{i, k}$ | None | **0.5775** | 0.3029 | 0.2025 | Competitive |
+| **`cond_4_pvalue_desc`** | **Significance $S_{i, k}$** | **None** | **0.5775** | **0.3000** | **0.2053** | **WINNER (`✓ PASS`)** |
+| `cond_3_zscore_gated` | Z-score $Z_{i, k}$ | $p \ge 0.05 \implies 0$ | 0.1177 | 0.4414 | 0.0953 | ✗ REJECT (Collapse) |
+| `cond_5_pvalue_gated` | Significance $S_{i, k}$ | $p \ge 0.05 \implies 0$ | 0.1177 | 0.4420 | 0.0928 | ✗ REJECT (Collapse) |
 
-### Feature: `psad` (Spearman $\rho = -0.0033$, Macro-F1 = `0.0578`)
-| Ground Truth \ Predicted | not_used (0) | noted (1) | important (2) | decisive (3) | Total Real |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **not_used (0)** | **9** | 0 | 0 | 0 | 9 |
-| **noted (1)** | 48 | **1** | 0 | 2 | 51 |
-| **important (2)** | 23 | 1 | **0** | 0 | 24 |
-| **decisive (3)** | 4 | 0 | 0 | **0** | 4 |
+---
 
-### Feature: `psav` (Spearman $\rho = 0.2617$, Macro-F1 = `0.0891`)
-| Ground Truth \ Predicted | not_used (0) | noted (1) | important (2) | decisive (3) | Total Real |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **not_used (0)** | **1** | 0 | 0 | 0 | 1 |
-| **noted (1)** | 29 | **0** | 0 | 0 | 29 |
-| **important (2)** | 48 | 0 | **0** | 0 | 48 |
-| **decisive (3)** | 8 | 0 | 0 | **2** | 10 |
+## 3. Scientific Discussion & Theoretical Findings
 
-### Feature: `psap` (Spearman $\rho = -0.2052$, Macro-F1 = `0.0000`)
-| Ground Truth \ Predicted | not_used (0) | noted (1) | important (2) | decisive (3) | Total Real |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **not_used (0)** | **0** | 0 | 0 | 1 | 1 |
-| **noted (1)** | 29 | **0** | 0 | 0 | 29 |
-| **important (2)** | 48 | 0 | **0** | 0 | 48 |
-| **decisive (3)** | 10 | 0 | 0 | **0** | 10 |
+1. **Continuous vs. Hard Binary Significance:**
+   Transforming raw SHAP values into continuous empirical significance descriptors $S_{i, k} = 1 - p_{i, k}$ standardizes feature attributions across clinical variables with different marginal distributions without imposing artificial binary cutoffs.
+2. **Pathology of Hard P-Value Thresholding:**
+   In clinical decision trees, background variables (e.g. `family_history` or `comorbidity`) are frequently noted by clinicians ($y=1$) even when their local feature contribution variance is small. Binary $p$-value gating ($p < 0.05$) erroneously classifies these consistent background factors as non-significant noise, collapsing reveal sequences to trivial baselines.
 
-### Feature: `dre` (Spearman $\rho = 0.4290$, Macro-F1 = `0.1272`)
-| Ground Truth \ Predicted | not_used (0) | noted (1) | important (2) | decisive (3) | Total Real |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **not_used (0)** | **2** | 0 | 0 | 0 | 2 |
-| **noted (1)** | 56 | **0** | 2 | 5 | 63 |
-| **important (2)** | 11 | 2 | **4** | 5 | 22 |
-| **decisive (3)** | 0 | 0 | 0 | **1** | 1 |
+---
 
+## 4. Reproducibility & Artifacts
+- **Runner Script**: `experiments/exp_20/scripts/run_permuted_shap_experiment.py`
+- **Summary Metrics**: `experiments/exp_20/results/summary.json`
+- **Git Commit Hash**: Recorded in `experiments/exp_20/results/git_commit.txt`

@@ -1,0 +1,27 @@
+{
+  "condition": "tau_0.60",
+  "n_intersected": 21,
+  "intersected_vars": [
+    "cli_age",
+    "cli_allergies_count",
+    "cli_bx",
+    "cli_comorbidity_count",
+    "cli_cspca",
+    "cli_dre",
+    "cli_fh_binary",
+    "cli_ipss_score",
+    "cli_months",
+    "cli_pirads",
+    "cli_psa",
+    "cli_psad",
+    "cli_psav",
+    "cli_vol",
+    "vit_bp_diastolic",
+    "vit_bp_systolic",
+    "vit_heart_rate_bpm",
+    "vit_height_cm",
+    "vit_smoking_pack_years",
+    "vit_smoking_status",
+    "vit_weight_kg"
+  ]
+}

@@ -1,0 +1,73 @@
+======================================================================
+exp_13: Late multimodal fusion with learnable modality weights
+======================================================================
+[1/9] Loading data...
+/home/jmalagont/project/pathology-reasoning/experiments/exp_13/scripts/run_weighted_fusion_experiment.py:605: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  img = img.set_index("case_id").loc[case_ids].reset_index()
+  Cohort: 88 cases, 54 yes / 34 no
+  Fixed tabular features: 21
+
+[2/9] Preprocessing clinical narrative texts...
+  spaCy model: en_core_web_sm v3.8.0, spacy=>=3.8.0,<3.9.0
+    Preprocessed 50/88 texts
+    Preprocessed 88/88 texts
+
+[3/9] MCCV — Tabular (fixed 21 features, no correlation pruning)...
+    Tabular MCCV split 10/50
+    Tabular MCCV split 20/50
+    Tabular MCCV split 30/50
+    Tabular MCCV split 40/50
+    Tabular MCCV split 50/50
+
+[4/9] MCCV — MRI (PCA d=1, k=1, euclidean, distance, cw)...
+    MRI MCCV split 10/50
+    MRI MCCV split 20/50
+    MRI MCCV split 30/50
+    MRI MCCV split 40/50
+    MRI MCCV split 50/50
+
+[5/9] MCCV — Text (TF-IDF max_features=2000, k=3, cosine, distance, cw)...
+    Text MCCV split 10/50
+    Text MCCV split 20/50
+    Text MCCV split 30/50
+    Text MCCV split 40/50
+    Text MCCV split 50/50
+
+[6/9] Searching 231 simplex fusion candidates on MCCV OOF...
+  Best config: fusion_T+M+X_w0.30_0.30_0.40
+  Best weights: T=0.30, M=0.30, X=0.40
+  Active modalities: T+M+X
+  MCCV F1_macro=0.6968, Brier=0.1933
+
+  Diversity (MCCV):
+    Prob corr T-M=-0.031, T-X=0.224, M-X=0.005
+    Disagree  T-M=0.443, T-X=0.381, M-X=0.444
+
+[7/9] LOO — winning configuration fusion_T+M+X_w0.30_0.30_0.40 (88 folds, retrain from scratch)...
+    Tabular LOO 020/88
+    Tabular LOO 040/88
+    Tabular LOO 060/88
+    Tabular LOO 080/88
+    Tabular LOO 088/88
+    MRI LOO 020/88
+    MRI LOO 040/88
+    MRI LOO 060/88
+    MRI LOO 080/88
+    MRI LOO 088/88
+    Text LOO 020/88
+    Text LOO 040/88
+    Text LOO 060/88
+    Text LOO 080/88
+    Text LOO 088/88
+  LOO F1_macro=0.7576
+  LOO F1_yes  =0.8182
+  LOO Balanced_acc=0.7549
+  LOO MCC     =0.5160
+  LOO Brier   =0.8164 (1-Brier), 0.1836 (conv.)
+
+[8/9] Writing artefacts...
+
+  Artefacts written to experiments/exp_13/results/
+  Total time: 4.4 min
+  Done.
+======================================================================

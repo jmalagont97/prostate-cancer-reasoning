@@ -1,0 +1,13 @@
+{
+  "all_passed": true,
+  "checks": {
+    "cohort_size": true,
+    "class_balance": true,
+    "mccv_splits": true,
+    "loo_folds": true,
+    "mccv_combos": true,
+    "selected_one_combo": true,
+    "no_leakage": true,
+    "probabilities_in_range": true
+  }
+}

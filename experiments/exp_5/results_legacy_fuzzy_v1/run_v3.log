@@ -1,0 +1,31 @@
+══════════════════════════════════════════════════════════════════════
+exp_5: KNN + Correlation Pruning
+══════════════════════════════════════════════════════════════════════
+
+[1/6] Loading data...
+  Cohort: 88 cases, 54 yes / 34 no
+  Confidence: {'clear': 56, 'borderline': 18, 'uncertain': 14}
+  Features: 27 columns (4 categorical)
+
+[2/6] MCCV condition: no_prune (no pruning) — 72 configs × 50 splits
+    MCCV split 10/50  (features=27)
+    MCCV split 20/50  (features=27)
+    MCCV split 30/50  (features=27)
+    MCCV split 40/50  (features=27)
+    MCCV split 50/50  (features=27)
+    Best: no_prune_knn_n1_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.6453 ± 0.1040
+
+[2/6] MCCV condition: tau_0.80 (threshold=0.8) — 72 configs × 50 splits
+    MCCV split 10/50  (features=22)
+    MCCV split 20/50  (features=23)
+    MCCV split 30/50  (features=22)
+    MCCV split 40/50  (features=22)
+    MCCV split 50/50  (features=22)
+    Best: tau_0.80_knn_n1_metriceuclidean_weightsuniform_variantstandard
+    F1_macro=0.6645 ± 0.1010
+
+[2/6] MCCV condition: tau_0.85 (threshold=0.85) — 72 configs × 50 splits
+    MCCV split 10/50  (features=23)
+    MCCV split 20/50  (features=23)
+    MCCV split 30/50  (features=23)

@@ -1,81 +1,64 @@
-# Implementation Plan: Task 1 Cohort Deep Exploratory Data Analysis (exp_3)
-
-This document details the build plan for the deep exploratory data analysis (Deep EDA) script and reports of **exp_3**.
-
----
-
-## 1. Scope & Script Location
-
-We will create a Python script at `experiments/exp_3/scripts/deep_eda.py` which:
-1.  Loads the 5 preprocessed CSV files from `data/chimera26/preprocessed/task1/`.
-2.  Computes class distributions, prompt/reasoning word count ranges, and missingness rates.
-3.  Executes unsupervised t-SNE on MRI embeddings (ignoring `patient_id` and cases with missing embeddings) and colors cases by label.
-4.  Calculates the Silhouette score of the 2D t-SNE coordinates for labeled cases.
-5.  Saves metrics JSON to `experiments/exp_3/results/deep_eda_metrics.json`.
-6.  Generates three matplotlib plots in technical English, saved to `experiments/exp_3/reports/figures/`.
-7.  Generates a summary Markdown report saved to `experiments/exp_3/reports/summary.md`.
+# Implementation Plan: Multimodal Input Reorganisation (exp_3)
+**Experiment**: experiments/exp_3/ · **Project**: pathology-reasoning · **Date**: 2026-08-16 · **Status**: Approved
 
 ---
 
-## 2. Directory & Files to Create
+## 1. Overview & Objective
+
+Generate, deterministically, the three input-view CSVs from the canonical
+`inputs.csv`, following `experiments/exp_3/DESIGN.md`. This replaces the previous
+exp_3 contract (7 reveal-group views + feature manifest), whose artifacts are
+removed. `inputs.csv`, `ground_truth.csv` and `mccv_loocv_splits.csv` are untouched.
+
+## 2. File & Script Structure
 
 ```
 experiments/exp_3/
+├── DESIGN.md                   ← Approved research design
+├── IMPLEMENTATION.md           ← This implementation plan
 ├── scripts/
-│   └── deep_eda.py            ← Main Deep EDA analysis script
-├── results/
-│   └── deep_eda_metrics.json  ← Extracted metrics (written by deep_eda.py)
-└── reports/
-    ├── figures/
-    │   ├── text_length_dist.png   ← Histogram showing word counts
-    │   ├── missingness_rates.png  ← Bar chart showing missingness rates
-    │   └── tsne_mri.png           ← t-SNE scatter plot
-    └── summary.md             ← final deep EDA summary report (written by deep_eda.py)
+│   └── build_multimodal_views.py ← Main execution entry point & validator
+└── results/
+    ├── validation_report.json    ← Automated validation audit report
+    ├── data_manifest.csv         ← SHA-256 registry of all data artifacts
+    └── git_commit.txt            ← Git commit at execution time
 ```
 
----
+## 3. Detailed Logic
 
-## 3. Detailed Logic of `deep_eda.py`
+### 3.1 View construction
+- `main_tabular` = `["case_id"] + cli_* + vit_* + path_hist_*` (in source order).
+  Prefix counts are asserted: 15 `cli_*`, 8 `vit_*`, 4 `path_hist_*`, 1024 `mri_emb_*`.
+- `full_prompt_narrative` = `["case_id", "txt_full_prompt_narrative"]`.
+- `images` = `["case_id"] + mri_emb_*`.
+- Values are copied without transformation.
 
-### A. Data Loading
-*   Read the five CSV files into Pandas DataFrames:
-    *   `mri_embeddings.csv`
-    *   `clinical_prompts.csv`
-    *   `clinical_data_tabular.csv`
-    *   `clinical_reasoning.csv`
-    *   `biopsy_decision.csv`
+## 4. Validation & Decision Rules
 
-### B. Analytical Logic
-*   **Target Distribution:** Analyze column `biopsy_decision` in `biopsy_decision.csv`.
-*   **Text Token Lengths:**
-    *   For `clinical_prompt_text` (in `clinical_prompts.csv`) and `reasoning_text` (in `clinical_reasoning.csv`), count words by splitting on whitespace (`split()`). Ignore cases that are `'NONE'`.
-    *   Compute: min, max, mean, median, standard deviation.
-*   **Tabular Missingness:**
-    *   For each column in `clinical_data_tabular.csv` and `clinical_reasoning.csv`, count occurrences of the string `'NONE'`.
-    *   Compute missingness percentage = `(none_count / 195) * 100`.
-*   **t-SNE Representation Visualization:**
-    *   Extract feature columns (`mri_feat_0` to `mri_feat_1023`) from `mri_embeddings.csv`.
-    *   Identify and exclude cases where features are `'NONE'` (4 cases).
-    *   Run `sklearn.manifold.TSNE` with parameters `n_components=2`, `perplexity=30`, `random_state=42`, `init='pca'`.
-    *   Compute the Silhouette score of the 2D coordinates for the labeled cases (excluding `'NONE'` targets) using `sklearn.metrics.silhouette_score`.
+Hard assertions (fail → non-zero exit):
 
-### C. Plotting with Matplotlib
-All plots will be styled simply with a white background and technical English labels:
-1.  **Text Length Distribution (`text_length_dist.png`):**
-    *   Two subplots: Histogram of word count for clinical prompts, and histogram of word count for reasoning text (labeled cases only).
-2.  **Missingness Rates (`missingness_rates.png`):**
-    *   Horizontal or vertical bar chart showing percentage of `'NONE'` values for each tabular variable.
-3.  **t-SNE Embeddings Plot (`tsne_mri.png`):**
-    *   2D scatter plot colored by `yes` (e.g. orange), `no` (e.g. blue), and `NONE` (e.g. gray). Include the Silhouette score in the title or legend.
+1. Each view: 195 rows, unique `case_id`; same case set across views.
+2. The 10 official relevance variables present in `main_tabular`.
+3. No feature duplicated across views; no `txt_*` in `main_tabular`.
+4. No `ground_truth.csv` column in any view.
+5. CSV round-trip faithfulness (`assert_frame_equal`).
+6. `images.csv`: exactly the 4 expected all-`NaN` cases.
+7. Expected shapes: `main_tabular` (195×28), `full_prompt_narrative` (195×2), `images` (195×1025).
+8. Determinism: two in-process builds produce identical frames.
+9. SHA-256 of `ground_truth.csv` and `mccv_loocv_splits.csv` unchanged after generation.
 
----
+## 5. Execution
 
-## 4. Run Command
-
-Execute in the active Conda environment:
 ```bash
-python3 experiments/exp_3/scripts/deep_eda.py \
-    --data_dir data/chimera26/preprocessed/task1 \
-    --results_dir experiments/exp_3/results \
-    --reports_dir experiments/exp_3/reports
+python3 experiments/exp_3/scripts/build_multimodal_views.py
 ```
+
+Exit code 0 ⇒ all validations passed. Reports written to `experiments/exp_3/results/`.
+
+## 6. Acceptance Criteria
+
+- `main_tabular.csv`, `full_prompt_narrative.csv` and `images.csv` exist with the
+  documented shapes.
+- `validation_report.json` records `all_passed: true` for every check.
+- `data_manifest.csv` records SHA-256 for all artifacts (source + derived).
+- `ground_truth.csv` and `mccv_loocv_splits.csv` byte-unchanged.

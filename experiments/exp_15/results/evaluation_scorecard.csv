@@ -1,0 +1,11 @@
+config,scope,moe_abs,f1_macro,n_predictions,valid_structure_rate,eligible,selection_status
+ici_only_none,MCCV_pooled,0.474174277452966,0.3114468505772854,900,1.0,True,
+ici_only_balanced,MCCV_pooled,0.40642320642320645,0.2975954675722324,900,1.0,True,selected
+p_only_none,MCCV_pooled,0.4904433150334789,0.28226562367739055,900,1.0,True,
+p_only_balanced,MCCV_pooled,0.4006397518692601,0.3172009918003372,900,1.0,True,selected
+ici_plus_p_none,MCCV_pooled,0.46431772538329913,0.3042627799929944,900,1.0,True,
+ici_plus_p_balanced,MCCV_pooled,0.4122864840077955,0.30235711069859456,900,1.0,True,selected
+ici_only_balanced,LOO,0.416005291005291,0.22302534842091803,88,1.0,,
+p_only_balanced,LOO,0.376984126984127,0.36329337517792526,88,1.0,,
+ici_plus_p_balanced,LOO,0.42824074074074076,0.25020020020020023,88,1.0,,
+baseline_clear,baseline_MCCV,0.5,0.2626262626262626,900,1.0,,

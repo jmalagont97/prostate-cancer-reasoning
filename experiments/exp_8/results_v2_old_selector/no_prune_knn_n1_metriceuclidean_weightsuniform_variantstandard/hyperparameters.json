@@ -1,0 +1,9 @@
+{
+  "condition": "no_prune",
+  "correlation_threshold": null,
+  "n_neighbors": 1,
+  "metric": "euclidean",
+  "weights": "uniform",
+  "variant": "standard",
+  "preprocessing": "none (raw 1024-dim MRI embedding)"
+}

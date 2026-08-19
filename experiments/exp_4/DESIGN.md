@@ -1,73 +1,239 @@
-# Experiment Design: Monte Carlo Cross-Validation (MCCV) 100-Split Validation Design
-**Experiment**: experiments/exp_4/ · **Project**: pathology-reasoning · **Date**: 2026-08-04 · **Status**: Complete
+# Experiment Design: KNN Classifier on All Tabular Variables (exp_4)
+**Experiment**: experiments/exp_4/
+**Project**: pathology-reasoning
+**Date**: 2026-08-16
+**Author**: Antigravity & Principal Investigator
+**Status**: Approved
+**Revision**: v3 — corrected fuzzy v2 + selection rule F1_macro→Brier (2026-08-17)
+**Legacy results**: `results_legacy_fuzzy_v1/` (fuzzy_v1_relative_vote), `results_v2_old_selector/` (fuzzy v2 + old selector)
 
 ---
 
 ## 1. Hypothesis
-A 100-split Monte Carlo Cross-Validation (MCCV) partition strategy (specifically splitting the 88 complete labeled cases into 70 train and 18 validation samples per split) will provide a more stable, lower-variance estimate of classifier performance compared to standard 5-Fold Cross-Validation, while ensuring complete isolation of the 102 blind test cases.
 
-## 2. Experimental Setup & Data Audit
-- **Multimodal Data Sources**:
-  - Text prompts: `data/chimera26/preprocessed/task1/clinical_prompts.csv`
-  - Biopsy decisions (targets): `data/chimera26/preprocessed/task1/biopsy_decision.csv`
-  - Tabular features: `data/chimera26/preprocessed/task1/clinical_data_tabular.csv`
-  - MRI embeddings: `data/chimera26/preprocessed/task1/mri_embeddings.csv`
-- **Audit Rule**:
-  - A patient is eligible for modeling ONLY if they have complete records across all four modalities: text prompts $\neq$ `'NONE'`, biopsy decision $\neq$ `'NONE'` (for training/validation split), tabular data $\neq$ `'NONE'`, and MRI embeddings $\neq$ `'NONE'`.
-  - Patients missing any modality (e.g. missing MRI embeddings) must be excluded from the active training/validation set.
-- **Partitioning Strategy (Monte Carlo Cross-Validation)**:
-  - Total labeled samples $N_{labeled} = 88$.
-  - Generates $B = 100$ independent random train/validation splits (columns in `mccv_design.csv`).
-  - Each split $b \in \{0, \dots, 99\}$ will partition the labeled samples into:
-    - **Train split**: 70 cases (assigned index $0$, corresponding to training).
-    - **Validation split**: 18 cases (assigned index $1$, corresponding to validation).
-  - Class stratification must be preserved in both train and validation splits to maintain target class ratio.
-  - **Blind Test Isolation**:
-    - Unlabeled test cases ($N_{test} = 102$, identified by `biopsy_decision` = `'NONE'` or fold = `-1` in original design) must be assigned index `-1` in all 100 columns, ensuring they are completely untouched during training and validation loops.
+A KNN classifier applied to all available tabular variables in `main_tabular.csv`
+(excluding `case_id` and features exceeding the 50% missingness threshold), using
+MinMax scaling, one-hot encoding, deterministic zero-replacement with missingness
+indicators, distance metric search (euclidean / cosine), weighting mode search
+(uniform / inverse-distance), and a confidence-weighted fuzzy variant (where
+neighbor labels are softened toward 0.5 by clinical confidence: clear=1.0,
+borderline=0.5, uncertain=0.25), can predict `target_biopsy_decision_binary`
+competitively in the N=88 `usable_labeled` cohort.
 
-## 3. File Layout for This Experiment
+**Selection criterion**: Lexicographic: (1) highest `F1_macro`, (2) lowest `brier_score`
+conventional = `mean((p-y)^2)`, (3) highest `F1_yes`, (4) highest balanced accuracy,
+(5) highest MCC. `docs/EVALUATION.md` designates `F1_yes` as the frozen primary
+metric; both are reported.
+
+### 1.1 Fuzzy formulation (corrected in v2)
+
+The v1 implementation used a relative-vote normalization that cancelled the
+confidence at k=1. The corrected v2 formulation treats confidence as a
+probability-smoothing operator on each neighbor's label:
+
+```
+q_j = 0.5 + c_j × (y_j − 0.5)
+```
+
+where `c_j` ∈ {1.0 (clear), 0.5 (borderline), 0.25 (uncertain)} and `y_j` ∈ {0, 1}.
+
+The final probability aggregates only using geometric distance weights:
+
+```
+p(yes | x) = Σ [w_dist(j) × q_j] / Σ [w_dist(j)]
+```
+
+---
+
+## 2. Experimental Setup
+
+### 2.1 Data
+
+- **Feature matrix**: `data/chimera26/preprocessed/task1/main_tabular.csv` (195 × 28)
+  - 27 predictor variables (15 `cli_*`, 8 `vit_*`, 4 `path_hist_*`) + `case_id`
+- **Target**: `data/chimera26/preprocessed/task1/ground_truth.csv` → `target_biopsy_decision_binary`
+- **Confidence weights**: `data/chimera26/preprocessed/task1/ground_truth.csv` → `target_confidence`
+- **Splits**: `data/chimera26/preprocessed/task1/mccv_loocv_splits.csv` (frozen)
+
+### 2.2 Cohort
+
+- **N = 88** `usable_labeled` cases
+- **Class balance**: 54 yes / 34 no
+- **Confidence distribution**: clear=56, borderline=18, uncertain=14
+
+### 2.3 Excluded features
+
+| Feature | Reason |
+|---|---|
+| `path_hist_bx_gl_tert` | 98.9% missing in usable cohort (>50% threshold) |
+
+After exclusion: **26 predictor variables** retained (before missingness indicators).
+
+---
+
+## 3. Preprocessing (per fold, leak-safe)
+
+### 3.1 Feature-level missingness (fit on train only)
+
+1. Compute per-feature missing rate on the **training** fold.
+2. Drop any feature where missing rate > 50% (both original and its `__is_missing` indicator).
+
+### 3.2 Missingness encoding (no imputation)
+
+For every retained feature:
+
+1. Detect NaN values.
+2. Create `<feature>__is_missing` binary indicator: 1 if NaN, 0 otherwise.
+3. Replace NaN with **0** in the original feature.
+
+### 3.3 Categorical encoding
+
+Categorical features are one-hot encoded via `OneHotEncoder(handle_unknown='ignore',
+sparse_output=False)`:
+
+| Feature | Type | Notes |
+|---|---|---|
+| `cli_dre` | Categorical | Values: Normal/Nodus/Abnormal/Suspicious/Not done |
+| `cli_bx` | Categorical | Values: Positive/Negative/NaN→`"0"` |
+| `cli_fh_binary` | Categorical | Values: 0.0/1.0/NaN→`"0"` |
+| `vit_smoking_status` | Categorical | Values: Ex-smoker/Non-smoker/Current smoker |
+
+### 3.4 Scaling
+
+- `MinMaxScaler` applied to **all numeric features** (continuous + ordinal + one-hot + indicators).
+- Fit exclusively on the training fold; transform validation/test.
+
+---
+
+## 4. KNN Configurations
+
+Each configuration combines four hyperparameters:
+
+| Hyperparameter | Values | Count |
+|---|---|---|
+| `n_neighbors` | 1, 3, 5, 7, 9, 11, 15, 21, 31 | 9 |
+| Distance metric | `euclidean`, `cosine` | 2 |
+| Spatial weighting | `uniform`, `distance` (inverse) | 2 |
+| Confidence variant | `standard`, `confidence_weighted` | 2 |
+
+**Total grid**: 9 × 2 × 2 × 2 = **72 configurations**.
+
+### 4.1 KNN standard (rigid)
+
+Standard `sklearn.neighbors.KNeighborsClassifier` with `weights=uniform` or `weights=distance`.
+
+### 4.2 KNN confidence-weighted (fuzzy v2)
+
+Custom prediction logic using probability-smoothing:
+
+```
+For each neighbor j in training set:
+    # Smoothed label probability
+    q_j = 0.5 + c_j × (y_j − 0.5)
+
+    # Geometric weight only (distance-based or uniform)
+    w_dist(j) = 1                           if weights=uniform
+    w_dist(j) = 1 / max(d_j, epsilon)       if weights=distance
+
+    # Confidence values
+    c_j:
+        target_confidence[j] == 'clear'      → 1.00  (q_j = y_j)
+        target_confidence[j] == 'borderline' → 0.50  (q_j = 0.75 if y=1, 0.25 if y=0)
+        target_confidence[j] == 'uncertain'  → 0.25  (q_j = 0.625 if y=1, 0.375 if y=0)
+
+p(yes | x) = Σ [w_dist(j) × q_j] / Σ [w_dist(j)]
+prediction = 1 if p(yes) ≥ 0.5 else 0
+```
+
+Neighbor confidence is used **only for training neighbors**, never for the query case.
+Confidence does NOT multiply the distance weight; it only softens the label.
+
+---
+
+## 5. Validation Protocol
+
+### 5.1 MCCV (selection)
+
+- 50 splits, frozen in `mccv_loocv_splits.csv` (80/20, stratified, seed=42).
+- Train: 70 cases. Validation: 18 cases.
+- Preprocessing fit exclusively on the 70 training cases.
+- All 72 configurations evaluated per split.
+- Metric stored per configuration per split.
+
+### 5.2 Selection rule (v3: lexicographic F1→Brier)
+
+1. **Primary**: highest mean `F1_macro` across 50 MCCV splits.
+2. **Tie-break 1**: lowest mean `brier_score` (conventional: `mean((p-y)^2)`, lower = better).
+3. **Tie-break 2**: highest mean `F1_yes`.
+4. **Tie-break 3**: highest mean balanced accuracy.
+5. **Tie-break 4**: highest mean MCC.
+
+### 5.3 LOO (sanity check)
+
+- 88 folds, fixed by `loocv_fold`.
+- **Only the single best configuration** from MCCV.
+- Hyperparameters frozen; no tuning on LOO.
+- Preprocessing re-fit on 87 training cases per fold.
+- Output: out-of-fold predictions (binary + probability) for all 88 cases.
+
+---
+
+## 6. Metrics
+
+All metrics from `docs/EVALUATION.md` §3.1 (biopsy decision):
+
+| Metric | Role |
+|---|---|
+| **Macro-F1** | Primary selection criterion (local) |
+| **F1_yes** | Official primary (reported as guardrail) |
+| Balanced accuracy | Tie-break / balance guardrail |
+| MCC | Correlation coefficient |
+| Sensitivity (recall of yes) | Secondary |
+| Specificity (recall of no) | Secondary |
+| Precision of yes | Secondary |
+| Decision accuracy | Secondary |
+| PR-AUC | Threshold-free ranking |
+| ROC-AUC | Threshold-free ranking |
+| `brier` (= `1 - mean((p-y)^2)`) | Historical compat. (higher=better) |
+| `brier_score` (= `mean((p-y)^2)`) | Calibration / selection tie-break (lower=better) |
+| ECE | Calibration |
+| Classification report | Diagnostic |
+| Confusion matrix | Diagnostic |
+
+- ROC-AUC, PR-AUC reported as `NaN` for folds with only one class present.
+- No subtask 1.2/1.3/1.4 metrics computed (this experiment predicts only 1.1).
+
+---
+
+## 7. Artefacts
+
 ```
 experiments/exp_4/
-├── DESIGN.md                  ← this file (experiment design)
+├── DESIGN.md
+├── IMPLEMENTATION.md
 ├── scripts/
-│   └── generate_folds.py     ← partition generation script (decided in implementation plan)
+│   └── run_knn_experiment.py
 ├── results/
-│   └── mccv_design.csv       ← output MCCV split file (190 rows, patient_id + 100 columns)
+│   ├── <config_name>/
+│   │   ├── metrics_mccv.json
+│   │   ├── metrics_loo.json
+│   │   ├── config_log.json
+│   │   ├── oof_predictions_mccv.csv
+│   │   ├── oof_predictions_loo.csv
+│   │   ├── hyperparameters.json
+│   │   └── validation_report.json
+│   └── summary_selection.json
 └── reports/
-    ├── figures/
-    │   └── split_distributions.png  ← class and size distribution charts
-    └── summary.md             ← write-up of the partition audit
+    └── summary.md
 ```
 
-## 4. Proposed Conditions
-| Condition | Stratification | Number of Splits (B) | Train/Val Ratio | Missing Case Handing | Output File |
-|:---|:---:|:---:|:---:|:---:|:---|
-| **MCCV-100-Stratified** | Yes | 100 | 70 / 18 (79.5% / 20.5%) | Excluded (5 cases) | `results/mccv_design.csv` |
-
-## 5. Evaluation Protocol
-- **Auditing Checks**:
-  - The script must verify that the 190 complete patients are exactly aligned across all modalities.
-  - Programmatically assert that all 5 problematic patients with missing values are excluded from training splits.
-  - Programmatically assert that the output CSV contains exactly 190 rows (aligned with preprocessed patient IDs).
-- **Stratification Validation**:
-  - Compare the class ratio (Biopsy Yes / No) of the training splits ($70$ samples) and validation splits ($18$ samples) against the overall cohort ratio ($56/34 \approx 1.647$) to ensure low variance across all 100 runs.
-- **Verification of Output**:
-  - Validate that the output CSV is shaped `(190, 101)` (1 ID column + 100 split columns).
-  - Verify that train indices are `0`, validation indices are `1`, and test indices are `-1`.
-
-## 6. Risks & Mitigations
-- **Risk: Patient Misalignment**: If patient IDs are shuffled during concatenation or vector matching, data leakage or target misalignment occurs.
-  - *Mitigation*: The script must strictly check alignment using patient IDs before performing the split.
-- **Risk: Random Seed Variance**: Without fixing the seed, regenerating the partitions will yield different splits, violating reproducibility.
-  - *Mitigation*: Fix random state seed globally at `42` for all random generation operations.
-
-## 7. Reproducibility Checklist
-- [x] Random seeds fixed (`random_state=42`)
-- [ ] Split generation script placed under `scripts/`
-- [ ] Output CSV saved to `results/mccv_design.csv`
-- [ ] Working tree clean before generating partition
-- [ ] **Git commit hash recorded** — run `git log -1 --format="%H %s" > results/git_commit.txt`
+---
 
 ## 8. Next Steps
-1. Review and accept this experiment plan (auditing rules, split parameters, design output format).
-2. Once accepted, produce an **implementation plan** (in plan mode) to write `scripts/generate_folds.py` and run it to produce `results/mccv_design.csv`.
+
+1. Implement `experiments/exp_4/scripts/run_knn_experiment.py`.
+2. Execute MCCV search over 72 configurations.
+3. Select best configuration by Macro-F1.
+4. Execute single LOO run with best configuration.
+5. Generate summary report.
+6. Update `experiments/INDEX.md` and hidden logbooks.
