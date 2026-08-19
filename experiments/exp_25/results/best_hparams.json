@@ -1,0 +1,103 @@
+{
+    "stage1": {
+        "tab": {
+            "sigma_mult": 2.0,
+            "encoder": "linear",
+            "y_train": false,
+            "mean_macro_f1": 0.6043685801316236,
+            "std_macro_f1": 0.10818774194090265,
+            "cfg_id": 14,
+            "rep": null
+        },
+        "mri": {
+            "sigma_mult": 1.0,
+            "encoder": "identity",
+            "y_train": false,
+            "mean_macro_f1": 0.5012309335591945,
+            "std_macro_f1": 0.11209531942119008,
+            "cfg_id": 16,
+            "rep": "pca90_l2"
+        },
+        "txt": {
+            "sigma_mult": 0.5,
+            "encoder": "identity",
+            "y_train": false,
+            "mean_macro_f1": 0.6065015413871485,
+            "std_macro_f1": 0.1008810367048651,
+            "cfg_id": 12,
+            "rep": [
+                2000,
+                0.9
+            ]
+        }
+    },
+    "stage2": {
+        "tab_mri": {
+            "sigma_scale": 2.0,
+            "x_train": false,
+            "y_train": true,
+            "kernel_trainable": false,
+            "mean_macro_f1": 0.628256644877186,
+            "std_macro_f1": 0.12179677378027574,
+            "cfg_id": 18,
+            "modalities": [
+                "tab",
+                "mri"
+            ]
+        },
+        "tab_txt": {
+            "sigma_scale": 2.0,
+            "x_train": true,
+            "y_train": false,
+            "kernel_trainable": false,
+            "mean_macro_f1": 0.6132366686886946,
+            "std_macro_f1": 0.10378318949295752,
+            "cfg_id": 20,
+            "modalities": [
+                "tab",
+                "txt"
+            ]
+        },
+        "mri_txt": {
+            "sigma_scale": 2.0,
+            "x_train": true,
+            "y_train": false,
+            "kernel_trainable": true,
+            "mean_macro_f1": 0.5333520363573973,
+            "std_macro_f1": 0.10705699103640656,
+            "cfg_id": 21,
+            "modalities": [
+                "mri",
+                "txt"
+            ]
+        },
+        "tab_mri_txt": {
+            "sigma_scale": 2.0,
+            "x_train": true,
+            "y_train": false,
+            "kernel_trainable": false,
+            "mean_macro_f1": 0.6094772325454516,
+            "std_macro_f1": 0.10668131066791804,
+            "cfg_id": 20,
+            "modalities": [
+                "tab",
+                "mri",
+                "txt"
+            ]
+        },
+        "confidence_arm": {
+            "sigma_scale": 2.0,
+            "x_train": true,
+            "y_train": false,
+            "kernel_trainable": false,
+            "mean_macro_f1": 0.6093154303716155,
+            "std_macro_f1": 0.10692263856666122,
+            "cfg_id": 20,
+            "modalities": [
+                "tab",
+                "mri",
+                "txt"
+            ]
+        }
+    }
+}

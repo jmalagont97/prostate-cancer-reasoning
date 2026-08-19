@@ -1,0 +1,56 @@
+{
+    "tab__hard_vs_knn_tab": {
+        "b": 4,
+        "c": 8,
+        "statistic": 4,
+        "pvalue": 0.3876953125
+    },
+    "mri__hard_vs_knn_mri_pca": {
+        "b": 15,
+        "c": 9,
+        "statistic": 9,
+        "pvalue": 0.30745625495910645
+    },
+    "txt__hard_vs_knn_txt": {
+        "b": 8,
+        "c": 8,
+        "statistic": 8,
+        "pvalue": 1.0
+    },
+    "fusion_equal__hard_vs_knn_fusion_equal": {
+        "b": 7,
+        "c": 9,
+        "statistic": 7,
+        "pvalue": 0.803619384765625
+    },
+    "fusion_optimal_leakfree__hard_vs_knn_fusion_equal": {
+        "b": 10,
+        "c": 6,
+        "statistic": 6,
+        "pvalue": 0.454498291015625
+    },
+    "tab__soft_vs_knn_tab": {
+        "b": 5,
+        "c": 6,
+        "statistic": 5,
+        "pvalue": 1.0
+    },
+    "mri__soft_vs_knn_mri_pca": {
+        "b": 15,
+        "c": 11,
+        "statistic": 11,
+        "pvalue": 0.557197093963623
+    },
+    "txt__soft_vs_knn_txt": {
+        "b": 10,
+        "c": 8,
+        "statistic": 8,
+        "pvalue": 0.8145294189453125
+    },
+    "fusion_equal__soft_vs_knn_fusion_equal": {
+        "b": 9,
+        "c": 8,
+        "statistic": 8,
+        "pvalue": 1.0
+    }
+}

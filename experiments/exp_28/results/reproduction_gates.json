@@ -1,0 +1,27 @@
+{
+    "G0_verify_brent_mem_kdm": {
+        "passed": true
+    },
+    "G1_exp5_tabular_knn": {
+        "passed": true,
+        "macro_f1": 0.6333333333333333,
+        "target": 0.6333333333333333,
+        "confusion": {
+            "tp": 46,
+            "tn": 14,
+            "fp": 20,
+            "fn": 8
+        }
+    },
+    "G2_exp7_text_knn": {
+        "passed": true,
+        "macro_f1": 0.6987539367383268,
+        "target": 0.6987539367383268,
+        "confusion": {
+            "tp": 42,
+            "tn": 21,
+            "fp": 13,
+            "fn": 12
+        }
+    }
+}

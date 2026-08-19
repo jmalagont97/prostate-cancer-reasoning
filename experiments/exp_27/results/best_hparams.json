@@ -1,0 +1,80 @@
+{
+    "stage1": {
+        "tab": {
+            "sigma_mult": 0.5,
+            "mean_sigma": 0.10978129021823406,
+            "mean_macro_f1": 0.5671293958054828,
+            "std_macro_f1": 0.11026180127483028,
+            "cfg_id": 1,
+            "rep": null
+        },
+        "mri": {
+            "sigma_mult": 1.0,
+            "mean_sigma": 0.4183487471938133,
+            "mean_macro_f1": 0.47692393413128054,
+            "std_macro_f1": 0.10082898124403356,
+            "cfg_id": 4,
+            "rep": "pca90_l2"
+        },
+        "txt": {
+            "sigma_mult": 0.5,
+            "mean_sigma": 0.546227251291275,
+            "mean_macro_f1": 0.5995229263240507,
+            "std_macro_f1": 0.1067114866521189,
+            "cfg_id": 3,
+            "rep": [
+                2000,
+                0.9
+            ]
+        }
+    },
+    "stage2": {
+        "tab_mri": {
+            "mean_macro_f1": 0.5070942735524846,
+            "std_macro_f1": 0.11456672227810828,
+            "cfg_id": 0,
+            "modalities": [
+                "tab",
+                "mri"
+            ]
+        },
+        "tab_txt": {
+            "mean_macro_f1": 0.5384778797691842,
+            "std_macro_f1": 0.11162590292535401,
+            "cfg_id": 0,
+            "modalities": [
+                "tab",
+                "txt"
+            ]
+        },
+        "mri_txt": {
+            "mean_macro_f1": 0.5120193389684404,
+            "std_macro_f1": 0.11292234984729861,
+            "cfg_id": 0,
+            "modalities": [
+                "mri",
+                "txt"
+            ]
+        },
+        "tab_mri_txt": {
+            "mean_macro_f1": 0.46920614361483926,
+            "std_macro_f1": 0.09667100352996127,
+            "cfg_id": 0,
+            "modalities": [
+                "tab",
+                "mri",
+                "txt"
+            ]
+        },
+        "confidence_arm": {
+            "mean_macro_f1": 0.46920614361483926,
+            "std_macro_f1": 0.09667100352996127,
+            "cfg_id": 0,
+            "modalities": [
+                "tab",
+                "mri",
+                "txt"
+            ]
+        }
+    }
+}

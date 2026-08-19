@@ -1,0 +1,7 @@
+{
+    "reproduction_macro_f1": 0.6694214876033058,
+    "reproduction_target": 0.6694214876033058,
+    "reproduction_passed": true,
+    "frac_nonzero_h_aleatoric": 0.9772727272727273,
+    "median_h_aleatoric": 0.07671423628926277
+}

@@ -348,15 +348,23 @@ class MemKDM:
         #    matches exp_23 Arm A/B exactly (label_smoothing=0, no-op) and
         #    exp_24 Arm C (label_smoothing>0 only moved the init above).
         c_y_before = kdm_layer.c_y.detach().clone() if self.y_train else None
-        t = torch.as_tensor(np.stack([1 - y_soft, y_soft], axis=1), dtype=torch.float32)
-        opt = torch.optim.Adam(model.parameters(), lr=self.lr)
-        model.train()
-        for _ in range(self.epochs):
-            probs = model(Xt)
-            loss = -(t * torch.log(probs.clamp_min(1e-7))).sum(-1).mean()
-            opt.zero_grad()
-            loss.backward()
-            opt.step()
+        # c_x/c_y/c_w and each kernel's raw_sigma are always nn.Parameter (kdm_layer.py /
+        # rbf_kernel_layer.py construct them unconditionally, only requires_grad varies with
+        # x_train/y_train/w_train/trainable) — so model.parameters() is never actually empty. What CAN
+        # be empty is the set with requires_grad=True: when x_train=y_train=w_train=False and every
+        # kernel is non-trainable (exp_27's Phase B), loss has no grad_fn and .backward() raises. Skip
+        # optimizer construction and the loop entirely in that case — there is nothing to optimize.
+        has_trainable = any(p.requires_grad for p in model.parameters())
+        if has_trainable:
+            t = torch.as_tensor(np.stack([1 - y_soft, y_soft], axis=1), dtype=torch.float32)
+            opt = torch.optim.Adam(model.parameters(), lr=self.lr)
+            model.train()
+            for _ in range(self.epochs):
+                probs = model(Xt)
+                loss = -(t * torch.log(probs.clamp_min(1e-7))).sum(-1).mean()
+                opt.zero_grad()
+                loss.backward()
+                opt.step()
 
         if c_y_before is not None:
             self.cy_drift_max_ = float((kdm_layer.c_y.detach() - c_y_before).abs().max().item())

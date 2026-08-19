@@ -1,0 +1,214 @@
+{
+    "unimodal_tab": {
+        "macro_f1": 0.599271402550091,
+        "accuracy": 0.6590909090909091,
+        "sensitivity": 0.8518518518518519,
+        "specificity": 0.35294117647058826,
+        "auroc": 0.6683006535947712,
+        "brier_score": 0.24480557440406336,
+        "tp": 46,
+        "tn": 12,
+        "fp": 22,
+        "fn": 8,
+        "total_cases": 88,
+        "deterministic": true,
+        "n_seeds": 1,
+        "per_seed_macro_f1": [
+            0.599271402550091
+        ],
+        "macro_f1_std_across_seeds": 0.0,
+        "mode_vote_agreement": 1.0
+    },
+    "unimodal_mri": {
+        "macro_f1": 0.4656952034001214,
+        "accuracy": 0.5454545454545454,
+        "sensitivity": 0.7592592592592593,
+        "specificity": 0.20588235294117646,
+        "auroc": 0.41721132897603486,
+        "brier_score": 0.26649703697979094,
+        "tp": 41,
+        "tn": 7,
+        "fp": 27,
+        "fn": 13,
+        "total_cases": 88,
+        "deterministic": true,
+        "n_seeds": 1,
+        "per_seed_macro_f1": [
+            0.4656952034001214
+        ],
+        "macro_f1_std_across_seeds": 0.0,
+        "mode_vote_agreement": 1.0
+    },
+    "unimodal_txt": {
+        "macro_f1": 0.6173913043478261,
+        "accuracy": 0.7045454545454546,
+        "sensitivity": 0.9629629629629629,
+        "specificity": 0.29411764705882354,
+        "auroc": 0.6683006535947713,
+        "brier_score": 0.21964216506106002,
+        "tp": 52,
+        "tn": 10,
+        "fp": 24,
+        "fn": 2,
+        "total_cases": 88,
+        "deterministic": true,
+        "n_seeds": 1,
+        "per_seed_macro_f1": [
+            0.6173913043478261
+        ],
+        "macro_f1_std_across_seeds": 0.0,
+        "mode_vote_agreement": 1.0
+    },
+    "joint_tab_mri": {
+        "macro_f1": 0.5393939393939394,
+        "accuracy": 0.5681818181818182,
+        "sensitivity": 0.6666666666666666,
+        "specificity": 0.4117647058823529,
+        "auroc": 0.6138344226579521,
+        "brier_score": 0.2721000542631732,
+        "tp": 36,
+        "tn": 14,
+        "fp": 20,
+        "fn": 18,
+        "total_cases": 88,
+        "deterministic": true,
+        "n_seeds": 1,
+        "per_seed_macro_f1": [
+            0.5393939393939394
+        ],
+        "macro_f1_std_across_seeds": 0.0,
+        "mode_vote_agreement": 1.0
+    },
+    "joint_tab_txt": {
+        "macro_f1": 0.5725561627200971,
+        "accuracy": 0.6363636363636364,
+        "sensitivity": 0.8333333333333334,
+        "specificity": 0.3235294117647059,
+        "auroc": 0.6612200435729848,
+        "brier_score": 0.24100605363626026,
+        "tp": 45,
+        "tn": 11,
+        "fp": 23,
+        "fn": 9,
+        "total_cases": 88,
+        "deterministic": true,
+        "n_seeds": 1,
+        "per_seed_macro_f1": [
+            0.5725561627200971
+        ],
+        "macro_f1_std_across_seeds": 0.0,
+        "mode_vote_agreement": 1.0
+    },
+    "joint_mri_txt": {
+        "macro_f1": 0.49241044323011535,
+        "accuracy": 0.5681818181818182,
+        "sensitivity": 0.7777777777777778,
+        "specificity": 0.23529411764705882,
+        "auroc": 0.48801742919389973,
+        "brier_score": 0.26190529409510943,
+        "tp": 42,
+        "tn": 8,
+        "fp": 26,
+        "fn": 12,
+        "total_cases": 88,
+        "deterministic": true,
+        "n_seeds": 1,
+        "per_seed_macro_f1": [
+            0.49241044323011535
+        ],
+        "macro_f1_std_across_seeds": 0.0,
+        "mode_vote_agreement": 1.0
+    },
+    "joint_trimodal": {
+        "macro_f1": 0.49425287356321834,
+        "accuracy": 0.5454545454545454,
+        "sensitivity": 0.7037037037037037,
+        "specificity": 0.29411764705882354,
+        "auroc": 0.6132897603485838,
+        "brier_score": 0.26654537632714,
+        "tp": 38,
+        "tn": 10,
+        "fp": 24,
+        "fn": 16,
+        "total_cases": 88,
+        "deterministic": true,
+        "n_seeds": 1,
+        "per_seed_macro_f1": [
+            0.49425287356321834
+        ],
+        "macro_f1_std_across_seeds": 0.0,
+        "mode_vote_agreement": 1.0
+    },
+    "late_fusion_equal": {
+        "macro_f1": 0.5210291934685799,
+        "accuracy": 0.625,
+        "sensitivity": 0.8888888888888888,
+        "specificity": 0.20588235294117646,
+        "auroc": 0.6753812636165577,
+        "brier_score": 0.22061016232374417,
+        "tp": 48,
+        "tn": 7,
+        "fp": 27,
+        "fn": 6,
+        "total_cases": 88,
+        "deterministic": true,
+        "member_n_seeds": {
+            "tab": 1,
+            "mri": 1,
+            "txt": 1
+        }
+    },
+    "late_fusion_optimal": {
+        "macro_f1": 0.6173913043478261,
+        "accuracy": 0.7045454545454546,
+        "sensitivity": 0.9629629629629629,
+        "specificity": 0.29411764705882354,
+        "auroc": 0.6683006535947713,
+        "brier_score": 0.21964216506106002,
+        "tp": 52,
+        "tn": 10,
+        "fp": 24,
+        "fn": 2,
+        "total_cases": 88,
+        "deterministic": true,
+        "member_n_seeds": {
+            "tab": 1,
+            "mri": 1,
+            "txt": 1
+        }
+    },
+    "confidence_arm": {
+        "macro_f1": 0.49425287356321834,
+        "accuracy": 0.5454545454545454,
+        "sensitivity": 0.7037037037037037,
+        "specificity": 0.29411764705882354,
+        "auroc": 0.6132897603485838,
+        "brier_score": 0.25743038711384,
+        "tp": 38,
+        "tn": 10,
+        "fp": 24,
+        "fn": 16,
+        "total_cases": 88,
+        "deterministic": true,
+        "n_seeds": 1,
+        "per_seed_macro_f1": [
+            0.49425287356321834
+        ],
+        "macro_f1_std_across_seeds": 0.0,
+        "mode_vote_agreement": 1.0
+    },
+    "_mcnemar": {
+        "joint_trimodal_vs_late_fusion_optimal": {
+            "b": 12,
+            "c": 26,
+            "statistic": 12,
+            "pvalue": 0.03355243967962451
+        },
+        "joint_trimodal_vs_exp23_soft": {
+            "b": 5,
+            "c": 20,
+            "statistic": 5,
+            "pvalue": 0.004077315330505371
+        }
+    }
+}

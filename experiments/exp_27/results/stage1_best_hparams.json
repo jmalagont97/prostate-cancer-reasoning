@@ -1,0 +1,29 @@
+{
+    "tab": {
+        "sigma_mult": 0.5,
+        "mean_sigma": 0.10978129021823406,
+        "mean_macro_f1": 0.5671293958054828,
+        "std_macro_f1": 0.11026180127483028,
+        "cfg_id": 1,
+        "rep": null
+    },
+    "mri": {
+        "sigma_mult": 1.0,
+        "mean_sigma": 0.4183487471938133,
+        "mean_macro_f1": 0.47692393413128054,
+        "std_macro_f1": 0.10082898124403356,
+        "cfg_id": 4,
+        "rep": "pca90_l2"
+    },
+    "txt": {
+        "sigma_mult": 0.5,
+        "mean_sigma": 0.546227251291275,
+        "mean_macro_f1": 0.5995229263240507,
+        "std_macro_f1": 0.1067114866521189,
+        "cfg_id": 3,
+        "rep": [
+            2000,
+            0.9
+        ]
+    }
+}
