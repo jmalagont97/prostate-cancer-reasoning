@@ -1,0 +1,24 @@
+{
+  "all_passed": false,
+  "checks": {
+    "input_shape": false,
+    "usable_cases": true,
+    "class_balance": true,
+    "mccv_configs": true,
+    "mccv_splits": true,
+    "loo_folds": true,
+    "selected_one_config": true,
+    "no_leakage": true,
+    "fuzzy_v2_validation": {
+      "clear_yes": true,
+      "clear_no": true,
+      "borderline_yes": true,
+      "borderline_no": true,
+      "uncertain_yes": true,
+      "uncertain_no": true,
+      "k1_fuzzy_differs_from_rigid": "True",
+      "k1_clear_equals_rigid": "True",
+      "proba_range": true
+    }
+  }
+}

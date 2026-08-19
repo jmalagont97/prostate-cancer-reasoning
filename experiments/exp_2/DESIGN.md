@@ -15,7 +15,7 @@ Excluding unannotated cases ($N=102$), cases missing 1024D MRI embeddings ($N=4$
 ## 2. Cohort Selection & Exclusion Criteria (Part 1)
 
 ### 2.1 Exhaustive Exclusion Rules
-Analysis of `data/chimera26/preprocessed/task1/inputs.csv` ($195 \times 1025$) and `ground_truth.csv` ($195 \times 27$) establishes the following strict exclusion hierarchy:
+Analysis of `data/chimera26/preprocessed/task1/inputs.csv` ($195 \times 1077$, per `exp_1` validation report) and `ground_truth.csv` ($195 \times 27$) establishes the following strict exclusion hierarchy:
 
 1. **Exclusion Rule A (Missing MRI Embeddings):** Exclude $N=4$ patient cases lacking 1024D foundation model MRI embeddings (`mri_emb_*`):
    - `PT-pseudo_4bfd4ec864d8`
@@ -74,7 +74,7 @@ Columns:
 - [x] Imputation policy defined for non-excluded variables (`bx`, `fh`).
 - [x] Random seed fixed (42) for reproducible StratifiedShuffleSplit.
 - [x] Split CSV generated and stored at `data/chimera26/preprocessed/task1/mccv_loocv_splits.csv`.
-- [ ] Git commit hash recorded in `experiments/exp_2/results/git_commit.txt`.
+- [x] Git commit hash recorded in `experiments/exp_2/results/git_commit.txt` (`702fc02`, HEAD at execution).
 
 ---
 

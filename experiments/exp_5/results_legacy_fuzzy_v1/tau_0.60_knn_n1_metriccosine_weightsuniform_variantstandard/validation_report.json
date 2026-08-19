@@ -1,0 +1,14 @@
+{
+  "all_passed": true,
+  "checks": {
+    "input_shape": true,
+    "usable_cases": true,
+    "class_balance": true,
+    "conditions_evaluated": 5,
+    "total_mccv_evaluations": 18000,
+    "loo_folds": true,
+    "selected_one_config": true,
+    "no_leakage": true,
+    "essential_vars_in_intersection": true
+  }
+}

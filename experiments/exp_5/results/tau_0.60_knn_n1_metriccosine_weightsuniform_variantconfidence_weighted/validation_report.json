@@ -1,0 +1,25 @@
+{
+  "all_passed": false,
+  "checks": {
+    "input_shape": false,
+    "usable_cases": true,
+    "class_balance": true,
+    "conditions_evaluated": 5,
+    "total_mccv_evaluations": 18000,
+    "loo_folds": true,
+    "selected_one_config": true,
+    "no_leakage": true,
+    "essential_vars_in_intersection": true,
+    "fuzzy_v2_validation": {
+      "clear_yes": true,
+      "clear_no": true,
+      "borderline_yes": true,
+      "borderline_no": true,
+      "uncertain_yes": true,
+      "uncertain_no": true,
+      "k1_fuzzy_differs_from_rigid": "True",
+      "k1_clear_equals_rigid": "True",
+      "proba_range": true
+    }
+  }
+}

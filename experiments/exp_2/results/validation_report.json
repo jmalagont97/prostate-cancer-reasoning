@@ -1,0 +1,650 @@
+{
+  "protocol": {
+    "seed": 42,
+    "n_mccv_splits": 50,
+    "mccv_train_frac": 0.8,
+    "mccv_val_frac": 0.2,
+    "n_loocv_folds": 88
+  },
+  "determinism": {
+    "usable_identical": true,
+    "splits_identical": true,
+    "passed": true
+  },
+  "validations": {
+    "shape": {
+      "actual": [
+        195,
+        56
+      ],
+      "expected": [
+        195,
+        56
+      ],
+      "passed": true
+    },
+    "cohort_counts": {
+      "actual": {
+        "unlabeled_test": 102,
+        "usable_labeled": 88,
+        "excluded_missing_mri": 4,
+        "excluded_missing_pirads": 1
+      },
+      "expected": {
+        "usable_labeled": 88,
+        "unlabeled_test": 102,
+        "excluded_missing_mri": 4,
+        "excluded_missing_pirads": 1
+      },
+      "passed": true
+    },
+    "exclusion_sets": {
+      "missing_mri_actual": [
+        "PT-pseudo_4bfd4ec864d8",
+        "PT-pseudo_4d54f04e26ae",
+        "PT-pseudo_7dbdcd6f9064",
+        "PT-pseudo_8636aa471ef7"
+      ],
+      "missing_mri_expected": [
+        "PT-pseudo_4bfd4ec864d8",
+        "PT-pseudo_4d54f04e26ae",
+        "PT-pseudo_7dbdcd6f9064",
+        "PT-pseudo_8636aa471ef7"
+      ],
+      "missing_pirads_actual": [
+        "PT-pseudo_3646e0a2ae13"
+      ],
+      "missing_pirads_expected": [
+        "PT-pseudo_3646e0a2ae13"
+      ],
+      "passed": true
+    },
+    "loocv": {
+      "min": 0,
+      "max": 87,
+      "unique": 88,
+      "excluded_are_minus_one": true,
+      "passed": true
+    },
+    "mccv": {
+      "class_balance_usable": {
+        "0.0": 34,
+        "1.0": 54
+      },
+      "expected_class_balance": {
+        "0.0": 34,
+        "1.0": 54
+      },
+      "per_split": {
+        "mccv_split_00": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_01": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_02": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_03": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_04": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_05": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_06": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_07": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_08": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_09": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_10": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_11": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_12": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_13": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_14": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_15": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_16": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_17": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_18": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_19": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_20": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_21": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_22": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_23": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_24": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_25": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_26": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_27": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_28": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_29": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_30": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_31": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_32": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_33": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_34": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_35": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_36": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_37": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_38": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_39": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_40": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_41": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_42": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_43": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_44": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_45": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_46": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_47": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_48": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        },
+        "mccv_split_49": {
+          "train": {
+            "yes": 43,
+            "no": 27
+          },
+          "val": {
+            "yes": 11,
+            "no": 7
+          },
+          "passed": true
+        }
+      },
+      "all_splits_70_18_stratified": true,
+      "usable_no_minus_one": true,
+      "excluded_all_minus_one": true,
+      "passed": true
+    },
+    "consistency_with_inputs": {
+      "case_ids_align_with_inputs": true,
+      "usable_rows_have_mri": true,
+      "usable_rows_have_pirads": true,
+      "n_usable_with_gt": 88,
+      "passed": true
+    },
+    "all_passed": true
+  },
+  "outputs": {
+    "splits_csv": "/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/mccv_loocv_splits.csv",
+    "validation_report": "/home/jmalagont/project/pathology-reasoning/experiments/exp_2/results/validation_report.json",
+    "data_manifest": "/home/jmalagont/project/pathology-reasoning/experiments/exp_2/results/data_manifest.csv",
+    "git_commit_txt": "/home/jmalagont/project/pathology-reasoning/experiments/exp_2/results/git_commit.txt"
+  }
+}

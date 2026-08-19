@@ -1,0 +1,98 @@
+======================================================================
+exp_9: KNN + PCA Dimensionality Reduction on MRI Embedding (1024 dims)
+======================================================================
+
+[1/7] Loading data...
+  Cohort: 88 cases, 54 yes / 34 no
+  Confidence: {'clear': 56, 'borderline': 18, 'uncertain': 14}
+  MRI embedding shape: (88, 1024) (no scaling applied)
+
+[2/7] Validating embedding...
+  NaN: 0, Inf: 0
+  Range: [-28.8489, 10.2175]
+  Mean: -0.3834, Std: 1.7007
+  Row norms: [40.72, 72.70]
+
+[3/7] MCCV condition: no_pca (no PCA) — 72 configs x 50 splits
+    MCCV split 10/50  (no PCA, 1024 dims)
+    MCCV split 20/50  (no PCA, 1024 dims)
+    MCCV split 30/50  (no PCA, 1024 dims)
+    MCCV split 40/50  (no PCA, 1024 dims)
+    MCCV split 50/50  (no PCA, 1024 dims)
+    Best: no_pca_knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted
+    F1_macro=0.5497 ± 0.0890
+
+[3/7] MCCV condition: pca_1 (n_components=1) — 72 configs x 50 splits
+    MCCV split 10/50  (PCA d=1, cumvar=0.7965)
+    MCCV split 20/50  (PCA d=1, cumvar=0.7973)
+    MCCV split 30/50  (PCA d=1, cumvar=0.7998)
+    MCCV split 40/50  (PCA d=1, cumvar=0.8001)
+    MCCV split 50/50  (PCA d=1, cumvar=0.8013)
+    Best: pca_1_knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted
+    F1_macro=0.5791 ± 0.1139
+    Cumulative explained variance: mean=0.8013, std=0.0105
+
+[3/7] MCCV condition: pca_23 (n_components=23) — 72 configs x 50 splits
+    MCCV split 10/50  (PCA d=23, cumvar=0.9815)
+    MCCV split 20/50  (PCA d=23, cumvar=0.9815)
+    MCCV split 30/50  (PCA d=23, cumvar=0.9816)
+    MCCV split 40/50  (PCA d=23, cumvar=0.9816)
+    MCCV split 50/50  (PCA d=23, cumvar=0.9817)
+    Best: pca_23_knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted
+    F1_macro=0.5623 ± 0.0971
+    Cumulative explained variance: mean=0.9817, std=0.0009
+
+[3/7] MCCV condition: pca_46 (n_components=46) — 72 configs x 50 splits
+    MCCV split 10/50  (PCA d=46, cumvar=0.9955)
+    MCCV split 20/50  (PCA d=46, cumvar=0.9955)
+    MCCV split 30/50  (PCA d=46, cumvar=0.9956)
+    MCCV split 40/50  (PCA d=46, cumvar=0.9956)
+    MCCV split 50/50  (PCA d=46, cumvar=0.9956)
+    Best: pca_46_knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted
+    F1_macro=0.5550 ± 0.0859
+    Cumulative explained variance: mean=0.9956, std=0.0002
+
+[3/7] MCCV condition: pca_69 (n_components=69) — 72 configs x 50 splits
+    MCCV split 10/50  (PCA d=69, cumvar=1.0000)
+    MCCV split 20/50  (PCA d=69, cumvar=1.0000)
+    MCCV split 30/50  (PCA d=69, cumvar=1.0000)
+    MCCV split 40/50  (PCA d=69, cumvar=1.0000)
+    MCCV split 50/50  (PCA d=69, cumvar=1.0000)
+    Best: pca_69_knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted
+    F1_macro=0.5497 ± 0.0890
+    Cumulative explained variance: mean=1.0000, std=0.0000
+
+[4/7] Cross-condition selection...
+  Global best: pca_1_knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted
+  F1_macro=0.5791 ± 0.1139
+  F1_yes  =0.6684 ± 0.1039
+  Balanced_acc=0.5831
+  MCC     =0.1720
+
+  Top 5 overall:
+    1. pca_1_knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted: F1_macro=0.5791, brier_score=0.3295, F1_yes=0.6684
+    2. pca_1_knn_n1_metriceuclidean_weightsuniform_variantconfidence_weighted: F1_macro=0.5791, brier_score=0.3295, F1_yes=0.6684
+    3. pca_1_knn_n1_metriceuclidean_weightsuniform_variantstandard: F1_macro=0.5791, brier_score=0.3978, F1_yes=0.6684
+    4. pca_1_knn_n1_metriceuclidean_weightsdistance_variantstandard: F1_macro=0.5791, brier_score=0.3978, F1_yes=0.6684
+    5. pca_1_knn_n11_metriceuclidean_weightsdistance_variantstandard: F1_macro=0.5758, brier_score=0.2739, F1_yes=0.7002
+
+[5/7] LOO evaluation for pca_1 (n_components=1)...
+  LOO: 20/88 folds done
+  LOO: 40/88 folds done
+  LOO: 60/88 folds done
+  LOO: 80/88 folds done
+  LOO F1_macro=0.6067
+  LOO F1_yes  =0.6916
+  LOO Balanced_acc=0.6073
+  LOO MCC     =0.2135
+  LOO Brier   =0.6887 (1-Brier), 0.3113 (conv.)
+
+[6/7] Generating confusion matrices and writing artefacts...
+  Confusion matrix figures saved to experiments/exp_9/reports/figures/
+  Explained variance figure saved to experiments/exp_9/reports/figures/
+
+  Artefacts written to experiments/exp_9/results/pca_1_knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted/
+  Figures written to experiments/exp_9/reports/figures/
+  Total time: 10.8 min
+  Done.
+======================================================================

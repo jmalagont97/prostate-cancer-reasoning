@@ -1,0 +1,36 @@
+{
+  "best_config": "knn_n1_metriccosine_weightsuniform_variantstandard",
+  "best_mccv_metrics": {
+    "f1_macro": 0.6453123758975354,
+    "f1_yes": 0.72634135871756,
+    "balanced_accuracy": 0.6496103896103896,
+    "mcc": 0.31001965880706345,
+    "sensitivity": 0.7363636363636364,
+    "specificity": 0.5628571428571428,
+    "precision_yes": 0.7300572205572206,
+    "accuracy": 0.6688888888888889,
+    "pr_auc": 0.7022182615364433,
+    "roc_auc": 0.6496103896103896,
+    "brier": 0.6688888888888889,
+    "ece": 0.1611111111111111
+  },
+  "loo_metrics": {
+    "f1_macro": 0.6505545666164589,
+    "f1_yes": 0.7339449541284404,
+    "balanced_accuracy": 0.6497821350762527,
+    "mcc": 0.3012923025259114,
+    "sensitivity": 0.7407407407407407,
+    "specificity": 0.5588235294117647,
+    "precision_yes": 0.7272727272727273,
+    "accuracy": 0.6704545454545454,
+    "pr_auc": 0.6978114478114479,
+    "roc_auc": 0.6497821350762527,
+    "brier": 0.6704545454545454,
+    "ece": 0.1590909090909091
+  },
+  "total_configs_evaluated": 72,
+  "total_mccv_splits": 50,
+  "total_loo_folds": 88,
+  "selection_criterion": "F1_macro (primary, local)",
+  "guardrail": "F1_yes (official primary from docs/EVALUATION.md)"
+}

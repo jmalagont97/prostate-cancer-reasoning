@@ -1,0 +1,42 @@
+{
+  "best_config": "knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted",
+  "best_mccv_metrics": {
+    "f1_macro": 0.5497159342036446,
+    "f1_yes": 0.6671456905328758,
+    "balanced_accuracy": 0.5544155844155844,
+    "mcc": 0.1175771902445393,
+    "sensitivity": 0.6945454545454546,
+    "specificity": 0.41428571428571426,
+    "precision_yes": 0.6495748695748697,
+    "accuracy": 0.5855555555555556,
+    "pr_auc": 0.6555791571767509,
+    "roc_auc": 0.5106493506493507,
+    "brier": 0.6442013892167057,
+    "brier_score": 0.3557986107832943,
+    "ece": 0.3533333328776122
+  },
+  "loo_metrics": {
+    "f1_macro": 0.5731115731115731,
+    "f1_yes": 0.6846846846846847,
+    "balanced_accuracy": 0.5724400871459695,
+    "mcc": 0.14768181577504547,
+    "sensitivity": 0.7037037037037037,
+    "specificity": 0.4411764705882353,
+    "precision_yes": 0.6666666666666666,
+    "accuracy": 0.6022727272727273,
+    "pr_auc": 0.6238646804979111,
+    "roc_auc": 0.5343137254901961,
+    "brier": 0.6535866480418246,
+    "brier_score": 0.34641335195817535,
+    "ece": 0.27698863587296574
+  },
+  "total_configs_evaluated": 72,
+  "total_mccv_splits": 50,
+  "total_loo_folds": 88,
+  "input_modality": "mri_embedding_1024d",
+  "preprocessing": "none",
+  "selection_criterion": "F1_macro (primary) \u2192 brier_score (tie-break) \u2192 F1_yes \u2192 balanced_accuracy \u2192 MCC",
+  "guardrail": "F1_yes (official primary from docs/EVALUATION.md)",
+  "fuzzy_revision": "v2 (probability-smoothing)",
+  "selector_revision": "v3 (lexicographic F1\u2192Brier)"
+}

@@ -1,0 +1,4 @@
+file,path,sha256
+inputs.csv,/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/inputs.csv,7545d3ede798acf3b435c3c30239a2446e1e6b7f66bacd50b7a111179ed34cc7
+ground_truth.csv,/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/ground_truth.csv,e5f28c76d7e85d01d815248d1515c4e0023fd743096d25aff7e05f60410d8d84
+mccv_loocv_splits.csv,/home/jmalagont/project/pathology-reasoning/data/chimera26/preprocessed/task1/mccv_loocv_splits.csv,eda3391edde4d07ac5e79d0a521f0a1efc7cc6ff29b5457edc6aef0544132354

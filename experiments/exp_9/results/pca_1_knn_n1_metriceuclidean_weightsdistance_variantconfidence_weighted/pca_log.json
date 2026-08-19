@@ -1,0 +1,459 @@
+{
+  "condition": "pca_1",
+  "n_components": 1,
+  "n_splits": 50,
+  "per_split": [
+    {
+      "explained_variance_ratio": [
+        0.7976462366644157
+      ],
+      "n_components": 1,
+      "singular_values": [
+        235.72909294999212
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8099620454459662
+      ],
+      "n_components": 1,
+      "singular_values": [
+        241.65153453331345
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.797266292488954
+      ],
+      "n_components": 1,
+      "singular_values": [
+        235.20934757901395
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7928098004746801
+      ],
+      "n_components": 1,
+      "singular_values": [
+        235.89357747918828
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.800394973641723
+      ],
+      "n_components": 1,
+      "singular_values": [
+        237.03554689147532
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7799606472593171
+      ],
+      "n_components": 1,
+      "singular_values": [
+        225.31981928111875
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8076354107962063
+      ],
+      "n_components": 1,
+      "singular_values": [
+        241.25485449953632
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7845748865660916
+      ],
+      "n_components": 1,
+      "singular_values": [
+        230.6923956022346
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.798484715514602
+      ],
+      "n_components": 1,
+      "singular_values": [
+        239.91755376921336
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7964002814629795
+      ],
+      "n_components": 1,
+      "singular_values": [
+        236.52407503731703
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8048627097901929
+      ],
+      "n_components": 1,
+      "singular_values": [
+        241.09817642105781
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.795776729112433
+      ],
+      "n_components": 1,
+      "singular_values": [
+        234.628826636447
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8108237073927024
+      ],
+      "n_components": 1,
+      "singular_values": [
+        241.73735882929319
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.787164085360329
+      ],
+      "n_components": 1,
+      "singular_values": [
+        225.7989153344378
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8052262766607107
+      ],
+      "n_components": 1,
+      "singular_values": [
+        239.83188030844195
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7913332480345128
+      ],
+      "n_components": 1,
+      "singular_values": [
+        233.38956612388498
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7945893827404337
+      ],
+      "n_components": 1,
+      "singular_values": [
+        234.0472007412972
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.804952975176401
+      ],
+      "n_components": 1,
+      "singular_values": [
+        238.55898027735344
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7933610007182881
+      ],
+      "n_components": 1,
+      "singular_values": [
+        230.63972906409126
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7929505720917168
+      ],
+      "n_components": 1,
+      "singular_values": [
+        231.269748936268
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8112832129899363
+      ],
+      "n_components": 1,
+      "singular_values": [
+        244.14748096358227
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8224162063213686
+      ],
+      "n_components": 1,
+      "singular_values": [
+        246.66419814488418
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8041381176712418
+      ],
+      "n_components": 1,
+      "singular_values": [
+        237.1962551768983
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8047092774185239
+      ],
+      "n_components": 1,
+      "singular_values": [
+        238.22831482920836
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8044053699613073
+      ],
+      "n_components": 1,
+      "singular_values": [
+        242.7039157567372
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8175064707424113
+      ],
+      "n_components": 1,
+      "singular_values": [
+        246.68440317912413
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.797575749363081
+      ],
+      "n_components": 1,
+      "singular_values": [
+        231.66083257140036
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8007692734817339
+      ],
+      "n_components": 1,
+      "singular_values": [
+        235.45321694788822
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7944700444452649
+      ],
+      "n_components": 1,
+      "singular_values": [
+        234.45275237669347
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7912181357537786
+      ],
+      "n_components": 1,
+      "singular_values": [
+        233.48668585828725
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8009046272439255
+      ],
+      "n_components": 1,
+      "singular_values": [
+        237.1687139737546
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8121672499775151
+      ],
+      "n_components": 1,
+      "singular_values": [
+        246.17349312387756
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7965315737817009
+      ],
+      "n_components": 1,
+      "singular_values": [
+        236.3110271488425
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8025247640166678
+      ],
+      "n_components": 1,
+      "singular_values": [
+        238.28110893806897
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8122076508672136
+      ],
+      "n_components": 1,
+      "singular_values": [
+        239.75070419170387
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7922449530654674
+      ],
+      "n_components": 1,
+      "singular_values": [
+        229.06445837075432
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7813212535047044
+      ],
+      "n_components": 1,
+      "singular_values": [
+        219.97495371050823
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7962691531583617
+      ],
+      "n_components": 1,
+      "singular_values": [
+        232.6847310076362
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8270738242167205
+      ],
+      "n_components": 1,
+      "singular_values": [
+        249.29020907499302
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.7879641689497324
+      ],
+      "n_components": 1,
+      "singular_values": [
+        231.2598622013249
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8021401727293588
+      ],
+      "n_components": 1,
+      "singular_values": [
+        238.69621195899046
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8052112086484423
+      ],
+      "n_components": 1,
+      "singular_values": [
+        240.66337007287063
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8198585505082322
+      ],
+      "n_components": 1,
+      "singular_values": [
+        252.3823484313023
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8009239147416318
+      ],
+      "n_components": 1,
+      "singular_values": [
+        239.73359799270867
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.808721675042094
+      ],
+      "n_components": 1,
+      "singular_values": [
+        240.66772000887443
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8105820597431445
+      ],
+      "n_components": 1,
+      "singular_values": [
+        240.03116687103372
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.783037032450185
+      ],
+      "n_components": 1,
+      "singular_values": [
+        228.19310768543673
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8026961261436956
+      ],
+      "n_components": 1,
+      "singular_values": [
+        236.94502936844847
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8217015815204323
+      ],
+      "n_components": 1,
+      "singular_values": [
+        248.72057708534112
+      ]
+    },
+    {
+      "explained_variance_ratio": [
+        0.8056040674861692
+      ],
+      "n_components": 1,
+      "singular_values": [
+        240.0769842300711
+      ]
+    }
+  ],
+  "cumulative_variance_mean": 0.801287068866734,
+  "cumulative_variance_std": 0.010494164823865577
+}

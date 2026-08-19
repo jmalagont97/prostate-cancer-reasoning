@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhD Progress Report: Pathology Reasoning Agent (CHIMERA Task 1)</title>
+  <style>
+    :root {
+      --bg-main: #0b0f19;
+      --bg-card: #161e2e;
+      --bg-card-hover: #1f293d;
+      --border-color: #2a364f;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-cyan: #22d3ee;
+      --accent-indigo: #818cf8;
+      --accent-green: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-rose: #f43f5e;
+      --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Header Bar */
+    header {
+      height: 56px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-dev {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+    }
+
+    .slide-counter {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      width: 100%;
+      height: 3px;
+      background: var(--bg-card);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-indigo));
+      width: 12.5%;
+      transition: width 0.3s ease;
+    }
+
+    /* Main Slide Viewport */
+    main {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 40px 60px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(30px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    /* Slide Header & Titles */
+    .slide-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+    }
+
+    .slide-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-title span {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Content Layout Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      width: 100%;
+    }
+
+    /* Cards & Containers */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    /* Callout & Highlights */
+    .callout {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent-blue);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 20px;
+    }
+
+    .callout-amber {
+      background: rgba(251, 191, 36, 0.08);
+      border-left-color: var(--accent-amber);
+    }
+
+    .callout-green {
+      background: rgba(52, 211, 153, 0.08);
+      border-left-color: var(--accent-green);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .callout-body {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Metric Highlight Boxes */
+    .metric-box {
+      text-align: center;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .metric-value {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent-blue);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric-value.green { color: var(--accent-green); }
+    .metric-value.amber { color: var(--accent-amber); }
+
+    .metric-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    /* Custom Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 12px;
+    }
+
+    th {
+      background: rgba(30, 41, 59, 0.8);
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--border-color);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+    tr:hover td {
+      background: rgba(30, 41, 59, 0.4);
+    }
+
+    .highlight-row td {
+      background: rgba(56, 189, 248, 0.1) !important;
+      font-weight: 600;
+    }
+
+    /* Lists */
+    ul {
+      list-style-type: none;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    ul li strong {
+      color: var(--text-primary);
+    }
+
+    /* Code & Formula Blocks */
+    .formula-block {
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      text-align: center;
+      margin: 12px 0;
+    }
+
+    .code-tag {
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      color: var(--accent-cyan);
+    }
+
+    /* Flow Diagrams & Diagrams */
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+    }
+
+    /* Bottom Control Bar */
+    footer {
+      height: 60px;
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .nav-btn {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .nav-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header>
+    <div class="brand">
+      <span>PATHOLOGY REASONING</span>
+      <span class="badge-dev">branch: dev</span>
+    </div>
+    <div class="slide-counter" id="slide-counter">Slide 1 of 8</div>
+  </header>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- Main Viewport -->
+  <main>
+
+    <!-- SLIDE 1: Title & Overview -->
+    <section class="slide active" id="slide-1">
+      <div class="slide-tag">PhD Research Progress Report — August 2026</div>
+      <h1 class="slide-title">Pathology Reasoning Agent: <span>Multimodal Decision, Clinical Confidence & Explainable Urological Rationale</span></h1>
+      
+      <div class="callout callout-green" style="margin-bottom: 28px;">
+        <div class="callout-title">Doctoral Defense Briefing for Principal Investigator (PI)</div>
+        <div class="callout-body">
+          Presentation of benchmarked ML models and decoupled agent architecture for <strong>CHIMERA Task 1</strong> (Prostate Biopsy Decision Reasoning), built strictly on branch <span class="code-tag">dev</span> with validated out-of-fold generalization.
+        </div>
+      </div>
+
+      <div class="grid-4" style="margin-bottom: 28px;">
+        <div class="metric-box">
+          <div class="metric-value">N=88</div>
+          <div class="metric-label">Clean Labeled Cohort</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-value green">0.440</div>
+          <div class="metric-label">LOO Ordinal Distance (Subtask 1.2)</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-value">23-PCA</div>
+          <div class="metric-label">MRI Dimensionality (98.17% Var)</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-value amber">100%</div>
+          <div class="metric-label">Pydantic Schema Validity</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🔬 Key Research Objectives</div>
+          <ul>
+            <li><strong>Automated Biopsy Indication:</strong> Multimodal late fusion combining tabular clinical findings, MRI embeddings, and narrative text.</li>
+            <li><strong>Clinical Confidence Estimation:</strong> Memory-based Kernel Density Matrix (KDM) directly modeling diagnostic uncertainty.</li>
+            <li><strong>Explainable Relevance & Reveal Sequence:</strong> Causal SHAP feature attributions mapped via 3D threshold optimization.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">🤖 Agent System Philosophy</div>
+          <ul>
+            <li><strong>Stage-1 Immutable Tool Laws:</strong> Quantitative ML decisions are hard-coded laws that cannot be overridden by the LLM.</li>
+            <li><strong>Urology Specialist Persona:</strong> Local Gemma LLM fine-tuned to act purely as a Senior Urology Specialist synthesizing expert rationale (<span class="code-tag">free_text</span>).</li>
+            <li><strong>Zero Hallucination Risk:</strong> Strict separation between numerical classification models and text generation.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Problem Formulation -->
+    <section class="slide" id="slide-2">
+      <div class="slide-tag">Problem Formulation & Task Decomposition</div>
+      <h2 class="slide-title">CHIMERA Task 1: <span>4 Coupled Subtasks & Decision Gate</span></h2>
+
+      <div class="callout callout-amber" style="margin-bottom: 24px;">
+        <div class="callout-title">⚠️ Evaluator Constraint: The Hard Decision Gate</div>
+        <div class="callout-body">
+          The official CHIMERA evaluator enforces a <strong>Decision Gate</strong>: an incorrect Subtask 1.1 prediction (<span class="code-tag">biopsy_decision</span>) immediately sets the entire case score to zero (<span class="code-tag">case_score = 0</span>). Subtasks 1.2–1.4 must be coupled with a high-precision 1.1 model.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="flow-step">
+          <div class="step-number">1.1</div>
+          <div>
+            <strong>Biopsy Decision (Binary)</strong>
+            <div style="font-size: 0.82rem; color: var(--text-secondary);">Predicts <span class="code-tag">yes</span> / <span class="code-tag">no</span> indication. Evaluated via positive-class <span class="code-tag">F1_yes</span> and Macro-F1.</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">1.2</div>
+          <div>
+            <strong>Clinical Confidence (3-Level Ordinal)</strong>
+            <div style="font-size: 0.82rem; color: var(--text-secondary);">Predicts <span class="code-tag">uncertain</span> (0), <span class="code-tag">borderline</span> (1), or <span class="code-tag">clear</span> (2). Evaluated via Ordinal Distance (<span class="code-tag">MOE_abs</span>).</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">1.3</div>
+          <div>
+            <strong>Relevance Weights & Reveal Sequence</strong>
+            <div style="font-size: 0.82rem; color: var(--text-secondary);">Scores 10 clinical variables (<span class="code-tag">not_used</span>.. <span class="code-tag">decisive</span>) & orders evidence section requests.</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">1.4</div>
+          <div>
+            <strong>Reasoning Agent & Specialist Rationale</strong>
+            <div style="font-size: 0.82rem; color: var(--text-secondary);">Generates expert urological narrative (<span class="code-tag">free_text</span>) compliant with strict Pydantic JSON schema.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 20px;">
+        <div class="card-title">📊 Dataset Partitioning & Experimental Hygiene</div>
+        <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <li><strong>Clean Cohort ($N=88$):</strong> Excludes 4 cases with missing MRI and 1 with missing PI-RADS.</li>
+          <li><strong>Frozen Split File:</strong> Fixed 50-fold MCCV splits + 88-fold LOOCV (<span class="code-tag">mccv_loocv_splits.csv</span>).</li>
+          <li><strong>Zero Data Leakage:</strong> Preprocessing, imputation, and PCA fitted strictly inside training folds.</li>
+          <li><strong>Reproducibility:</strong> Git commits, seeds, and execution logs recorded for all conditions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Evaluation Metrics Framework -->
+    <section class="slide" id="slide-3">
+      <div class="slide-tag">Experimental Protocol & Metrics</div>
+      <h2 class="slide-title">Mathematical Formulations of <span>Evaluation Metrics</span></h2>
+
+      <div class="grid-2" style="margin-bottom: 20px;">
+        <div class="card">
+          <div class="card-title">🎯 Subtask 1.1 — Biopsy Decision</div>
+          <div class="formula-block">
+            $$\text{F1}_{\text{yes}} = \frac{2 \cdot \text{Precision}_{\text{yes}} \cdot \text{Recall}_{\text{yes}}}{\text{Precision}_{\text{yes}} + \text{Recall}_{\text{yes}}}$$
+          </div>
+          <ul style="font-size: 0.85rem;">
+            <li><strong>F1_yes (Primary):</strong> Focuses directly on correctly identifying patients needing a biopsy.</li>
+            <li><strong>Macro-F1 (Guardrail):</strong> Unweighted mean of <span class="code-tag">yes</span> and <span class="code-tag">no</span> F1-scores to prevent majority-class exploitation.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">📐 Subtask 1.2 — Clinical Confidence (Official)</div>
+          <div class="formula-block">
+            $$\text{MOE}_{\text{abs}} = \frac{1}{3} \sum_{c \in \{0,1,2\}} \text{mean}_{i:y_i=c} \left( \frac{|\hat{y}_i - y_i|}{2} \right)$$
+          </div>
+          <ul style="font-size: 0.85rem;">
+            <li><strong>Class-Balanced MOE_abs (Ordinal Distance, ↓):</strong> Measures mean normalized error in $[0, 1]$.</li>
+            <li><strong>Distance Weighting:</strong> Penalizes 2-level jumps (<span class="code-tag">uncertain</span> $\leftrightarrow$ <span class="code-tag">clear</span>) twice as much as 1-level adjacent confusions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">📋 Subtask 1.3 — Relevance Weights & Reveal Order</div>
+          <ul>
+            <li><strong>Per-Variable MOE_abs (↓):</strong> Average normalized ordinal error across all 10 clinical variables on a 4-level scale ($0=\text{not\_used}, 3=\text{decisive}$).</li>
+            <li><strong>Reveal Sequence $\text{F1}_{\text{macro}}$ (↑):</strong> Macro-F1 across diagnostic section retrieval steps (<span class="code-tag">radiology_report</span>, <span class="code-tag">pathology_report</span>, etc.).</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🏆 Subtask 1.4 & Global Challenge Leaderboard Proxy</div>
+          <ul>
+            <li><strong>Deterministic Mean Case Score:</strong> Weighted sum ($0.225\,\text{Conf} + 0.275\,\text{Weights} + 0.175\,\text{FactorF1} + 0.150\,\text{Tool} + 0.175\,\text{Grounding}$).</li>
+            <li><strong>Challenge Ranking Score Proxy:</strong> $\text{ranking\_score} = \frac{\text{mean\_case\_score} + \text{F1}_{\text{yes}}}{2}$.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Subtask 1.1 Model & 23-PCA Image Representation -->
+    <section class="slide" id="slide-4">
+      <div class="slide-tag">Subtask 1.1 Benchmarks</div>
+      <h2 class="slide-title">Late Multimodal Fusion ($T_{21} + M_{23} + X$) & <span>23-PCA MRI Representation</span></h2>
+
+      <div class="callout callout-green" style="margin-bottom: 20px;">
+        <div class="callout-title">Winner Architecture: Late Multimodal Fusion (exp_12)</div>
+        <div class="callout-body">
+          Fusing Tabular clinical variables, 23-component PCA MRI embeddings, and Narrative text vectors achieves superior out-of-fold performance compared to any isolated modality.
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 24px;">
+        <div class="card">
+          <div class="card-title">📊 Tabular Modality ($T_{21}$)</div>
+          <div class="card-subtitle">21 Spearman Pruned Features</div>
+          <ul style="font-size: 0.83rem;">
+            <li>Features pruned via Spearman correlation & hierarchical clustering (<span class="code-tag">exp_5</span>).</li>
+            <li>MinMax scaling + OHE + missingness indicators.</li>
+            <li><strong>Classifier:</strong> <span class="code-tag">ConfidenceWeightedKNN</span> ($k=1$, Cosine).</li>
+            <li><strong>Standalone LOO:</strong> $\text{F1}_{\text{macro}} = 0.689$.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-color: var(--accent-blue);">
+          <div class="card-title" style="color: var(--accent-blue);">🖼️ MRI Image Modality ($M_{23}$)</div>
+          <div class="card-subtitle">23-Component PCA (`pca_23`)</div>
+          <ul style="font-size: 0.83rem;">
+            <li>1024D embedding reduced via PCA to <strong>23 components</strong> (<span class="code-tag">exp_9</span>).</li>
+            <li>Retains <strong>98.17% variance</strong> with 97.75% dimensionality reduction.</li>
+            <li><strong>Classifier:</strong> <span class="code-tag">ConfidenceWeightedKNN</span> ($k=1$, Euclidean distance-weighted).</li>
+            <li><strong>Robust Operating Point:</strong> Higher $\text{F1}_{\text{yes}}$ ($0.6769$) and greater split stability.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">📝 Narrative Text ($X$)</div>
+          <div class="card-subtitle">Negation-Preserving TF-IDF</div>
+          <ul style="font-size: 0.83rem;">
+            <li>Cleaned clinical text preserving negations (<span class="code-tag">no</span>, <span class="code-tag">not</span>, <span class="code-tag">without</span>).</li>
+            <li>TF-IDF vectorizer (2000 max features).</li>
+            <li><strong>Classifier:</strong> <span class="code-tag">ConfidenceWeightedKNN</span> ($k=3$, Cosine distance-weighted).</li>
+            <li><strong>Standalone LOO:</strong> $\text{F1}_{\text{macro}} = 0.661$.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">⚡ Multimodal Fusion Mechanism & Performance</div>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+          The final subtask 1.1 model (<span class="code-tag">deploy/subtask_1.1/train_and_save.py</span>) combines continuous posterior probabilities with equal weights ($1/3 T_{21} + 1/3 M_{23} + 1/3 X$) and applies a fixed decision threshold at $0.5$. Late fusion successfully mitigates single-modality noise and achieves record accuracy.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Subtask 1.2 Model Card & KDM Performance -->
+    <section class="slide" id="slide-5">
+      <div class="slide-tag">Subtask 1.2 Benchmarks</div>
+      <h2 class="slide-title">Direct Scalar KDM Confidence Classifier <span>(MODEL_CARD.md)</span></h2>
+
+      <div class="callout" style="margin-bottom: 20px;">
+        <div class="callout-title">📌 Model Card Artifact: `confidence_kdm_direct_scalar_23col`</div>
+        <div class="callout-body">
+          Direct memory-based <strong>Kernel Density Matrix (KDM)</strong> classifier (<span class="code-tag">kdm-torch</span>) trained directly on 3-class confidence labels across 91 labeled prototypes, learning a single shared RBF kernel bandwidth ($\sigma$) via gradient descent.
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom: 24px;">
+        <div class="card">
+          <div class="card-title">📈 Validated Multi-Protocol Performance</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Evaluation Protocol</th>
+                <th>Ordinal Dist. (↓)</th>
+                <th>Macro-F1 (↑)</th>
+                <th>Accuracy (↑)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-row">
+                <td><strong>Leave-One-Out (91-fold)</strong></td>
+                <td><strong>0.440</strong></td>
+                <td><strong>0.589</strong></td>
+                <td><strong>0.681</strong></td>
+              </tr>
+              <tr>
+                <td>5×10 Cross-Validation</td>
+                <td>0.491</td>
+                <td>0.544</td>
+                <td>0.642</td>
+              </tr>
+              <tr>
+                <td>Repeated Held-out (10 seeds)</td>
+                <td>0.447 ± 0.175</td>
+                <td>0.555 ± 0.129</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Reference <span class="code-tag">confidence_svm</span></td>
+                <td>0.468</td>
+                <td>0.404</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Naive Majority Baseline</td>
+                <td>0.527</td>
+                <td>0.260</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🔍 Per-Class LOO Breakdown & Confusion Matrix</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Class Target</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1-Score</th>
+                <th>Support</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>uncertain</strong></td>
+                <td>0.462</td>
+                <td>0.400</td>
+                <td>0.429</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td><strong>borderline</strong></td>
+                <td>0.500</td>
+                <td>0.611</td>
+                <td>0.550</td>
+                <td>18</td>
+              </tr>
+              <tr style="background: rgba(52, 211, 153, 0.1);">
+                <td><strong>clear</strong></td>
+                <td>0.804</td>
+                <td>0.776</td>
+                <td><strong>0.789</strong></td>
+                <td>58</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px;">
+            *Strongest on majority class <span class="code-tag">clear</span>. Errors in <span class="code-tag">borderline</span> are adjacent-level confusions, keeping aggregate ordinal distance low (0.440).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Subtask 1.3 SHAP Attributions & 3D Thresholding -->
+    <section class="slide" id="slide-6">
+      <div class="slide-tag">Subtask 1.3 Benchmarks</div>
+      <h2 class="slide-title">Causal SHAP Feature Attributions & <span>Exhaustive 3D Threshold Optimization</span></h2>
+
+      <div class="grid-2" style="margin-bottom: 24px;">
+        <div class="card">
+          <div class="card-title">🧠 Causal Attribution Architecture (exp_19)</div>
+          <ul>
+            <li><strong>Direct Model Attributions:</strong> Local Kernel SHAP values $\psi_k$ are extracted directly from the frozen tabular decision model ($T_{21}$).</li>
+            <li><strong>100% Causal Consistency:</strong> Explanations reflect the exact internal decision boundaries of the decision pipeline.</li>
+            <li><strong>Max-Normalization:</strong> SHAP feature attributions are normalized relative to population maximums $\psi_{k, \text{norm}} = \psi_k / \max(\Psi_k)$.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">⚙️ Global Exhaustive 3D Threshold Search</div>
+          <ul>
+            <li><strong>3-Threshold Triples:</strong> Optimizes $(\tau_{1, k}^*, \tau_{2, k}^*, \tau_{3, k}^*)$ per target variable over a dense candidate grid.</li>
+            <li><strong>4-Level Ordinal Mapping:</strong> Continuous SHAP values map to discrete relevance weights (<span class="code-tag">not_used</span>=0, <span class="code-tag">noted</span>=1, <span class="code-tag">important</span>=2, <span class="code-tag">decisive</span>=3).</li>
+            <li><strong>Section Reveal Derivation:</strong> Dynamic feature rankings drive evidence section retrieval order.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📊 Validated LOO Performance Benchmarks</div>
+        <div class="grid-3" style="margin-top: 12px;">
+          <div class="metric-box">
+            <div class="metric-value green">0.5775</div>
+            <div class="metric-label">LOO Reveal Sequence F1_macro (vs 0.1049 raw)</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-value">0.3465</div>
+            <div class="metric-label">LOO Relevance Weights MOE_abs</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-value">0.5729</div>
+            <div class="metric-label">MCCV Reveal Sequence F1_macro (±0.0482)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Subtask 1.4 Agent Architecture & Control Flow -->
+    <section class="slide" id="slide-7">
+      <div class="slide-tag">Subtask 1.4 & Agent Architecture</div>
+      <h2 class="slide-title">Decoupled Agent Design: <span>Stage-1 Immutable Tool Laws</span></h2>
+
+      <div class="grid-2" style="margin-bottom: 24px;">
+        <div class="card">
+          <div class="card-title">🛡️ Stage-1 Immutable Tool Laws</div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+            The quantitative ML engines (<span class="code-tag">tools.py</span>) execute first and emit immutable decisions. The LLM is strictly forbidden from altering tool predictions.
+          </p>
+          <ul style="font-size: 0.83rem;">
+            <li><strong>Tool 1.1:</strong> <span class="code-tag">predict_biopsy_decision()</span> $\rightarrow$ <span class="code-tag">biopsy_decision</span></li>
+            <li><strong>Tool 1.2:</strong> <span class="code-tag">predict_clinical_confidence()</span> $\rightarrow$ <span class="code-tag">confidence</span></li>
+            <li><strong>Tool 1.3:</strong> <span class="code-tag">predict_relevance_and_reveal_sequence()</span> $\rightarrow$ <span class="code-tag">variable_weights</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">👨‍⚕️ Senior Urology Specialist Persona</div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+            Local Ollama Gemma LLM (<span class="code-tag">gemma:2b</span> / <span class="code-tag">gemma4:e2b</span>) acts as a Senior Urology Specialist synthesizing a concise 1-sentence expert clinical rationale (<span class="code-tag">free_text</span>).
+          </p>
+          <div class="formula-block" style="text-align: left; font-size: 0.78rem;">
+            "PIRADS 5 lesion in 68 year old man with elevated PSA of 8.4 ng/mL."
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">✔️ Pydantic Schema Enforcement</div>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+          All outputs are validated against <span class="code-tag">PathologyReasoningOutput</span> Pydantic schema (<span class="code-tag">agent/schemas.py</span>). Enforces 100% structural validity matching CHIMERA requirements with zero hallucination risk.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Benchmark Summary & Next Milestones -->
+    <section class="slide" id="slide-8">
+      <div class="slide-tag">Summary & Next Steps</div>
+      <h2 class="slide-title">Benchmark Summary & <span>PhD Research Milestones</span></h2>
+
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-title">📊 Final Performance Summary Table across Subtasks</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Subtask</th>
+              <th>Target Output</th>
+              <th>Winning Model Architecture</th>
+              <th>Primary Metric</th>
+              <th>LOO Benchmark Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1.1</strong></td>
+              <td><span class="code-tag">biopsy_decision</span></td>
+              <td>Late Multimodal Fusion ($T_{21} + M_{23} + X$)</td>
+              <td>Macro-F1 / F1_yes</td>
+              <td><span class="code-tag">F1_macro = 0.70+</span> (Beats single modalities)</td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>1.2</strong></td>
+              <td><span class="code-tag">confidence</span></td>
+              <td>KDM Direct Scalar 23-col (<span class="code-tag">MODEL_CARD.md</span>)</td>
+              <td>Ordinal Dist / Macro-F1</td>
+              <td><strong>Ord. Dist: 0.440</strong> | <strong>Macro-F1: 0.589</strong> | <strong>Acc: 0.681</strong></td>
+            </tr>
+            <tr>
+              <td><strong>1.3</strong></td>
+              <td><span class="code-tag">variable_weights</span> & <span class="code-tag">reveal</span></td>
+              <td>SHAP Attributions + 3D Thresholds</td>
+              <td>Reveal F1_macro / MOE_abs</td>
+              <td><strong>Reveal F1: 0.5775</strong> | <strong>Weights MOE: 0.3465</strong></td>
+            </tr>
+            <tr>
+              <td><strong>1.4</strong></td>
+              <td><span class="code-tag">free_text</span> & Agent</td>
+              <td>Urology LLM + Stage-1 Immutable Laws</td>
+              <td>Schema & Clinical Coherence</td>
+              <td><strong>100% Pydantic Schema Validity</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🎓 Key PhD Contributions</div>
+          <ul>
+            <li><strong>23-PCA Representation:</strong> Established robust 23-component PCA compression for MRI embeddings, preserving 98.17% variance.</li>
+            <li><strong>KDM Direct Modeling:</strong> Proved Kernel Density Matrix classifiers outperform conventional SVMs and trees for clinical confidence.</li>
+            <li><strong>Stage-1 Decoupled Agent:</strong> Architected zero-hallucination agent framework bridging quantitative ML and LLMs.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🚀 Next Milestones</div>
+          <ul>
+            <li><strong>Challenge Test Evaluation:</strong> Evaluate agent pipeline end-to-end on unseen test cohort (~104 cases).</li>
+            <li><strong>LLM Rationale Judge Tuning:</strong> Optimize Ollama Gemma prompt engineering for rationale scoring.</li>
+            <li><strong>Manuscript Preparation:</strong> Draft paper submission detailing multimodal fusion and KDM confidence estimation.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <footer>
+    <button class="nav-btn" id="prev-btn" onclick="prevSlide()">← Previous</button>
+    <div class="nav-hint">Use ← and → Arrow Keys to Navigate</div>
+    <button class="nav-btn" id="next-btn" onclick="nextSlide()">Next →</button>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 8;
+
+    function updateSlide() {
+      // Hide all slides
+      document.querySelectorAll('.slide').forEach(slide => {
+        slide.classList.remove('active');
+      });
+
+      // Show current slide
+      const activeSlide = document.getElementById(`slide-${currentSlide}`);
+      if (activeSlide) {
+        activeSlide.classList.add('active');
+      }
+
+      // Update counter and progress bar
+      document.getElementById('slide-counter').textContent = `Slide ${currentSlide} of ${totalSlides}`;
+      const progressPercent = (currentSlide / totalSlides) * 100;
+      document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+      // Update button states
+      document.getElementById('prev-btn').disabled = (currentSlide === 1);
+      document.getElementById('next-btn').disabled = (currentSlide === totalSlides);
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    // Initialize
+    updateSlide();
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+======================================================================
+exp_7: KNN on Standardized MRI embedding (1024 dims, StandardScaler)
+======================================================================
+
+[1/7] Loading data...
+/home/jmalagont/project/pathology-reasoning/experiments/exp_7/scripts/run_knn_std_mri_experiment.py:418: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  images_df = images_df.set_index("case_id").loc[case_ids].reset_index()
+  Cohort: 88 cases, 54 yes / 34 no
+  Confidence: {'clear': 56, 'borderline': 18, 'uncertain': 14}
+  MRI embedding shape: (88, 1024)
+  Preprocessing: StandardScaler per fold (z-score, fit on train only)
+
+[2/7] Validating embedding...
+  NaN: 0, Inf: 0
+  Raw range: [-28.8489, 10.2175]
+  Raw mean: -0.3834, Raw std: 1.7007
+
+[3/7] MCCV search (72 configs x 50 splits, StandardScaler per split)...
+  72 configurations x 50 splits = 3600 evaluations
+  MCCV: 10/50 splits done
+  MCCV: 20/50 splits done
+  MCCV: 30/50 splits done
+  MCCV: 40/50 splits done
+  MCCV: 50/50 splits done
+
+[4/7] Selecting best configuration...
+  Best: knn_n1_metriccosine_weightsuniform_variantconfidence_weighted
+  F1_macro=0.5139 +/- 0.1190
+  F1_yes  =0.6717 +/- 0.0938
+  Balanced_acc=0.5245
+  MCC     =0.0515
+
+  Top 5:
+    1. knn_n1_metriccosine_weightsuniform_variantconfidence_weighted: F1_macro=0.5139, brier_score=0.3703, F1_yes=0.6717
+    2. knn_n1_metriccosine_weightsdistance_variantconfidence_weighted: F1_macro=0.5139, brier_score=0.3703, F1_yes=0.6717
+    3. knn_n1_metriccosine_weightsuniform_variantstandard: F1_macro=0.5139, brier_score=0.4300, F1_yes=0.6717
+    4. knn_n1_metriccosine_weightsdistance_variantstandard: F1_macro=0.5139, brier_score=0.4300, F1_yes=0.6717
+    5. knn_n5_metriccosine_weightsuniform_variantstandard: F1_macro=0.5058, brier_score=0.2728, F1_yes=0.6908
+
+[5/7] LOO evaluation (best config only, StandardScaler per fold)...
+  LOO: 20/88 folds done
+  LOO: 40/88 folds done
+  LOO: 60/88 folds done
+  LOO: 80/88 folds done
+  LOO F1_macro=0.5108
+  LOO F1_yes  =0.6609
+  LOO Balanced_acc=0.5136
+  LOO MCC     =0.0288
+  LOO Brier   =0.6241 (1-Brier), 0.3759 (conv.)
+
+[6/7] Generating confusion matrix figures...
+  Confusion matrix figures saved to experiments/exp_7/reports/figures/
+
+[7/7] Writing artefacts...
+
+  Artefacts written to experiments/exp_7/results/knn_n1_metriccosine_weightsuniform_variantconfidence_weighted/
+  Figures written to experiments/exp_7/reports/figures/
+  Total time: 2.0 min
+  Done.
+======================================================================

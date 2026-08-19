@@ -3,7 +3,7 @@
 **Project**: pathology-reasoning
 **Task**: Task 1 — Prostate Biopsy Decision (subtasks 1.1, 1.2, 1.3, 1.4)
 **Status**: Frozen protocol — Draft
-**Last updated**: 2026-08-15
+**Last updated**: 2026-08-18
 
 ---
 
@@ -119,27 +119,59 @@ Primary: **F1_yes**. Tie-break by Macro-F1, then balanced accuracy.
 
 Code mapping: `uncertain=0`, `borderline=1`, `clear=2`.
 
-Primary:
+#### Canonical protocol (corrected 2026-08-18)
 
-- **Normalized ordinal distance** = `1 - |pred_code - true_code| / 2` (in [0, 1]; 1 = perfect).
-- `quadratic_weighted_kappa` (QWK) over the 3 levels.
+The original protocol used "normalized ordinal distance" (OD), QWK, and several secondary
+metrics that produced misleading rankings (e.g., regression trees with lowest OD but class
+collapse). The canonical protocol below supersedes all prior subtask 1.2 metric definitions.
 
-Secondary:
+**Primary metric (selection):**
 
-- `accuracy`, `Macro-F1`
-- `Brier score` (multiclass; one-vs-rest averaged)
-- `ROC-AUC` (multiclass, macro-averaged one-vs-rest)
-- `Spearman rho` vs. rank correlation (report `rho` and p-value; p-value is diagnostic only)
-- `MAE` (ordinal, in code units)
-- `classification_report` per class
-- `confusion_matrix` (3×3)
-- Multiclass calibration diagnostics (ECE per class)
+- **MOE_abs** (Mean Ordinal Error, absolute) = `(1/3) * Σ_c mean_{i:y_i=c}(|pred_i - true_i|/2)`.
+  Range [0, 1]; lower = better. Class-balanced by construction: each class contributes
+  equally regardless of prevalence.
+
+**Tiebreak (when MOE_abs is identical across models):**
+
+- **F1_macro** — unweighted mean of per-class F1.
+
+**Required diagnostics (never for selection):**
+
+- Confusion matrix (3×3, absolute + row-normalized), order `[uncertain, borderline, clear]`.
+- Per-class recall: `rec_U`, `rec_B`, `rec_C`.
+- Validity rate (structural + output validity).
+- Sanity check: `MOE_abs` over the full "always clear" baseline with real MCCV labels
+  (exactly 900 predictions) as lower bound reference.
+
+**Selection cascade (in order):**
+
+1. Validity = 100%.
+2. `MOE_abs < MOE_abs_baseline` (baseline = always clear, N=900).
+3. No zero recall (all three classes must have rec > 0).
+4. Minimize `MOE_abs`.
+5. Tiebreak: maximize `F1_macro`.
+
+**Baseline (always clear):**
+
+- Predicts `clear` for all cases.
+- Evaluated with real MCCV labels (900 pooled predictions, not 88).
+- Typical: `MOE_abs = 0.5000`, `F1_macro = 0.2626`.
+
+**Baseline reasoning (from `prediction.json`):**
+
+- The Task 1 agent's own confidence predictions, evaluated on the 88 `usable_labeled`
+  cases (LOO).
+- Typical: `MOE_abs ≈ 0.4788`, `F1_macro ≈ 0.2962`.
+- Used as a reference ceiling for sanity checking only.
+
+**Removed metrics (no longer used for subtask 1.2):**
+
+- `accuracy`, `balanced_accuracy`, QWK, Brier, ECE, AUC, Spearman, MAE, OE,
+  per-class precision/recall/F1, error_unclear, error_reverse, bootstrap CIs,
+  feature usage, monotonicity.
 
 Challenge correspondence: `confidence_score` (per-case; maps to normalized agreement),
 `confidence_weighted_kappa`.
-
-> Note: the Challenge `confidence_score` is an exact-match / ordinal-distance scorer per case.
-> For model selection we approximate it with normalized ordinal distance over the cohort.
 
 ### 3.3 Subtask 1.3 — Clinical relevance (10 variables, ordinal 4 levels)
 
@@ -250,8 +282,11 @@ One report per **experiment** summarizing all candidate configurations attempted
 
 ### 4.3 Selection rule per experiment
 
-- 1.x primary metric: 1.1 F1_yes, 1.2 normalized ordinal distance, 1.3 macro-normalized
-  ordinal distance.
+- 1.1 primary: **F1_yes**. Tiebreak by macro-F1, then balanced accuracy.
+- 1.2 primary: **MOE_abs** (class-balanced ordinal error). Tiebreak by F1_macro.
+  See §3.2 for full cascade.
+- 1.3 primary: **normalized ordinal distance, macro-averaged across 10 variables**.
+  Tiebreak by important/decisive set F1; then macro-QWK.
 - 1.4 primary: deterministic challenge-equivalent `mean_case_score`, and
   challenge-equivalent `ranking_score` (deterministic).
 - Final model selection **across experiments**: the experiment whose best configuration

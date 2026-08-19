@@ -1,0 +1,103 @@
+======================================================================
+exp_8: KNN + Spearman Correlation Pruning on MRI Embedding (1024 dims)
+======================================================================
+
+[1/7] Loading data...
+  Cohort: 88 cases, 54 yes / 34 no
+  Confidence: {'clear': 56, 'borderline': 18, 'uncertain': 14}
+  MRI embedding shape: (88, 1024) (no scaling applied)
+
+[2/7] Validating embedding...
+  NaN: 0, Inf: 0
+  Range: [-28.8489, 10.2175]
+  Mean: -0.3834, Std: 1.7007
+  Row norms: [40.72, 72.70]
+
+[3/7] MCCV condition: no_prune (no pruning) — 72 configs x 50 splits
+    MCCV split 10/50  (dims=1024/1024)
+    MCCV split 20/50  (dims=1024/1024)
+    MCCV split 30/50  (dims=1024/1024)
+    MCCV split 40/50  (dims=1024/1024)
+    MCCV split 50/50  (dims=1024/1024)
+    Best: no_prune_knn_n1_metriceuclidean_weightsuniform_variantstandard
+    F1_macro=0.5497 ± 0.0890
+    Dims per split: min=1024, max=1024, mean=1024.0
+
+[3/7] MCCV condition: tau_0.30 (tau=0.3) — 72 configs x 50 splits
+    MCCV split 10/50  (dims=63/1024)
+    MCCV split 20/50  (dims=71/1024)
+    MCCV split 30/50  (dims=66/1024)
+    MCCV split 40/50  (dims=70/1024)
+    MCCV split 50/50  (dims=67/1024)
+    Best: tau_0.30_knn_n3_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.5201 ± 0.1057
+    Dims per split: min=60, max=73, mean=67.5
+
+[3/7] MCCV condition: tau_0.60 (tau=0.6) — 72 configs x 50 splits
+    MCCV split 10/50  (dims=201/1024)
+    MCCV split 20/50  (dims=211/1024)
+    MCCV split 30/50  (dims=208/1024)
+    MCCV split 40/50  (dims=209/1024)
+    MCCV split 50/50  (dims=208/1024)
+    Best: tau_0.60_knn_n3_metriccosine_weightsdistance_variantstandard
+    F1_macro=0.5327 ± 0.1008
+    Dims per split: min=191, max=224, mean=204.3
+
+[3/7] MCCV condition: tau_0.80 (tau=0.8) — 72 configs x 50 splits
+    MCCV split 10/50  (dims=408/1024)
+    MCCV split 20/50  (dims=427/1024)
+    MCCV split 30/50  (dims=420/1024)
+    MCCV split 40/50  (dims=427/1024)
+    MCCV split 50/50  (dims=413/1024)
+    Best: tau_0.80_knn_n3_metriccosine_weightsuniform_variantstandard
+    F1_macro=0.5280 ± 0.1069
+    Dims per split: min=392, max=444, mean=414.1
+
+[3/7] MCCV condition: tau_0.90 (tau=0.9) — 72 configs x 50 splits
+    MCCV split 10/50  (dims=631/1024)
+    MCCV split 20/50  (dims=644/1024)
+    MCCV split 30/50  (dims=636/1024)
+    MCCV split 40/50  (dims=626/1024)
+    MCCV split 50/50  (dims=634/1024)
+    Best: tau_0.90_knn_n7_metriccosine_weightsuniform_variantconfidence_weighted
+    F1_macro=0.5256 ± 0.1240
+    Dims per split: min=603, max=661, mean=627.9
+
+[4/7] Cross-condition selection...
+  Global best: no_prune_knn_n1_metriceuclidean_weightsuniform_variantstandard
+  F1_macro=0.5497 ± 0.0890
+  F1_yes  =0.6671 ± 0.0888
+  Balanced_acc=0.5544
+  MCC     =0.1176
+
+  Top 5 overall:
+    1. no_prune_knn_n1_metriceuclidean_weightsuniform_variantstandard: F1_macro=0.5497, F1_yes=0.6671
+    2. no_prune_knn_n1_metriceuclidean_weightsuniform_variantconfidence_weighted: F1_macro=0.5497, F1_yes=0.6671
+    3. no_prune_knn_n1_metriceuclidean_weightsdistance_variantstandard: F1_macro=0.5497, F1_yes=0.6671
+    4. no_prune_knn_n1_metriceuclidean_weightsdistance_variantconfidence_weighted: F1_macro=0.5497, F1_yes=0.6671
+    5. no_prune_knn_n7_metriccosine_weightsuniform_variantstandard: F1_macro=0.5379, F1_yes=0.6817
+
+[5/7] LOO intersection for no_prune...
+  Dims per split (first 5): [1024, 1024, 1024, 1024, 1024]...
+  Set sizes: min=1024, max=1024, mean=1024.0
+  LOO intersection: 1024 dimensions
+
+[6/7] LOO evaluation (88 folds, 1024 dims)...
+  LOO: 20/88 folds done
+  LOO: 40/88 folds done
+  LOO: 60/88 folds done
+  LOO: 80/88 folds done
+  LOO F1_macro=0.5731
+  LOO F1_yes  =0.6847
+  LOO Balanced_acc=0.5724
+  LOO MCC     =0.1477
+  LOO Brier   =0.6023 (1-Brier), 0.3977 (conv.)
+
+[7/7] Generating confusion matrices and writing artefacts...
+  Confusion matrix figures saved to experiments/exp_8/reports/figures/
+
+  Artefacts written to experiments/exp_8/results/no_prune_knn_n1_metriceuclidean_weightsuniform_variantstandard/
+  Figures written to experiments/exp_8/reports/figures/
+  Total time: 12.2 min
+  Done.
+======================================================================

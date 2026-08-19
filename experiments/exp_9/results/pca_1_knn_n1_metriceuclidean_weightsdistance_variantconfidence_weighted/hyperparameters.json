@@ -1,0 +1,9 @@
+{
+  "condition": "pca_1",
+  "n_components": 1,
+  "n_neighbors": 1,
+  "metric": "euclidean",
+  "weights": "distance",
+  "variant": "confidence_weighted",
+  "preprocessing": "PCA n_components=1, whiten=False, svd_solver=full"
+}

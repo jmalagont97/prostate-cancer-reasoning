@@ -1,0 +1,19 @@
+{
+  "config": "pca_1_knn_n1_metriceuclidean_weightsuniform_variantstandard",
+  "condition": "pca_1",
+  "metrics": {
+    "f1_macro": 0.6066639577407558,
+    "f1_yes": 0.6915887850467289,
+    "balanced_accuracy": 0.6072984749455338,
+    "mcc": 0.2134951071699026,
+    "sensitivity": 0.6851851851851852,
+    "specificity": 0.5294117647058824,
+    "precision_yes": 0.6981132075471698,
+    "accuracy": 0.625,
+    "pr_auc": 0.6715186455752493,
+    "roc_auc": 0.6072984749455337,
+    "brier": 0.625,
+    "brier_score": 0.375,
+    "ece": 0.19318181818181818
+  }
+}

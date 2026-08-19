@@ -1,0 +1,40 @@
+{
+  "best_config": "knn_n1_metriccosine_weightsuniform_variantconfidence_weighted",
+  "best_mccv_metrics": {
+    "f1_macro": 0.6453123758975354,
+    "f1_yes": 0.72634135871756,
+    "balanced_accuracy": 0.6496103896103896,
+    "mcc": 0.31001965880706345,
+    "sensitivity": 0.7363636363636364,
+    "specificity": 0.5628571428571428,
+    "precision_yes": 0.7300572205572206,
+    "accuracy": 0.6688888888888889,
+    "pr_auc": 0.7439885151984084,
+    "roc_auc": 0.6716883116883118,
+    "brier": 0.7259027777950695,
+    "brier_score": 0.27409722220493055,
+    "ece": 0.2774999999731389
+  },
+  "loo_metrics": {
+    "f1_macro": 0.6505545666164589,
+    "f1_yes": 0.7339449541284404,
+    "balanced_accuracy": 0.6497821350762527,
+    "mcc": 0.3012923025259114,
+    "sensitivity": 0.7407407407407407,
+    "specificity": 0.5588235294117647,
+    "precision_yes": 0.7272727272727273,
+    "accuracy": 0.6704545454545454,
+    "pr_auc": 0.7214830855685641,
+    "roc_auc": 0.6677559912854031,
+    "brier": 0.7251420454708807,
+    "brier_score": 0.2748579545291193,
+    "ece": 0.22443181814801136
+  },
+  "total_configs_evaluated": 72,
+  "total_mccv_splits": 50,
+  "total_loo_folds": 88,
+  "selection_criterion": "F1_macro (primary) \u2192 brier_score (tie-break) \u2192 F1_yes \u2192 balanced_accuracy \u2192 MCC",
+  "guardrail": "F1_yes (official primary from docs/EVALUATION.md)",
+  "fuzzy_revision": "v2 (probability-smoothing)",
+  "selector_revision": "v3 (lexicographic F1\u2192Brier)"
+}

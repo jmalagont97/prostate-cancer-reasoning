@@ -1,0 +1,7 @@
+================================================================================
+exp_20: Fast Permutation SHAP Significance Thresholding
+================================================================================
+  Git commit: 702fc02e009f63cb692425e4148e2d84f89ec16a project restart
+  Usable cohort size: 88
+
+[Phase 1/4] Pre-computing Permutation Descriptors for MCCV (50 splits)...

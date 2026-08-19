@@ -1,0 +1,33 @@
+{
+  "no_pca": {
+    "n_valid_folds": 0
+  },
+  "pca_1": {
+    "n_valid_folds": 50,
+    "cumulative_variance_mean": 0.801287068866734,
+    "cumulative_variance_std": 0.010494164823865577,
+    "cumulative_variance_min": 0.7799606472593171,
+    "cumulative_variance_max": 0.8270738242167205
+  },
+  "pca_23": {
+    "n_valid_folds": 50,
+    "cumulative_variance_mean": 0.9817484096331041,
+    "cumulative_variance_std": 0.0009413328892856635,
+    "cumulative_variance_min": 0.9792527559983338,
+    "cumulative_variance_max": 0.9840684694442363
+  },
+  "pca_46": {
+    "n_valid_folds": 50,
+    "cumulative_variance_mean": 0.9956296793815368,
+    "cumulative_variance_std": 0.00022575185231907838,
+    "cumulative_variance_min": 0.9951402966836327,
+    "cumulative_variance_max": 0.9961063056943665
+  },
+  "pca_69": {
+    "n_valid_folds": 50,
+    "cumulative_variance_mean": 1.0,
+    "cumulative_variance_std": 2.1181705310112557e-16,
+    "cumulative_variance_min": 0.9999999999999997,
+    "cumulative_variance_max": 1.0000000000000004
+  }
+}
