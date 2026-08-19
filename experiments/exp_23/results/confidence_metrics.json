@@ -1,0 +1,72 @@
+{
+    "entropy_hard": {
+        "macro_f1": 0.2532299741602067,
+        "accuracy": 0.4431818181818182,
+        "spearman_rho": 0.12307895120119189,
+        "spearman_pvalue": 0.25327776513875894,
+        "total_cases": 88,
+        "meta_threshold_1": -0.6151900506019592,
+        "meta_threshold_2": -0.50226581543684,
+        "direction": 1,
+        "fallback_count_of_100": 0,
+        "degenerate_count_of_100": 0,
+        "nonmonotone_count_of_100": 16,
+        "target_informed": false
+    },
+    "log_marginal_hard": {
+        "macro_f1": 0.33404570881360285,
+        "accuracy": 0.32954545454545453,
+        "spearman_rho": 0.3368115081618016,
+        "spearman_pvalue": 0.001333387130464484,
+        "total_cases": 88,
+        "meta_threshold_1": -2.4362951543927194,
+        "meta_threshold_2": 4.469850950837135,
+        "direction": -1,
+        "fallback_count_of_100": 0,
+        "degenerate_count_of_100": 0,
+        "nonmonotone_count_of_100": 0,
+        "target_informed": false
+    },
+    "entropy_soft": {
+        "macro_f1": 0.4163682864450127,
+        "accuracy": 0.45454545454545453,
+        "spearman_rho": 0.21598835501242591,
+        "spearman_pvalue": 0.04326906403105448,
+        "total_cases": 88,
+        "meta_threshold_1": -0.6374195969104767,
+        "meta_threshold_2": -0.4688868732750416,
+        "direction": 1,
+        "fallback_count_of_100": 0,
+        "degenerate_count_of_100": 0,
+        "nonmonotone_count_of_100": 0,
+        "target_informed": true
+    },
+    "log_marginal_soft": {
+        "macro_f1": 0.3680555555555555,
+        "accuracy": 0.4090909090909091,
+        "spearman_rho": 0.13404792126600082,
+        "spearman_pvalue": 0.2130841957675466,
+        "total_cases": 88,
+        "meta_threshold_1": -0.11813809871673583,
+        "meta_threshold_2": 1.6706580847501755,
+        "direction": -1,
+        "fallback_count_of_100": 0,
+        "degenerate_count_of_100": 0,
+        "nonmonotone_count_of_100": 0,
+        "target_informed": true
+    },
+    "joint_2d_hard": {
+        "macro_f1": 0.3140450691655511,
+        "accuracy": 0.3522727272727273,
+        "spearman_rho": 0.28444430337813603,
+        "spearman_pvalue": 0.0072336050564172005,
+        "total_cases": 88,
+        "target_informed": false
+    },
+    "exp_17_baseline": {
+        "macro_f1": 0.447,
+        "accuracy": 0.5795,
+        "spearman_rho": 0.279,
+        "spearman_pvalue": 0.0085
+    }
+}

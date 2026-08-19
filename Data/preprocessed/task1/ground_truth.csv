@@ -1,0 +1,197 @@
+case_id,target_biopsy_decision,target_biopsy_decision_binary,target_confidence,target_confidence_code,target_weight_age,target_code_weight_age,target_weight_fh,target_code_weight_fh,target_weight_cspca,target_code_weight_cspca,target_weight_pirads,target_code_weight_pirads,target_weight_vol,target_code_weight_vol,target_weight_psa,target_code_weight_psa,target_weight_comorbidity,target_code_weight_comorbidity,target_weight_psad,target_code_weight_psad,target_weight_dre,target_code_weight_dre,target_weight_bx,target_code_weight_bx,target_reasoning_free_text,target_reveal_sequence_json
+PT-pseudo_0020cfca66c8,no,0.0,clear,2.0,noted,1.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,not_used,0.0,Priads 2 with only sightly elevated PSA,"[""radiology_report"", ""psa_trend"", ""laboratory_results"", ""previous_notes""]"
+PT-pseudo_0169468160c6,yes,1.0,clear,2.0,noted,1.0,not_used,0.0,noted,1.0,decisive,3.0,noted,1.0,decisive,3.0,noted,1.0,noted,1.0,noted,1.0,not_used,0.0,"Very High PSA.
+Most likely metastatic",[]
+PT-pseudo_01b643727538,no,0.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,not_used,0.0,noted,1.0,decisive,3.0,He has a ISUP3 cancer diagnosis already and he should be recommended treatment,"[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_033f1a8e1503,yes,1.0,clear,2.0,important,2.0,not_used,0.0,not_used,0.0,decisive,3.0,noted,1.0,noted,1.0,noted,1.0,not_used,0.0,noted,1.0,not_used,0.0,PIRADS 5 in a 60 year old man,"[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_0615b2bd8504,no,0.0,clear,2.0,important,2.0,not_used,0.0,not_used,0.0,decisive,3.0,noted,1.0,decisive,3.0,not_used,0.0,not_used,0.0,noted,1.0,decisive,3.0,Start treating the patent. It does not make sense to not treat this man initially.,"[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_062a1125899d,yes,1.0,borderline,1.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,PIRADS 4 lesion in 68 year old man with heavy comorbidity. Earlier negative biopsy.,"[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_06b319f42fcb,yes,1.0,clear,2.0,noted,1.0,not_used,0.0,not_used,0.0,decisive,3.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,important,2.0,PIRADS 5 lesion in a man in active surveillance.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_075dd468b384,yes,1.0,uncertain,0.0,noted,1.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,There is no information on ISUP in the earlier cancer diagnosis and missing also size of earlier PIRADS 4 lesion,"[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_079636ac5644,no,0.0,borderline,1.0,noted,1.0,not_used,0.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,"All depends if the lesion has grown in size since 2024. If stable no biopsy , if increased in size I will do a biopsy.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_0930885168c9,yes,1.0,uncertain,0.0,noted,1.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,noted,1.0,not_used,0.0,noted,1.0,important,2.0,"Again, has the lesion grown in size or not in a man on active surveillance.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_099651db404e,yes,1.0,clear,2.0,important,2.0,noted,1.0,noted,1.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,PIRADS 5 in a young man.,"[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_0bd72f429a8b,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,important,2.0,important,2.0,PIRADS 4 in a young man with a rapid increasing PSA,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_0cdfb9410718,yes,1.0,uncertain,0.0,noted,1.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,not_used,0.0,noted,1.0,noted,1.0,important,2.0,Again missing earlier ISUP grading and if the PIRADS 4 lesion is stabile or growing,"[""previous_notes"", ""psa_trend"", ""laboratory_results"", ""radiology_report""]"
+PT-pseudo_0de7e606ca70,yes,1.0,clear,2.0,noted,1.0,not_used,0.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,P5 in a man with high PSA,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_11345b8a7ab3,no,0.0,clear,2.0,noted,1.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,decisive,3.0,noted,1.0,noted,1.0,important,2.0,decisive,3.0,Patient has a verified PCa with PSA 113. Start treatment and do I PSMA-PET for further workup.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_11574b12444b,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,decisive,3.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,P5 in a young man with rapid increase in PSA,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_1185f6a68df0,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,P5 in a man with rapid increasing PSA,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_11fe9c6ca833,no,0.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,decisive,3.0,noted,1.0,not_used,0.0,noted,1.0,decisive,3.0,Patient with a clear PCa diagnosis. Do PSMA-PET and start hormontreatment,"[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_132e0000c0e0,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,P5 in a 57 year old man.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_138092c2a6be,yes,1.0,borderline,1.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,I need information on initial ISUP and size of P4 lesion in initial scan.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_152344add0f1,yes,1.0,clear,2.0,noted,1.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,not_used,0.0,noted,1.0,noted,1.0,noted,1.0,P5 with rapid increasing PSA,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_175e6ad47991,no,0.0,borderline,1.0,decisive,3.0,not_used,0.0,not_used,0.0,important,2.0,important,2.0,important,2.0,not_used,0.0,noted,1.0,important,2.0,important,2.0,P5 in 79 years old man with earlier negative biopsy. Need to discuss with patient.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_17f110c9e142,no,0.0,borderline,1.0,noted,1.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,not_used,0.0,noted,1.0,important,2.0,important,2.0,Need to know if the P5 lesion has grown in size. If not no biopsy.,"[""previous_notes"", ""radiology_report"", ""psa_trend""]"
+PT-pseudo_180352970ace,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,noted,1.0,not_used,0.0,noted,1.0,noted,1.0,noted,1.0,P5 in 63 year old man.,"[""radiology_report""]"
+PT-pseudo_1a4e0cf3b927,no,0.0,borderline,1.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,noted,1.0,not_used,0.0,noted,1.0,important,2.0,decisive,3.0,Most likely no biopsy . But very rapid growth in size might change the decision.,"[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_1dc32184cab6,no,0.0,clear,2.0,noted,1.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,decisive,3.0,not_used,0.0,noted,1.0,noted,1.0,important,2.0,Low PSA with earlier negative biopsy. A change in P4 lesion size might trigger a biopsy.,"[""radiology_report"", ""psa_trend""]"
+PT-pseudo_20a7e91c494c,no,0.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,important,2.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,decisive,3.0,Man on active surveillance. MRI stabile and PSA moderately high.,"[""previous_notes"", ""radiology_report"", ""psa_trend""]"
+PT-pseudo_20ba3f0f6ca0,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,noted,1.0,not_used,0.0,noted,1.0,important,2.0,noted,1.0,P4 in patient 65 years.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_21e7fa67a79e,yes,1.0,borderline,1.0,noted,1.0,noted,1.0,not_used,0.0,decisive,3.0,important,2.0,important,2.0,not_used,0.0,noted,1.0,noted,1.0,important,2.0,"Patient on Activ Surveillance with severe LUTS symptoms. There are two options , recommend surgery direkt or do a new biopsy.","[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_249def42388a,yes,1.0,borderline,1.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,This is borderline. A P5 but old man and moderately PSA with no symptoms.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_25007bb807d7,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,not_used,0.0,noted,1.0,noted,1.0,noted,1.0,P5 in 61 year patient,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_259484ae733f,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,not_used,0.0,noted,1.0,noted,1.0,important,2.0,P4 in 65 years old patient,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_2b3ef1d3a505,no,0.0,uncertain,0.0,noted,1.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,Need to know if the lesion has grown or if it is stabile.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_2cd88bcdf81c,yes,1.0,clear,2.0,noted,1.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,not_used,0.0,noted,1.0,not_used,0.0,important,2.0,P4 in 73 year old patient.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_2e0346bce3b3,yes,1.0,uncertain,0.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,Need to know initial ISUP and MRI results,"[""radiology_report"", ""previous_notes"", ""psa_trend""]"
+PT-pseudo_2e4988b84112,no,0.0,clear,2.0,noted,1.0,not_used,0.0,not_used,0.0,decisive,3.0,important,2.0,decisive,3.0,not_used,0.0,not_used,0.0,noted,1.0,decisive,3.0,This patient has PCa and a very high PSA. start treatment and do a PSMA-PET .,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_2eef4115a253,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,noted,1.0,not_used,0.0,noted,1.0,noted,1.0,important,2.0,"P4 and LUTS symptoms. Note , low PSA.","[""radiology_report"", ""previous_notes""]"
+PT-pseudo_2ef22b5dd08e,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,not_used,0.0,noted,1.0,noted,1.0,noted,1.0,P4 in 66 year old patient.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_2fbb84505a45,yes,1.0,uncertain,0.0,noted,1.0,noted,1.0,not_used,0.0,important,2.0,important,2.0,important,2.0,not_used,0.0,not_used,0.0,noted,1.0,decisive,3.0,Patient on Active surveillance. Initial ISUP and MRI is needed.,"[""previous_notes"", ""psa_trend"", ""laboratory_results"", ""radiology_report""]"
+PT-pseudo_33c8cd4571fd,yes,1.0,borderline,1.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,P5 in 71 years old patient with no major comorbidities,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_34647958aba3,no,0.0,uncertain,0.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,decisive,3.0,"Again, man on Active Surveillance. Need initial ISUP and MRI.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_3477ea7065bd,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,P4 in 65 year old patient,"[""radiology_report""]"
+PT-pseudo_3646e0a2ae13,no,0.0,clear,2.0,noted,1.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,Normal MRI. No biopsy,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_36c92fb424ac,yes,1.0,clear,2.0,noted,1.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,noted,1.0,important,2.0,not_used,0.0,noted,1.0,important,2.0,P4 lesion in 67 year old patient.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_376de00c8131,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,P4 in 52 Y old patient.,"[""psa_trend"", ""radiology_report"", ""previous_notes""]"
+PT-pseudo_37d8ae9b27f1,no,0.0,borderline,1.0,noted,1.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,Need to know initial MRI before decision,"[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_394e0b8dbeeb,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,P4 in 71 Y old patient with positive DRE,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_3b6ea1920967,no,0.0,uncertain,0.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,Need initial ISUP grade and MRI in men on active surveillance.,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_3cc88c81f35a,no,0.0,clear,2.0,noted,1.0,noted,1.0,not_used,0.0,decisive,3.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,decisive,3.0,Patient with low-risk cancer on active surveillance. Now normal MRI.,"[""radiology_report""]"
+PT-pseudo_3ceacc9b660b,no,0.0,borderline,1.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,"Need to know earlier MRI results. If stabile P3 lesion, no biopsy.","[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_3f75ae876abe,yes,1.0,clear,2.0,important,2.0,noted,1.0,important,2.0,decisive,3.0,important,2.0,important,2.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,PIRADS 5 needs biopsy,"[""radiology_report""]"
+PT-pseudo_41ca49bed13d,yes,1.0,clear,2.0,important,2.0,noted,1.0,important,2.0,important,2.0,important,2.0,important,2.0,noted,1.0,decisive,3.0,important,2.0,noted,1.0,PIRADS 4 with high PSA-density needs biopsy,"[""psa_trend"", ""radiology_report""]"
+PT-pseudo_47c373e230b6,yes,1.0,clear,2.0,important,2.0,noted,1.0,noted,1.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,New(? -> no old MRI report included) PIRADS 5 and rising PSA makes biopsy necessary,"[""radiology_report"", ""previous_notes""]"
+PT-pseudo_47d8b39fd07f,no,0.0,clear,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,decisive,3.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,decisive,3.0,No need for biopsy while higher PSA earlier with PIRADS 3 (unchanged?),"[""radiology_report"", ""psa_trend"", ""previous_notes""]"
+PT-pseudo_48fb60dfd22f,yes,1.0,clear,2.0,important,2.0,noted,1.0,important,2.0,decisive,3.0,important,2.0,decisive,3.0,noted,1.0,decisive,3.0,noted,1.0,noted,1.0,PIRADS 5 needs biopsy,"[""psa_trend"", ""radiology_report"", ""previous_notes""]"
+PT-pseudo_4a2fa7bc3595,yes,1.0,uncertain,0.0,noted,1.0,not_used,0.0,important,2.0,important,2.0,important,2.0,important,2.0,important,2.0,important,2.0,important,2.0,important,2.0,What was the result of the earlier positive biopsy and the MRI precluding that biopsy? Hard to determine what we are looking at here.,"[""radiology_report"", ""previous_notes"", ""laboratory_results"", ""psa_trend""]"
+PT-pseudo_4a4fedfc1f51,yes,1.0,clear,2.0,important,2.0,not_used,0.0,important,2.0,decisive,3.0,noted,1.0,important,2.0,not_used,0.0,important,2.0,decisive,3.0,noted,1.0,Biopsy-naive PIRADS 5 needs biopsy,"[""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_4b950525e6a8,no,0.0,clear,2.0,not_used,0.0,not_used,0.0,not_used,0.0,not_used,0.0,not_used,0.0,not_used,0.0,not_used,0.0,not_used,0.0,not_used,0.0,decisive,3.0,Patient needs treatment without repeat biopsy as earlier biopsy showed ISUP4,"[""previous_notes"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_4bfd4ec864d8,yes,1.0,clear,2.0,noted,1.0,not_used,0.0,noted,1.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,important,2.0,important,2.0,noted,1.0,New PIRADS 5 following negative biopsies needs biopsy,"[""previous_notes"", ""radiology_report""]"
+PT-pseudo_4c6b2b2bbf94,no,0.0,uncertain,0.0,important,2.0,not_used,0.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,decisive,3.0,"PRADS 4 with low-PSA-density can be followed up, I need results of earlier biopsy to make a definite call","[""previous_notes""]"
+PT-pseudo_4d54f04e26ae,yes,1.0,uncertain,0.0,noted,1.0,not_used,0.0,important,2.0,important,2.0,important,2.0,important,2.0,noted,1.0,decisive,3.0,important,2.0,noted,1.0,New (? -> no earlier MRI report available) PIRADS 4 with high PSA-density needs biopsy,"[""psa_trend"", ""radiology_report""]"
+PT-pseudo_4e545d350c5b,yes,1.0,clear,2.0,noted,1.0,not_used,0.0,noted,1.0,decisive,3.0,important,2.0,important,2.0,noted,1.0,decisive,3.0,noted,1.0,important,2.0,Biopsy-naive PIRADS 5 needs biopsy,"[""radiology_report""]"
+PT-pseudo_4edb17f79e46,yes,1.0,uncertain,0.0,important,2.0,not_used,0.0,noted,1.0,important,2.0,important,2.0,decisive,3.0,noted,1.0,decisive,3.0,noted,1.0,noted,1.0,"Again earlier MRI report is missing, If new PRADS 4 lesion biopsy is needed as PSA is rising as well","[""psa_trend"", ""radiology_report""]"
+PT-pseudo_4f33b0253633,no,0.0,uncertain,0.0,important,2.0,not_used,0.0,noted,1.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,noted,1.0,decisive,3.0,At what PSA level the prior biopsy was taken? If PIRADS 3 is new and PSA is significantly rising since last biopsy I would consider repeat biopsy an option,"[""psa_trend"", ""radiology_report"", ""previous_notes""]"
+PT-pseudo_52213169f58b,yes,1.0,clear,2.0,important,2.0,not_used,0.0,noted,1.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,Biopsy naive PIRADS 5 needs biopsy,"[""radiology_report"", ""psa_trend""]"
+PT-pseudo_562159dc2cc6,no,0.0,clear,2.0,important,2.0,not_used,0.0,noted,1.0,decisive,3.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,No biopsy for PIRADS 2 unless PSA keeps rising,"[""radiology_report""]"
+PT-pseudo_575cb2819e96,yes,1.0,uncertain,0.0,noted,1.0,not_used,0.0,noted,1.0,decisive,3.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,important,2.0,Biopsy only when PIRADS 5 is new,"[""previous_notes"", ""radiology_report"", ""psa_trend"", ""laboratory_results""]"
+PT-pseudo_590e7b237744,no,0.0,clear,2.0,decisive,3.0,not_used,0.0,not_used,0.0,decisive,3.0,not_used,0.0,important,2.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,"Stop checking PSA, no need for diagnostics",[]
+PT-pseudo_598f1d8f4e08,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_5af00f9153c2,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_5dc2eb70fbd7,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_5f263f325019,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_62c93b0c3dba,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_6457372f9532,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_665cf811e172,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_668c2a174afc,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_67728e41a2fa,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_6a100adb6ac3,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_6b6ee002f75d,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_6c8ef835ea42,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_6d2ecb82cc52,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_6d6abf7f6fb5,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_6d83f9e49421,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_6dc747db3e7d,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_6df4f23de04a,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_723f490ff7ce,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_7423d1c19560,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_76bfeeb8b8b8,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_7bcbfa157137,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_7be89ab28e92,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_7dbdcd6f9064,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_7dd989c35f87,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_7efca1668c87,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_7f85fe245d6c,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_80d551b63772,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_8137531888a0,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_8192345b35fa,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_819642c63ff9,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_825bc8328913,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_837f1dcfb56d,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_83f690a06c81,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_84ce0e4a9eed,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_8636aa471ef7,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_8654c4ff4d10,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_87cbc2052e90,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_8967e0df17fc,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_9187d18278f9,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_926c37508fe2,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_927456f47c99,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_938ba8a478e6,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_93c180f13bd8,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_945da5c635c4,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_956f2054a1ea,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_958f2377f288,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_95d3fd02d5e0,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_97a7a14b3c3d,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_9835e080606c,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_98f71f146763,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_9988c23725e6,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_99e3dc40a451,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_9ac935d9650f,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_9df1617405c1,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_9ff22a71b795,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_a2ed5cd06259,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_a32d7e3c3cdf,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_a37319c14573,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_a424617e164e,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_a4f6e7273fc3,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_a5292377e539,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_a62fdda714c0,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_a64ead56f586,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_a9a20522674d,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_a9acda639666,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_ac05cda1a88a,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_ac1dc724676e,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_acad53162dba,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_acc7bae9e286,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_aed2e170b8e6,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_af12e08190bd,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_afbc5ebc0d4e,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b00a553261d2,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b0321645a5de,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b28f2ad6069e,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b414d3d849a7,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b477d3bd8246,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b59dce24e94a,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b63dfe0f311e,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b69f6fab2a86,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b6db06db35d7,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b8115e954c12,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_b9aa0df93f2a,yes,1.0,clear,2.0,noted,1.0,noted,1.0,important,2.0,decisive,3.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,"Prev biopsy finding is left lobe, MRI finding highly suspicious of ISUP≥2 on right side. Active surveillance, only 1 biopsy session performed (of unclear date and unclear number of needles, unclear if targeted or systematic).","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_b9f0b7018502,yes,1.0,uncertain,0.0,decisive,3.0,not_used,0.0,noted,1.0,decisive,3.0,noted,1.0,important,2.0,important,2.0,important,2.0,important,2.0,decisive,3.0,"Young patient with high risk disease, should be recommended curative treatment. Biopsy report congruent with MRI, probably caught the index cancer at diagnosis. Highrisk flags are Gleason 5 pattern, cribriform pattern. Rather than new biopsy, consider low threshold for reevaluate MRI (T3-disease?, SVI?, nodes?) and possibly PSMA-PET for metastasis evaluation. Assess comorbidity closely.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_c03b1168ff4d,yes,1.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,decisive,3.0,"Active surveillance of unfavorable intermediate risk disease, no previous re-biopsy. Likely biopsied index lesion on MRI, but note small tumor extension on biopsy (4mm) as compared with MRI lesion size (16mm). If biopsy with higher risk disease, likely recommendation on curative treatment. Plan talk to address LUTS/IPSS. If not curative treatment, potentially BPH treatment. 74yrs old will affect treatment plan.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_c12bcf838ec8,no,0.0,clear,2.0,important,2.0,important,2.0,noted,1.0,important,2.0,important,2.0,important,2.0,noted,1.0,important,2.0,important,2.0,important,2.0,"Prev benign biopsy + PIRADS 3 (=no significant lesion) + low PSA-density -> Low longterm risk of lethal prostate cancer. 2yr too short interval for next assessment. suggest new PSA in two years, potentially new MRI with biopsy if PIRADS≥4","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_c13fda040310,yes,1.0,borderline,1.0,important,2.0,important,2.0,important,2.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,important,2.0,important,2.0,"Rising PSA + PIRADS≥4 (limited size lesion) gives high probability of undetected prostate cancer. Therefore re-biopsy indicated. However, prev benign biopsy carries low longterm risk of lethal prostate cancer so is no acute rush to perform biopsy if patient would like to wait one year. Low PSA density supports that waiting can be tolerated. Will however need new biopsy within a few years.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_c39e94a13920,yes,1.0,clear,2.0,important,2.0,noted,1.0,noted,1.0,important,2.0,decisive,3.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,AS for Intermediate risk PC in younger patient with very large prostate and only one biopsy procedure before. Needs confirmatory biopsy.,"[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_c55496c11421,no,0.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,important,2.0,"80yr, low risk PC. Only biopsy if signs of high risk PC, no indication for active treatment otherwise. Biopsyfinding congruent with MRI finding is reassuring.","[""previous_notes"", ""laboratory_results"", ""radiology_report"", ""psa_trend""]"
+PT-pseudo_c7277954c60f,no,0.0,clear,2.0,important,2.0,important,2.0,noted,1.0,important,2.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,important,2.0,important,2.0,"Young increases importance of longterm risk assessment. BPH, low PSAd, benign MRI, no family history increases confidence to avoid biopsy at this point.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_c9d31197c533,no,0.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,decisive,3.0,"Advocate for curative treatment while unfavorable intermediate risk pc in young patient without significant comorbidity. IF he is cautious toward curative treatment, repeat biopsy to exclude higher-risk disease.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_cac2563c222a,yes,1.0,clear,2.0,important,2.0,noted,1.0,important,2.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,"young patient with pirads5= high probability of significant prostate cancer and only one prev biopsy, increasing PSA. indicated with one more confirmatory biopsy to exclude significant disease (and curative treatment at this point)","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_cce5d47c05dd,no,0.0,borderline,1.0,important,2.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,"Young patient with elevated PSA (>10), elevated PSA density, PIRADS5 and ISUP GG2 disease -> low threshold for recommending curative treatment. IF patient does not want to go to curative treatment, low threshold for biopsy to exclude higher-risk disease.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_d217629c323a,no,0.0,borderline,1.0,important,2.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,"stable MRi findings in 70yr with reasonably low PSA. prev biopsy finding without obvious indication for treatment. IF patient want to be very active in treatment, consider biopsy and treat if higher-risk biopsy findings.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_d38917f87b35,no,0.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,important,2.0,important,2.0,"Highrisk disease in young patient. Should be treated, not get another biopsy.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_d3d6b421d0aa,yes,1.0,clear,2.0,important,2.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,important,2.0,noted,1.0,important,2.0,important,2.0,"Patient reasonable to discuss curative treatment with (age 68, no very dramatic comorbidity, unfavorable intermediate risk disease). Considering he chose not curative treatment at diagnosis, confirmatory biopsy is warranted to exclude higher risk disease. AS biopsy indicated after two years which seems to be now.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_d3e975d025e6,yes,1.0,clear,2.0,noted,1.0,noted,1.0,important,2.0,decisive,3.0,noted,1.0,decisive,3.0,noted,1.0,important,2.0,noted,1.0,decisive,3.0,"Younger patient, no reported comorbidity, high elevated PSA, high PSAdensity, PIRADS5, positive DRE. Clear indication biopsy.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_d49b896a09e6,yes,1.0,borderline,1.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,important,2.0,noted,1.0,noted,1.0,important,2.0,important,2.0,important,2.0,"Active surveillance, only one previous biopsy 2 yrs ago. Stable findings (stable PIRADS4, slightly increasing PSA) -> borderline indication for biopsy. As only one previous biopsy, would lean toward one confirmatory biopsy this time and potentially increase interval until next time. Alternative is to delay biopsy one year and do it then.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_d5ceb6b4204f,yes,1.0,borderline,1.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,important,2.0,important,2.0,important,2.0,important,2.0,"Borderline older patient, favorable intermediate risk disease with perineurial features. Low PSA (why was he biopsied in 2023 under non-elevated PSA?). While only one previous biopsy and intermediate risk disease, confirmatory biopsy after 2yrs recommended. Could potentially be postponed 1 yr.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_d7d26761c714,no,0.0,borderline,1.0,noted,1.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,important,2.0,important,2.0,"Low risk PC with PSA <10. No red flags on biopsy or MRI, reasonably low PSA density. MRI finding minor and probably penetrated by systematic biopsy core (peripheral zone). Entered active surveillance this year, unclear to me how long time ago biopsy was. Slight recommendation new MRI two years with low threshold for biopsy then.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_d95b3a02898e,no,0.0,clear,2.0,important,2.0,not_used,0.0,not_used,0.0,important,2.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,"older patient with non-elevated, stable PSA. some comorbidity limits expected survival. MRI without significant lesions. Low risk of higher risk prostate cancer -> no biopsy. High risk of over diagnosis if biopsied.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_dcd61cf9b443,no,0.0,clear,2.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,important,2.0,important,2.0,"This person should discuss curative treatment (younger patient with palpable, MRI-visible high-risk disease incl Gleason 5 findings). If not curative treatment for any reason, a strategy for medical treatment should be set. Potentially reasonable already now, but could also be delayed (but to the risk of disease progression).","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_dcd7bf13a6f4,yes,1.0,clear,2.0,noted,1.0,noted,1.0,important,2.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,noted,1.0,important,2.0,"74yr where it was decided to do MRI to assess potential PCa. The MRI shows high suspicion of PCa, and thus should be biopsied. Why was he not biopsied when the first MRI showed PIRADS5? (Ask about that reason before proceeding).","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_dd011d696387,yes,1.0,clear,2.0,important,2.0,not_used,0.0,not_used,0.0,important,2.0,noted,1.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,"Intermediate risk disease in 75yr with some comorbidity. No targeted biopsy and unclear timing (when was diagnosis and prev biopsy). Unclear if PIRADS5 was biopsied (limited size lesion, unclear if new lesion while lack of previous MRI). Biopsy to exclude higher-risk disease, should include targeted cores.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_e001f4d06517,yes,1.0,borderline,1.0,important,2.0,noted,1.0,not_used,0.0,important,2.0,noted,1.0,noted,1.0,noted,1.0,important,2.0,important,2.0,important,2.0,"Favourable risk intermediate risk PC in 73 yr old. Unclear when previous MRI+bx was performed. Reasonable to recommend another biopsy approx 2yrs after the first, especially if only 1 bx procedure before. Should probably only be treated if detected high-risk disease.","[""previous_notes"", ""laboratory_results"", ""psa_trend"", ""radiology_report""]"
+PT-pseudo_e1bb1e86b054,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_e288564d7111,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_e5104a16c8bb,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_e91d5fe837cb,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_e9fbcdc890f2,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_ee512fea9006,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_ef2309676161,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_ef66ca71e996,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_ef8ea220bdc6,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_f1083e2e01d8,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_f2ec9a9b4d4a,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_f3a2af65a42f,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_f41131a1bc0b,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_f4ea752ca1bb,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_f80c073525b1,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_f87b704d91af,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_f99f0627e536,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_fa31cd663f5a,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_fa4a71ae9a34,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_fab43a43b7e6,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_fc6cf5262222,,,,,,,,,,,,,,,,,,,,,,,,,,
+PT-pseudo_fdd4ff09679e,,,,,,,,,,,,,,,,,,,,,,,,,,

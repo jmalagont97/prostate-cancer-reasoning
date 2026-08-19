@@ -1,0 +1,103 @@
+{
+    "kdm_arm_a_hard": {
+        "macro_f1": 0.5636363636363637,
+        "accuracy": 0.625,
+        "sensitivity": 0.8148148148148148,
+        "specificity": 0.3235294117647059,
+        "auroc": 0.633442265795207,
+        "brier_score": 0.24941365894031275,
+        "tp": 44,
+        "tn": 11,
+        "fp": 23,
+        "fn": 10,
+        "total_cases": 88,
+        "deterministic": false,
+        "n_seeds": 10,
+        "mode_vote_agreement": 0.9886363636363636,
+        "per_seed_macro_f1": [
+            0.5954022988505747,
+            0.5860299358517462,
+            0.5809523809523809,
+            0.608528915477834,
+            0.5900826446280991,
+            0.5547619047619048,
+            0.6015846066779853,
+            0.49425287356321834,
+            0.614260666277031,
+            0.6303056642039693
+        ],
+        "macro_f1_std_across_seeds": 0.036103352195552225
+    },
+    "kdm_arm_b_soft": {
+        "macro_f1": 0.6694214876033058,
+        "accuracy": 0.7159090909090909,
+        "sensitivity": 0.8888888888888888,
+        "specificity": 0.4411764705882353,
+        "auroc": 0.6497821350762527,
+        "brier_score": 0.22625206702927095,
+        "tp": 48,
+        "tn": 15,
+        "fp": 19,
+        "fn": 6,
+        "total_cases": 88,
+        "deterministic": true,
+        "n_seeds": 1,
+        "mode_vote_agreement": 1.0
+    },
+    "kdm_arm_c_smoothed_hard": {
+        "macro_f1": 0.5718708536045998,
+        "accuracy": 0.625,
+        "sensitivity": 0.7962962962962963,
+        "specificity": 0.35294117647058826,
+        "auroc": 0.6514161220043573,
+        "brier_score": 0.24501177332297355,
+        "tp": 43,
+        "tn": 12,
+        "fp": 22,
+        "fn": 11,
+        "total_cases": 88,
+        "deterministic": false,
+        "n_seeds": 10,
+        "mode_vote_agreement": 0.9886363636363636,
+        "per_seed_macro_f1": [
+            0.5885447106954997,
+            0.6264855687606112,
+            0.5900826446280991,
+            0.6178660049627791,
+            0.6111190306486101,
+            0.5628287551139685,
+            0.5975051975051975,
+            0.5195402298850574,
+            0.6303056642039693,
+            0.6333333333333333
+        ],
+        "macro_f1_std_across_seeds": 0.033488816490692554
+    },
+    "fuzzy_knn_reference": {
+        "macro_f1": 0.6363636363636364,
+        "accuracy": 0.6590909090909091,
+        "sensitivity": 0.7407407407407407,
+        "specificity": 0.5294117647058824,
+        "auroc": 0.6304466230936819,
+        "brier_score": 0.2908380627632141,
+        "tp": 40,
+        "tn": 18,
+        "fp": 16,
+        "fn": 14,
+        "total_cases": 88,
+        "best_hparams": {
+            "k": 1,
+            "weights": "uniform",
+            "metric": "euclidean"
+        },
+        "published_reference_macro_f1": 0.6364
+    },
+    "exp23_kdm_hard_reproduction_target": 0.5636363636363637,
+    "exp23_kdm_soft_reproduction_target": 0.6694214876033058,
+    "mcnemar_arm_c_vs_fuzzy_knn": {
+        "b": 7,
+        "c": 10,
+        "statistic": 7,
+        "pvalue": 0.629058837890625
+    }
+}

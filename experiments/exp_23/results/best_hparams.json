@@ -1,0 +1,27 @@
+{
+    "kdm": {
+        "hard": {
+            "sigma_mult": 2.0,
+            "x_train": false,
+            "y_train": false,
+            "encoder": "linear",
+            "mccv_mean_macro_f1": 0.5965403149185758,
+            "mccv_std_macro_f1": 0.12181689451834142,
+            "mccv_mean_accuracy": 0.6488888888888888
+        },
+        "soft": {
+            "sigma_mult": 2.0,
+            "x_train": false,
+            "y_train": false,
+            "encoder": "identity",
+            "mccv_mean_macro_f1": 0.6012704172638955,
+            "mccv_std_macro_f1": 0.10742398136820434,
+            "mccv_mean_accuracy": 0.6716666666666669
+        }
+    },
+    "fuzzy_knn_reference": {
+        "k": 1,
+        "weights": "uniform",
+        "metric": "euclidean"
+    }
+}

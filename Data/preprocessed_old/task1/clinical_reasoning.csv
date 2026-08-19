@@ -1,0 +1,197 @@
+patient_id,reasoning_text,confidence,weight_psad,weight_vol,weight_pirads,weight_dre,weight_fh,weight_comorbidity,weight_cspca,weight_age,weight_bx,weight_psa
+PT-pseudo_0020cfca66c8,Priads 2 with only sightly elevated PSA,clear,noted,noted,decisive,noted,noted,noted,not_used,noted,not_used,important
+PT-pseudo_0169468160c6,"Very High PSA.
+Most likely metastatic",clear,noted,noted,decisive,noted,not_used,noted,noted,noted,not_used,decisive
+PT-pseudo_01b643727538,He has a ISUP3 cancer diagnosis already and he should be recommended treatment,clear,not_used,noted,important,noted,noted,noted,not_used,important,decisive,noted
+PT-pseudo_033f1a8e1503,PIRADS 5 in a 60 year old man,clear,not_used,noted,decisive,noted,not_used,noted,not_used,important,not_used,noted
+PT-pseudo_0615b2bd8504,Start treating the patent. It does not make sense to not treat this man initially.,clear,not_used,noted,decisive,noted,not_used,not_used,not_used,important,decisive,decisive
+PT-pseudo_062a1125899d,PIRADS 4 lesion in 68 year old man with heavy comorbidity. Earlier negative biopsy.,borderline,noted,not_used,important,noted,noted,noted,not_used,important,important,important
+PT-pseudo_06b319f42fcb,PIRADS 5 lesion in a man in active surveillance.,clear,noted,noted,decisive,noted,not_used,important,not_used,noted,important,noted
+PT-pseudo_075dd468b384,There is no information on ISUP in the earlier cancer diagnosis and missing also size of earlier PIRADS 4 lesion,uncertain,noted,noted,important,noted,noted,noted,not_used,noted,important,important
+PT-pseudo_079636ac5644,"All depends if the lesion has grown in size since 2024. If stable no biopsy , if increased in size I will do a biopsy.",borderline,noted,noted,important,noted,not_used,noted,not_used,noted,important,noted
+PT-pseudo_0930885168c9,"Again, has the lesion grown in size or not in a man on active surveillance.",uncertain,not_used,noted,important,noted,noted,noted,not_used,noted,important,important
+PT-pseudo_099651db404e,PIRADS 5 in a young man.,clear,noted,noted,decisive,noted,noted,noted,noted,important,noted,important
+PT-pseudo_0bd72f429a8b,PIRADS 4 in a young man with a rapid increasing PSA,clear,noted,noted,decisive,important,noted,noted,not_used,important,important,important
+PT-pseudo_0cdfb9410718,Again missing earlier ISUP grading and if the PIRADS 4 lesion is stabile or growing,uncertain,noted,noted,important,noted,noted,not_used,not_used,noted,important,important
+PT-pseudo_0de7e606ca70,P5 in a man with high PSA,clear,noted,noted,decisive,noted,not_used,noted,not_used,noted,noted,important
+PT-pseudo_11345b8a7ab3,Patient has a verified PCa with PSA 113. Start treatment and do I PSMA-PET for further workup.,clear,noted,noted,decisive,important,noted,noted,not_used,noted,decisive,decisive
+PT-pseudo_11574b12444b,P5 in a young man with rapid increase in PSA,clear,noted,noted,decisive,noted,noted,noted,not_used,important,noted,decisive
+PT-pseudo_1185f6a68df0,P5 in a man with rapid increasing PSA,clear,noted,noted,decisive,noted,noted,noted,not_used,important,noted,important
+PT-pseudo_11fe9c6ca833,Patient with a clear PCa diagnosis. Do PSMA-PET and start hormontreatment,clear,not_used,noted,decisive,noted,noted,noted,not_used,important,decisive,decisive
+PT-pseudo_132e0000c0e0,P5 in a 57 year old man.,clear,noted,noted,decisive,noted,noted,noted,not_used,important,noted,important
+PT-pseudo_138092c2a6be,I need information on initial ISUP and size of P4 lesion in initial scan.,borderline,noted,noted,important,noted,noted,noted,not_used,important,important,important
+PT-pseudo_152344add0f1,P5 with rapid increasing PSA,clear,noted,noted,decisive,noted,noted,not_used,not_used,noted,noted,important
+PT-pseudo_175e6ad47991,P5 in 79 years old man with earlier negative biopsy. Need to discuss with patient.,borderline,noted,important,important,important,not_used,not_used,not_used,decisive,important,important
+PT-pseudo_17f110c9e142,Need to know if the P5 lesion has grown in size. If not no biopsy.,borderline,noted,noted,important,important,noted,not_used,not_used,noted,important,important
+PT-pseudo_180352970ace,P5 in 63 year old man.,clear,noted,noted,decisive,noted,noted,not_used,not_used,important,noted,noted
+PT-pseudo_1a4e0cf3b927,Most likely no biopsy . But very rapid growth in size might change the decision.,borderline,noted,noted,decisive,important,noted,not_used,not_used,important,decisive,noted
+PT-pseudo_1dc32184cab6,Low PSA with earlier negative biopsy. A change in P4 lesion size might trigger a biopsy.,clear,noted,noted,important,noted,noted,not_used,not_used,noted,important,decisive
+PT-pseudo_20a7e91c494c,Man on active surveillance. MRI stabile and PSA moderately high.,clear,important,important,important,noted,noted,noted,not_used,important,decisive,noted
+PT-pseudo_20ba3f0f6ca0,P4 in patient 65 years.,clear,noted,noted,decisive,important,noted,not_used,not_used,important,noted,noted
+PT-pseudo_21e7fa67a79e,"Patient on Activ Surveillance with severe LUTS symptoms. There are two options , recommend surgery direkt or do a new biopsy.",borderline,noted,important,decisive,noted,noted,not_used,not_used,noted,important,important
+PT-pseudo_249def42388a,This is borderline. A P5 but old man and moderately PSA with no symptoms.,borderline,noted,noted,decisive,noted,noted,noted,not_used,important,noted,important
+PT-pseudo_25007bb807d7,P5 in 61 year patient,clear,noted,noted,decisive,noted,noted,not_used,not_used,important,noted,important
+PT-pseudo_259484ae733f,P4 in 65 years old patient,clear,noted,noted,decisive,noted,noted,not_used,not_used,important,important,important
+PT-pseudo_2b3ef1d3a505,Need to know if the lesion has grown or if it is stabile.,uncertain,noted,noted,important,noted,noted,noted,not_used,noted,important,important
+PT-pseudo_2cd88bcdf81c,P4 in 73 year old patient.,clear,noted,noted,decisive,not_used,noted,not_used,not_used,noted,important,important
+PT-pseudo_2e0346bce3b3,Need to know initial ISUP and MRI results,uncertain,noted,important,important,noted,noted,noted,not_used,important,important,noted
+PT-pseudo_2e4988b84112,This patient has PCa and a very high PSA. start treatment and do a PSMA-PET .,clear,not_used,important,decisive,noted,not_used,not_used,not_used,noted,decisive,decisive
+PT-pseudo_2eef4115a253,"P4 and LUTS symptoms. Note , low PSA.",clear,noted,noted,decisive,noted,noted,not_used,not_used,important,important,noted
+PT-pseudo_2ef22b5dd08e,P4 in 66 year old patient.,clear,noted,noted,decisive,noted,noted,not_used,not_used,important,noted,important
+PT-pseudo_2fbb84505a45,Patient on Active surveillance. Initial ISUP and MRI is needed.,uncertain,not_used,important,important,noted,noted,not_used,not_used,noted,decisive,important
+PT-pseudo_33c8cd4571fd,P5 in 71 years old patient with no major comorbidities,borderline,noted,noted,decisive,noted,noted,noted,not_used,important,noted,noted
+PT-pseudo_34647958aba3,"Again, man on Active Surveillance. Need initial ISUP and MRI.",uncertain,noted,noted,important,noted,noted,noted,NONE,important,decisive,noted
+PT-pseudo_3477ea7065bd,P4 in 65 year old patient,clear,noted,noted,decisive,noted,noted,noted,not_used,important,important,important
+PT-pseudo_3646e0a2ae13,Normal MRI. No biopsy,clear,noted,noted,decisive,noted,noted,noted,not_used,noted,important,important
+PT-pseudo_36c92fb424ac,P4 lesion in 67 year old patient.,clear,not_used,noted,decisive,noted,noted,important,not_used,noted,important,noted
+PT-pseudo_376de00c8131,P4 in 52 Y old patient.,clear,noted,noted,decisive,noted,noted,noted,not_used,important,noted,important
+PT-pseudo_37d8ae9b27f1,Need to know initial MRI before decision,borderline,noted,noted,important,noted,noted,noted,not_used,noted,important,noted
+PT-pseudo_394e0b8dbeeb,P4 in 71 Y old patient with positive DRE,clear,noted,noted,decisive,important,noted,noted,not_used,important,noted,important
+PT-pseudo_3b6ea1920967,Need initial ISUP grade and MRI in men on active surveillance.,uncertain,noted,noted,important,noted,noted,noted,not_used,important,important,noted
+PT-pseudo_3cc88c81f35a,Patient with low-risk cancer on active surveillance. Now normal MRI.,clear,noted,noted,decisive,noted,noted,noted,not_used,noted,decisive,noted
+PT-pseudo_3ceacc9b660b,"Need to know earlier MRI results. If stabile P3 lesion, no biopsy.",borderline,noted,noted,important,noted,noted,noted,not_used,important,important,noted
+PT-pseudo_3f75ae876abe,PIRADS 5 needs biopsy,clear,important,important,decisive,noted,noted,noted,important,important,noted,important
+PT-pseudo_41ca49bed13d,PIRADS 4 with high PSA-density needs biopsy,clear,decisive,important,important,important,noted,noted,important,important,noted,important
+PT-pseudo_47c373e230b6,New(? -> no old MRI report included) PIRADS 5 and rising PSA makes biopsy necessary,clear,important,noted,decisive,noted,noted,noted,noted,important,important,important
+PT-pseudo_47d8b39fd07f,No need for biopsy while higher PSA earlier with PIRADS 3 (unchanged?),clear,noted,decisive,important,noted,noted,noted,noted,noted,decisive,important
+PT-pseudo_48fb60dfd22f,PIRADS 5 needs biopsy,clear,decisive,important,decisive,noted,noted,noted,important,important,noted,decisive
+PT-pseudo_4a2fa7bc3595,What was the result of the earlier positive biopsy and the MRI precluding that biopsy? Hard to determine what we are looking at here.,uncertain,important,important,important,important,not_used,important,important,noted,important,important
+PT-pseudo_4a4fedfc1f51,Biopsy-naive PIRADS 5 needs biopsy,clear,important,noted,decisive,decisive,not_used,not_used,important,important,noted,important
+PT-pseudo_4b950525e6a8,Patient needs treatment without repeat biopsy as earlier biopsy showed ISUP4,clear,not_used,not_used,not_used,not_used,not_used,not_used,not_used,not_used,decisive,not_used
+PT-pseudo_4bfd4ec864d8,New PIRADS 5 following negative biopsies needs biopsy,clear,important,noted,decisive,important,not_used,noted,noted,noted,noted,important
+PT-pseudo_4c6b2b2bbf94,"PRADS 4 with low-PSA-density can be followed up, I need results of earlier biopsy to make a definite call",uncertain,important,noted,important,noted,not_used,noted,noted,important,decisive,noted
+PT-pseudo_4d54f04e26ae,New (? -> no earlier MRI report available) PIRADS 4 with high PSA-density needs biopsy,uncertain,decisive,important,important,important,not_used,noted,important,noted,noted,important
+PT-pseudo_4e545d350c5b,Biopsy-naive PIRADS 5 needs biopsy,clear,decisive,important,decisive,noted,not_used,noted,noted,noted,important,important
+PT-pseudo_4edb17f79e46,"Again earlier MRI report is missing, If new PRADS 4 lesion biopsy is needed as PSA is rising as well",uncertain,decisive,important,important,noted,not_used,noted,noted,important,noted,decisive
+PT-pseudo_4f33b0253633,At what PSA level the prior biopsy was taken? If PIRADS 3 is new and PSA is significantly rising since last biopsy I would consider repeat biopsy an option,uncertain,important,noted,important,noted,not_used,noted,noted,important,decisive,important
+PT-pseudo_52213169f58b,Biopsy naive PIRADS 5 needs biopsy,clear,noted,noted,decisive,noted,not_used,noted,noted,important,noted,important
+PT-pseudo_562159dc2cc6,No biopsy for PIRADS 2 unless PSA keeps rising,clear,important,noted,decisive,noted,not_used,noted,noted,important,noted,noted
+PT-pseudo_575cb2819e96,Biopsy only when PIRADS 5 is new,uncertain,important,noted,decisive,noted,not_used,noted,noted,noted,important,noted
+PT-pseudo_590e7b237744,"Stop checking PSA, no need for diagnostics",clear,important,not_used,decisive,noted,not_used,not_used,NONE,decisive,important,important
+PT-pseudo_598f1d8f4e08,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_5af00f9153c2,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_5dc2eb70fbd7,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_5f263f325019,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_62c93b0c3dba,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_6457372f9532,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_665cf811e172,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_668c2a174afc,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_67728e41a2fa,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_6a100adb6ac3,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_6b6ee002f75d,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_6c8ef835ea42,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_6d2ecb82cc52,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_6d6abf7f6fb5,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_6d83f9e49421,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_6dc747db3e7d,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_6df4f23de04a,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_723f490ff7ce,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_7423d1c19560,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_76bfeeb8b8b8,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_7bcbfa157137,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_7be89ab28e92,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_7dbdcd6f9064,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_7dd989c35f87,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_7efca1668c87,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_7f85fe245d6c,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_80d551b63772,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_8137531888a0,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_8192345b35fa,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_819642c63ff9,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_825bc8328913,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_837f1dcfb56d,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_83f690a06c81,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_84ce0e4a9eed,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_8636aa471ef7,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_8654c4ff4d10,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_87cbc2052e90,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_8967e0df17fc,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_9187d18278f9,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_926c37508fe2,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_927456f47c99,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_938ba8a478e6,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_93c180f13bd8,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_945da5c635c4,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_956f2054a1ea,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_958f2377f288,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_95d3fd02d5e0,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_97a7a14b3c3d,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_9835e080606c,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_98f71f146763,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_9988c23725e6,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_99e3dc40a451,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_9ac935d9650f,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_9df1617405c1,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_9ff22a71b795,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_a2ed5cd06259,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_a32d7e3c3cdf,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_a37319c14573,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_a424617e164e,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_a4f6e7273fc3,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_a5292377e539,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_a62fdda714c0,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_a64ead56f586,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_a9a20522674d,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_a9acda639666,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_ac05cda1a88a,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_ac1dc724676e,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_acad53162dba,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_acc7bae9e286,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_aed2e170b8e6,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_af12e08190bd,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_afbc5ebc0d4e,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b00a553261d2,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b0321645a5de,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b28f2ad6069e,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b414d3d849a7,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b477d3bd8246,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b59dce24e94a,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b63dfe0f311e,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b69f6fab2a86,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b6db06db35d7,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b8115e954c12,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_b9aa0df93f2a,"Prev biopsy finding is left lobe, MRI finding highly suspicious of ISUP≥2 on right side. Active surveillance, only 1 biopsy session performed (of unclear date and unclear number of needles, unclear if targeted or systematic).",clear,noted,noted,decisive,noted,noted,noted,important,noted,important,noted
+PT-pseudo_b9f0b7018502,"Young patient with high risk disease, should be recommended curative treatment. Biopsy report congruent with MRI, probably caught the index cancer at diagnosis. Highrisk flags are Gleason 5 pattern, cribriform pattern. Rather than new biopsy, consider low threshold for reevaluate MRI (T3-disease?, SVI?, nodes?) and possibly PSMA-PET for metastasis evaluation. Assess comorbidity closely.",uncertain,important,noted,decisive,important,not_used,important,noted,decisive,decisive,important
+PT-pseudo_c03b1168ff4d,"Active surveillance of unfavorable intermediate risk disease, no previous re-biopsy. Likely biopsied index lesion on MRI, but note small tumor extension on biopsy (4mm) as compared with MRI lesion size (16mm). If biopsy with higher risk disease, likely recommendation on curative treatment. Plan talk to address LUTS/IPSS. If not curative treatment, potentially BPH treatment. 74yrs old will affect treatment plan.",clear,noted,noted,important,noted,noted,important,not_used,important,decisive,noted
+PT-pseudo_c12bcf838ec8,"Prev benign biopsy + PIRADS 3 (=no significant lesion) + low PSA-density -> Low longterm risk of lethal prostate cancer. 2yr too short interval for next assessment. suggest new PSA in two years, potentially new MRI with biopsy if PIRADS≥4",clear,important,important,important,important,important,noted,noted,important,important,important
+PT-pseudo_c13fda040310,"Rising PSA + PIRADS≥4 (limited size lesion) gives high probability of undetected prostate cancer. Therefore re-biopsy indicated. However, prev benign biopsy carries low longterm risk of lethal prostate cancer so is no acute rush to perform biopsy if patient would like to wait one year. Low PSA density supports that waiting can be tolerated. Will however need new biopsy within a few years.",borderline,important,noted,important,important,important,noted,important,important,important,important
+PT-pseudo_c39e94a13920,AS for Intermediate risk PC in younger patient with very large prostate and only one biopsy procedure before. Needs confirmatory biopsy.,clear,noted,decisive,important,noted,noted,noted,noted,important,important,noted
+PT-pseudo_c55496c11421,"80yr, low risk PC. Only biopsy if signs of high risk PC, no indication for active treatment otherwise. Biopsyfinding congruent with MRI finding is reassuring.",clear,noted,noted,important,important,noted,noted,not_used,important,important,noted
+PT-pseudo_c7277954c60f,"Young increases importance of longterm risk assessment. BPH, low PSAd, benign MRI, no family history increases confidence to avoid biopsy at this point.",clear,important,important,important,important,important,not_used,noted,important,important,noted
+PT-pseudo_c9d31197c533,"Advocate for curative treatment while unfavorable intermediate risk pc in young patient without significant comorbidity. IF he is cautious toward curative treatment, repeat biopsy to exclude higher-risk disease.",clear,noted,noted,important,important,noted,noted,not_used,important,decisive,noted
+PT-pseudo_cac2563c222a,"young patient with pirads5= high probability of significant prostate cancer and only one prev biopsy, increasing PSA. indicated with one more confirmatory biopsy to exclude significant disease (and curative treatment at this point)",clear,important,noted,important,noted,noted,noted,important,important,important,important
+PT-pseudo_cce5d47c05dd,"Young patient with elevated PSA (>10), elevated PSA density, PIRADS5 and ISUP GG2 disease -> low threshold for recommending curative treatment. IF patient does not want to go to curative treatment, low threshold for biopsy to exclude higher-risk disease.",borderline,important,noted,important,noted,noted,noted,noted,important,important,important
+PT-pseudo_d217629c323a,"stable MRi findings in 70yr with reasonably low PSA. prev biopsy finding without obvious indication for treatment. IF patient want to be very active in treatment, consider biopsy and treat if higher-risk biopsy findings.",borderline,noted,noted,important,noted,noted,noted,noted,important,important,important
+PT-pseudo_d38917f87b35,"Highrisk disease in young patient. Should be treated, not get another biopsy.",clear,important,noted,important,important,noted,noted,not_used,important,important,important
+PT-pseudo_d3d6b421d0aa,"Patient reasonable to discuss curative treatment with (age 68, no very dramatic comorbidity, unfavorable intermediate risk disease). Considering he chose not curative treatment at diagnosis, confirmatory biopsy is warranted to exclude higher risk disease. AS biopsy indicated after two years which seems to be now.",clear,noted,noted,important,important,noted,important,noted,important,important,noted
+PT-pseudo_d3e975d025e6,"Younger patient, no reported comorbidity, high elevated PSA, high PSAdensity, PIRADS5, positive DRE. Clear indication biopsy.",clear,important,noted,decisive,noted,noted,noted,important,noted,decisive,decisive
+PT-pseudo_d49b896a09e6,"Active surveillance, only one previous biopsy 2 yrs ago. Stable findings (stable PIRADS4, slightly increasing PSA) -> borderline indication for biopsy. As only one previous biopsy, would lean toward one confirmatory biopsy this time and potentially increase interval until next time. Alternative is to delay biopsy one year and do it then.",borderline,important,important,important,important,noted,noted,not_used,important,important,noted
+PT-pseudo_d5ceb6b4204f,"Borderline older patient, favorable intermediate risk disease with perineurial features. Low PSA (why was he biopsied in 2023 under non-elevated PSA?). While only one previous biopsy and intermediate risk disease, confirmatory biopsy after 2yrs recommended. Could potentially be postponed 1 yr.",borderline,important,noted,important,important,noted,important,not_used,important,important,important
+PT-pseudo_d7d26761c714,"Low risk PC with PSA <10. No red flags on biopsy or MRI, reasonably low PSA density. MRI finding minor and probably penetrated by systematic biopsy core (peripheral zone). Entered active surveillance this year, unclear to me how long time ago biopsy was. Slight recommendation new MRI two years with low threshold for biopsy then.",borderline,important,noted,important,important,noted,noted,not_used,noted,important,important
+PT-pseudo_d95b3a02898e,"older patient with non-elevated, stable PSA. some comorbidity limits expected survival. MRI without significant lesions. Low risk of higher risk prostate cancer -> no biopsy. High risk of over diagnosis if biopsied.",clear,important,not_used,important,noted,not_used,noted,not_used,important,noted,important
+PT-pseudo_dcd61cf9b443,"This person should discuss curative treatment (younger patient with palpable, MRI-visible high-risk disease incl Gleason 5 findings). If not curative treatment for any reason, a strategy for medical treatment should be set. Potentially reasonable already now, but could also be delayed (but to the risk of disease progression).",clear,noted,noted,important,important,noted,noted,not_used,important,important,important
+PT-pseudo_dcd7bf13a6f4,"74yr where it was decided to do MRI to assess potential PCa. The MRI shows high suspicion of PCa, and thus should be biopsied. Why was he not biopsied when the first MRI showed PIRADS5? (Ask about that reason before proceeding).",clear,important,noted,important,noted,noted,noted,important,noted,important,important
+PT-pseudo_dd011d696387,"Intermediate risk disease in 75yr with some comorbidity. No targeted biopsy and unclear timing (when was diagnosis and prev biopsy). Unclear if PIRADS5 was biopsied (limited size lesion, unclear if new lesion while lack of previous MRI). Biopsy to exclude higher-risk disease, should include targeted cores.",clear,noted,noted,important,noted,not_used,noted,not_used,important,important,important
+PT-pseudo_e001f4d06517,"Favourable risk intermediate risk PC in 73 yr old. Unclear when previous MRI+bx was performed. Reasonable to recommend another biopsy approx 2yrs after the first, especially if only 1 bx procedure before. Should probably only be treated if detected high-risk disease.",borderline,important,noted,important,important,noted,noted,not_used,important,important,noted
+PT-pseudo_e1bb1e86b054,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_e288564d7111,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_e5104a16c8bb,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_e91d5fe837cb,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_e9fbcdc890f2,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_ee512fea9006,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_ef2309676161,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_ef66ca71e996,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_ef8ea220bdc6,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_f1083e2e01d8,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_f2ec9a9b4d4a,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_f3a2af65a42f,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_f41131a1bc0b,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_f4ea752ca1bb,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_f80c073525b1,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_f87b704d91af,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_f99f0627e536,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_fa31cd663f5a,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_fa4a71ae9a34,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_fab43a43b7e6,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_fc6cf5262222,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
+PT-pseudo_fdd4ff09679e,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE,NONE
