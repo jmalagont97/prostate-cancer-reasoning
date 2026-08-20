@@ -316,6 +316,30 @@ def _topk_neighbors(expo: np.ndarray, k: int) -> np.ndarray:
     return np.take_along_axis(part, order, axis=-1)
 
 
+def _h_b(p: float) -> float:
+    """Binary entropy in nats, exact zero at p=0/1 (no log(0) via clipping —
+    matters for exp_30's G3 exact-degeneracy check at knn_k=1)."""
+    if p <= 0.0 or p >= 1.0:
+        return 0.0
+    return -(p * math.log(p) + (1 - p) * math.log(1 - p))
+
+
+def _neighborhood_signals(y_binary_train: np.ndarray, nbr: np.ndarray, expo_nbr: np.ndarray) -> dict:
+    """Family-C (exp_30): signals definable only because `knn_k` retrieves a
+    literal, finite neighbor set. Both inputs are non-target-informed even
+    when the underlying model was fit on confidence-derived soft targets:
+    `y_binary_train` is the raw biopsy label (never `confidence`), and
+    `expo_nbr` is a pure input-space kernel exponent, independent of
+    `y_soft`/`c_y`. `expo_nbr` is ascending (nearest first, from
+    `_topk_neighbors`), so its last entry is the farthest retrieved
+    neighbor — the k-th-neighbor distance in kernel-exponent units."""
+    p = float(y_binary_train[nbr].mean())
+    return {
+        "nbr_label_entropy": _h_b(p),
+        "nbr_kth_expo": float(expo_nbr[-1]),
+    }
+
+
 def _knn_submodel(
     X_train: dict, y_soft_train: np.ndarray, modality_order: list, sigmas: dict, k: int, x_row: dict,
     label_smoothing: float = 0.0, seed: int = 0,
@@ -329,7 +353,9 @@ def _knn_submodel(
     against) and `BrentMemKDM._knn_signals` (the actual knn-mode prediction
     path) — "apply BrentMemKDM to the k retrieved neighbors" means exactly
     the same computation in both places. Returns `(fitted MemKDM,
-    neighbor_indices)`."""
+    neighbor_indices, expo_at_neighbors)` — the third element is the
+    per-neighbor kernel exponent (ascending, nearest first), consumed by
+    `_neighborhood_signals` (exp_30's family-C signals)."""
     n_train = len(y_soft_train)
     k_eff = min(int(k), n_train)
     expo = np.zeros((1, n_train), dtype=np.float32)
@@ -337,6 +363,7 @@ def _knn_submodel(
         d2 = _sq_dist_rbf(np.asarray(x_row[m]), np.asarray(X_train[m]))
         expo += d2 / (float(sigmas[m]) ** 2)
     nbr = _topk_neighbors(expo, k_eff)[0]
+    expo_nbr = expo[0, nbr]
     kernels = {m: KernelSpec(sigma=float(sigmas[m]), trainable=False) for m in modality_order}
     encoders = {m: EncoderSpec("identity") for m in modality_order}
     sub_X = {m: np.asarray(X_train[m])[nbr] for m in modality_order}
@@ -344,7 +371,7 @@ def _knn_submodel(
     model = MemKDM(kernels=kernels, encoders=encoders, x_train=False, y_train=False, w_train=False,
                     label_smoothing=label_smoothing, seed=seed)
     model.fit(sub_X, Targets(y_binary=np.zeros(len(sub_y), dtype=int), y_soft=sub_y))
-    return model, nbr
+    return model, nbr, expo_nbr
 
 
 class _FoldCache:
@@ -475,9 +502,9 @@ class _TorchScorer:
                 p1 = np.empty(n_val, dtype=np.float64)
                 for j in range(n_val):
                     x_row = {m: np.asarray(f.X_val[m])[j:j + 1] for m in self.modality_order}
-                    sub_model, _nbr = _knn_submodel(f.X_train, f.y_soft_train, self.modality_order, sigmas,
-                                                     knn_k, x_row, label_smoothing=self.label_smoothing,
-                                                     seed=self.seed)
+                    sub_model, _nbr, _expo_nbr = _knn_submodel(f.X_train, f.y_soft_train, self.modality_order, sigmas,
+                                                                knn_k, x_row, label_smoothing=self.label_smoothing,
+                                                                seed=self.seed)
                     p1[j] = sub_model.predict_proba(x_row)[0, 1]
                 probs = _to_2col(p1)
             if is_named:
@@ -769,6 +796,7 @@ class BrentMemKDM:
 
         # knn-mode fitted state (self._inner stays None in this mode).
         self._train_X: Modalities | None = None
+        self._train_y_binary: np.ndarray | None = None
         self._train_y_soft: np.ndarray | None = None
 
     # ---------------------------------------------------------------- search
@@ -806,6 +834,7 @@ class BrentMemKDM:
             raise RuntimeError("BrentMemKDM.search() must be called before fit() (or sigmas_/modality_order set directly)")
         self._inner = None
         self._train_X = {m: np.asarray(X[m]) for m in self.modality_order}
+        self._train_y_binary = np.asarray(targets.y_binary, dtype=np.int64)
         self._train_y_soft = np.clip(np.asarray(targets.y_soft, dtype=np.float32), 0.0, 1.0)
         self.target_informed = bool(targets.soft_from_confidence)
         self._confidence = None
@@ -828,21 +857,30 @@ class BrentMemKDM:
         `MemKDM` on just that subset (`_knn_submodel`), then reads that
         submodel's own `uncertainty_signals` on the single row. Concatenated
         over rows into the same dict shape `mem_kdm.extract_particle_signals`
-        returns. `log_marginal` here is over `k_eff` components rather than
-        `n_train`, so its scale differs from non-knn mode — the meta-
-        threshold heads below refit thresholds against this model's own
-        signals regardless, so that is a documentation note, not a
-        correctness issue."""
+        returns, plus two exp_30 family-C keys (`nbr_label_entropy`,
+        `nbr_kth_expo`, see `_neighborhood_signals`) that only exist in this
+        knn-mode branch — the whole-memory path (`knn_k=None`) has no
+        literal neighbor set to define them over. `log_marginal` here is
+        over `k_eff` components rather than `n_train`, so its scale differs
+        from non-knn mode — the meta-threshold heads below refit thresholds
+        against this model's own signals regardless, so that is a
+        documentation note, not a correctness issue."""
         X_train, y_soft_train = self._require_knn_fit()
+        y_binary_train = self._train_y_binary
         n_val = len(np.asarray(X[self.modality_order[0]]))
-        collected = {key: [] for key in ("probs",) + PARTICLE_SIGNAL_NAMES}
+        fam_c_keys = ("nbr_label_entropy", "nbr_kth_expo")
+        collected = {key: [] for key in ("probs",) + PARTICLE_SIGNAL_NAMES + fam_c_keys}
         for i in range(n_val):
             x_row = {m: np.asarray(X[m])[i:i + 1] for m in self.modality_order}
-            model, _nbr = _knn_submodel(X_train, y_soft_train, self.modality_order, self.sigmas_, self.knn_k,
-                                         x_row, label_smoothing=self.label_smoothing, seed=self.seed)
+            model, nbr, expo_nbr = _knn_submodel(X_train, y_soft_train, self.modality_order, self.sigmas_,
+                                                  self.knn_k, x_row, label_smoothing=self.label_smoothing,
+                                                  seed=self.seed)
             sig = model.uncertainty_signals(x_row)
-            for key in collected:
+            for key in ("probs",) + PARTICLE_SIGNAL_NAMES:
                 collected[key].append(sig[key][0])
+            fam_c = _neighborhood_signals(y_binary_train, nbr, expo_nbr)
+            for key in fam_c_keys:
+                collected[key].append(fam_c[key])
         return {key: (np.stack(vals, axis=0) if key == "probs" else np.array(vals))
                 for key, vals in collected.items()}
 

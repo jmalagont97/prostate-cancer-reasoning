@@ -1,0 +1,23 @@
+{
+    "G0_verify_brent_mem_kdm": {
+        "passed": true
+    },
+    "G1_exp17_composite_ici": {
+        "passed": true,
+        "route_a": 0.4469706011059394,
+        "route_b": 0.4469706011059394,
+        "target": 0.4469706011059394
+    },
+    "G2_exp24_multivariate_7signal": {
+        "passed": true,
+        "macro_f1": 0.4368347338935575,
+        "target": 0.4368347338935575,
+        "min_votes": 11
+    },
+    "G3_knn_k1_degeneracy": {
+        "passed": true
+    },
+    "G4_family_c_absent_at_knn_k_none": {
+        "passed": true
+    }
+}

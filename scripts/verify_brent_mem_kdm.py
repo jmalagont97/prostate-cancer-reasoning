@@ -49,8 +49,8 @@ from src.evaluation.data import (  # noqa: E402
 from src.evaluation.protocol import iter_mccv_splits  # noqa: E402
 from src.methods.base import Targets  # noqa: E402
 from src.methods.brent_mem_kdm import (  # noqa: E402
-    Fold, _FoldCache, _bounds_for_modality, _knn_submodel, _sigma_ref_per_modality,
-    binary_macro_f1, run_brent_search,
+    Fold, _FoldCache, _bounds_for_modality, _h_b, _knn_submodel, _neighborhood_signals,
+    _sigma_ref_per_modality, binary_macro_f1, run_brent_search,
 )
 from src.methods.mem_kdm import EncoderSpec, KernelSpec, MemKDM  # noqa: E402
 
@@ -198,8 +198,8 @@ def check_knn_truncation(folds: list, mods: list, rng: np.random.Generator) -> N
             max_err = 0.0
             for v in range(len(f0.y_val)):
                 x_row = {m: np.asarray(f0.X_val[m])[v:v + 1] for m in mods}
-                sub_model, _nbr = _knn_submodel(f0.X_train, f0.y_soft_train, mods, sigmas, k, x_row,
-                                                 label_smoothing=0.0, seed=0)
+                sub_model, _nbr, _expo_nbr = _knn_submodel(f0.X_train, f0.y_soft_train, mods, sigmas, k, x_row,
+                                                            label_smoothing=0.0, seed=0)
                 p_exact = sub_model.predict_proba(x_row)[0, 1]
                 max_err = max(max_err, float(abs(p_exact - p_fast[v])))
             check(f"knn fast-vs-torch [{label}] k={k} regime={regime_name}", max_err < KNN_FAST_VS_TORCH_TOL,
@@ -210,6 +210,37 @@ def check_knn_truncation(folds: list, mods: list, rng: np.random.Generator) -> N
     r2 = cache.probs(sigmas_center, knn_k=3)
     same = all(np.array_equal(a, b) for a, b in zip(r1, r2))
     check(f"knn determinism [{label}]", same)
+
+
+# ---------------------------------------------------------------------------
+# Check 7 — family-C neighborhood signals (exp_30)
+# ---------------------------------------------------------------------------
+def check_neighborhood_signals(folds: list, mods: list, rng: np.random.Generator) -> None:
+    f0 = folds[0]
+    sigmas = _sigma_ref_per_modality(folds, mods)
+    y_binary_train = (f0.y_soft_train >= 0.5).astype(int)  # hard-arm folds only; this check is arm-agnostic by construction
+
+    # (a) k=1: nbr_label_entropy is EXACTLY 0 (single neighbor, no disagreement possible).
+    x_row = {m: np.asarray(f0.X_val[m])[0:1] for m in mods}
+    _model, nbr, expo_nbr = _knn_submodel(f0.X_train, f0.y_soft_train, mods, sigmas, 1, x_row)
+    sig = _neighborhood_signals(y_binary_train, nbr, expo_nbr)
+    check("family-C k=1 nbr_label_entropy == 0", sig["nbr_label_entropy"] == 0.0)
+
+    # (b) synthetic exact case: construct a 3-point neighbor set with 2 label-1, 1 label-0 and check
+    # nbr_label_entropy == H_b(2/3) exactly (bypasses retrieval, tests the formula directly).
+    y_synth = np.array([1, 1, 0, 0, 0])
+    nbr_synth = np.array([0, 1, 2])
+    expo_synth = np.array([0.1, 0.2, 0.3])
+    sig_synth = _neighborhood_signals(y_synth, nbr_synth, expo_synth)
+    expected = _h_b(2.0 / 3.0)
+    check("family-C synthetic H_b(2/3) exact", abs(sig_synth["nbr_label_entropy"] - expected) < 1e-12)
+    check("family-C nbr_kth_expo picks last (farthest) entry", sig_synth["nbr_kth_expo"] == 0.3)
+
+    # (c) k_eff = min(k, n_train) still governs family C when k > n_train (reuses existing truncation
+    # semantics; must not crash or silently use a wrong neighbor count).
+    n_train = len(f0.y_soft_train)
+    _model2, nbr2, _expo_nbr2 = _knn_submodel(f0.X_train, f0.y_soft_train, mods, sigmas, n_train * 10, x_row)
+    check("family-C k>=n_train uses full memory", len(nbr2) == n_train)
 
 
 # ---------------------------------------------------------------------------
@@ -343,6 +374,9 @@ def main(quick: bool = False) -> int:
         build_folds(cohort, cleaned_texts, targets.y_soft, small_splits, ["tab", "mri"], {"mri": "pca90_l2"}),
         ["tab", "mri"], rng,
     )
+
+    print("\n=== Check 7: family-C neighborhood signals (exp_30) ===")
+    check_neighborhood_signals(build_folds(cohort, cleaned_texts, targets.y_soft, small_splits, ["tab"], {}), ["tab"], rng)
 
     if not quick:
         print("\n=== Check 3: unimodal tab sanity vs exp_27-style grid ===")
