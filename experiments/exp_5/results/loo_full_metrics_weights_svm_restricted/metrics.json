@@ -1,0 +1,165 @@
+{
+  "condition": "weights_svm_restricted",
+  "target": "variable_weights",
+  "protocol": "leave-one-out (91-fold, pooled)",
+  "features": "exp_3 19-column frame, restricted scope (restricted_feature_group per factor)",
+  "model": "SVC(kernel='rbf', C=1.0, class_weight='balanced', probability=True) -- unchanged from exp_5",
+  "mean_accuracy": 0.657,
+  "mean_macro_f1": 0.272,
+  "mean_ordinal_error": 0.378,
+  "mean_decisive_set_f1": 0.446,
+  "mean_roc_auc": 0.399,
+  "mean_brier_score": 0.482,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.604,
+      "macro_f1": 0.283,
+      "ordinal_error": 0.407,
+      "decisive_set_f1": 0.736,
+      "roc_auc": 0.375,
+      "brier_score": 0.479
+    },
+    "cspca": {
+      "accuracy": 0.67,
+      "macro_f1": 0.201,
+      "ordinal_error": 0.451,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.508
+    },
+    "pirads": {
+      "accuracy": 0.648,
+      "macro_f1": 0.326,
+      "ordinal_error": 0.374,
+      "decisive_set_f1": 0.994,
+      "roc_auc": null,
+      "brier_score": 0.472
+    },
+    "vol": {
+      "accuracy": 0.758,
+      "macro_f1": 0.216,
+      "ordinal_error": 0.264,
+      "decisive_set_f1": 0.0,
+      "roc_auc": 0.469,
+      "brier_score": 0.388
+    },
+    "psa": {
+      "accuracy": 0.604,
+      "macro_f1": 0.34,
+      "ordinal_error": 0.407,
+      "decisive_set_f1": 0.803,
+      "roc_auc": 0.304,
+      "brier_score": 0.552
+    },
+    "comorbidity": {
+      "accuracy": 0.692,
+      "macro_f1": 0.205,
+      "ordinal_error": 0.308,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.418
+    },
+    "psad": {
+      "accuracy": 0.571,
+      "macro_f1": 0.184,
+      "ordinal_error": 0.495,
+      "decisive_set_f1": 0.062,
+      "roc_auc": 0.491,
+      "brier_score": 0.587
+    },
+    "dre": {
+      "accuracy": 0.747,
+      "macro_f1": 0.347,
+      "ordinal_error": 0.253,
+      "decisive_set_f1": 0.583,
+      "roc_auc": 0.285,
+      "brier_score": 0.38
+    },
+    "bx": {
+      "accuracy": 0.615,
+      "macro_f1": 0.35,
+      "ordinal_error": 0.44,
+      "decisive_set_f1": 0.832,
+      "roc_auc": 0.468,
+      "brier_score": 0.553
+    }
+  },
+  "confusion_matrix": [
+    [
+      61,
+      36,
+      5,
+      1
+    ],
+    [
+      19,
+      275,
+      57,
+      0
+    ],
+    [
+      11,
+      85,
+      167,
+      18
+    ],
+    [
+      0,
+      10,
+      39,
+      35
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "not_used",
+    "noted",
+    "important",
+    "decisive"
+  ],
+  "classification_report_text": "              precision    recall  f1-score   support\n\n    not_used      0.670     0.592     0.629       103\n       noted      0.677     0.783     0.727       351\n   important      0.623     0.594     0.608       281\n    decisive      0.648     0.417     0.507        84\n\n    accuracy                          0.657       819\n   macro avg      0.655     0.597     0.618       819\nweighted avg      0.655     0.657     0.651       819\n",
+  "classification_report": {
+    "not_used": {
+      "precision": 0.6703296703296703,
+      "recall": 0.5922330097087378,
+      "f1-score": 0.6288659793814433,
+      "support": 103.0
+    },
+    "noted": {
+      "precision": 0.6773399014778325,
+      "recall": 0.7834757834757835,
+      "f1-score": 0.726552179656539,
+      "support": 351.0
+    },
+    "important": {
+      "precision": 0.6231343283582089,
+      "recall": 0.594306049822064,
+      "f1-score": 0.6083788706739527,
+      "support": 281.0
+    },
+    "decisive": {
+      "precision": 0.6481481481481481,
+      "recall": 0.4166666666666667,
+      "f1-score": 0.5072463768115942,
+      "support": 84.0
+    },
+    "accuracy": 0.6568986568986569,
+    "macro avg": {
+      "precision": 0.6547380120784649,
+      "recall": 0.596670377418313,
+      "f1-score": 0.6177608516308822,
+      "support": 819.0
+    },
+    "weighted avg": {
+      "precision": 0.6548662419728649,
+      "recall": 0.6568986568986569,
+      "f1-score": 0.6512285338794731,
+      "support": 819.0
+    }
+  },
+  "n_predictions": 819,
+  "reference": {
+    "exp5_original_5x5cv_mean_ordinal_error": 0.382,
+    "exp5_original_5x5cv_mean_decisive_set_f1": 0.457,
+    "baseline_ordinal_error": 0.413
+  }
+}

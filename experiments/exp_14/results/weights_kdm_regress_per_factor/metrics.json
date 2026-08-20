@@ -1,0 +1,88 @@
+{
+  "condition": "weights_kdm_regress_per_factor",
+  "target": "variable_weights",
+  "features": "exp_8 23-column frame (regression training, scalar backbone, per-factor)",
+  "model": "KDMRegressModel trained directly on each factor's weight rank as a continuous target (dm_rbf_loglik loss)",
+  "mean_ordinal_error": 0.466,
+  "mean_decisive_set_f1": 0.507,
+  "mean_macro_f1": 0.292,
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "n_repeats": 10,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.496,
+      "macro_f1": 0.225,
+      "ordinal_error": 0.532,
+      "decisive_set_f1": 0.645,
+      "roc_auc": 0.484,
+      "brier_score": 0.798
+    },
+    "cspca": {
+      "accuracy": 0.535,
+      "macro_f1": 0.294,
+      "ordinal_error": 0.542,
+      "decisive_set_f1": 0.23,
+      "roc_auc": null,
+      "brier_score": 0.662
+    },
+    "pirads": {
+      "accuracy": 0.675,
+      "macro_f1": 0.341,
+      "ordinal_error": 0.351,
+      "decisive_set_f1": 0.988,
+      "roc_auc": null,
+      "brier_score": 0.542
+    },
+    "vol": {
+      "accuracy": 0.674,
+      "macro_f1": 0.235,
+      "ordinal_error": 0.353,
+      "decisive_set_f1": 0.185,
+      "roc_auc": 0.59,
+      "brier_score": 0.505
+    },
+    "psa": {
+      "accuracy": 0.463,
+      "macro_f1": 0.319,
+      "ordinal_error": 0.585,
+      "decisive_set_f1": 0.668,
+      "roc_auc": 0.456,
+      "brier_score": 0.813
+    },
+    "comorbidity": {
+      "accuracy": 0.626,
+      "macro_f1": 0.278,
+      "ordinal_error": 0.392,
+      "decisive_set_f1": 0.052,
+      "roc_auc": null,
+      "brier_score": 0.595
+    },
+    "psad": {
+      "accuracy": 0.536,
+      "macro_f1": 0.311,
+      "ordinal_error": 0.523,
+      "decisive_set_f1": 0.546,
+      "roc_auc": 0.637,
+      "brier_score": 0.667
+    },
+    "dre": {
+      "accuracy": 0.697,
+      "macro_f1": 0.312,
+      "ordinal_error": 0.321,
+      "decisive_set_f1": 0.464,
+      "roc_auc": 0.672,
+      "brier_score": 0.479
+    },
+    "bx": {
+      "accuracy": 0.52,
+      "macro_f1": 0.311,
+      "ordinal_error": 0.596,
+      "decisive_set_f1": 0.788,
+      "roc_auc": 0.584,
+      "brier_score": 0.72
+    }
+  },
+  "auroc_brier_note": "AUROC/Brier use regression-derived pseudo-probabilities (Normal-CDF mass per rank bin from predict_reg's mean/variance), not a native classifier's calibrated probs -- see DESIGN.md Section 2c.",
+  "note": "compare against weights_kdm_occlusion (0.405, best KDM ever, primary bar), baseline (0.413), and weights_svm incumbent (0.382, reported for transparency, not the primary bar per this project's KDM-only scope for this line of work)"
+}

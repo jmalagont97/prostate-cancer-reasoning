@@ -1,0 +1,88 @@
+{
+  "condition": "holdout_weights_regress_joint",
+  "n_test": 19,
+  "mean_ordinal_error": 0.491,
+  "mean_decisive_set_f1": 0.544,
+  "mean_macro_f1": 0.274,
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.579,
+      "macro_f1": 0.256,
+      "ordinal_error": 0.421,
+      "decisive_set_f1": 0.692,
+      "roc_auc": null,
+      "brier_score": 0.652
+    },
+    "cspca": {
+      "accuracy": 0.474,
+      "macro_f1": 0.323,
+      "ordinal_error": 0.579,
+      "decisive_set_f1": 0.5,
+      "roc_auc": null,
+      "brier_score": 0.575
+    },
+    "pirads": {
+      "accuracy": 0.684,
+      "macro_f1": 0.347,
+      "ordinal_error": 0.316,
+      "decisive_set_f1": 0.973,
+      "roc_auc": null,
+      "brier_score": 0.582
+    },
+    "vol": {
+      "accuracy": 0.632,
+      "macro_f1": 0.207,
+      "ordinal_error": 0.421,
+      "decisive_set_f1": 0.286,
+      "roc_auc": 0.571,
+      "brier_score": 0.673
+    },
+    "psa": {
+      "accuracy": 0.316,
+      "macro_f1": 0.15,
+      "ordinal_error": 0.737,
+      "decisive_set_f1": 0.56,
+      "roc_auc": null,
+      "brier_score": 0.64
+    },
+    "comorbidity": {
+      "accuracy": 0.684,
+      "macro_f1": 0.315,
+      "ordinal_error": 0.368,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.674
+    },
+    "psad": {
+      "accuracy": 0.474,
+      "macro_f1": 0.223,
+      "ordinal_error": 0.632,
+      "decisive_set_f1": 0.429,
+      "roc_auc": 0.558,
+      "brier_score": 0.666
+    },
+    "dre": {
+      "accuracy": 0.895,
+      "macro_f1": 0.417,
+      "ordinal_error": 0.158,
+      "decisive_set_f1": 0.857,
+      "roc_auc": null,
+      "brier_score": 0.608
+    },
+    "bx": {
+      "accuracy": 0.368,
+      "macro_f1": 0.225,
+      "ordinal_error": 0.789,
+      "decisive_set_f1": 0.6,
+      "roc_auc": 0.566,
+      "brier_score": 0.721
+    }
+  },
+  "reference": {
+    "weights_svm_incumbent_ordinal_error": 0.382,
+    "weights_kdm_occlusion_ordinal_error": 0.405,
+    "baseline_ordinal_error": 0.413
+  }
+}

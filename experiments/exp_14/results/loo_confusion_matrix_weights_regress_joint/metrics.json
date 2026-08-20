@@ -1,0 +1,78 @@
+{
+  "condition": "weights_kdm_regress_joint",
+  "protocol": "leave-one-out (91-fold, one joint fit per fold, pooled across factors)",
+  "labels": [
+    "not_used",
+    "noted",
+    "important",
+    "decisive"
+  ],
+  "confusion_matrix": [
+    [
+      46,
+      48,
+      7,
+      2
+    ],
+    [
+      24,
+      237,
+      89,
+      1
+    ],
+    [
+      12,
+      86,
+      165,
+      18
+    ],
+    [
+      0,
+      10,
+      38,
+      36
+    ]
+  ],
+  "classification_report_text": "              precision    recall  f1-score   support\n\n    not_used      0.561     0.447     0.497       103\n       noted      0.622     0.675     0.648       351\n   important      0.552     0.587     0.569       281\n    decisive      0.632     0.429     0.511        84\n\n    accuracy                          0.591       819\n   macro avg      0.592     0.534     0.556       819\nweighted avg      0.591     0.591     0.588       819\n",
+  "classification_report": {
+    "not_used": {
+      "precision": 0.5609756097560976,
+      "recall": 0.44660194174757284,
+      "f1-score": 0.4972972972972973,
+      "support": 103.0
+    },
+    "noted": {
+      "precision": 0.6220472440944882,
+      "recall": 0.6752136752136753,
+      "f1-score": 0.6475409836065574,
+      "support": 351.0
+    },
+    "important": {
+      "precision": 0.5518394648829431,
+      "recall": 0.5871886120996441,
+      "f1-score": 0.5689655172413793,
+      "support": 281.0
+    },
+    "decisive": {
+      "precision": 0.631578947368421,
+      "recall": 0.42857142857142855,
+      "f1-score": 0.5106382978723404,
+      "support": 84.0
+    },
+    "accuracy": 0.590964590964591,
+    "macro avg": {
+      "precision": 0.5916103165254876,
+      "recall": 0.5343939144080802,
+      "f1-score": 0.5561105240043936,
+      "support": 819.0
+    },
+    "weighted avg": {
+      "precision": 0.591255911713184,
+      "recall": 0.590964590964591,
+      "f1-score": 0.5876452188444781,
+      "support": 819.0
+    }
+  },
+  "n_predictions": 819,
+  "n_fits": 91
+}

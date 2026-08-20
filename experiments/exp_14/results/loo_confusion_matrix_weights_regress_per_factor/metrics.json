@@ -1,0 +1,77 @@
+{
+  "condition": "weights_kdm_regress_per_factor",
+  "protocol": "leave-one-out (91-fold x 9 factors, pooled)",
+  "labels": [
+    "not_used",
+    "noted",
+    "important",
+    "decisive"
+  ],
+  "confusion_matrix": [
+    [
+      47,
+      46,
+      8,
+      2
+    ],
+    [
+      25,
+      235,
+      89,
+      2
+    ],
+    [
+      12,
+      85,
+      166,
+      18
+    ],
+    [
+      2,
+      9,
+      38,
+      35
+    ]
+  ],
+  "classification_report_text": "              precision    recall  f1-score   support\n\n    not_used      0.547     0.456     0.497       103\n       noted      0.627     0.670     0.647       351\n   important      0.551     0.591     0.570       281\n    decisive      0.614     0.417     0.496        84\n\n    accuracy                          0.590       819\n   macro avg      0.585     0.533     0.553       819\nweighted avg      0.589     0.590     0.587       819\n",
+  "classification_report": {
+    "not_used": {
+      "precision": 0.5465116279069767,
+      "recall": 0.4563106796116505,
+      "f1-score": 0.4973544973544973,
+      "support": 103.0
+    },
+    "noted": {
+      "precision": 0.6266666666666667,
+      "recall": 0.6695156695156695,
+      "f1-score": 0.6473829201101928,
+      "support": 351.0
+    },
+    "important": {
+      "precision": 0.5514950166112956,
+      "recall": 0.5907473309608541,
+      "f1-score": 0.570446735395189,
+      "support": 281.0
+    },
+    "decisive": {
+      "precision": 0.6140350877192983,
+      "recall": 0.4166666666666667,
+      "f1-score": 0.49645390070921985,
+      "support": 84.0
+    },
+    "accuracy": 0.5897435897435898,
+    "macro avg": {
+      "precision": 0.5846770997260593,
+      "recall": 0.5333100866887102,
+      "f1-score": 0.5529095133922747,
+      "support": 819.0
+    },
+    "weighted avg": {
+      "precision": 0.5894990777907372,
+      "recall": 0.5897435897435898,
+      "f1-score": 0.5866380689765732,
+      "support": 819.0
+    }
+  },
+  "n_predictions": 819
+}

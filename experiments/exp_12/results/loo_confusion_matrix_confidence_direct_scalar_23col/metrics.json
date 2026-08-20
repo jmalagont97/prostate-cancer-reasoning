@@ -1,0 +1,61 @@
+{
+  "condition": "confidence_kdm_direct_scalar_23col",
+  "protocol": "leave-one-out (91-fold, pooled)",
+  "labels": [
+    "uncertain",
+    "borderline",
+    "clear"
+  ],
+  "confusion_matrix": [
+    [
+      6,
+      4,
+      5
+    ],
+    [
+      1,
+      11,
+      6
+    ],
+    [
+      6,
+      7,
+      45
+    ]
+  ],
+  "classification_report_text": "              precision    recall  f1-score   support\n\n   uncertain      0.462     0.400     0.429        15\n  borderline      0.500     0.611     0.550        18\n       clear      0.804     0.776     0.789        58\n\n    accuracy                          0.681        91\n   macro avg      0.588     0.596     0.589        91\nweighted avg      0.687     0.681     0.683        91\n",
+  "classification_report": {
+    "uncertain": {
+      "precision": 0.46153846153846156,
+      "recall": 0.4,
+      "f1-score": 0.42857142857142855,
+      "support": 15.0
+    },
+    "borderline": {
+      "precision": 0.5,
+      "recall": 0.6111111111111112,
+      "f1-score": 0.55,
+      "support": 18.0
+    },
+    "clear": {
+      "precision": 0.8035714285714286,
+      "recall": 0.7758620689655172,
+      "f1-score": 0.7894736842105263,
+      "support": 58.0
+    },
+    "accuracy": 0.6813186813186813,
+    "macro avg": {
+      "precision": 0.5883699633699634,
+      "recall": 0.5956577266922095,
+      "f1-score": 0.5893483709273183,
+      "support": 91.0
+    },
+    "weighted avg": {
+      "precision": 0.6871452723101075,
+      "recall": 0.6813186813186813,
+      "f1-score": 0.6826158803602412,
+      "support": 91.0
+    }
+  },
+  "n": 91
+}

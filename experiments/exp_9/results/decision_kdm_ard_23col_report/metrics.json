@@ -1,0 +1,98 @@
+{
+  "condition": "decision_kdm_ard_23col",
+  "note": "confusion matrix + classification_report follow-up; macro_f1 must match exp_9/exp_10's already-reported values (0.680 held-out, 0.639 LOO) -- see reference_match field in each block",
+  "held_out_seed0": {
+    "macro_f1": 0.68,
+    "reference_macro_f1": 0.68,
+    "reference_match": true,
+    "confusion_matrix": [
+      [
+        3,
+        4
+      ],
+      [
+        1,
+        11
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "no",
+      "yes"
+    ],
+    "classification_report_text": "              precision    recall  f1-score   support\n\n          no      0.750     0.429     0.545         7\n         yes      0.733     0.917     0.815        12\n\n    accuracy                          0.737        19\n   macro avg      0.742     0.673     0.680        19\nweighted avg      0.739     0.737     0.716        19\n",
+    "classification_report": {
+      "no": {
+        "precision": 0.75,
+        "recall": 0.42857142857142855,
+        "f1-score": 0.5454545454545454,
+        "support": 7.0
+      },
+      "yes": {
+        "precision": 0.7333333333333333,
+        "recall": 0.9166666666666666,
+        "f1-score": 0.8148148148148148,
+        "support": 12.0
+      },
+      "accuracy": 0.7368421052631579,
+      "macro avg": {
+        "precision": 0.7416666666666667,
+        "recall": 0.6726190476190476,
+        "f1-score": 0.6801346801346801,
+        "support": 19.0
+      },
+      "weighted avg": {
+        "precision": 0.7394736842105263,
+        "recall": 0.7368421052631579,
+        "f1-score": 0.7155768208399786,
+        "support": 19.0
+      }
+    }
+  },
+  "loo": {
+    "macro_f1": 0.639,
+    "reference_macro_f1": 0.639,
+    "reference_match": true,
+    "confusion_matrix": [
+      [
+        17,
+        18
+      ],
+      [
+        12,
+        44
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "no",
+      "yes"
+    ],
+    "classification_report_text": "              precision    recall  f1-score   support\n\n          no      0.586     0.486     0.531        35\n         yes      0.710     0.786     0.746        56\n\n    accuracy                          0.670        91\n   macro avg      0.648     0.636     0.639        91\nweighted avg      0.662     0.670     0.663        91\n",
+    "classification_report": {
+      "no": {
+        "precision": 0.5862068965517241,
+        "recall": 0.4857142857142857,
+        "f1-score": 0.53125,
+        "support": 35.0
+      },
+      "yes": {
+        "precision": 0.7096774193548387,
+        "recall": 0.7857142857142857,
+        "f1-score": 0.7457627118644068,
+        "support": 56.0
+      },
+      "accuracy": 0.6703296703296703,
+      "macro avg": {
+        "precision": 0.6479421579532814,
+        "recall": 0.6357142857142857,
+        "f1-score": 0.6385063559322034,
+        "support": 91.0
+      },
+      "weighted avg": {
+        "precision": 0.6621887567382562,
+        "recall": 0.6703296703296703,
+        "f1-score": 0.6632578226857888,
+        "support": 91.0
+      }
+    }
+  }
+}

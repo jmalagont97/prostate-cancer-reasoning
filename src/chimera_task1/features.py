@@ -270,8 +270,17 @@ def select_exp4_feature_frame(inp: pd.DataFrame) -> pd.DataFrame:
 # Per-factor restricted feature groups for the weights_restricted_* conditions
 # (exp_2). Only the 8 non-comorbidity in-scope factors -- "comorbidity" is
 # handled by restricted_feature_group() below since its group depends on the
-# comorbidity_treatment in use, and "fh" is excluded entirely (separate
-# tool-revealed path, see TASK1_VARIABLE_TO_FEATURE below).
+# comorbidity_treatment in use.
+#
+# "fh" (2026-08-19, exp_15): re-included after being deliberately excluded from
+# every weights experiment through exp_14, since its underlying value
+# (cli_fh_binary) sits behind a separate MCP tool-reveal action rather than
+# always being visible like the other 9 factors -- confirmed never actually
+# revealed in any of the 91 labeled training cases (0/91, see exp_15/DESIGN.md).
+# Re-included here on explicit user request, choosing to treat cli_fh_binary as
+# a directly available input feature going forward (not gated on a simulated
+# reveal decision) -- callers relying on the old "fh has no restricted group"
+# behavior no longer get a KeyError, so double-check any code that assumed that.
 TASK1_VARIABLE_TO_FEATURE_GROUP: dict[str, list[str]] = {
     "psa": ["cli_psa"],  # psap/psav have no weight key of their own; kept out of every restricted group
     "age": ["cli_age"],
@@ -281,6 +290,7 @@ TASK1_VARIABLE_TO_FEATURE_GROUP: dict[str, list[str]] = {
     "psad": ["cli_psad"],
     "vol": ["cli_vol"],
     "cspca": ["cli_cspca"],
+    "fh": ["cli_fh_binary"],
 }
 
 

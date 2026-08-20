@@ -1,0 +1,90 @@
+{
+  "condition": "weights_kdm_regress_joint",
+  "target": "variable_weights",
+  "features": "exp_8 23-column frame (regression training, scalar backbone, joint dim_y=9)",
+  "model": "KDMRegressModel trained on all 9 factors' weight ranks at once, one shared prototype pool (dm_rbf_loglik loss)",
+  "mean_ordinal_error": 0.463,
+  "mean_decisive_set_f1": 0.506,
+  "mean_macro_f1": 0.293,
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "n_repeats": 10,
+  "n_fits_total": 50,
+  "n_fits_expected": 50,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.509,
+      "macro_f1": 0.242,
+      "ordinal_error": 0.519,
+      "decisive_set_f1": 0.655,
+      "roc_auc": 0.467,
+      "brier_score": 0.676
+    },
+    "cspca": {
+      "accuracy": 0.515,
+      "macro_f1": 0.267,
+      "ordinal_error": 0.556,
+      "decisive_set_f1": 0.17,
+      "roc_auc": null,
+      "brier_score": 0.638
+    },
+    "pirads": {
+      "accuracy": 0.668,
+      "macro_f1": 0.338,
+      "ordinal_error": 0.356,
+      "decisive_set_f1": 0.987,
+      "roc_auc": null,
+      "brier_score": 0.605
+    },
+    "vol": {
+      "accuracy": 0.677,
+      "macro_f1": 0.235,
+      "ordinal_error": 0.349,
+      "decisive_set_f1": 0.183,
+      "roc_auc": 0.439,
+      "brier_score": 0.655
+    },
+    "psa": {
+      "accuracy": 0.449,
+      "macro_f1": 0.326,
+      "ordinal_error": 0.592,
+      "decisive_set_f1": 0.647,
+      "roc_auc": 0.523,
+      "brier_score": 0.647
+    },
+    "comorbidity": {
+      "accuracy": 0.648,
+      "macro_f1": 0.3,
+      "ordinal_error": 0.368,
+      "decisive_set_f1": 0.121,
+      "roc_auc": null,
+      "brier_score": 0.605
+    },
+    "psad": {
+      "accuracy": 0.529,
+      "macro_f1": 0.306,
+      "ordinal_error": 0.525,
+      "decisive_set_f1": 0.535,
+      "roc_auc": 0.595,
+      "brier_score": 0.701
+    },
+    "dre": {
+      "accuracy": 0.699,
+      "macro_f1": 0.312,
+      "ordinal_error": 0.319,
+      "decisive_set_f1": 0.464,
+      "roc_auc": 0.661,
+      "brier_score": 0.583
+    },
+    "bx": {
+      "accuracy": 0.52,
+      "macro_f1": 0.314,
+      "ordinal_error": 0.587,
+      "decisive_set_f1": 0.788,
+      "roc_auc": 0.581,
+      "brier_score": 0.659
+    }
+  },
+  "auroc_brier_note": "AUROC/Brier use regression-derived pseudo-probabilities; the joint condition additionally shares ONE variance across all 9 factors per case (predict_reg's variance is scalar-per-case, not per-dimension) -- only the per-factor mean differs. See DESIGN.md Section 2c.",
+  "note": "compare against weights_kdm_occlusion (0.405, best KDM ever, primary bar), baseline (0.413), weights_svm incumbent (0.382, reported for transparency), and run_weights_regress_per_factor.py's per-factor regression (same objective, 9 independent fits instead of 1 shared fit)"
+}

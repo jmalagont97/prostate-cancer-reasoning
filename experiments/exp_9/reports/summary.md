@@ -125,6 +125,41 @@ competing full-schema frame, and 23-column ARD won on every metric and method tr
 This upgrades the earlier "promising signal, not yet a new default" verdict: **23-column ARD-KDM is
 now this project's best-validated decision configuration.**
 
+**Update (added 2026-08-18): confusion matrix + classification_report, previously only printed to
+stdout by `holdout_eval_ard.py`/`verify_decision_loo_repeated_holdout.py`, now persisted** via
+`experiments/exp_9/scripts/decision_ard_23col_report.py` (re-fits the identical pipeline/config;
+both macro-F1 values matched the already-reported 0.680/0.639 exactly before trusting the new
+output) — saved to `experiments/exp_9/results/decision_kdm_ard_23col_report/metrics.json`:
+
+Held-out (seed=0, n=19), rows=true/cols=pred, order `[no, yes]`:
+```
+           pred_no  pred_yes
+true_no        3        4
+true_yes       1       11
+```
+|  | precision | recall | f1-score | support |
+|---|---|---|---|---|
+| no | 0.750 | 0.429 | 0.545 | 7 |
+| yes | 0.733 | 0.917 | 0.815 | 12 |
+| macro avg | 0.742 | 0.673 | 0.680 | 19 |
+
+LOO (91 folds, pooled predictions):
+```
+           pred_no  pred_yes
+true_no       17       18
+true_yes      12       44
+```
+|  | precision | recall | f1-score | support |
+|---|---|---|---|---|
+| no | 0.586 | 0.486 | 0.531 | 35 |
+| yes | 0.710 | 0.786 | 0.746 | 56 |
+| macro avg | 0.648 | 0.636 | 0.639 | 91 |
+
+Both protocols show the same asymmetry: recall on "yes" (0.917 held-out / 0.786 LOO) comfortably
+beats recall on "no" (0.429 held-out / 0.486 LOO) — a persistent bias toward the majority class
+(61.5% "yes") rather than a collapse to predicting only one class. LOO's larger, less noisy pooled
+sample (91 vs. 19) gives the more trustworthy per-class picture of the two.
+
 ## 4. Confidence: the motivating hypothesis is directly confirmed for `dispersion_isotonic` — but not for every signal
 
 | Signal | exp_6 (19-col scalar) ord.dist / macro-F1 | ARD 19-col ord.dist / macro-F1 | exp_8 (23-col scalar) ord.dist / macro-F1 | ARD 23-col ord.dist / macro-F1 |

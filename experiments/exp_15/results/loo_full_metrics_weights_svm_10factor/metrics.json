@@ -1,0 +1,176 @@
+{
+  "condition": "weights_svm_restricted_10factor",
+  "target": "variable_weights",
+  "protocol": "leave-one-out (91-fold, pooled)",
+  "features": "exp_3 19-column frame + cli_fh_binary (20 columns), restricted scope",
+  "model": "SVC(kernel='rbf', C=1.0, class_weight='balanced', probability=True) -- unchanged from exp_5, now includes fh",
+  "n_factors": 10,
+  "mean_accuracy": 0.661,
+  "mean_macro_f1": 0.266,
+  "mean_ordinal_error": 0.37,
+  "mean_decisive_set_f1": 0.401,
+  "mean_roc_auc": 0.399,
+  "mean_brier_score": 0.481,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.604,
+      "macro_f1": 0.283,
+      "ordinal_error": 0.407,
+      "decisive_set_f1": 0.736,
+      "roc_auc": 0.375,
+      "brier_score": 0.479
+    },
+    "fh": {
+      "accuracy": 0.703,
+      "macro_f1": 0.206,
+      "ordinal_error": 0.297,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.472
+    },
+    "cspca": {
+      "accuracy": 0.67,
+      "macro_f1": 0.201,
+      "ordinal_error": 0.451,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.508
+    },
+    "pirads": {
+      "accuracy": 0.648,
+      "macro_f1": 0.326,
+      "ordinal_error": 0.374,
+      "decisive_set_f1": 0.994,
+      "roc_auc": null,
+      "brier_score": 0.472
+    },
+    "vol": {
+      "accuracy": 0.758,
+      "macro_f1": 0.216,
+      "ordinal_error": 0.264,
+      "decisive_set_f1": 0.0,
+      "roc_auc": 0.469,
+      "brier_score": 0.388
+    },
+    "psa": {
+      "accuracy": 0.604,
+      "macro_f1": 0.34,
+      "ordinal_error": 0.407,
+      "decisive_set_f1": 0.803,
+      "roc_auc": 0.304,
+      "brier_score": 0.552
+    },
+    "comorbidity": {
+      "accuracy": 0.692,
+      "macro_f1": 0.205,
+      "ordinal_error": 0.308,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.418
+    },
+    "psad": {
+      "accuracy": 0.571,
+      "macro_f1": 0.184,
+      "ordinal_error": 0.495,
+      "decisive_set_f1": 0.062,
+      "roc_auc": 0.491,
+      "brier_score": 0.587
+    },
+    "dre": {
+      "accuracy": 0.747,
+      "macro_f1": 0.347,
+      "ordinal_error": 0.253,
+      "decisive_set_f1": 0.583,
+      "roc_auc": 0.285,
+      "brier_score": 0.38
+    },
+    "bx": {
+      "accuracy": 0.615,
+      "macro_f1": 0.35,
+      "ordinal_error": 0.44,
+      "decisive_set_f1": 0.832,
+      "roc_auc": 0.468,
+      "brier_score": 0.553
+    }
+  },
+  "confusion_matrix": [
+    [
+      61,
+      60,
+      5,
+      1
+    ],
+    [
+      19,
+      339,
+      57,
+      0
+    ],
+    [
+      11,
+      88,
+      167,
+      18
+    ],
+    [
+      0,
+      10,
+      39,
+      35
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "not_used",
+    "noted",
+    "important",
+    "decisive"
+  ],
+  "classification_report_text": "              precision    recall  f1-score   support\n\n    not_used      0.670     0.480     0.560       127\n       noted      0.682     0.817     0.743       415\n   important      0.623     0.588     0.605       284\n    decisive      0.648     0.417     0.507        84\n\n    accuracy                          0.662       910\n   macro avg      0.656     0.575     0.604       910\nweighted avg      0.659     0.662     0.653       910\n",
+  "classification_report": {
+    "not_used": {
+      "precision": 0.6703296703296703,
+      "recall": 0.48031496062992124,
+      "f1-score": 0.5596330275229358,
+      "support": 127.0
+    },
+    "noted": {
+      "precision": 0.682092555331992,
+      "recall": 0.8168674698795181,
+      "f1-score": 0.743421052631579,
+      "support": 415.0
+    },
+    "important": {
+      "precision": 0.6231343283582089,
+      "recall": 0.5880281690140845,
+      "f1-score": 0.605072463768116,
+      "support": 284.0
+    },
+    "decisive": {
+      "precision": 0.6481481481481481,
+      "recall": 0.4166666666666667,
+      "f1-score": 0.5072463768115942,
+      "support": 84.0
+    },
+    "accuracy": 0.6615384615384615,
+    "macro avg": {
+      "precision": 0.6559261755420048,
+      "recall": 0.5754693165475476,
+      "f1-score": 0.6038432301835562,
+      "support": 910.0
+    },
+    "weighted avg": {
+      "precision": 0.6589174420800227,
+      "recall": 0.6615384615384615,
+      "f1-score": 0.6527938535163044,
+      "support": 910.0
+    }
+  },
+  "n_predictions": 910,
+  "reference": {
+    "exp5_9factor_loo_mean_ordinal_error": 0.378,
+    "exp5_9factor_loo_mean_decisive_set_f1": 0.446,
+    "exp5_original_5x5cv_mean_ordinal_error": 0.382,
+    "baseline_ordinal_error": 0.413
+  },
+  "note": "fh included per explicit user request (2026-08-19) -- cli_fh_binary used directly as an input feature, even though it was never actually revealed in any of the 91 labeled cases in the training data (0/91). See DESIGN.md Section 1."
+}

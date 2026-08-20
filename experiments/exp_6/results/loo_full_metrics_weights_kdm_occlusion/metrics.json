@@ -1,0 +1,169 @@
+{
+  "condition": "weights_kdm_occlusion",
+  "target": "variable_weights",
+  "protocol": "leave-one-out (91-fold, pooled)",
+  "features": "exp_3 19-column frame (PSA-reduced + MRI-PCA)",
+  "model": "KDM decision backbone (shared, n_classes=2) + per-factor occlusion-delta signal + isotonic recalibration -- unchanged from exp_6",
+  "mean_accuracy": 0.637,
+  "mean_macro_f1": 0.258,
+  "mean_ordinal_error": 0.39,
+  "mean_decisive_set_f1": 0.427,
+  "mean_roc_auc": 0.541,
+  "mean_brier_score": 0.725,
+  "n_factors_included": 9,
+  "n_factors_skipped": 0,
+  "per_factor": {
+    "age": {
+      "accuracy": 0.615,
+      "macro_f1": 0.19,
+      "ordinal_error": 0.396,
+      "decisive_set_f1": 0.787,
+      "roc_auc": 0.5,
+      "brier_score": 0.769
+    },
+    "cspca": {
+      "accuracy": 0.604,
+      "macro_f1": 0.253,
+      "ordinal_error": 0.462,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.791
+    },
+    "pirads": {
+      "accuracy": 0.549,
+      "macro_f1": 0.253,
+      "ordinal_error": 0.462,
+      "decisive_set_f1": 0.994,
+      "roc_auc": null,
+      "brier_score": 0.901
+    },
+    "vol": {
+      "accuracy": 0.747,
+      "macro_f1": 0.214,
+      "ordinal_error": 0.275,
+      "decisive_set_f1": 0.0,
+      "roc_auc": 0.497,
+      "brier_score": 0.505
+    },
+    "psa": {
+      "accuracy": 0.604,
+      "macro_f1": 0.328,
+      "ordinal_error": 0.407,
+      "decisive_set_f1": 0.803,
+      "roc_auc": 0.562,
+      "brier_score": 0.791
+    },
+    "comorbidity": {
+      "accuracy": 0.692,
+      "macro_f1": 0.205,
+      "ordinal_error": 0.308,
+      "decisive_set_f1": 0.0,
+      "roc_auc": null,
+      "brier_score": 0.615
+    },
+    "psad": {
+      "accuracy": 0.56,
+      "macro_f1": 0.218,
+      "ordinal_error": 0.505,
+      "decisive_set_f1": 0.0,
+      "roc_auc": 0.511,
+      "brier_score": 0.879
+    },
+    "dre": {
+      "accuracy": 0.758,
+      "macro_f1": 0.318,
+      "ordinal_error": 0.253,
+      "decisive_set_f1": 0.412,
+      "roc_auc": 0.561,
+      "brier_score": 0.484
+    },
+    "bx": {
+      "accuracy": 0.604,
+      "macro_f1": 0.342,
+      "ordinal_error": 0.44,
+      "decisive_set_f1": 0.843,
+      "roc_auc": 0.612,
+      "brier_score": 0.791
+    }
+  },
+  "confusion_matrix": [
+    [
+      51,
+      47,
+      5,
+      0
+    ],
+    [
+      16,
+      268,
+      67,
+      0
+    ],
+    [
+      7,
+      80,
+      188,
+      6
+    ],
+    [
+      0,
+      10,
+      59,
+      15
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "not_used",
+    "noted",
+    "important",
+    "decisive"
+  ],
+  "classification_report_text": "              precision    recall  f1-score   support\n\n    not_used      0.689     0.495     0.576       103\n       noted      0.662     0.764     0.709       351\n   important      0.589     0.669     0.627       281\n    decisive      0.714     0.179     0.286        84\n\n    accuracy                          0.637       819\n   macro avg      0.664     0.527     0.549       819\nweighted avg      0.646     0.637     0.621       819\n",
+  "classification_report": {
+    "not_used": {
+      "precision": 0.6891891891891891,
+      "recall": 0.49514563106796117,
+      "f1-score": 0.576271186440678,
+      "support": 103.0
+    },
+    "noted": {
+      "precision": 0.6617283950617284,
+      "recall": 0.7635327635327636,
+      "f1-score": 0.708994708994709,
+      "support": 351.0
+    },
+    "important": {
+      "precision": 0.5893416927899686,
+      "recall": 0.6690391459074733,
+      "f1-score": 0.6266666666666667,
+      "support": 281.0
+    },
+    "decisive": {
+      "precision": 0.7142857142857143,
+      "recall": 0.17857142857142858,
+      "f1-score": 0.2857142857142857,
+      "support": 84.0
+    },
+    "accuracy": 0.6373626373626373,
+    "macro avg": {
+      "precision": 0.6636362478316501,
+      "recall": 0.5265722422699066,
+      "f1-score": 0.5494117119540849,
+      "support": 819.0
+    },
+    "weighted avg": {
+      "precision": 0.6457364698744009,
+      "recall": 0.6373626373626373,
+      "f1-score": 0.6206427452916558,
+      "support": 819.0
+    }
+  },
+  "n_predictions": 819,
+  "auroc_brier_note": "AUROC/Brier are computed from a one-hot HARD-DECISION pseudo-probability (1.0 on the predicted class), the only option available since isotonic regression has no native calibrated-probability output -- not directly comparable in richness to weights_svm's real predict_proba or exp_14's regression-variance-based pseudo-probs.",
+  "reference": {
+    "exp6_original_10x5cv_mean_ordinal_error": 0.405,
+    "exp6_original_10x5cv_mean_decisive_set_f1": 0.442,
+    "baseline_ordinal_error": 0.413,
+    "weights_svm_incumbent_ordinal_error": 0.382
+  }
+}
