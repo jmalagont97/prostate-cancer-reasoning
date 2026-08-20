@@ -1,0 +1,1 @@
+189926fc920b6ff86f48c3636b672c054c466f17 Add knn_k option to BrentMemKDM: per-query k-NN truncation of the memory

@@ -1,0 +1,81 @@
+{
+    "best_hard_row": {
+        "condition": "tab",
+        "knn_k": 20,
+        "arm": "hard",
+        "head": "multivariate_ABC",
+        "signal": "margin+h_total+h_aleatoric+h_epistemic+h_weights+log_ess+w_max+log_marginal+nbr_label_entropy+nbr_kth_expo",
+        "target_informed": false,
+        "min_votes": 11,
+        "macro_f1": 0.4747368421052631,
+        "accuracy": 0.5681818181818182,
+        "spearman_rho": 0.42501078881605325,
+        "spearman_pvalue": 3.6684575307033034e-05,
+        "total_cases": 88
+    },
+    "vs_exp17_G1": {
+        "mcnemar": {
+            "b": 20,
+            "c": 21,
+            "statistic": 20,
+            "pvalue": 1.0
+        },
+        "permutation": {
+            "f1_a": 0.4747368421052631,
+            "f1_b": 0.4469706011059394,
+            "delta": 0.027766240999323732,
+            "pvalue": 0.7252747252747253,
+            "n_perm": 1000
+        }
+    },
+    "vs_exp24_G2": {
+        "mcnemar": {
+            "b": 21,
+            "c": 11,
+            "statistic": 11,
+            "pvalue": 0.11018416518345475
+        },
+        "permutation": {
+            "f1_a": 0.4747368421052631,
+            "f1_b": 0.4368347338935575,
+            "delta": 0.03790210821170564,
+            "pvalue": 0.5704295704295704,
+            "n_perm": 1000
+        }
+    },
+    "H2_family_c_contribution": {
+        "tab": {
+            "best_abc_knn_k": 20,
+            "abc_macro_f1": 0.4747368421052631,
+            "ab_none_macro_f1": 0.3928260869565217,
+            "mcnemar": {
+                "b": 27,
+                "c": 12,
+                "statistic": 12,
+                "pvalue": 0.023702702470473014
+            }
+        },
+        "mri": {
+            "best_abc_knn_k": 20,
+            "abc_macro_f1": 0.3322395406070549,
+            "ab_none_macro_f1": 0.3165522501906941,
+            "mcnemar": {
+                "b": 21,
+                "c": 9,
+                "statistic": 9,
+                "pvalue": 0.042773945257067694
+            }
+        },
+        "txt": {
+            "best_abc_knn_k": 5,
+            "abc_macro_f1": 0.40311791383219947,
+            "ab_none_macro_f1": 0.2525271974583614,
+            "mcnemar": {
+                "b": 22,
+                "c": 5,
+                "statistic": 5,
+                "pvalue": 0.0015137195587158203
+            }
+        }
+    }
+}

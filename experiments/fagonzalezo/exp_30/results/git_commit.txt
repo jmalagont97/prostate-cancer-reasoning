@@ -1,0 +1,1 @@
+c80b81b8e0e04dd2dff94ddf2e072a0ef5f7b2c0 Add exp_29: BrentMemKDM knn_k truncation sweep (H1 refuted, H2 not established)

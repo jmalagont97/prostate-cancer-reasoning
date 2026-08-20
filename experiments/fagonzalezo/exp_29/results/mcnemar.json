@@ -1,0 +1,104 @@
+{
+    "tab__hard_vs_knn_tab": {
+        "b": 0,
+        "c": 0,
+        "statistic": 0,
+        "pvalue": 1.0
+    },
+    "mri__hard_vs_knn_mri_pca": {
+        "b": 13,
+        "c": 9,
+        "statistic": 9,
+        "pvalue": 0.5234670639038086
+    },
+    "txt__hard_vs_knn_txt": {
+        "b": 8,
+        "c": 7,
+        "statistic": 7,
+        "pvalue": 1.0
+    },
+    "fusion_equal__hard_vs_knn_fusion_equal": {
+        "b": 7,
+        "c": 9,
+        "statistic": 7,
+        "pvalue": 0.803619384765625
+    },
+    "fusion_optimal_leakfree__hard_vs_knn_fusion_equal": {
+        "b": 12,
+        "c": 8,
+        "statistic": 8,
+        "pvalue": 0.5034446716308594
+    },
+    "tab__soft_vs_knn_tab": {
+        "b": 10,
+        "c": 8,
+        "statistic": 8,
+        "pvalue": 0.8145294189453125
+    },
+    "mri__soft_vs_knn_mri_pca": {
+        "b": 10,
+        "c": 8,
+        "statistic": 8,
+        "pvalue": 0.8145294189453125
+    },
+    "txt__soft_vs_knn_txt": {
+        "b": 10,
+        "c": 8,
+        "statistic": 8,
+        "pvalue": 0.8145294189453125
+    },
+    "fusion_equal__soft_vs_knn_fusion_equal": {
+        "b": 11,
+        "c": 12,
+        "statistic": 11,
+        "pvalue": 1.0
+    },
+    "tab__hard_vs_exp28_knn_k_none": {
+        "b": 8,
+        "c": 4,
+        "statistic": 4,
+        "pvalue": 0.3876953125
+    },
+    "mri__hard_vs_exp28_knn_k_none": {
+        "b": 0,
+        "c": 2,
+        "statistic": 0,
+        "pvalue": 0.5
+    },
+    "txt__hard_vs_exp28_knn_k_none": {
+        "b": 1,
+        "c": 0,
+        "statistic": 0,
+        "pvalue": 1.0
+    },
+    "fusion_equal__hard_vs_exp28_knn_k_none": {
+        "b": 3,
+        "c": 3,
+        "statistic": 3,
+        "pvalue": 1.0
+    },
+    "tab__soft_vs_exp28_knn_k_none": {
+        "b": 9,
+        "c": 6,
+        "statistic": 6,
+        "pvalue": 0.6072387695312499
+    },
+    "mri__soft_vs_exp28_knn_k_none": {
+        "b": 4,
+        "c": 6,
+        "statistic": 4,
+        "pvalue": 0.75390625
+    },
+    "txt__soft_vs_exp28_knn_k_none": {
+        "b": 0,
+        "c": 0,
+        "statistic": 0,
+        "pvalue": 1.0
+    },
+    "fusion_equal__soft_vs_exp28_knn_k_none": {
+        "b": 6,
+        "c": 8,
+        "statistic": 6,
+        "pvalue": 0.79052734375
+    }
+}
