@@ -1,1 +1,1 @@
-c80b81b8e0e04dd2dff94ddf2e072a0ef5f7b2c0 Add exp_29: BrentMemKDM knn_k truncation sweep (H1 refuted, H2 not established)
+a2b024ebb93d9dcf5e410fb728a4e3a77412e9d3 Port exp_29 and exp_30 (BrentMemKDM) from fagonzalezo to experiments/fagonzalezo/

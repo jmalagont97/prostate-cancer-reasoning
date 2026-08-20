@@ -136,14 +136,14 @@ def main(smoke: bool = False):
 
     print("[exp_30] Step 0b: G1 (exp_17 Composite Fuzzy ICI, target 0.4469706011059394)...")
 
-    oof16 = pd.read_csv(PROJECT_ROOT / "experiments/exp_16/results/oof_predictions.csv")
+    oof16 = pd.read_csv(PROJECT_ROOT / "experiments/fagonzalezo/exp_16/results/oof_predictions.csv")
     oof16L = oof16[oof16.patient_id.isin(cohort.pids)].sort_values("patient_id").reset_index(drop=True)
     assert (oof16L.patient_id.values == cohort.pids).all() and len(oof16L) == 88, \
         "G1: exp_16 OOF predictions don't align with this cohort's patient_id order"
 
     # Route A: score exp_17's own stored per-patient predictions directly.
     cm17 = {"uncertain": 0, "borderline": 1, "clear": 2}
-    oof17 = pd.read_csv(PROJECT_ROOT / "experiments/exp_17/results/oof_confidence_predictions.csv")
+    oof17 = pd.read_csv(PROJECT_ROOT / "experiments/fagonzalezo/exp_17/results/oof_confidence_predictions.csv")
     oof17L = oof17[oof17.patient_id.isin(cohort.pids)].sort_values("patient_id").reset_index(drop=True)
     assert (oof17L.patient_id.values == cohort.pids).all()
     g1_a_pred = oof17L.predicted_confidence.map(cm17).values

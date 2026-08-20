@@ -1,1 +1,1 @@
-189926fc920b6ff86f48c3636b672c054c466f17 Add knn_k option to BrentMemKDM: per-query k-NN truncation of the memory
+a2b024ebb93d9dcf5e410fb728a4e3a77412e9d3 Port exp_29 and exp_30 (BrentMemKDM) from fagonzalezo to experiments/fagonzalezo/

@@ -2,7 +2,9 @@
 
 `Data/preprocessed_old/task1/` is the schema every one of exp_1-24 actually
 reads: `patient_id`, missing values as the string `'NONE'`, splits from
-`experiments/exp_4/results/mccv_design.csv` (100 MCCV columns). This module
+`experiments/fagonzalezo/exp_4/results/mccv_design.csv` (100 MCCV columns;
+namespaced under `fagonzalezo/` on this branch because its own top-level
+`experiments/exp_4` is an unrelated experiment). This module
 targets that schema behind `CohortSpec` so the newer
 `Data/preprocessed/task1/` schema (`case_id`, 50-split `mccv_loocv_splits.csv`)
 can be a second spec later without touching `load_cohort`'s callers.
@@ -84,7 +86,7 @@ def load_cohort(data_dir: Path, project_root: Path, spec: CohortSpec = OLD_SCHEM
     df_tab = pd.read_csv(data_dir / "clinical_data_tabular.csv", dtype=str, keep_default_na=False)
     df_dec = pd.read_csv(data_dir / "biopsy_decision.csv", dtype=str, keep_default_na=False)
     df_reasoning = pd.read_csv(data_dir / "clinical_reasoning.csv", dtype=str, keep_default_na=False)
-    df_design = pd.read_csv(project_root / "experiments" / "exp_4" / "results" / "mccv_design.csv")
+    df_design = pd.read_csv(project_root / "experiments" / "fagonzalezo" / "exp_4" / "results" / "mccv_design.csv")
 
     for c in spec.num_cols:
         df_tab[c] = pd.to_numeric(df_tab[c], errors="coerce")
