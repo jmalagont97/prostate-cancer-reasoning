@@ -25,7 +25,7 @@ def binary_metrics(y_true: np.ndarray, p_soft: np.ndarray, threshold: float = 0.
         "macro_f1": float(macro_f1), "accuracy": float(acc),
         "sensitivity": float(sens), "specificity": float(spec),
         "auroc": float(roc_auc_score(y_true, p_soft)),
-        "brier_score": float(brier_score_loss(y_true, p_soft)),
+        "brier_score": float(brier_score_loss(y_true, np.clip(p_soft, 0.0, 1.0))),
         "tp": int(tp), "tn": int(tn), "fp": int(fp), "fn": int(fn),
         "total_cases": int(len(y_true)),
     }
