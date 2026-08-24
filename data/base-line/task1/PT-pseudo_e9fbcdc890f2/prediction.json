@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_e9fbcdc890f2",
+  "patient": {
+    "id": "PT-pseudo_e9fbcdc890f2",
+    "psa_ng_ml": 82.0,
+    "age_years": 74.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "decisive",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "noted",
+    "pirads": "decisive",
+    "psad": "not_used",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:11:36.547Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:11:38.547Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:11:40.547Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:11:42.547Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:11:44.547Z"
+    }
+  ],
+  "repeat_test": "Targeted biopsy to confirm diagnosis and guide definitive treatment planning due to high-risk imaging and biochemical markers.",
+  "free_text": "The combination of a PI-RADS 5 lesion, an extremely high predicted csPCa probability (0.934), and a rapid PSA velocity strongly mandates a targeted biopsy for definitive confirmation and risk stratification."
+}

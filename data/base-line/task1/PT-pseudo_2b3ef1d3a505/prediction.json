@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_2b3ef1d3a505",
+  "patient": {
+    "id": "PT-pseudo_2b3ef1d3a505",
+    "psa_ng_ml": 4.2,
+    "age_years": 67.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "noted",
+    "comorbidity": "not_used",
+    "bx": "noted",
+    "pirads": "decisive",
+    "psad": "noted",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:14:08.810Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:14:10.810Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:14:12.810Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:14:14.810Z"
+    }
+  ],
+  "repeat_test": "None specified; follow-up will be based on biopsy results.",
+  "free_text": "The PI-RADS 5 finding on the mpMRI, the high csPCa predicted probability (0.81), the rising PSA trend, and the history of prior prostate cancer are the decisive factors for recommending a biopsy."
+}

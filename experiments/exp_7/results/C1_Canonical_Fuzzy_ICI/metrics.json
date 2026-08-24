@@ -1,0 +1,34 @@
+{
+  "condition_id": "C1_Canonical_Fuzzy_ICI",
+  "name": "Canonical Composite Fuzzy ICI (Balanced Regressor)",
+  "mean_macro_f1": 0.21865285509506355,
+  "std_macro_f1": 0.09198098290491655,
+  "mean_accuracy": 0.2907407407407407,
+  "std_accuracy": 0.08592190724737349,
+  "mean_moe_abs": 0.37306397306397315,
+  "std_moe_abs": 0.07389422505568896,
+  "mean_s_conf": 0.6092592592592593,
+  "std_s_conf": 0.07182077246491486,
+  "mean_rec_uncertain": 0.05555555555555555,
+  "mean_rec_borderline": 0.8,
+  "mean_rec_clear": 0.1696969696969697,
+  "spearman_rho": 0.05183059340949761,
+  "spearman_p": 0.22918866069930238,
+  "confusion_matrix_pooled": [
+    [
+      5,
+      67,
+      18
+    ],
+    [
+      8,
+      96,
+      16
+    ],
+    [
+      21,
+      253,
+      56
+    ]
+  ]
+}

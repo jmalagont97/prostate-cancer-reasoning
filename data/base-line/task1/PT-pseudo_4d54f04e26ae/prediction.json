@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_4d54f04e26ae",
+  "patient": {
+    "id": "PT-pseudo_4d54f04e26ae",
+    "psa_ng_ml": 34.7,
+    "age_years": 66.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "decisive",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "noted",
+    "pirads": "decisive",
+    "psad": "noted",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:37:33.144Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:37:35.144Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:37:37.144Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:37:39.144Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:37:41.144Z"
+    },
+    {
+      "page": "decision",
+      "order": 6,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:37:43.144Z"
+    }
+  ],
+  "repeat_test": "Targeted biopsy to confirm lesion seen on mpMRI (PI-RADS 4).",
+  "free_text": "The recommendation is driven by the high-risk mpMRI finding (PI-RADS 4), the significant and rapid rise in PSA (34.7 ng/mL), and the history of a prior negative biopsy."
+}

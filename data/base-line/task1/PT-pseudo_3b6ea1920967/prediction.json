@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_3b6ea1920967",
+  "patient": {
+    "id": "PT-pseudo_3b6ea1920967",
+    "psa_ng_ml": 6.5,
+    "age_years": 64.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "important",
+    "pirads": "decisive",
+    "psad": "not_used",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:26:44.590Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:26:46.590Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:26:48.590Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:26:50.590Z"
+    }
+  ],
+  "repeat_test": "MRI-directed targeted biopsy",
+  "free_text": "The decision is driven by the PI-RADS 4 lesion, the high csPCa predicted probability (0.746), the rising PSA velocity, and the need for histological confirmation in a high-risk scenario."
+}

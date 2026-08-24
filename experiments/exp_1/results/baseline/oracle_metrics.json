@@ -1,0 +1,7 @@
+{
+  "n_cases": 91,
+  "mean_case_score": 0.9388801674515961,
+  "ranking_score": 1.0,
+  "decision_accuracy": 1.0,
+  "decision_f1_yes": 1.0
+}

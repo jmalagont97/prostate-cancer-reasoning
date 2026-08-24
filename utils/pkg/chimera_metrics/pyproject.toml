@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chimera_metrics"
+version = "0.1.0"
+description = "Standardized Evaluation Metrics Suite for CHIMERA-Agent Challenge (MICCAI 2026)"
+authors = [
+    { name = "Juan Sebastian Malagon Torres" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.22.0",
+    "scipy>=1.8.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+judge = [
+    "requests>=2.28.0",
+    "deepeval>=0.20.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["chimera_metrics*"]

@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_6d2ecb82cc52",
+  "patient": {
+    "id": "PT-pseudo_6d2ecb82cc52",
+    "psa_ng_ml": 25.0,
+    "age_years": 60.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "not_used",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:52:44.081Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:52:46.081Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:52:48.081Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:52:50.081Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:52:52.081Z"
+    }
+  ],
+  "repeat_test": "Prostate Biopsy for tissue diagnosis",
+  "free_text": "The decisive factors were the PI-RADS 5 finding on mpMRI, the high csPCa probability (0.918), and the rapid PSA velocity, all strongly indicating a need for tissue diagnosis."
+}

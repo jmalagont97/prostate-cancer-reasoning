@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_5f263f325019",
+  "patient": {
+    "id": "PT-pseudo_5f263f325019",
+    "psa_ng_ml": 12.3,
+    "age_years": 70.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "decisive",
+    "age": "important",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "important",
+    "pirads": "decisive",
+    "psad": "not_used",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:46:22.830Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:46:24.830Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:46:26.830Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:46:28.830Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:46:30.830Z"
+    }
+  ],
+  "repeat_test": "Repeat imaging in 6-12 months to monitor response to therapy.",
+  "free_text": "The decision is driven by the combination of a PI-RADS 5 MRI finding, a significantly rising PSA velocity, and an extremely high csPCa predicted probability (>80%)."
+}

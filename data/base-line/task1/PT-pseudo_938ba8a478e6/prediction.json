@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_938ba8a478e6",
+  "patient": {
+    "id": "PT-pseudo_938ba8a478e6",
+    "psa_ng_ml": 7.9,
+    "age_years": 65.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "important",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "not_used",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:15:46.371Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:15:48.371Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:15:50.371Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:15:52.371Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:15:54.371Z"
+    }
+  ],
+  "repeat_test": "Targeted and perilesional biopsy to confirm histological progression based on PI-RADS 4 lesion.",
+  "free_text": "The decision is driven by the presence of a PI-RADS 4 lesion on MRI, the significantly elevated PSA (7.9 ng/mL), and the rising PSA trend, all strongly indicating a high probability of clinically significant prostate cancer."
+}

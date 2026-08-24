@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_945da5c635c4",
+  "patient": {
+    "id": "PT-pseudo_945da5c635c4",
+    "psa_ng_ml": 13.0,
+    "age_years": 71.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "noted",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:17:40.721Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:17:42.721Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:17:44.721Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:17:46.721Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:17:48.721Z"
+    }
+  ],
+  "repeat_test": "MRI-targeted biopsy to confirm diagnosis and grade",
+  "free_text": "The PI-RADS 5 finding (decisive) and the history of prostate cancer (bx) combined with the rising PSA (important) strongly indicated the need for a targeted biopsy."
+}

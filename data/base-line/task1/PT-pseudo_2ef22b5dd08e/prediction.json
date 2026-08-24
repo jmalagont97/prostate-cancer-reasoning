@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_2ef22b5dd08e",
+  "patient": {
+    "id": "PT-pseudo_2ef22b5dd08e",
+    "psa_ng_ml": 9.3,
+    "age_years": 66.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "decisive",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:17:55.123Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:17:57.123Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:17:59.123Z"
+    }
+  ],
+  "repeat_test": "Follow-up PSA check and repeat mpMRI in 6-12 months if biopsy is negative.",
+  "free_text": "The decision is driven by the combination of a high-risk mpMRI finding (PI-RADS 4 with 83% csPCa probability), a significant upward trend in PSA, and the need for definitive tissue diagnosis."
+}

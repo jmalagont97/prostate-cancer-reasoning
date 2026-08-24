@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_cce5d47c05dd",
+  "patient": {
+    "id": "PT-pseudo_cce5d47c05dd",
+    "psa_ng_ml": 12.0,
+    "age_years": 61.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:58:11.078Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:58:13.078Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:58:15.078Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:58:17.078Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:58:19.078Z"
+    },
+    {
+      "page": "decision",
+      "order": 6,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:58:21.078Z"
+    }
+  ],
+  "repeat_test": "Prostate biopsy to confirm the pathology of the PI-RADS 5 lesion and guide management.",
+  "free_text": "The PI-RADS 5 MRI finding, the rapidly rising PSA velocity, the patient's history of prior prostate cancer, and the elevated PSA level are the key factors driving the decision for biopsy."
+}

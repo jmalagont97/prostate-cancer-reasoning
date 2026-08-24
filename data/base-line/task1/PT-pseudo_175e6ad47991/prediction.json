@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_175e6ad47991",
+  "patient": {
+    "id": "PT-pseudo_175e6ad47991",
+    "psa_ng_ml": 28.0,
+    "age_years": 79.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "decisive",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "noted",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:05:10.990Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:05:12.990Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:05:14.990Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:05:16.990Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:05:18.990Z"
+    },
+    {
+      "page": "decision",
+      "order": 6,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:05:20.990Z"
+    }
+  ],
+  "repeat_test": "Repeat prostate biopsy to confirm diagnosis given PI-RADS 5 finding and rising PSA velocity.",
+  "free_text": "The decision is driven by the convergence of a PI-RADS 5 lesion on MRI, a significantly elevated and rising PSA level (28.0 ng/mL), and the need to reconcile this high-risk imaging with a prior negative biopsy result."
+}

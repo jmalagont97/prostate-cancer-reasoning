@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_95d3fd02d5e0",
+  "patient": {
+    "id": "PT-pseudo_95d3fd02d5e0",
+    "psa_ng_ml": 5.5,
+    "age_years": 63.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "decisive",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "noted",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:19:56.515Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:19:58.515Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:20:00.515Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:20:02.515Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:20:04.515Z"
+    },
+    {
+      "page": "decision",
+      "order": 6,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:20:06.515Z"
+    }
+  ],
+  "repeat_test": "Prostate biopsy to obtain definitive Gleason score and grade.",
+  "free_text": "The decision is driven by three critical factors: the PI-RADS 4 lesion, the progressive, high-velocity PSA rise, and the history of prior prostate cancer, all indicating high clinical suspicion for clinically significant cancer."
+}

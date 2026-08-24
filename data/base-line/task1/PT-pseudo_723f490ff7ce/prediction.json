@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_723f490ff7ce",
+  "patient": {
+    "id": "PT-pseudo_723f490ff7ce",
+    "psa_ng_ml": 3.7,
+    "age_years": 69.0
+  },
+  "biopsy_decision": "no",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "noted",
+    "fh": "important"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:56:14.329Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:56:16.329Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:56:18.329Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:56:20.329Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:56:22.329Z"
+    }
+  ],
+  "repeat_test": "Continue active surveillance with serial PSA monitoring.",
+  "free_text": "The PI-RADS 2 score on mpMRI is the most decisive factor, indicating low suspicion. This was strongly supported by the low PSA density (0.07) and the absence of a family history."
+}

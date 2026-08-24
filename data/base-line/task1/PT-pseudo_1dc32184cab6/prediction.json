@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_1dc32184cab6",
+  "patient": {
+    "id": "PT-pseudo_1dc32184cab6",
+    "psa_ng_ml": 0.76,
+    "age_years": 60.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "important",
+    "pirads": "decisive",
+    "psad": "noted",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:08:28.710Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:08:30.710Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:08:32.710Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:08:34.710Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:08:36.710Z"
+    },
+    {
+      "page": "decision",
+      "order": 6,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:08:38.710Z"
+    }
+  ],
+  "repeat_test": "Repeat imaging/biopsy if pathology is equivocal or if PSA continues to rise significantly.",
+  "free_text": "The decision was driven by the PI-RADS 4 finding on mpMRI, the progressive rise in PSA, the prior negative biopsy, and the high predicted csPCa probability."
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_97a7a14b3c3d",
+  "patient": {
+    "id": "PT-pseudo_97a7a14b3c3d",
+    "psa_ng_ml": 6.5,
+    "age_years": 73.0
+  },
+  "biopsy_decision": "no",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:20:44.958Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:20:46.958Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:20:48.958Z"
+    }
+  ],
+  "repeat_test": "Surveillance with repeat MRI protocol to monitor PSA trend and PI-RADS score.",
+  "free_text": "The PI-RADS 2 score and the 0.0 predicted csPCa probability were the decisive factors, overriding the concerning PSA rise."
+}

@@ -1,74 +1,55 @@
-# Implementation Plan — Experiment 9
+# Implementation Plan: Joint Feature-Attribution Fusion (Raw Features + Coalesced SHAP 23D) for Subtask 1.3
 
-**Experiment**: KNN + PCA Dimensionality Reduction on MRI Embedding
-**Script**: `experiments/exp_9/scripts/run_mri_pca_knn_experiment.py`
-**Runtime**: tmux session 0, real-time stdout
-**Expected time**: ~5–15 min (PCA is fast on 70×1024; KNN grid is the bottleneck)
+**Experiment**: `experiments/exp_9/`  
+**Project**: `prostate-cancer-reasoning` (CHIMERA-Agent)  
+**Date**: 2026-08-24  
+**Author**: AI Co-Researcher & Juan Sebastian Malagón Torres  
+**Status**: In Progress  
 
 ---
 
-## 1. Script Structure
+## 1. Overview & Architecture
+This implementation realizes the joint fusion paradigm proposed in `DESIGN.md`. For each patient case $i$, it extracts:
+1. **Raw Phenotypic Features ($\mathbf{x}^{(i)} \in \mathbb{R}^{10}$)**: Canonical pre-biopsy variables (`age`, `psa`, `vol`, `psad`, `dre_num`, `pirads`, `fh_num`, `comorb_score`, `bx_prior_num`, `cspca`).
+2. **Local Model Sensitivities ($|\boldsymbol{\Phi}^{(i)}| \in \mathbb{R}^{10}$)**: Absolute Shapley values computed with respect to the optimal frozen tabular classifier ($C_1^*$ Fuzzy-KNN, $k=5$, Euclidean metric from `exp_4`).
+3. **Coalesced Energies ($\boldsymbol{\Phi}_{\text{coalesced}}^{(i)} \in \mathbb{R}^3$)**:
+   - $\Phi_{\text{PSA,PSAD}}^{(i)} = |\phi_{\text{PSA}}^{(i)}| + |\phi_{\text{PSAD}}^{(i)}|$
+   - $\Phi_{\text{PIRADS,csPCa}}^{(i)} = |\phi_{\text{PIRADS}}^{(i)}| + |\phi_{\text{csPCa}}^{(i)}|$
+   - $\Phi_{\text{Vol,PSAD}}^{(i)} = |\phi_{\text{Vol}}^{(i)}| + |\phi_{\text{PSAD}}^{(i)}|$
+4. **Joint Representation ($\mathbf{z}^{(i)} \in \mathbb{R}^{23}$)**: $\mathbf{z}^{(i)} = [\mathbf{x}^{(i)}, |\boldsymbol{\Phi}^{(i)}|, \boldsymbol{\Phi}_{\text{coalesced}}^{(i)}]$.
 
-Adapted from `exp_8/scripts/run_mri_embedding_pruning_experiment.py`
-(Spearman pruning) + `exp_6/scripts/run_knn_image_embedding_experiment.py`
-(MRI embedding loading + confusion matrix figures).
+---
 
-### Key Differences from exp_8
+## 2. Experimental Conditions & Meta-Models
+1. **$C_1$ (SHAP-Only Control / $13\text{D}$)**: `RandomForestClassifier(n_estimators=50, max_depth=3, max_features='sqrt', class_weight='balanced', random_state=42)` fitted on $\boldsymbol{\Phi}_{\text{aug}} \in \mathbb{R}^{13}$.
+2. **$C_2$ (Raw-Features-Only Control / $10\text{D}$)**: `RandomForestClassifier(n_estimators=50, max_depth=3, max_features='sqrt', class_weight='balanced', random_state=42)` fitted on $\mathbf{x} \in \mathbb{R}^{10}$.
+3. **$C_3$ (Joint Concatenated Forest / $23\text{D}$)**: `RandomForestClassifier(n_estimators=50, max_depth=3, max_features='sqrt', min_samples_leaf=2, class_weight='balanced', random_state=42)` fitted on $\mathbf{z} \in \mathbb{R}^{23}$.
+4. **$C_4$ (Joint Extra-Trees / $23\text{D}$)**: `ExtraTreesClassifier(n_estimators=50, max_depth=3, max_features='sqrt', min_samples_leaf=2, class_weight='balanced', random_state=42)` fitted on $\mathbf{z} \in \mathbb{R}^{23}$.
+5. **$C_5$ (Targeted Dual-Path Hybrid / $23\text{D}$)**:
+   - For deterministic/discrete variables ($DRE$, $Bx$, $Age$, $FH$, $Comorbidity$): Uses specialized balanced tree/forest focusing on $[\mathbf{x}, |\phi_j|]$.
+   - For complex continuous/radiological biomarkers ($PSA$, $PIRADS$, $PSAD$, $Vol$, $csPCa$): Uses the joint 23D Extra-Trees ensemble.
 
-| Aspect | exp_8 | exp_9 |
-|--------|-------|-------|
-| Dimensionality reduction | Spearman correlation pruning (feature selection) | PCA (linear projection) |
-| Conditions | `no_prune` + 4 τ thresholds | `no_pca` + 8 `n_components` values |
-| LOO | Fixed intersection of MCCV-selected dims | No intersection — PCA refit per LOO fold |
-| Extra artefact | pruning_report.json, clusters JSON | pca_report.json, explained_variance CSV/PNG |
+---
 
-### Key Differences from exp_6
-
-| Aspect | exp_6 | exp_9 |
-|--------|-------|-------|
-| Preprocessing | None (raw 1024D) | PCA per fold |
-| Conditions | 1 | 9 (no_pca + 8 PCA sizes) |
-| LOO | Direct 1024D | PCA refit per fold with frozen n_components |
-
-## 2. PCA Pipeline (per MCCV fold)
-
-```python
-# X_emb_train: (70, 1024) raw, no scaling
-pca = PCA(n_components=d, svd_solver="full", whiten=False)
-X_train_pca = pca.fit_transform(X_emb_train)   # (70, d)
-X_val_pca   = pca.transform(X_emb_val)         # (18, d)
-# pca.explained_variance_ratio_ available for reporting
+## 3. Directory & Script Layout
+```
+experiments/exp_9/
+├── DESIGN.md
+├── IMPLEMENTATION.md
+├── scripts/
+│   ├── models.py              <- Data preprocessors, SHAP extractors, and meta-classifiers
+│   └── run_exp9_joint.py      <- 30-split MCCV runner with real-time logging
+└── results/
+    ├── aggregate_metrics.json
+    ├── split_metrics.json
+    ├── split_predictions.json
+    ├── wilcoxon_tests.json
+    └── version.txt
 ```
 
-## 3. KNN Evaluation
+---
 
-Same as exp_8: 72 configs, ConfidenceWeightedKNN for fuzzy variant, same metrics
-suite. Applied to the PCA-transformed (or raw, for `no_pca`) embedding matrix.
-
-## 4. LOO Evaluation
-
-- `n_components` frozen from MCCV selection.
-- Per LOO fold: fit PCA on 87 training cases → transform train+test.
-- No intersection across folds (PCA bases differ; intersection is undefined).
-- The `pca_69` condition uses 69 components (max rank in MCCV = 69); in LOO
-  with 87 training cases, the rank is 86, so 69 components are valid.
-
-## 5. Artefacts
-
-- `config_log.json` with per-config mean metrics (all conditions).
-- `pca_report.json` with per-condition explained variance stats.
-- `explained_variance_<condition>.csv` with per-fold explained variance ratios.
-- `summary_selection.json` with global best config, MCCV and LOO metrics.
-- Confusion matrix PNG + PDF for the global best config.
-- Explained variance bar plot PNG + PDF.
-- Validation report with all sanity checks.
-- Git commit hash.
-
-## 6. Launch
-
-```bash
-conda activate histo-DL
-tmux new-session -d -s 0 "python3 experiments/exp_9/scripts/run_mri_pca_knn_experiment.py 2>&1 | tee experiments/exp_9/run_output.log"
-```
-
-Progress printed to stdout in real time (every 10 splits per condition).
+## 4. Execution & Governance Protocol
+- Evaluated strictly across all 30 splits of `data/processed/task1/mccv_splits_30.csv`.
+- Training and validation sets completely decoupled. Zero post-biopsy leakage.
+- Live progress rendered in `tmux:0` terminal pane.

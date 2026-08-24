@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_b28f2ad6069e",
+  "patient": {
+    "id": "PT-pseudo_b28f2ad6069e",
+    "psa_ng_ml": 19.0,
+    "age_years": 64.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "not_used",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:42:55.350Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:42:57.350Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:42:59.350Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:43:01.350Z"
+    }
+  ],
+  "repeat_test": "Perform biopsy to confirm the diagnosis suggested by the high-risk MRI finding and elevated predicted cancer probability.",
+  "free_text": "The primary drivers were the PI-RADS 4 finding, the high predicted csPCa probability (~79%), and the concerning upward trend in PSA."
+}

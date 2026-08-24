@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_84ce0e4a9eed",
+  "patient": {
+    "id": "PT-pseudo_84ce0e4a9eed",
+    "psa_ng_ml": 15.0,
+    "age_years": 71.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "important",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "important",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:08:54.670Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:08:56.670Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:08:58.670Z"
+    }
+  ],
+  "repeat_test": "Repeat MRI surveillance in 6-12 months to assess stability of the lesion.",
+  "free_text": "The decision is driven by the PI-RADS 5 on MRI, the very high csPCa predicted probability (0.855), the progressive PSA velocity, and the history of prior positive biopsies."
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_dcd61cf9b443",
+  "patient": {
+    "id": "PT-pseudo_dcd61cf9b443",
+    "psa_ng_ml": 8.3,
+    "age_years": 66.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "important",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "decisive",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:05:23.738Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:05:25.738Z"
+    }
+  ],
+  "repeat_test": "Prostate Biopsy to confirm malignancy grade.",
+  "free_text": "The PI-RADS 5 score and the very high csPCa predicted probability (0.86) are the decisive factors, coupled with the rising PSA velocity, necessitating tissue diagnosis."
+}

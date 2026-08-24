@@ -1,0 +1,7 @@
+{
+  "radiology_report": "Prostate volume: 18.03 cc. PSA density: 0.516 ng/mL/cc. PI-RADS: 5. AI model-predicted probability of clinically significant prostate cancer (0–1): 0.85247576.",
+  "pathology_report": "The patient underwent one biopsy session. At biopsy, Gleason 4+3 (ISUP grade group 3, AI model-predicted ISUP 4) was identified in the right side; cribriform pattern was present, with no intraductal carcinoma. The reported histological growth pattern was: Cribriform, glomeruloid, partly also acinar.",
+  "surgical_pathology_report": "The robot-assisted radical prostatectomy specimen showed Gleason 3+4 (ISUP grade group 2), pathological stage pT2. There was no extraprostatic extension; surgical margins were positive; the seminal vesicles were not invaded; lymphovascular invasion was absent; there was no lymph node metastasis.",
+  "previous_notes": "The patient is not on 5-ARI medication.",
+  "family_history": "There is a family history of prostate or breast cancer."
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_927456f47c99",
+  "patient": {
+    "id": "PT-pseudo_927456f47c99",
+    "psa_ng_ml": 6.6,
+    "age_years": 59.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "decisive",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "noted",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:14:46.656Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:14:48.656Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:14:50.656Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:14:52.656Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:14:54.656Z"
+    }
+  ],
+  "repeat_test": "Prostate biopsy to establish Gleason score and pathological grade.",
+  "free_text": "The decision is driven by the confluence of three high-risk factors: 1) PI-RADS 4 finding on MRI, 2) A rapidly rising PSA trend, and 3) The patient being biopsy-na\u00efve, necessitating tissue diagnosis."
+}

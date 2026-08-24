@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_259484ae733f",
+  "patient": {
+    "id": "PT-pseudo_259484ae733f",
+    "psa_ng_ml": 5.3,
+    "age_years": 65.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "noted",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "important",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:13:15.856Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:13:17.856Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:13:19.856Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:13:21.856Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:13:23.856Z"
+    }
+  ],
+  "repeat_test": "Tissue biopsy to confirm the nature and extent of the lesion identified on MRI.",
+  "free_text": "The decision is driven by the combination of a rising PSA trend (progression), the presence of a high-risk PI-RADS 4 lesion, and the high csPCa predicted probability (0.79) derived from the MRI findings."
+}

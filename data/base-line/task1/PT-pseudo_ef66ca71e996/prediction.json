@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_ef66ca71e996",
+  "patient": {
+    "id": "PT-pseudo_ef66ca71e996",
+    "psa_ng_ml": 10.0,
+    "age_years": 53.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "noted",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:14:08.733Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:14:10.733Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:14:12.733Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:14:14.733Z"
+    }
+  ],
+  "repeat_test": "Targeted biopsy guided by MRI for PI-RADS 3 lesion.",
+  "free_text": "The combination of a rising PSA trend, the PI-RADS 3 lesion on MRI, and the need to confirm negative findings after a prior negative biopsy drove the recommendation for targeted biopsy."
+}

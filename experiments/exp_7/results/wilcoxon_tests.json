@@ -1,0 +1,22 @@
+{
+  "C1_Canonical_Fuzzy_ICI": {
+    "statistic": 123.0,
+    "p_value": 0.9878650306776919,
+    "significant_005": false
+  },
+  "C1_clf_Fuzzy_ICI": {
+    "statistic": 134.0,
+    "p_value": 0.9786221455647699,
+    "significant_005": false
+  },
+  "C2_Optimal_Weighted_ICI": {
+    "statistic": 107.0,
+    "p_value": 0.9950818474621453,
+    "significant_005": false
+  },
+  "C3_Unweighted_UniformTree": {
+    "statistic": 71.0,
+    "p_value": 0.006015179235104538,
+    "significant_005": true
+  }
+}

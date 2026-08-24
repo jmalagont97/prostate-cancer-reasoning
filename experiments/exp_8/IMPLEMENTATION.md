@@ -1,80 +1,80 @@
-# Implementation Plan — Experiment 8
+# Implementation Plan: Multivariate Balanced Decision Trees over Full 10D SHAP and Coalesced Feature Spaces (Subtask 1.3)
 
-**Experiment**: KNN + Spearman Correlation Pruning on MRI Embedding  
-**Script**: `experiments/exp_8/scripts/run_mri_embedding_pruning_experiment.py`  
-**Runtime**: tmux session 0, real-time stdout  
-**Expected time**: ~10–30 min (Spearman matrix is O(1024²) per fold × 250 folds)
+**Experiment**: `experiments/exp_8/`  
+**Project**: `prostate-cancer-reasoning` (CHIMERA-Agent)  
+**Date**: 2026-08-24  
+**Author**: Juan Sebastian Malagón Torres (PI) & AI Co-Researcher  
+**Status**: Approved & Ready for Execution  
 
 ---
 
-## 1. Script Structure
+## 1. Modular Architecture Overview
 
-Adapted from `exp_5/scripts/run_knn_pruning_experiment.py` (pruning logic) +
-`exp_6/scripts/run_knn_image_embedding_experiment.py` (MRI embedding loading +
-confusion matrix figures).
+El objetivo es implementar la extracción de atribuciones locales conjuntas y meta-árboles balanceados para predecir los 10 pesos urológicos ordinales ($y \in \{0, 1, 2, 3\}$), bajo el protocolo estricto MCCV-30 (73 train / 18 val).
 
-### Key Differences from exp_5
-
-| Aspect | exp_5 | exp_8 |
-|--------|-------|-------|
-| Input | main_tabular.csv (27 mixed features) | images.csv (1024 numeric dims) |
-| Association | Mixed-type Spearman (num×num, cat×num, cat×cat) | Pure numeric `spearmanr(X)` |
-| Essential vars | 10 clinical vars always kept | None |
-| Missingness | >50% NaN → drop | Not applicable (no NaN) |
-| Categoricals | OHE with sentinel handling | Not applicable |
-| Scaling | MinMaxScaler on numerics | None (raw embedding) |
-| Missingness indicators | `__is_missing` columns | Not applicable |
-
-### Key Differences from exp_6
-
-| Aspect | exp_6 | exp_8 |
-|--------|-------|-------|
-| Pruning | None | Spearman + hierarchical clustering |
-| Conditions | 1 (1024D raw) | 5 (no_prune + 4 τ thresholds) |
-| LOO | Direct 1024D | Fixed intersection of MCCV-selected dims |
-
-## 2. Pruning Pipeline (per MCCV fold)
-
-```python
-# X_emb_train: (70, 1024) raw, no scaling
-rho, _ = spearmanr(X_emb_train)   # (1024, 1024)
-A = np.abs(rho)
-D = 1.0 - A
-np.fill_diagonal(D, 0)
-D = np.maximum(D, 0)
-condensed = squareform(D, checks=False)
-Z = linkage(condensed, method="complete")
-labels = fcluster(Z, t=(1 - tau), criterion="distance")
-# For each cluster → select medoid → collect retained dim indices
+```
+<experiments/exp_8/>
+├── DESIGN.md
+├── IMPLEMENTATION.md
+├── scripts/
+│   ├── models.py              <- Modelos tabulares, estimador KernelSHAP exacto por fold, generador coalescente y meta-árboles
+│   └── run_exp8_relevance.py  <- Runner MCCV-30 con visualización compacta en tiempo real vía rich/ANSI y evaluación canónica
+└── results/
+    ├── version.txt
+    ├── aggregate_metrics.json
+    ├── split_metrics.json
+    ├── split_predictions.json
+    └── wilcoxon_tests.json
 ```
 
-## 3. KNN Evaluation
+---
 
-Same as exp_6: 72 configs, ConfidenceWeightedKNN for fuzzy variant, same metrics
-suite. Applied to the pruned (reduced) embedding matrix.
+## 2. Component Specifications
 
-## 4. LOO Evaluation
+### A. Base Tabular Model ($C_1^*$ Frozen from `exp_4`)
+- **Estimador:** `FuzzyKNNRegressor(k=5, metric='euclidean', weights='distance')`.
+- **Preprocesamiento:** Imputación por mediana/moda sobre el fold de entrenamiento, codificación One-Hot de covariables categóricas legítimas (`dre`, `enc_type`), escalado `MinMaxScaler` ajustado en train.
+- **Zero Leakage:** Exclusión estricta de todos los campos histopatológicos post-biopsia.
 
-- Compute intersection of retained dimensions across 50 MCCV folds.
-- If intersection is empty → skip LOO for that condition, report as non-evaluable.
-- Otherwise, apply the fixed intersection as column mask on the full 1024D embedding
-  for each LOO fold's train/test split.
+### B. Local SHAP Attribution Extractor (`ShapAttributionExtractor`)
+- Para cada split $k \in \{1, \dots, 30\}$:
+  - Se entrena $C_1^*$ con `X_train_fold`.
+  - Se construye un `shap.KernelExplainer` o estimador de perturbación analítico sobre el `X_train_fold`.
+  - Se obtienen las importancias marginales $|\phi_j^{(i)}|$ para las 10 covariables clínicas:
+    ```
+    Phi_base^(i) = [ |phi_age|, |phi_psa|, |phi_vol|, |phi_psad|, |phi_dre|,
+                     |phi_pirads|, |phi_fh|, |phi_comorbidity|, |phi_bx|, |phi_cspca| ] in R^10
+    ```
 
-## 5. Artefacts
+### C. Coalesced Feature Augmentation (`CoalescedAugmenter`)
+- Cálculo de términos de coalición para mitigar colinealidades:
+  ```
+  Phi_{PSA,PSAD}    = |phi_psa| + |phi_psad|
+  Phi_{PIRADS,csPCa} = |phi_pirads| + |phi_cspca|
+  Phi_{Vol,PSAD}    = |phi_vol| + |phi_psad|
+  ```
+- Vector aumentado resultante: $\boldsymbol{\Phi}_{\text{aug}} \in \mathbb{R}^{13}$.
 
-- `config_log.json` with per-config mean metrics (all conditions).
-- `pruning_report.json` with per-condition set sizes, union, intersection.
-- `feature_frequency_<condition>.csv` with per-dimension retention frequency.
-- `summary_selection.json` with global best config, MCCV and LOO metrics.
-- Confusion matrix PNG + PDF for the global best config.
-- Validation report with all sanity checks.
-- Git commit hash.
+### D. Meta-Clasificadores Multivariados
+- Para cada variable $j \in \{1, \dots, 10\}$, se evalúan 5 condiciones:
+  1. **$C_1$ (10D-Raw-Tree):** `DecisionTreeClassifier(max_depth=d)` sobre $\boldsymbol{\Phi}_{\text{base}}$.
+  2. **$C_2$ (10D-Balanced-Tree):** `DecisionTreeClassifier(max_depth=d, class_weight='balanced')` sobre $\boldsymbol{\Phi}_{\text{base}}$.
+  3. **$C_3$ (Coalesced-Balanced-Tree):** `DecisionTreeClassifier(max_depth=d, class_weight='balanced')` sobre $\boldsymbol{\Phi}_{\text{aug}}$.
+  4. **$C_4$ (Coalesced-Balanced-Forest):** `RandomForestClassifier(n_estimators=50, max_depth=d, class_weight='balanced', random_state=42)` sobre $\boldsymbol{\Phi}_{\text{aug}}$.
+  5. **$C_5$ (Hybrid-Regularized):** Árbol balanceado sobre $\boldsymbol{\Phi}_{\text{aug}}$ combinando atribución y valor crudo para $DRE$ y antecedentes de biopsia.
 
-## 6. Launch
+---
 
+## 3. Real-Time Terminal Visualization Protocol
+
+El runner imprimirá en consola (diseñado para la sesión `tmux :0`):
+1. **Encabezado Compacto:** Resumen del experimento, configuración de particiones (MCCV-30) y variables.
+2. **Tabla de Progreso en Tiempo Real:** Fila por cada fold (1 al 30) mostrando $\overline{\text{Macro-F1}}$, $\rho(\text{PSA})$, $\rho(\text{PIRADS})$, $\rho(\text{DRE})$, $S_{\text{weights}}$ instantáneos y acumulados.
+3. **Resumen Final de Comparación:** Tabla estructurada con medias, desviaciones estándar, $p$-values de Wilcoxon y verificación de hipótesis.
+
+---
+
+## 4. Execution Command via tmux
 ```bash
-conda activate histo-DL
-tmux new-session -d -s 0 "python3 experiments/exp_8/scripts/run_mri_embedding_pruning_experiment.py 2>&1 | tee experiments/exp_8/run_output.log"
+tmux send-keys -t 0 "python3 experiments/exp_8/scripts/run_exp8_relevance.py" C-m
 ```
-
-Progress printed to stdout in real time (every 10 splits per condition).

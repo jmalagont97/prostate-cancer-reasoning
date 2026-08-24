@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_562159dc2cc6",
+  "patient": {
+    "id": "PT-pseudo_562159dc2cc6",
+    "psa_ng_ml": 9.9,
+    "age_years": 48.0
+  },
+  "biopsy_decision": "no",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "not_used",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:41:40.319Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:41:42.319Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:41:44.319Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:41:46.319Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:41:48.319Z"
+    }
+  ],
+  "repeat_test": "Active surveillance with repeat PSA monitoring as per local guidelines.",
+  "free_text": "The low PI-RADS score (2) from the MRI and the overall conservative approach mandated by the reassuring imaging findings were the primary factors against immediate biopsy, despite the high PSA level."
+}

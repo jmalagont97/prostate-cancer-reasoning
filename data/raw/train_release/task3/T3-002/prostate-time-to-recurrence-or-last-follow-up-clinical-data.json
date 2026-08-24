@@ -1,0 +1,7 @@
+{
+  "radiology_report": "Prostate volume: 25.27 cc. PSA density: 0.008 ng/mL/cc. PI-RADS: 4. AI model-predicted probability of clinically significant prostate cancer (0–1): 0.64653254.",
+  "pathology_report": "The patient underwent one biopsy session. Gleason pattern and ISUP report missing.",
+  "surgical_pathology_report": "The robot-assisted radical prostatectomy specimen showed Gleason 3+3 with tertiary pattern 4 (ISUP grade group 1), pathological stage pT2c. There was no extraprostatic extension; surgical margins were positive; the seminal vesicles were not invaded; lymphovascular invasion was absent; no lymph nodes were removed.",
+  "previous_notes": null,
+  "family_history": null
+}

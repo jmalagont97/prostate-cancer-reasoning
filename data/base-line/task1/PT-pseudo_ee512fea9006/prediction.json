@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_ee512fea9006",
+  "patient": {
+    "id": "PT-pseudo_ee512fea9006",
+    "psa_ng_ml": 4.2,
+    "age_years": 69.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:12:33.974Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:12:35.974Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:12:37.974Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:12:39.974Z"
+    }
+  ],
+  "repeat_test": "MRI-directed biopsy to confirm diagnosis due to PI-RADS 4 finding.",
+  "free_text": "The PI-RADS 4 finding on MRI is the most decisive factor, supported by the rising PSA trend and the guideline recommendation for targeted biopsy when a high-risk lesion is identified."
+}

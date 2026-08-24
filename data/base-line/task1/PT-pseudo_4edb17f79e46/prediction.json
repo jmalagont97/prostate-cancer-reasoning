@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_4edb17f79e46",
+  "patient": {
+    "id": "PT-pseudo_4edb17f79e46",
+    "psa_ng_ml": 9.2,
+    "age_years": 54.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "decisive",
+    "age": "important",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "important",
+    "pirads": "decisive",
+    "psad": "not_used",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:39:08.083Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:39:10.083Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:39:12.083Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:39:14.083Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:39:16.083Z"
+    },
+    {
+      "page": "decision",
+      "order": 6,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:39:18.083Z"
+    }
+  ],
+  "repeat_test": "Targeted prostate biopsy to confirm diagnosis based on high-risk MRI findings and rising PSA.",
+  "free_text": "The decision is driven by the combination of the PI-RADS 4 lesion with a high csPCa probability (0.77), the significant upward trend in the PSA level, and the history of a prior negative biopsy, all pointing toward clinically significant disease."
+}

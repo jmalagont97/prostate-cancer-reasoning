@@ -1,258 +1,150 @@
-# Experiment 8 — KNN + Spearman Correlation Pruning on MRI Embedding
+# Experiment Design: Multivariate Balanced Decision Trees over Full 10D SHAP and Coalesced Feature Spaces for Clinical Relevance (Subtask 1.3)
 
-**Project**: pathology-reasoning  
-**Task**: CHIMERA Task 1 — Prostate Biopsy Decision  
-**Date**: 2026-08-16  
+**Experiment**: `experiments/exp_8/`  
+**Project**: `prostate-cancer-reasoning` (CHIMERA-Agent)  
+**Date**: 2026-08-24  
+**Author**: Juan Sebastian Malagón Torres (PI) & AI Co-Researcher (Deep Learning & Clinical Reasoning Specialist)  
 **Status**: Draft  
-**Tier**: Standard (auto)  
-**Category**: ablation / hyperparameter sweep  
-**Runtime**: CPU, potentially long (Spearman matrix ~524K pairs per fold)
 
 ---
 
 ## 1. Hypothesis
+"El entrenamiento de árboles de decisión multivariados independientes con balanceo de clases (`class_weight='balanced'`) sobre el espacio vectorial completo de Shapley values 10D derivado del modelo tabular calibrado de Subtarea 1.1 ($C_1^*$ Fuzzy-KNN de `exp_4`), enriquecido con magnitudes coalescentes de coaliciones colineales ($\boldsymbol{\Phi}_{\text{aug}} \in \mathbb{R}^{13}$), superará significativamente en $\overline{\text{Macro-F1}}_{\text{relevance}}$ al enfoque unidimensional monótono de umbrales SHAP y replicará la alineación bivariada de alta significancia estadística en variables primarias ($\rho(\text{PSA}) \ge 0.30$ y $\rho(\text{PIRADS}) \ge 0.30$, con $p < 0.01$) bajo el protocolo estandarizado MCCV-30 sin incurrir en colapso de correlación en variables categóricas ($DRE$) ni inversiones espurias en variables compuestas ($PSAD$)."
 
-Applying Spearman correlation pruning (hierarchical clustering, complete linkage, medoid
-selection) to the raw 1024-dimensional MRI embedding reduces redundancy and improves
-MCCV `F1_macro` by at least 0.02 over the unpruned baseline (exp_6: MCCV F1_macro=0.550),
-while maintaining the official `F1_yes` metric.
+---
 
-This is an exploratory hypothesis. The 1024 embedding components have no clinical
-interpretation; pruning is treated as a geometric dimensionality reduction, not variable
-selection.
+## 2. Experimental Setup
+- **Dataset(s)**:
+  - Cohorte oficial CHIMERA Task 1 ($N=195$ casos totales, $N=91$ casos rotulados con ground truth completo).
+  - Ubicación: `../../data/processed/task1/clinical_tabular.csv` y `../../data/processed/task1/ground_truth_task1.csv`.
+  - Protocolo de Partición: 30 particiones fijas de Validación Cruzada Monte Carlo (`../../data/processed/task1/mccv_splits_30.csv`, Train $N=73$, Val $N=18$), con estratificación multiobjetivo preservada.
+- **Espacio de Entrada y Auditoría de Fuga (Zero Data Leakage)**:
+  - Modelo base de clasificación: $C_1^*$ Tabular de `exp_4` (`fuzzy_knn_reg`, $k=5$, métrica Euclidiana, ponderación inversa a la distancia).
+  - Se excluyen estrictamente los 14 campos histopatológicos post-biopsia prohibidos por CHIMERA (`bx`, `bx_isup`, `cores_positive`, etc.). Solo se emplean covariables basales legítimas pre-decisión.
+- **Generación de Atribución Local (Full SHAP Extraction)**:
+  - Para cada split de validación, $C_1^*$ se entrena exclusivamente en el fold de entrenamiento.
+  - Para cada caso $i$, se calcula el vector de Shapley values 10D exacto:
+    ```
+    Phi_base^(i) = [ |phi_age^(i)|, |phi_psa^(i)|, |phi_vol^(i)|, |phi_psad^(i)|, |phi_dre^(i)|,
+                     |phi_pirads^(i)|, |phi_fh^(i)|, |phi_comorb^(i)|, |phi_bx^(i)|, |phi_cspca^(i)| ] in R^10
+    ```
+- **Aproximación de Atribución Coalescente (Coalesced Feature Augmentation)**:
+  - Se introducen términos de energía de coalición para los subespacios de alta colinealidad identificados:
+    ```
+    Phi_{PSA,PSAD}^(i)    = |phi_psa^(i)| + |phi_psad^(i)|
+    Phi_{PIRADS,csPCa}^(i) = |phi_pirads^(i)| + |phi_cspca^(i)|
+    Phi_{Vol,PSAD}^(i)    = |phi_vol^(i)| + |phi_psad^(i)|
+    ```
+  - Vector aumentado resultante:
+    ```
+    Phi_aug^(i) = [ Phi_base^(i), Phi_{PSA,PSAD}^(i), Phi_{PIRADS,csPCa}^(i), Phi_{Vol,PSAD}^(i) ] in R^13
+    ```
+- **Meta-Clasificadores Multivariados de Relevancia**:
+  - Para cada una de las 10 variables clínicas objetivo $j \in \{1, \dots, 10\}$, se entrena un estimador supervisado independiente:
+    ```
+    y^_j^(i) = T_j( Phi_aug^(i) ) in {0: not_used, 1: noted, 2: important, 3: decisive}
+    ```
+  - Balanceo de muestras: `class_weight='balanced'` para penalizar inversamente la frecuencia de clases minoritarias (*decisive* / *noted*).
+- **Hardware y Tiempo Estimado**:
+  - CPU local (16 hilos), tiempo estimado $< 45$ segundos para los 30 splits.
 
-## 2. Scope
+---
 
-- **Included**: Spearman pruning on MRI embedding + KNN classification.
-- **Excluded**: PCA, StandardScaler, L2 normalization, tabular features, text features,
-  model ensembles, threshold tuning.
-
-## 3. Input Data
-
-| File | Shape | Description |
-|------|-------|-------------|
-| `data/chimera26/preprocessed/task1/images.csv` | 195 × 1025 | case_id + 1024 MRI embedding dims |
-| `data/chimera26/preprocessed/task1/ground_truth.csv` | 195 × 27 | target + confidence labels |
-| `data/chimera26/preprocessed/task1/mccv_loocv_splits.csv` | 195 × 54 | frozen splits (MCCV 50 + LOO 88) |
-
-### 3.1 Cohort
-
-- Filter to 88 cases with `cohort_status == "usable_labeled"`.
-- Class balance: 54 yes / 34 no (~61/39%).
-
-### 3.2 MRI Embedding
-
-- 1024 float dimensions (`mri_emb_0` … `mri_emb_1023`).
-- Range: [-28.85, 10.22]; no NaN/Inf in usable cohort.
-- **No scaling applied** — raw embedding, same as exp_6.
-
-## 4. Correlation Pruning
-
-### 4.1 Association Matrix
-
-For each MCCV training fold (70 cases), compute the full 1024 × 1024 Spearman
-association matrix:
-
-```python
-from scipy.stats import spearmanr
-rho, _ = spearmanr(X_train)  # X_train: (70, 1024)
-A = np.abs(rho)              # absolute association, shape (1024, 1024)
-```
-
-This computes ~523,776 unique pairwise associations. With scipy's `spearmanr` on
-a (70, 1024) matrix, the full computation is vectorized and takes a few seconds.
-
-**No essential variables** — all 1024 components are treated equally. No variable is
-protected from removal.
-
-**No missingness filtering** — MRI embeddings have zero NaN values in the usable cohort.
-
-**No categorical encoding** — all components are numeric.
-
-### 4.2 Hierarchical Clustering
-
-Convert association to distance:
-
-```
-D_ij = 1 - |ρ_Spearman(mri_emb_i, mri_emb_j)|
-```
-
-Apply complete linkage clustering on the condensed distance matrix:
-
-```python
-from scipy.cluster.hierarchy import linkage, fcluster
-from scipy.spatial.distance import squareform
-
-D = 1.0 - A
-np.fill_diagonal(D, 0)
-D = np.maximum(D, 0)
-condensed = squareform(D, checks=False)
-Z = linkage(condensed, method="complete")
-```
-
-### 4.3 Threshold Cutting
-
-For each threshold `τ`, cut the dendrogram at distance `D_cut = 1 - τ`:
-
-```python
-labels = fcluster(Z, t=D_cut, criterion="distance")
-```
-
-Within each resulting cluster, retain only the **medoid** (component with minimum
-mean distance to all other members of the cluster). All other components in the
-cluster are discarded.
-
-In case of ties, the first component by index order (`mri_emb_0` < `mri_emb_1` < …)
-is selected.
-
-### 4.4 Why Medoids (Not Essential Variables)
-
-Unlike exp_5 where clinical variables had clear semantic roles, the 1024 MRI embedding
-dimensions are abstract encoder outputs with no individual clinical meaning. There is
-no principled basis to protect any subset. The medoid rule is uniform and objective:
-the most central representative of each correlated cluster.
-
-## 5. Experimental Conditions
-
-| Condition | Threshold (τ) | D_cut | Description |
-|-----------|---------------|-------|-------------|
-| `no_prune` | — | — | Baseline: all 1024 dims (replicates exp_6) |
-| `tau_0.30` | 0.30 | 0.70 | Aggressive pruning |
-| `tau_0.60` | 0.60 | 0.40 | Moderate pruning |
-| `tau_0.80` | 0.80 | 0.20 | Conservative pruning |
-| `tau_0.90` | 0.90 | 0.10 | Minimal pruning |
-
-These thresholds replicate the grid executed in exp_5 (`[0.30, 0.60, 0.80, 0.90]`),
-ensuring comparability.
-
-## 6. KNN Grid
-
-Same 72 configurations as exp_4–exp_7:
-
-| Parameter | Values |
-|-----------|--------|
-| `n_neighbors` | 1, 3, 5, 7, 9, 11, 15, 21, 31 |
-| `metric` | euclidean, cosine |
-| `weights` | uniform, distance |
-| `variant` | standard, confidence_weighted |
-
-9 × 2 × 2 × 2 = 72 per condition.
-
-### 6.1 Confidence-Weighted Variant
-
-Neighbor weights multiplied by confidence: clear=1.0, borderline=0.5, uncertain=0.25.
-Used only during training (query case never appears as a neighbor). With k=1, the
-weight variant is mathematically equivalent across standard/distance/confidence.
-
-## 7. Evaluation Protocol
-
-### 7.1 MCCV (Search)
-
-- 50 stratified splits, 70 train / 18 validation.
-- Per-fold: compute Spearman matrix on train → prune → evaluate all 72 KNN configs.
-- Aggregate: mean ± std of `F1_macro` across 50 splits per config.
-- Selection: best `F1_macro`, tie-break `F1_yes` > balanced accuracy > MCC.
-- Total: 5 conditions × 72 configs × 50 splits = 18,000 evaluations.
-
-### 7.2 LOO (Sanity Check)
-
-- 88 folds, one held-out case each.
-- Feature set: intersection of dimension sets selected across 50 MCCV splits for the
-  winning condition.
-- If the intersection is empty → mark condition as non-evaluable, do not fall back to
-  full 1024 dims.
-- Single config: the MCCV global winner.
-- Official metric: `F1_yes`.
-
-### 7.3 Selection Criterion
-
-- **Primary (local)**: `F1_macro` (MCCV mean).
-- **Guardrail (official)**: `F1_yes`.
-
-This is a documented deviation from `docs/EVALUATION.md` where `F1_yes` is primary.
-The deviation is maintained for consistency with exp_4–exp_7.
-
-## 8. Baselines
-
-| Reference | MCCV F1_macro | LOO F1_macro | Use |
-|-----------|---------------|--------------|-----|
-| exp_6 (raw 1024D) | 0.550 | 0.573 | Primary external baseline |
-| exp_7 (standardized) | 0.514 | 0.511 | Context |
-| exp_8 `no_prune` | recalculated | recalculated | Internal matched baseline |
-| exp_5 (tabular pruning) | 0.667 | 0.689 | Cross-modality context |
-
-`no_prune` must be executed within exp_8 to ensure identical process, order, and artefacts.
-
-## 9. Reduction Analysis
-
-For each `τ`, report across 50 MCCV folds:
-
-- Number of dimensions retained per fold.
-- Mean, min, max of retained dimensions.
-- Union of retained dimensions across all folds.
-- Intersection of retained dimensions across all folds.
-- Reduction rate: `R = 1 - d_retained / 1024`.
-
-For LOO: use the MCCV intersection (same protocol as exp_5).
-
-## 10. Decision Rules
-
-Compare against exp_8 `no_prune` (internal) and exp_6 (external):
-
-- **Pruning beneficial**: `F1_macro` improvement ≥ 0.02 AND no `F1_yes` drop > 0.02 AND non-trivial dimensionality reduction.
-- **Compression neutral**: `F1_macro` within ±0.02 but with significantly fewer dimensions.
-- **Pruning harmful**: `F1_macro` drop ≥ 0.02 OR `F1_yes` drop > 0.02.
-- **Inconclusive**: all differences within ±0.02 with no clear dimensional advantage.
-
-## 11. Artefacts
-
+## 3. File Layout for This Experiment
 ```
 experiments/exp_8/
-├── DESIGN.md
-├── IMPLEMENTATION.md
+├── DESIGN.md                  <- this file (experiment design only)
+├── IMPLEMENTATION.md          <- implementation plan (to be approved in follow-up step)
 ├── scripts/
-│   └── run_mri_embedding_pruning_experiment.py
+│   ├── run_exp8_relevance.py  <- canonical runner for Subtask 1.3 benchmark
+│   └── models.py              <- SHAP extractors, coalesced generators, and multivariate tree estimators
 ├── results/
-│   ├── summary_selection.json
-│   ├── config_log.json
-│   ├── pruning_report.json
-│   ├── feature_frequency_<condition>.csv
-│   ├── clusters_<condition>.json
-│   └── <condition>_<config>/
-│       ├── metrics_mccv.json
-│       ├── metrics_loo.json
-│       ├── oof_predictions_mccv.csv
-│       ├── oof_predictions_loo.csv
-│       ├── hyperparameters.json
-│       ├── pruning_log.json
-│       └── validation_report.json
+│   ├── version.txt            <- git commit SHA and execution timestamp
+│   ├── aggregate_metrics.json <- macro-F1, rho, p-values per variable and global mean across 30 splits
+│   ├── split_metrics.json     <- detailed metrics per fold
+│   ├── split_predictions.json <- case-by-case relevance weight predictions
+│   └── wilcoxon_tests.json    <- paired statistical tests vs. baseline
 └── reports/
-    ├── figures/
-    │   └── confusion_matrices.{png,pdf}
-    └── summary.md
+    └── summary.md             <- final academic and technical write-up
 ```
 
-## 12. Risks
+---
 
-1. **Base-dependence**: Spearman correlations depend on the coordinate basis of the
-   embedding. A rotation would change which components are correlated. Results do not
-   represent rotation-invariant properties.
-2. **High dimensionality, small n**: The association matrix is estimated from 70
-   observations over 1024 variables. Correlations may be unstable.
-3. **Over-pruning**: Low τ may eliminate too many dimensions or produce an empty
-   LOO intersection.
-4. **Multiple testing**: 360 combinations selected per experimental condition. MCCV
-   differences are comparative evidence, not independent statistical tests.
-5. **Computational cost**: ~524K pairwise Spearman evaluations per fold × 50 folds ×
-   5 conditions. May dominate runtime relative to KNN fitting.
-6. **Documented discrepancy**: exp_5's DESIGN.md documented τ ∈ [0.80, 0.85, 0.90, 0.95]
-   but the runner executed [0.30, 0.60, 0.80, 0.90]. exp_8 explicitly replicates the
-   executed grid.
+## 4. Baselines
+| Baseline | Config / Descripción | Métrica Esperada ($\overline{\text{Macro-F1}}$) | $\rho(\text{PSA}) / \rho(\text{PIRADS})$ |
+| :--- | :--- | :---: | :---: |
+| **$B_0$ Baseline Oficial ReAct** | ReAct LLM Agent prompting directo (`exp_1` Subtask 1.3) | $\approx 0.150$ | $\approx 0.10$ / No alineado |
+| **$B_1$ 1D SHAP Discretization (`exp_20`)** | 3 umbrales escalares por variable sobre $|\phi_j|$ | $\approx 0.106$ | $\rho(\text{PSA})=0.254$ / $\rho(\text{PIRADS})=0.082$ |
+| **$B_2$ Historical 6D Tree (`exp_22` benchmark)** | Meta-árbol $d=3$ sobre vector SHAP 6D (restringido) | $\approx 0.258$ | $\rho(\text{PSA})=0.374$ ($p<0.001$) / $\rho(\text{PIRADS})=0.302$ ($p<0.005$) |
 
-## 13. Reproducibility
+---
 
-- Hash input files before execution.
-- Record git commit.
-- Run on tmux session 0 with real-time output.
-- Save per-fold selected dimension sets, pruning logs, confusion matrices.
-- No random seed required (deterministic splits, deterministic clustering).
+## 5. Proposed Conditions
+| Condición | Espacio de Atribución | Meta-Modelo | Profundidad / Regularización | Balanceo |
+| :--- | :--- | :--- | :---: | :---: |
+| **$C_1$ 10D-Raw-Tree** | $\boldsymbol{\Phi}_{\text{base}} \in \mathbb{R}^{10}$ | `DecisionTreeClassifier` | $d \in \{2, 3, 4\}$ | Uniforme |
+| **$C_2$ 10D-Balanced-Tree** | $\boldsymbol{\Phi}_{\text{base}} \in \mathbb{R}^{10}$ | `DecisionTreeClassifier` | $d \in \{2, 3, 4\}$ | `class_weight='balanced'` |
+| **$C_3$ Coalesced-Balanced-Tree** | $\boldsymbol{\Phi}_{\text{aug}} \in \mathbb{R}^{13}$ (con sumas coalicionales) | `DecisionTreeClassifier` | $d \in \{2, 3, 4\}$ | `class_weight='balanced'` |
+| **$C_4$ Coalesced-Balanced-Forest** | $\boldsymbol{\Phi}_{\text{aug}} \in \mathbb{R}^{13}$ (con sumas coalicionales) | `RandomForestClassifier` ($n=50$) | $d \in \{2, 3\}$, `min_samples_leaf=2` | `class_weight='balanced'` |
+| **$C_5$ Hybrid-Regularized (Ablación Clave)** | $\boldsymbol{\Phi}_{\text{aug}} \in \mathbb{R}^{13}$ + Direct Feature Prior | Árbol con regularización monótona en $DRE$ | $d=3$, balanced | `class_weight='balanced'` |
+
+---
+
+## 6. Ablation Studies
+1. **Impacto de la Aumentación Coalescente ($C_2$ vs $C_3$):** Evalúa si la adición de $\Phi_{\text{PSA,PSAD}}$, $\Phi_{\text{PIRADS,csPCa}}$ y $\Phi_{\text{Vol,PSAD}}$ previene la inversión de correlación en $PSAD$ y estabiliza las predicciones de $csPCa$.
+2. **Efecto del Balanceo Ponderado ($C_1$ vs $C_2$):** Cuantifica la recuperación de Macro-F1 en clases extremas sub-representadas (*decisive* en $PSA$, *not\_used* en $PIRADS$).
+3. **Control de Varianza Ensamble vs Árbol Simple ($C_3$ vs $C_4$):** Evalúa si un ensamble regularizado previene la degradación en variables con particiones categóricas nítidas ($DRE$).
+
+---
+
+## 7. Evaluation Protocol
+- **Métricas Primarias**:
+  1. $\overline{\text{Macro-F1}}_{\text{MCCV}}$: Macro-F1 promedio no ponderado sobre las 10 variables clínicas a lo largo de los 30 splits.
+  2. Coeficiente de correlación por rangos de Spearman medio $\bar{\rho}$ y por variable $\rho_j$ respecto al ground truth urológico.
+  3. Tasa de significancia estadística en variables primarias: $\rho(\text{PSA}) \ge 0.30$ ($p < 0.01$) y $\rho(\text{PIRADS}) \ge 0.30$ ($p < 0.01$).
+- **Métricas Secundarias**:
+  - Macro-F1 individual por variable $j \in \{\text{age}, \text{psa}, \text{vol}, \text{psad}, \text{dre}, \text{pirads}, \text{fh}, \text{comorbidity}, \text{bx}, \text{cspca}\}$.
+  - Macro-F1 en clases extremas (clase 0 *not\_used* y clase 3 *decisive*).
+- **Pruebas de Hipótesis**:
+  - Test pareado de rangos con signo de Wilcoxon (*Two-Sided Paired Wilcoxon Signed-Rank Test*, $\alpha = 0.05$) comparando $\overline{\text{Macro-F1}}$ de cada condición contra el Baseline $B_0$ y el modelo 1D $B_1$.
+- **Gobernanza de Evaluación**:
+  - Implementado estrictamente mediante `chimera_metrics.task1` y funciones canónicas de evaluación.
+
+---
+
+## 8. Expected Results & Decision Rules
+- **Criterio de Éxito Primario**:
+  - $\overline{\text{Macro-F1}}_{\text{MCCV}} \ge 0.260$ con significancia pareada ($p < 0.001$ vs $B_0$).
+  - $\rho(\text{PSA}) \ge 0.35$ ($p < 0.005$) y $\rho(\text{PIRADS}) \ge 0.30$ ($p < 0.005$) simultáneamente.
+  - $\rho(\text{DRE}) \ge 0.25$ ($p < 0.05$) evitando el colapso a cero observado en `exp_22`.
+  - $\rho(\text{PSAD}) \ge 0.00$ eliminando la correlación negativa espuria ($\rho = -0.292$) de `exp_22`.
+- **Criterio de Falla / Ajuste**:
+  - Si los árboles sobreajustan el espacio 13D degradando la correlación en $DRE$ o $Bx$, aplicar poda de profundidad estricta a $d=2$ o restringir las particiones de variables categóricas mediante priors directos.
+
+---
+
+## 9. Risks & Mitigations
+| Riesgo Detectado | Probabilidad / Severidad | Mitigación Rigurosa |
+| :--- | :---: | :--- |
+| **Data Leakage en Cálculo SHAP** | Alta / Crítica | El explicador SHAP y el background summary se calculan única y estrictamente dentro del `tr_indices` de cada partición MCCV; cero filtración de validación. |
+| **Sobreajuste por Dimensionalidad (13D en $N=73$)** | Media / Alta | Limitar profundidad máxima de los árboles ($d \in [2, 3]$) e hiperparametrizar `min_samples_leaf \ge 3`. |
+| **Inestabilidad Estocástica de SHAP** | Baja / Media | Fijar semillas deterministas para KernelSHAP / estimadores analíticos y verificar convergencia en cada iteración. |
+| **Colapso de Clases Minoritarias** | Media / Alta | Aplicar `class_weight='balanced'` en todos los estimadores multivariados. |
+
+---
+
+## 10. Reproducibility Checklist
+- [x] Particiones MCCV-30 fijadas y versionadas (`data/processed/task1/mccv_splits_30.csv`)
+- [x] Semillas pseudoaleatorias fijadas globalmente (`seed=42`)
+- [x] Espacio de entrada verificado libre de campos prohibidos de biopsia (Zero Leakage)
+- [x] Configuración de hiperparámetros registrada en script y `aggregate_metrics.json`
+- [x] Registro de versión de entorno y commit registrado en `results/version.txt`
+- [x] Predicciones caso a caso exportadas en `results/split_predictions.json`
+
+---
+
+## 11. Next Steps
+1. Revisión y aprobación formal del Investigador Principal sobre este diseño de investigación (`DESIGN.md`).
+2. Una vez aprobado, generar el **Plan de Implementación** (`IMPLEMENTATION.md`) detallando la estructura modular de `models.py` y el runner `run_exp8_relevance.py`.
+3. Ejecutar el benchmark sobre las 30 particiones y registrar métricas en `results/`.
+4. Invocar `experiment-reporter` para consolidar el reporte oficial en `reports/summary.md`.

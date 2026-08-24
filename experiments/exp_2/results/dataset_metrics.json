@@ -1,0 +1,24 @@
+{
+  "total_cases": 195,
+  "tabular_features": 37,
+  "text_features": 13,
+  "embedding_dimensions": 1024,
+  "labeled_cases": 91,
+  "unlabeled_cases": 104,
+  "class_counts": {
+    "yes": 56,
+    "no": 35
+  },
+  "confidence_counts": {
+    "clear": 58,
+    "borderline": 18,
+    "uncertain": 15
+  },
+  "nan_embedding_cases": [
+    "PT-pseudo_0bd72f429a8b",
+    "PT-pseudo_4bfd4ec864d8",
+    "PT-pseudo_4d54f04e26ae",
+    "PT-pseudo_7dbdcd6f9064",
+    "PT-pseudo_8636aa471ef7"
+  ]
+}

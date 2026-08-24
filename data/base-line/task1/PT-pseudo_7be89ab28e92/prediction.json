@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_7be89ab28e92",
+  "patient": {
+    "id": "PT-pseudo_7be89ab28e92",
+    "psa_ng_ml": 8.1,
+    "age_years": 69.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "borderline",
+  "variable_weights": {
+    "psa": "decisive",
+    "age": "important",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "important",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:00:00.048Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:00:02.048Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:00:04.048Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:00:06.048Z"
+    }
+  ],
+  "repeat_test": "MRI-targeted prostate biopsy",
+  "free_text": "The decision is driven by the combination of a PI-RADS 3 finding, elevated PSA/velocity, and the history of a prior positive biopsy, which necessitates confirmation via targeted biopsy."
+}

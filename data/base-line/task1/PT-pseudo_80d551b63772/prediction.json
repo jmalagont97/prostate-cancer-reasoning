@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_80d551b63772",
+  "patient": {
+    "id": "PT-pseudo_80d551b63772",
+    "psa_ng_ml": 1.6,
+    "age_years": 76.0
+  },
+  "biopsy_decision": "no",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "not_used",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:03:42.045Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:03:44.045Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T16:03:46.045Z"
+    }
+  ],
+  "repeat_test": "Repeat MRI in 12-24 months to monitor for changes.",
+  "free_text": "The PI-RADS 2 finding on the MRI was the decisive factor against biopsy, reinforced by the indolent PSA trend and the absence of high-risk features."
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_11345b8a7ab3",
+  "patient": {
+    "id": "PT-pseudo_11345b8a7ab3",
+    "psa_ng_ml": 113.0,
+    "age_years": 67.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "decisive",
+    "age": "important",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "important",
+    "pirads": "decisive",
+    "psad": "not_used",
+    "vol": "noted",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T14:59:28.031Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T14:59:30.031Z"
+    }
+  ],
+  "repeat_test": "Targeted biopsy or direct pathway to treatment planning based on high-risk imaging findings and high predicted probability.",
+  "free_text": "PI-RADS 5 finding, high csPCa predicted probability (0.95), and rapid PSA velocity drove the decision to confirm the finding."
+}

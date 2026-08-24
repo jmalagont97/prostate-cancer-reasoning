@@ -1,264 +1,121 @@
-# Experiment Design: KNN Classifier + Correlation Pruning (exp_5)
-**Experiment**: experiments/exp_5/
-**Project**: pathology-reasoning
-**Date**: 2026-08-16
-**Author**: Antigravity & Principal Investigator
-**Status**: Approved
-**Revision**: v3 — corrected fuzzy v2 + selection rule F1_macro→Brier (2026-08-17)
-**Legacy results**: `results_legacy_fuzzy_v1/` (fuzzy_v1_relative_vote)
+# Experiment Design: Replication of BrentMemKDM Multimodal (Continuous σ Bandwidth Alignment) for Biopsy Decision (exp_5)
+
+**Experiment**: `experiments/exp_5/`
+**Project**: prostate-cancer-reasoning (CHIMERA-Agent Challenge / MICCAI 2026)
+**Task**: Subtask 1.1 — Binary Prostate Biopsy Indication Decision
+**Origin of Replication**: branch `fagonzalezo` → `experiments/exp_28` (BrentMemKDM Multimodal, continuous bandwidth alignment)
+**Protocol Governance**: `utils/pkg/chimera_metrics/PROTOCOL.md` (NORMATIVE & INVIOLABLE)
+**Evaluation Framework**: Centralized via `chimera_metrics.task1.compute_biopsy_decision_gate`
+**Author**: Juan Sebastian Malagón Torres
+**Date**: 2026-08-23
+**Status**: Draft
+
+---
+
+## ⚠️ Governance Warnings (Non-Negotiable)
+
+1. **NO evaluation code inside the execution path.** Under no circumstances may any script under `experiments/exp_5/scripts/` implement scoring, metric approximation, ranking, or ad-hoc evaluation logic. All case-level and cohort-level metrics MUST be computed exclusively by importing `chimera_metrics`. Any result produced with local scoring code is scientifically invalid per PROTOCOL.md §1.
+2. **Data Leakage Exclusion (Task 1 pre-biopsy setting).** The following biopsy/pathology-derived fields were REMOVED from all model inputs (`structured-prompt.json`, tabular matrices, narrative text) to prevent post-intervention information leaking into the biopsy-decision task:
+   `bx`, `bx_isup`, `bx_gl_prim`, `bx_gl_sec`, `bx_gl_tert`, `bx_isup_pred`, `cores_positive`, `cores_total`, `max_core_pct`, `growth_pattern`, `high_risk_patterns`, `pni`, `lvi`, `tumor_location`, plus every `path_hist_*` column.
+3. **Split invariance.** Only the 30 deterministic MCCV partitions from `data/processed/task1/mccv_splits_30.csv` are admissible.
 
 ---
 
 ## 1. Hypothesis
 
-Correlation pruning based on Spearman association and hierarchical clustering
-(complete linkage) reduces the number of input variables for KNN without degrading
-classification performance, and may improve `F1_macro` relative to the unpruned
-baseline (exp_4).
-
-The pruning threshold is treated as a hyperparameter searched alongside the KNN
-configuration.
+A unified memory-based multimodal Kernel Density Matrix architecture with **continuous bandwidth optimization** (1-D Brent search over $\sigma_m$ per modality, instead of discrete $k$-NN neighbor grids) reproduces or improves upon the source experiment's Macro-F1 = 0.7068 on the CHIMERA Task 1 biopsy decision, evaluated under our centralized MCCV-30 protocol with strict leak-free inputs.
 
 ---
 
-## 2. Experimental Setup
+## 2. Experimental Setup & Representation Spaces (Aligned with `exp_4`)
 
-### 2.1 Data
+- **Dataset(s)**: `data/processed/task1/clinical_tabular.csv` (leak-free pre-biopsy features only), `data/processed/task1/mri_embeddings.csv` (1024-d visual embeddings), `data/processed/task1/clinical_texts.csv` (narrative text, negation-preserving preprocessing), splits from `data/processed/task1/mccv_splits_30.csv` (73 train / 18 val / 104 unlabeled; 11 yes / 7 no per val fold).
+- **Representation Pipelines (identical to `exp_4`)**:
+  - `tab`: Imputación mediana (numéricas) y moda (categóricas) fit en train, variables indicadoras de missingness, One-Hot Encoding, `MinMaxScaler` $[0, 1]$. Filtrado estricto de variables patológicas post-biopsia.
+  - `mri`: Normalización / Imputación con vector medio de train y reducción de dimensionalidad con `PCA(n_components=16, random_state=42)` fit en train.
+  - `txt`: `TfidfVectorizer(max_features=1000, stop_words="english", lowercase=True, token_pattern=r"(?u)\b\w+(?:-\w+)*\b")` fit en train.
+- **Model / Algorithm**: BrentMemKDM Multimodal — a memory of kernel density matrices generalizing Fuzzy k-NN:
+  ```
+  k_{j,m}(x) = exp( - ||x_m - c_{j,m}||^2 / (2 * sigma_m^2) )
+  clamped_j  = max( (1/N_tr) * prod_m k_{j,m}^2 , eps )      # eps = 1e-12
+  w_j(x)     = clamped_j / sum_l clamped_l
+  p(y=1|x)   = sum_j w_j(x) * y~_j
+  ```
+  where $y~_j \in [0,1]$ is either hard ($y \in \{0,1\}$) or soft confidence-weighted target (following exp_4 mapping: clear=1.00/0.00, borderline=0.75/0.25, uncertain=0.50).
+- **Optimization target**: continuous bandwidths $\sigma_m^*$ per modality via 1-D Brent search maximizing mean Macro-F1 across MCCV folds, bounded to $[\sigma_{\text{ref}}/32,\; 32\,\sigma_{\text{ref}}]$; late-fusion weights $\mathbf{w}^* = (w_{\text{tab}}, w_{\text{mri}}, w_{\text{txt}})$ optimized over the simplex using out-of-fold MCCV probabilities.
+- **Process**: two-phase protocol — Phase A: hyperparameter/bandwidth optimization on MCCV folds; Phase B: frozen-parameter blind evaluation + paired Wilcoxon vs. exp_4 fusion and exp_1 ReAct baseline.
+- **Hardware**: local CPU (kernel-memory operations are vectorizable; N_train = 73 makes this lightweight).
 
-- **Feature matrix**: `data/chimera26/preprocessed/task1/main_tabular.csv` (195 × 28)
-  - 27 predictor variables (15 `cli_*`, 8 `vit_*`, 4 `path_hist_*`) + `case_id`
-- **Target**: `data/chimera26/preprocessed/task1/ground_truth.csv` → `target_biopsy_decision_binary`
-- **Confidence weights**: `data/chimera26/preprocessed/task1/ground_truth.csv` → `target_confidence`
-- **Splits**: `data/chimera26/preprocessed/task1/mccv_loocv_splits.csv` (frozen)
-
-### 2.2 Cohort
-
-- **N = 88** `usable_labeled` cases
-- **Class balance**: 54 yes / 34 no
-- **Confidence distribution**: clear=56, borderline=18, uncertain=14
-
-### 2.3 Excluded features
-
-| Feature | Reason |
-|---|---|
-| `path_hist_bx_gl_tert` | 98.9% missing in usable cohort (>50% threshold) |
-
-After exclusion: **26 predictor variables** retained (before missingness indicators).
-
----
-
-## 3. Correlation Pruning
-
-### 3.1 Association matrix
-
-All associations are Spearman (unified statistic). The matrix has one row/column per
-**original variable** (not per dummy).
-
-| Variable types | Association |
-|---|---|
-| numeric vs. numeric | `abs(Spearman)` |
-| categorical vs. numeric | `max` over all dummies of `abs(Spearman(dummy, numeric))` |
-| categorical vs. categorical | `max` over all dummy pairs of `abs(Spearman)` |
-
-Sentinel categories (`"0"`) and missingness indicators (`__is_missing`) are **excluded**
-from the association matrix to avoid conflating missingness patterns with true redundancy.
-
-### 3.2 Minimum category prevalence
-
-Categories with `n < 5` observations in the training fold are excluded from the association
-computation for that fold.
-
-### 3.3 Hierarchical clustering
-
-- Distance: `D[i,j] = 1 - A[i,j]`
-- Method: `scipy.cluster.hierarchy.linkage(method='complete')`
-- Cut threshold: `A[i,j] >= tau` ↔ `D[i,j] <= 1 - tau`
-
-### 3.4 Representative selection (per cluster)
-
-**Essential (evaluable) variables** — always protected:
-
-| Variable | Column |
-|---|---|
-| age | `cli_age` |
-| fh | `cli_fh_binary` |
-| cspca | `cli_cspca` |
-| pirads | `cli_pirads` |
-| vol | `cli_vol` |
-| psa | `cli_psa` |
-| comorbidity | `cli_comorbidity_count` |
-| psad | `cli_psad` |
-| dre | `cli_dre` |
-| bx | `cli_bx` |
-
-Rules (in order):
-1. If cluster contains ≥ 1 essential variable → keep ALL essential variables as representatives.
-2. If cluster contains no essential variable → keep the medoid (lowest mean distance to others; tie-break: lowest missing rate, then lexicographic).
-3. Non-representative variables are pruned (along with their dummies and missingness indicators).
-
-### 3.5 Grid of pruning thresholds
-
-| Condition | `tau` | Description |
-|---|---:|---|
-| `no_prune` | — | Baseline (all 26 variables; replicates exp_4) |
-| `tau_0.80` | 0.80 | Aggressive pruning |
-| `tau_0.85` | 0.85 | Moderate-pruning |
-| `tau_0.90` | 0.90 | Conservative pruning |
-| `tau_0.95` | 0.95 | Minimal pruning |
-
----
-
-## 4. KNN Configurations
-
-| Hyperparameter | Values | Count |
-|---|---|---|
-| `n_neighbors` | 1, 3, 5, 7, 9, 11, 15, 21, 31 | 9 |
-| Distance metric | `euclidean`, `cosine` | 2 |
-| Spatial weighting | `uniform`, `distance` (inverse) | 2 |
-| Confidence variant | `standard`, `confidence_weighted` | 2 |
-
-**Grid**: 9 × 2 × 2 × 2 = **72 configurations** per pruning condition.
-
-**Total grid**: 5 conditions × 72 = **360 combinations**.
-
-### 4.1 Confidence-weighted fuzzy (v2)
-
-Neighbor labels are softened toward 0.5 by clinical confidence:
-
-```
-q_j = 0.5 + c_j × (y_j − 0.5)
-
-c_j:
-    clear      → 1.00  (q_j = y_j)
-    borderline → 0.50  (q_j = 0.75 if y=1, 0.25 if y=0)
-    uncertain  → 0.25  (q_j = 0.625 if y=1, 0.375 if y=0)
-
-p(yes | x) = Σ [w_dist(j) × q_j] / Σ [w_dist(j)]
-```
-
-Confidence does NOT multiply the distance weight; it only softens the label.
-
----
-
-## 5. Preprocessing (per fold, leak-safe)
-
-### 5.1 Feature-level missingness (fit on train only)
-
-1. Compute per-feature missing rate on the **training** fold.
-2. Drop any feature where missing rate > 50%.
-
-### 5.2 Missingness encoding (no imputation)
-
-For every retained feature:
-
-1. Detect NaN values.
-2. Create `<feature>__is_missing` binary indicator: 1 if NaN, 0 otherwise.
-3. Replace NaN with **0** in the original feature.
-
-### 5.3 Categorical encoding
-
-Categorical features are one-hot encoded via `OneHotEncoder(handle_unknown='ignore',
-sparse_output=False)`:
-
-| Feature | Notes |
-|---|---|
-| `cli_dre` | NaN → `"0"` |
-| `cli_bx` | NaN → `"0"` |
-| `cli_fh_binary` | NaN → `"0"` |
-| `vit_smoking_status` | NaN → `"0"` |
-
-### 5.4 Scaling
-
-- `MinMaxScaler` applied to all numeric features (continuous + ordinal + one-hot + indicators).
-- Fit exclusively on the training fold; transform validation/test.
-
----
-
-## 6. Validation Protocol
-
-### 6.1 MCCV (selection)
-
-- 50 splits, frozen in `mccv_loocv_splits.csv` (80/20, stratified, seed=42).
-- **Pruning is fold-local**: for each split, the association matrix, clustering, and
-  representative selection are computed from the 70 training cases only.
-- All 360 combinations evaluated per split.
-
-### 6.2 Selection rule (v3: lexicographic F1→Brier)
-
-1. **Primary**: highest mean `F1_macro` across 50 MCCV splits.
-2. **Tie-break 1**: lowest mean `brier_score` (conventional: `mean((p-y)^2)`, lower = better).
-3. **Tie-break 2**: highest mean `F1_yes`.
-4. **Tie-break 3**: highest mean balanced accuracy.
-5. **Tie-break 4**: highest mean MCC.
-
-### 6.3 LOO (sanity check)
-
-For each pruning condition, compute the **intersection** of selected variable sets across
-all 50 MCCV folds → fixed feature set for all 88 LOO folds.
-
-- Only the **single best configuration** from MCCV (over all 360 combinations) is
-  evaluated via LOO.
-- The LOO feature set is fixed by the winning pruning condition's MCCV intersection.
-- Preprocessing re-fit on 87 training cases per fold.
-
----
-
-## 7. Metrics
-
-All metrics from `docs/EVALUATION.md` §3.1:
-
-| Metric | Role |
-|---|---|
-| **Macro-F1** | Primary selection criterion → brier_score (tie-break) |
-| **F1_yes** | Official primary (guardrail) |
-| Balanced accuracy | Balance guardrail |
-| MCC | Correlation coefficient |
-| Sensitivity (recall of yes) | Secondary |
-| Specificity (recall of no) | Secondary |
-| Precision of yes | Secondary |
-| Decision accuracy | Secondary |
-| PR-AUC | Threshold-free ranking |
-| ROC-AUC | Threshold-free ranking |
-| `brier` (= `1 - mean((p-y)²)`) | Historical compat. (exp_4 convention; higher=better) |
-| `brier_score` (= `mean((p-y)²)`) | Calibration (conventional; lower=better) |
-| ECE | Calibration |
-
----
-
-## 8. Artefacts
+## 3. File Layout for This Experiment
 
 ```
 experiments/exp_5/
-├── DESIGN.md
-├── IMPLEMENTATION.md
-├── scripts/
-│   └── run_knn_pruning_experiment.py
+├── DESIGN.md                  ← this file
+├── IMPLEMENTATION.md          ← to be written after plan approval
+├── scripts/                   ← run scripts/configs (no scoring code allowed here)
 ├── results/
-│   ├── summary_selection.json
-│   ├── pruning_report.json
-│   ├── feature_frequency_<tau>.csv
-│   ├── clusters_<tau>.json
-│   ├── loo_intersection_<tau>.json
-│   └── <condition>_<config>/
-│       ├── metrics_mccv.json
-│       ├── metrics_loo.json
-│       ├── oof_predictions_mccv.csv
-│       ├── oof_predictions_loo.csv
-│       ├── hyperparameters.json
-│       ├── pruning_log.json
-│       └── validation_report.json
+│   └── <condition>/           ← predictions + chimera_metrics outputs
 └── reports/
-    └── summary.md
+    └── summary.md             ← written later by experiment-reporter
 ```
 
----
+Scripts reference project-root-relative paths (`../../utils/pkg/chimera_metrics/`, `../../data/processed/task1/`). Specific script names/configs are decided in the implementation plan.
 
-## 9. Next Steps
+## 4. Baselines
 
-1. Implement `experiments/exp_5/scripts/run_knn_pruning_experiment.py`.
-2. Execute MCCV search (360 combinations × 50 splits).
-3. Select best condition + config.
-4. Compute LOO intersection for winning condition.
-5. Execute LOO (88 folds).
-6. Generate summary report.
-7. Update `experiments/INDEX.md` and hidden logbooks.
+| Baseline | Reference | Expected Macro-F1 range |
+|----------|-----------|------------------------|
+| Official ReAct baseline | exp_1 | ~0.61 (ranking score R_1 = 0.6103) |
+| Best unimodal fuzzy-KNN | exp_4 | 0.63 – 0.67 |
+| Late fusion grid search | exp_4 | 0.70 – 0.72 |
+| Source exp_28 (fagonzalezo) | docs/old_tries | **0.7068** |
+
+## 5. Proposed Conditions
+
+| ID | Condition | Description |
+|----|-----------|-------------|
+| C1 | `tab_brentmemkdm` | BrentMemKDM on leak-free tabular features; Brent-optimized $\sigma_{\text{tab}}$ |
+| C2 | `mri_brentmemkdm` | BrentMemKDM on MRI embeddings (raw L2 and PCA variants); $\sigma_{\text{mri}}$ |
+| C3 | `txt_brentmemkdm` | BrentMemKDM on TF-IDF/SVD clinical narratives; $\sigma_{\text{txt}}$ |
+| C4 | `fusion_equal` | Equal-weight late fusion (1/3, 1/3, 1/3) of C1–C3 probabilities |
+| C5 | `fusion_optimal_leakfree` | Late fusion with $(\mathbf{w}^*, \theta^*)$ tuned ONLY on out-of-fold MCCV predictions |
+| Supervision arms | `hard` / `soft` | Hard binary targets vs. soft confidence-weighted regression targets |
+
+## 6. Ablation Studies
+
+- **Discrete-$\sigma$ ablation**: replace Brent continuous search with the historical discrete grid $\sigma_{\text{mult}} \in \{0.25, 0.5, 1.0, 2.0\}$ to isolate the contribution of continuous alignment.
+- **Product-of-kernels exponent ablation**: squared kernels ($k^2$) vs. linear ($k^1$) inside the clamped product.
+
+## 7. Evaluation Protocol
+
+- Primary metric: mean **Macro-F1** across the exact 30 MCCV partitions (via `chimera_metrics.task1.compute_biopsy_decision_gate`; NO local metric code).
+- Secondary: $F_{1\text{-yes}}$, $F_{1\text{-no}}$, gate accuracy, sensitivity/recall_yes, specificity/recall_no, AUROC, Brier score.
+- Statistics: mean ± empirical 95% CI ($\overline{M} \pm 1.96\sigma/\sqrt{30}$); two-sided Wilcoxon signed-rank ($p<0.05$) vs. exp_4 best fusion and exp_1 ReAct baseline.
+- Results written to `results/<condition>/`; version recorded per run in `results/<condition>/version.txt`.
+- Compute budget: 5 conditions × 2 supervision arms × 30 splits ≈ 300 lightweight evaluations (CPU minutes).
+
+## 8. Expected Results & Decision Rules
+
+- If mean Macro-F1 ≥ 0.70 with CI overlapping the source 0.7068 → replication successful; proceed to uncertainty-signal extensions (source exp_29/exp_30 follow-ups).
+- If Macro-F1 drops > 0.03 below source → investigate dataset-version drift (our canonical 195-case cohort vs. old_tries cohort) before architectural conclusions.
+- Stopping criterion: if equal-weight fusion (C4) already matches C5 within CI, freeze weights at uniform (parsimony rule).
+
+## 9. Risks & Mitigations
+
+- ⚠️ **Cohort mismatch**: source exp_28 used an older preprocessing (docs/old_tries); we replicate on the canonical exp_2 pipeline. Mitigation: record dataset hashes in results and treat source numbers as reference, not ground truth.
+- ⚠️ **Leakage via fusion-weight tuning**: mitigated by restricting $(\mathbf{w}^*, \theta^*)$ selection to out-of-fold MCCV predictions only.
+- ⚠️ **Metric mismatch**: forbidden by governance — all metrics flow exclusively through `chimera_metrics`.
+
+## 10. Reproducibility Checklist
+
+- [ ] Random seeds fixed and logged (only affects Brent initialization bounds; search itself is deterministic)
+- [ ] Config saved in `scripts/configs/`
+- [ ] Dataset version / hash recorded in `results/<condition>/version.txt`
+- [ ] No checkpoints needed (memory-based, non-parametric model)
+- [ ] Environment pinned (`requirements.txt`)
+- [ ] Evaluation exclusively via `chimera_metrics` imports
+
+## 11. Next Steps
+
+1. Review and accept this experiment plan (hypothesis, conditions, metrics, decision rules).
+2. Once accepted, produce an **implementation plan** covering scripts, configs, and code changes (model code lives in `utils/`, NOT inside `experiments/exp_5/`). Do not begin editing implementation files until that plan is approved and saved as `experiments/exp_5/IMPLEMENTATION.md`.

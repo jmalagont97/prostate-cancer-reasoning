@@ -1,64 +1,35 @@
-# Implementation Plan: Multimodal Input Reorganisation (exp_3)
-**Experiment**: experiments/exp_3/ · **Project**: pathology-reasoning · **Date**: 2026-08-16 · **Status**: Approved
+# Implementation Plan: Multidimensional Stratified Monte Carlo Protocol & Governance (`exp_3`)
+
+**Experiment**: experiments/exp_3/  
+**Project**: prostate-cancer-reasoning  
+**Author**: Juan Sebastian Malagon Torres  
+**Date**: 2026-08-22  
+**Status**: In Progress
 
 ---
 
-## 1. Overview & Objective
+## 1. Implementation Overview
+This plan implements:
+1. A reproducible, multi-subtask stratified split generator (`experiments/exp_3/scripts/generate_mccv_splits.py`) that constructs 30 Monte Carlo Cross-Validation partitions ($B=30$, 80/20 train/val ratio) on `data/processed/task1/ground_truth_task1.csv`.
+2. The persistent split artifact `data/processed/task1/mccv_splits_30.csv`.
+3. The centralized evaluation protocol manifesto `utils/pkg/chimera_metrics/PROTOCOL.md` and a split loader utility in `chimera_metrics`.
 
-Generate, deterministically, the three input-view CSVs from the canonical
-`inputs.csv`, following `experiments/exp_3/DESIGN.md`. This replaces the previous
-exp_3 contract (7 reveal-group views + feature manifest), whose artifacts are
-removed. `inputs.csv`, `ground_truth.csv` and `mccv_loocv_splits.csv` are untouched.
+---
 
-## 2. File & Script Structure
+## 2. Multi-Objective Stratification Algorithm
+For each iteration $b \in \{0, \dots, 29\}$ with pseudo-random seed $\text{seed}_b = 42 + b$:
+1. **Decision Gate Constraint:** Sample exactly $11$ cases from the positive class (`decision == 'yes'`, $N=56$) and $7$ cases from the negative class (`decision == 'no'`, $N=35$), yielding an exact validation size $n_{\text{val}} = 18$ ($n_{\text{train}} = 73$).
+2. **Confidence Calibration Matching:** Evaluate Earth Mover's Distance (EMD / Wasserstein-1) between train and validation for ordinal confidence levels $\text{rank}(\text{uncertain})=0, \text{rank}(\text{borderline})=1, \text{rank}(\text{clear})=2$.
+3. **Critical Factors Matching:** Evaluate mean absolute frequency discrepancy $\Delta_{\text{factors}}$ across the 10 binary indicators of decisive/important variables.
+4. **Iterative Rejection Sampling:** Accept the candidate partition if $\mathcal{L}(I_{\text{val}}^{(b)}) = \text{EMD}_{\text{conf}} + 0.5 \cdot \Delta_{\text{factors}} < \tau$, otherwise resample with deterministic seed evolution.
+5. **Cohort Invariance:** Assign all 104 unlabeled cases to role `'unlabeled'`.
 
-```
-experiments/exp_3/
-├── DESIGN.md                   ← Approved research design
-├── IMPLEMENTATION.md           ← This implementation plan
-├── scripts/
-│   └── build_multimodal_views.py ← Main execution entry point & validator
-└── results/
-    ├── validation_report.json    ← Automated validation audit report
-    ├── data_manifest.csv         ← SHA-256 registry of all data artifacts
-    └── git_commit.txt            ← Git commit at execution time
-```
+---
 
-## 3. Detailed Logic
-
-### 3.1 View construction
-- `main_tabular` = `["case_id"] + cli_* + vit_* + path_hist_*` (in source order).
-  Prefix counts are asserted: 15 `cli_*`, 8 `vit_*`, 4 `path_hist_*`, 1024 `mri_emb_*`.
-- `full_prompt_narrative` = `["case_id", "txt_full_prompt_narrative"]`.
-- `images` = `["case_id"] + mri_emb_*`.
-- Values are copied without transformation.
-
-## 4. Validation & Decision Rules
-
-Hard assertions (fail → non-zero exit):
-
-1. Each view: 195 rows, unique `case_id`; same case set across views.
-2. The 10 official relevance variables present in `main_tabular`.
-3. No feature duplicated across views; no `txt_*` in `main_tabular`.
-4. No `ground_truth.csv` column in any view.
-5. CSV round-trip faithfulness (`assert_frame_equal`).
-6. `images.csv`: exactly the 4 expected all-`NaN` cases.
-7. Expected shapes: `main_tabular` (195×28), `full_prompt_narrative` (195×2), `images` (195×1025).
-8. Determinism: two in-process builds produce identical frames.
-9. SHA-256 of `ground_truth.csv` and `mccv_loocv_splits.csv` unchanged after generation.
-
-## 5. Execution
-
-```bash
-python3 experiments/exp_3/scripts/build_multimodal_views.py
-```
-
-Exit code 0 ⇒ all validations passed. Reports written to `experiments/exp_3/results/`.
-
-## 6. Acceptance Criteria
-
-- `main_tabular.csv`, `full_prompt_narrative.csv` and `images.csv` exist with the
-  documented shapes.
-- `validation_report.json` records `all_passed: true` for every check.
-- `data_manifest.csv` records SHA-256 for all artifacts (source + derived).
-- `ground_truth.csv` and `mccv_loocv_splits.csv` byte-unchanged.
+## 3. Deliverables & Validation Protocol
+- Run script: `python3 experiments/exp_3/scripts/generate_mccv_splits.py`
+- Validate outputs:
+  * Check shape: $(195, 31)$ where column 0 is `pid` and columns 1..30 are `split_0` to `split_29`.
+  * Validate per-split counts: exactly 73 `train`, 18 `val`, 104 `unlabeled` per column.
+  * Check decision balance: exactly 11 positive, 7 negative in `val` for every single split.
+- Install `utils/pkg/chimera_metrics/PROTOCOL.md` forbidding ad-hoc evaluation in `experiments/`.

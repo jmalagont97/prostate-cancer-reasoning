@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_3646e0a2ae13",
+  "patient": {
+    "id": "PT-pseudo_3646e0a2ae13",
+    "psa_ng_ml": 4.5,
+    "age_years": 67.0
+  },
+  "biopsy_decision": "no",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "noted",
+    "comorbidity": "important",
+    "bx": "not_used",
+    "pirads": "not_used",
+    "psad": "decisive",
+    "vol": "not_used",
+    "cspca": "noted",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:22:25.160Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:22:27.160Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:22:29.160Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:22:31.160Z"
+    },
+    {
+      "page": "decision",
+      "order": 5,
+      "key": "section_s3-fh",
+      "label": "Family history (anamnesis)",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:22:33.160Z"
+    },
+    {
+      "page": "decision",
+      "order": 6,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:22:35.160Z"
+    }
+  ],
+  "repeat_test": "Serial PSA monitoring and regular DREs.",
+  "free_text": "The primary drivers were the reassuring mpMRI findings (no PI-RADS 3+), the very low PSAD (0.095), and the patient's expressed hesitation towards invasive testing, leading to an Active Surveillance recommendation."
+}

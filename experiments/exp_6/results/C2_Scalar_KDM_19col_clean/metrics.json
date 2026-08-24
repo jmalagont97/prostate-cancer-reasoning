@@ -1,0 +1,14 @@
+{
+  "condition": "C2_Scalar_KDM_19col_clean",
+  "macro_f1_mean": 0.46545916504040075,
+  "macro_f1_std": 0.11517348250308078,
+  "s_conf_mean": 0.6657407407407407,
+  "s_conf_std": 0.0700834795191343,
+  "ordinal_distance_mean": 0.3342592592592592,
+  "ordinal_distance_std": 0.0700834795191343,
+  "moe_abs_mean": 0.4027777777777778,
+  "moe_abs_std": 0.08487440982005004,
+  "accuracy_mean": 0.5666666666666665,
+  "accuracy_std": 0.08290010846518293,
+  "n_folds": 30
+}

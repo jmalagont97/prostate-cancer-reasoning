@@ -1,46 +1,20 @@
-# Environment variables and secrets
-.env
-.env.*
-*.env
+# Documentation & Reference Materials
+docs/
 
-# Data directory
-data/
-
-# Python bytecode and caches
+# Python Cache & Bytecode
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
 
-# Environments
-.venv/
-venv/
-env/
-ENV/
-env.bak/
-venv.bak/
-
-# Large model checkpoints and serialized binaries
-*.pkl
-*.pth
-*.pt
-*.bin
-*.onnx
-*.h5
-*.joblib
-
-# Jupyter Notebook checkpoints
+# Jupyter Checkpoints
 .ipynb_checkpoints/
 
-# OS generated files
+# Tool & Analysis Artifacts
+graphify-out/
+
+# OS Specific
 .DS_Store
 Thumbs.db
 
-# IDE and Editor settings
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Antigravity CLI artifacts
-.gemini/
+# Logs
+*.log

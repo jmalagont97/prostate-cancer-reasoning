@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_1185f6a68df0",
+  "patient": {
+    "id": "PT-pseudo_1185f6a68df0",
+    "psa_ng_ml": 7.0,
+    "age_years": 63.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "not_used",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:00:54.951Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_search_guidelines",
+      "label": "search guidelines",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:00:56.951Z"
+    }
+  ],
+  "repeat_test": "Targeted biopsy guided by PI-RADS 5 finding and high csPCa predicted probability.",
+  "free_text": "The PI-RADS 5 finding was decisive, strongly supported by the high csPCa predicted probability (0.83) and the elevated PSA density (0.329)."
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_ef8ea220bdc6",
+  "patient": {
+    "id": "PT-pseudo_ef8ea220bdc6",
+    "psa_ng_ml": 6.9,
+    "age_years": 57.0
+  },
+  "biopsy_decision": "no",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "not_used",
+    "dre": "not_used",
+    "comorbidity": "not_used",
+    "bx": "important",
+    "pirads": "decisive",
+    "psad": "not_used",
+    "vol": "not_used",
+    "cspca": "important",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:14:54.964Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:14:56.964Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-prev",
+      "label": "Previous notes",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:14:58.964Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T17:15:00.964Z"
+    }
+  ],
+  "repeat_test": "Active surveillance with serial PSA monitoring and repeat imaging if clinically indicated.",
+  "free_text": "The decisive factors were the PI-RADS 2 result from the mpMRI, which strongly suggests benign findings, overriding the concern from the elevated PSA. This was supported by the low csPCa predicted probability and the decision to pursue active surveillance instead of immediate biopsy."
+}

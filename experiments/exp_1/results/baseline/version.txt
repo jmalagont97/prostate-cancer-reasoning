@@ -1,0 +1,3 @@
+exp_1: Task 1 Baseline Benchmarking against Ground Truth Release
+Cohort Size: 91 paired cases
+Evaluation Package: chimera_metrics v0.1.0

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.4",
+  "task": "urologist_biopsy_decision_cot",
+  "case_type": "dataset",
+  "case_id": "PT-pseudo_665cf811e172",
+  "patient": {
+    "id": "PT-pseudo_665cf811e172",
+    "psa_ng_ml": 16.5,
+    "age_years": 60.0
+  },
+  "biopsy_decision": "yes",
+  "confidence": "clear",
+  "variable_weights": {
+    "psa": "important",
+    "age": "important",
+    "dre": "not_used",
+    "comorbidity": "important",
+    "bx": "important",
+    "pirads": "decisive",
+    "psad": "important",
+    "vol": "not_used",
+    "cspca": "decisive",
+    "fh": "not_used"
+  },
+  "reveal_sequence": [
+    {
+      "page": "decision",
+      "order": 1,
+      "key": "section_s3-mri",
+      "label": "Radiology / MRI report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:48:19.668Z"
+    },
+    {
+      "page": "decision",
+      "order": 2,
+      "key": "section_s3-path",
+      "label": "Pathology report",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:48:21.668Z"
+    },
+    {
+      "page": "decision",
+      "order": 3,
+      "key": "section_s3-labs",
+      "label": "Laboratory results",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:48:23.668Z"
+    },
+    {
+      "page": "decision",
+      "order": 4,
+      "key": "section_s3-psa",
+      "label": "PSA trend",
+      "value": "section",
+      "via": "tool_call",
+      "ts": "2026-08-01T15:48:25.668Z"
+    }
+  ],
+  "repeat_test": "Tissue biopsy is required to confirm the diagnosis suggested by the PI-RADS 5 finding and guide definitive treatment.",
+  "free_text": "The decision is driven primarily by the PI-RADS 5 finding on MRI and the high csPCa predicted probability (0.839), strongly supported by the elevated PSA and the history of a prior positive biopsy."
+}

@@ -1,7 +1,0 @@
-{
-  "n_neighbors": 1,
-  "metric": "euclidean",
-  "weights": "uniform",
-  "variant": "standard",
-  "preprocessing": "none (raw 1024-dim embedding)"
-}
