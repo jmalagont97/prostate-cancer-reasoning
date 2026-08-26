@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the elevated PSA of 17.0 ng/mL and PI-RADS 5 assessment, a biopsy is not recommended because the physical examination was normal (DRE: Normal) and there are no prior biopsies to guide further action. The decision is supported by the lack of palpable nodules or asymmetry noted during the DRE, which mitigates the need for immediate invasive testing. Therefore, based on the current clinical picture, a biopsy is deferred at this time."
+}

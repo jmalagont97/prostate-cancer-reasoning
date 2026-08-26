@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_c9d31197c533",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the prior positive biopsy finding, the decision is no because the patient presents with stable clinical status and low suspicion for immediate intervention. Factors such as the PI-RADS 5 lesion and DRE nodus are noted, but the absence of concerning symptoms like urinary retention or weight loss supports deferring further invasive testing. Therefore, a prostate biopsy is not recommended at this time."
+}

@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_2e0346bce3b3",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid a biopsy is supported by the patient's history of prior positive biopsy and current stable parameters, such as PSA 3.5 ng/mL and PI-RADS 4. Although prostate volume is noted at 99.0 mL, the absence of concerning findings or growth in size suggests that further immediate intervention is not warranted. Therefore, based on this context, no prostate biopsy is recommended at this time."
+}

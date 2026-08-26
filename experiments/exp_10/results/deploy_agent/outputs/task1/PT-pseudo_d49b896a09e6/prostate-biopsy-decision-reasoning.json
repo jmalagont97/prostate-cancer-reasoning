@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the patient's upward PSA trend alongside a history of a previous positive biopsy yielding a Gleason 6 diagnosis. Although the DRE was normal and PI-RADS is 4, the combination of rising PSA (6.7 ng/mL) and prior pathology necessitates further evaluation for disease progression. Therefore, a confirmatory biopsy is recommended to guide subsequent management."
+}

@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_ef66ca71e996",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the recent PSA elevation to 10.0 ng/mL following a prior negative biopsy, and the observed PSA velocity of 1.98 ng/mL/yr indicates dynamic change. Although the PI-RADS score is 3, the rising PSA necessitates further investigation to rule out clinically significant prostate cancer. Therefore, a repeat biopsy is recommended for clinical review."
+}

@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_ef2309676161",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the rising PSA level of 8.6 ng/mL and the PI-RADS score of 3, which necessitate further tissue evaluation despite the patient's normal DRE. Although PSAD is noted at 0.32, the combination of increasing PSA velocity and imaging findings warrants investigation into potential prostate cancer. Therefore, a biopsy is recommended to clarify the clinical significance of these findings."
+}

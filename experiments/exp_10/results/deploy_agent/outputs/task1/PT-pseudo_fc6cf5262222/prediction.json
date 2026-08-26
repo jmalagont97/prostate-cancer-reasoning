@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_fc6cf5262222",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the PSA of 7.5 ng/mL, the decision is no biopsy because the PI-RADS score is 4 and PSAD is low (0.18), indicating a lower probability of clinically significant cancer. Furthermore, the physical exam was normal with a smooth DRE, and there is no prior biopsy history to guide further intervention. Therefore, active surveillance remains the appropriate management strategy for this patient."
+}

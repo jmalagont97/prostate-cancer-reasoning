@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision not to biopsy is supported by the patient's profile, including a PSA of 4.5 ng/mL and a PSAD of 0.095. Although prostate volume is noted at 47.29 mL, the PI-RADS score is NA, which limits the immediate need for invasive testing. Given the low fused probability, no biopsy is recommended at this time."
+}

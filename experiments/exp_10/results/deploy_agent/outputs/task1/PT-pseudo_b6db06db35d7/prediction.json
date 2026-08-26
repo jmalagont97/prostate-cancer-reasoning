@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_b6db06db35d7",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the PI-RADS 5 finding and a prior positive biopsy, the decision is no because the patient presents with stable clinical parameters, including a PSA of 5.2 ng/mL and a prostate volume of 47.0 mL. Given the established risk profile (csPCa risk prior 0.8199149) and the lack of acute changes, further immediate biopsy is deferred to avoid overdiagnosis. Therefore, no prostate biopsy is recommended at this time."
+}

@@ -1,0 +1,6020 @@
+[
+  {
+    "case_id": "PT-pseudo_0020cfca66c8",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.75,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.95,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 1,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_0169468160c6",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.0,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.8,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [],
+        "actual_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [],
+        "extra_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 3,
+        "n_actual": 3,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_01b643727538",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 0.8571428571428571,
+    "overall_case_score": 0.8714285714285714,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "laboratory_results",
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "fh",
+          "pirads",
+          "psa",
+          "vol"
+        ],
+        "ungrounded_variables": [
+          "dre"
+        ],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "family_history",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_033f1a8e1503",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 1.0,
+    "section_grounding_score": 0.8,
+    "overall_case_score": 0.96,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [],
+        "missing_tools_not_penalized": [
+          "laboratory_results",
+          "psa_trend"
+        ],
+        "n_extra": 0,
+        "n_actual": 2,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "pirads",
+          "psa",
+          "vol"
+        ],
+        "ungrounded_variables": [
+          "dre"
+        ],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 5,
+        "revealed_sections": [
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_0615b2bd8504",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6666666666666666,
+    "section_grounding_score": 0.8333333333333334,
+    "overall_case_score": 0.9,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "laboratory_results",
+          "psa_trend"
+        ],
+        "n_extra": 1,
+        "n_actual": 3,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "pirads",
+          "psa",
+          "vol"
+        ],
+        "ungrounded_variables": [
+          "dre"
+        ],
+        "ungradable_variables": [],
+        "total_weighted": 6,
+        "revealed_sections": [
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_062a1125899d",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_06b319f42fcb",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.9,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_075dd468b384",
+    "decision_gate": 0.0,
+    "decision_gt": "yes",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.0,
+    "details": {
+      "gate_message": "Biopsy decision mismatch: gt='yes' vs pred='no'",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_079636ac5644",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.75,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.95,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 1,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_0930885168c9",
+    "decision_gate": 0.0,
+    "decision_gt": "yes",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 0.8571428571428571,
+    "overall_case_score": 0.0,
+    "details": {
+      "gate_message": "Biopsy decision mismatch: gt='yes' vs pred='no'",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "laboratory_results",
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "fh",
+          "pirads",
+          "psa",
+          "vol"
+        ],
+        "ungrounded_variables": [
+          "dre"
+        ],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "family_history",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_099651db404e",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_0bd72f429a8b",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 0.5,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.78,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_0cdfb9410718",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_0de7e606ca70",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.9,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_11345b8a7ab3",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_11574b12444b",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_1185f6a68df0",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_11fe9c6ca833",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 0.8571428571428571,
+    "overall_case_score": 0.8714285714285714,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "laboratory_results",
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "fh",
+          "pirads",
+          "psa",
+          "vol"
+        ],
+        "ungrounded_variables": [
+          "dre"
+        ],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "family_history",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_132e0000c0e0",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_138092c2a6be",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_152344add0f1",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_175e6ad47991",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.9,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_17f110c9e142",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_180352970ace",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.2,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.84,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 4,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_1a4e0cf3b927",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_1dc32184cab6",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.2,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.84,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 4,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_20a7e91c494c",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_20ba3f0f6ca0",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_21e7fa67a79e",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_249def42388a",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_25007bb807d7",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_259484ae733f",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_2b3ef1d3a505",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_2cd88bcdf81c",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_2e0346bce3b3",
+    "decision_gate": 0.0,
+    "decision_gt": "yes",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.0,
+    "details": {
+      "gate_message": "Biopsy decision mismatch: gt='yes' vs pred='no'",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_2e4988b84112",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6666666666666666,
+    "section_grounding_score": 0.8333333333333334,
+    "overall_case_score": 0.9,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 1,
+        "n_actual": 3,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "pirads",
+          "psa",
+          "vol"
+        ],
+        "ungrounded_variables": [
+          "dre"
+        ],
+        "ungradable_variables": [],
+        "total_weighted": 6,
+        "revealed_sections": [
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_2eef4115a253",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_2ef22b5dd08e",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_2fbb84505a45",
+    "decision_gate": 0.0,
+    "decision_gt": "yes",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 0.8571428571428571,
+    "overall_case_score": 0.0,
+    "details": {
+      "gate_message": "Biopsy decision mismatch: gt='yes' vs pred='no'",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "laboratory_results",
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "fh",
+          "pirads",
+          "psa",
+          "vol"
+        ],
+        "ungrounded_variables": [
+          "dre"
+        ],
+        "ungradable_variables": [],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "family_history",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_33c8cd4571fd",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_34647958aba3",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_3477ea7065bd",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.2,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.84,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 4,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_3646e0a2ae13",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_36c92fb424ac",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 0.8571428571428571,
+    "overall_case_score": 0.8714285714285714,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "fh",
+          "pirads",
+          "psa",
+          "vol"
+        ],
+        "ungrounded_variables": [
+          "dre"
+        ],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "family_history",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_376de00c8131",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_37d8ae9b27f1",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_394e0b8dbeeb",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_3b6ea1920967",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_3cc88c81f35a",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.2,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.84,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 4,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_3ceacc9b660b",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_3f75ae876abe",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.2,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.84,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 4,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_41ca49bed13d",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.2,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.84,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 4,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_47c373e230b6",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_47d8b39fd07f",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_48fb60dfd22f",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.4,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.88,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_4a2fa7bc3595",
+    "decision_gate": 0.0,
+    "decision_gt": "yes",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.75,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.0,
+    "details": {
+      "gate_message": "Biopsy decision mismatch: gt='yes' vs pred='no'",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 1,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_4a4fedfc1f51",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.9,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_4b950525e6a8",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.9,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "pathology_report",
+          "previous_notes"
+        ],
+        "approved_tools": [
+          "previous_notes"
+        ],
+        "extra_tools": [
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend",
+          "radiology_report"
+        ],
+        "n_extra": 1,
+        "n_actual": 2,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "bx"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 1,
+        "revealed_sections": [
+          "pathology_report",
+          "previous_notes"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_4bfd4ec864d8",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.9,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_4c6b2b2bbf94",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.25,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.85,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "radiology_report"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 3,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_4d54f04e26ae",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.25,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.85,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_4e545d350c5b",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.25,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.85,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 3,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_4edb17f79e46",
+    "decision_gate": 0.0,
+    "decision_gt": "yes",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.25,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.0,
+    "details": {
+      "gate_message": "Biopsy decision mismatch: gt='yes' vs pred='no'",
+      "tool_details": {
+        "expected_tools": [
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_4f33b0253633",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.5,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.9,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_52213169f58b",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.25,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.85,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 3,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_562159dc2cc6",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.25,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.85,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 3,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_575cb2819e96",
+    "decision_gate": 0.0,
+    "decision_gt": "yes",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.75,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.0,
+    "details": {
+      "gate_message": "Biopsy decision mismatch: gt='yes' vs pred='no'",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 1,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_590e7b237744",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.0,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.8,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [],
+        "extra_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "missing_tools_not_penalized": [],
+        "n_extra": 4,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "pirads",
+          "psa",
+          "psad"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 6,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_b9aa0df93f2a",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_b9f0b7018502",
+    "decision_gate": 0.0,
+    "decision_gt": "yes",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.75,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.0,
+    "details": {
+      "gate_message": "Biopsy decision mismatch: gt='yes' vs pred='no'",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 1,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_c03b1168ff4d",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_c12bcf838ec8",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_c13fda040310",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_c39e94a13920",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_c55496c11421",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_c7277954c60f",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_c9d31197c533",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_cac2563c222a",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_cce5d47c05dd",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_d217629c323a",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_d38917f87b35",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_d3d6b421d0aa",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_d3e975d025e6",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_d49b896a09e6",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_d5ceb6b4204f",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_d7d26761c714",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_d95b3a02898e",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.75,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.95,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 1,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "pirads",
+          "psa",
+          "psad"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 6,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_dcd61cf9b443",
+    "decision_gate": 1.0,
+    "decision_gt": "no",
+    "decision_pred": "no",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_dcd7bf13a6f4",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "cspca",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 9,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_dd011d696387",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.75,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.95,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 1,
+        "n_actual": 4,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 7,
+        "revealed_sections": [
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "PT-pseudo_e001f4d06517",
+    "decision_gate": 1.0,
+    "decision_gt": "yes",
+    "decision_pred": "yes",
+    "confidence_score": 1.0,
+    "variable_weights_score": 1.0,
+    "important_decisive_f1": 1.0,
+    "tool_efficiency_score": 0.6,
+    "section_grounding_score": 1.0,
+    "overall_case_score": 0.92,
+    "details": {
+      "gate_message": "Biopsy decision matched",
+      "tool_details": {
+        "expected_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "psa_trend",
+          "radiology_report"
+        ],
+        "actual_tools": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "approved_tools": [
+          "laboratory_results",
+          "previous_notes",
+          "radiology_report"
+        ],
+        "extra_tools": [
+          "family_history",
+          "pathology_report"
+        ],
+        "missing_tools_not_penalized": [
+          "psa_trend"
+        ],
+        "n_extra": 2,
+        "n_actual": 5,
+        "policy": "penalize_extra_only_ignore_order_uniform_cost"
+      },
+      "grounding_details": {
+        "grounded_variables": [
+          "age",
+          "bx",
+          "dre",
+          "fh",
+          "pirads",
+          "psa",
+          "psad",
+          "vol"
+        ],
+        "ungrounded_variables": [],
+        "ungradable_variables": [
+          "comorbidity"
+        ],
+        "total_weighted": 8,
+        "revealed_sections": [
+          "family_history",
+          "laboratory_results",
+          "pathology_report",
+          "previous_notes",
+          "radiology_report"
+        ]
+      }
+    }
+  }
+]

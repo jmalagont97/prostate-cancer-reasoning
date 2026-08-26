@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_b8115e954c12",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the upward PSA trajectory and PI-RADS 4 finding, the patient presents with stable vital parameters and no symptoms, supported by a prior biopsy history (csPCa risk prior: 0.7713526). Given the low PSAD of 0.09 and normal DRE, further immediate intervention is not warranted for this stable presentation. Therefore, no prostate biopsy is recommended at this time."
+}

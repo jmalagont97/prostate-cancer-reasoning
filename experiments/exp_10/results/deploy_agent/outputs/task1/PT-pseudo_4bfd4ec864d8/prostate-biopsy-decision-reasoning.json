@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to biopsy is strongly supported by the presence of a PI-RADS 5 lesion, which is weighted as decisive, alongside an elevated PSA of 11.0 ng/mL and a DRE finding of Nodus. These high-risk imaging and physical exam findings necessitate tissue sampling for definitive diagnosis and management. Therefore, a prostate biopsy is recommended."
+}

@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "important",
+        "psad": "decisive",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is strongly supported by multiple high-risk indicators, including a PSA of 14.0 ng/mL and a PI-RADS score of 4. Furthermore, the physical examination revealed a firm nodule on Digital Rectal Examination (DRE), which aligns with the need for further tissue diagnosis. Therefore, a prostate biopsy is warranted to evaluate this suspicious finding."
+}

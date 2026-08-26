@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_562159dc2cc6",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision is no biopsy because the patient presents with low-risk features despite a PSA of 9.9 ng/mL, specifically a PI-RADS 2 finding and a PSAD of 0.19. The physical exam was normal, and the prostate demonstrated smooth consistency during DRE. Given these low suspicion indicators, there is no immediate need for further invasive testing at this time. Therefore, no prostate biopsy is recommended."
+}

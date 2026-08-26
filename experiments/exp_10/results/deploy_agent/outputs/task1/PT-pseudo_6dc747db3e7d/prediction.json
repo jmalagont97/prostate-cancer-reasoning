@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_6dc747db3e7d",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is strongly supported by the presence of a PI-RADS 5 focus and a PSA level of 3.3 ng/mL in this 76-year-old patient. The PI-RADS 5 finding is the most critical factor, aligning with evidence that high-risk imaging findings necessitate further tissue sampling. Although the DRE was normal, the combination of elevated PSA and high-grade MRI suspicion mandates a biopsy to exclude clinically significant prostate cancer."
+}

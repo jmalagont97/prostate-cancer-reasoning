@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the patient's status under active surveillance for previously confirmed prostate adenocarcinoma. Specific findings, such as a PSA of 4.8 ng/mL and a PI-RADS 2 score, indicate a low-risk profile that does not warrant immediate invasive intervention. Therefore, given the stable clinical picture and established risk factors, no biopsy is recommended at this time."
+}

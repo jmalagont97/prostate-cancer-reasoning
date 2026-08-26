@@ -44,7 +44,7 @@ def compute_recurrence_time_score(gt: Dict[str, Any], pred: Dict[str, Any]) -> O
     g_t = norm_months(gt.get("months_to_recurrence"))
     p_t = norm_months(pred.get("months_to_recurrence"))
 
-    if g_t is None or p_t is None:
+    if g_event not in (0, 1) or g_t is None or p_t is None:
         return None
 
     scale = max(g_t, 1.0)

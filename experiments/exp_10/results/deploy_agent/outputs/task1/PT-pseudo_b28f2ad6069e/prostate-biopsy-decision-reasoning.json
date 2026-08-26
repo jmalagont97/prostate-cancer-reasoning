@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the patient's clinical profile, including a PSA of 19.0 ng/mL and PI-RADS 4 findings, which suggests a need for further non-invasive management. Given the patient has significant comorbidities like hypertension and chronic kidney disease, and expressed apprehension about invasive procedures, deferring biopsy aligns with a cautious approach. Therefore, no prostate biopsy is recommended at this time."
+}

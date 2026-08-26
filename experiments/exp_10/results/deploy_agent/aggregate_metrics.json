@@ -1,0 +1,22 @@
+{
+  "n_cases": 91,
+  "n_decision_correct": 83,
+  "decision_accuracy": 0.9120879120879121,
+  "decision_f1_yes": 0.923076923076923,
+  "precision_yes": 1.0,
+  "recall_yes": 0.8571428571428571,
+  "confusion_matrix": {
+    "tp": 48,
+    "fp": 0,
+    "fn": 8,
+    "tn": 35
+  },
+  "mean_case_score": 0.812574568288854,
+  "ranking_score": 0.8678257456828885,
+  "mean_case_score_among_gate_passed": 0.890895008605852,
+  "mean_confidence_score": 0.9945054945054945,
+  "mean_variable_weights_score": 1.0,
+  "mean_important_decisive_f1": 1.0,
+  "mean_tool_efficiency_score": 0.48003663003663005,
+  "mean_section_grounding_score": 0.9862899005756148
+}

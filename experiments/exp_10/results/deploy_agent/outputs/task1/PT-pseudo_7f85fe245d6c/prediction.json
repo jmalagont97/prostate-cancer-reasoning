@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_7f85fe245d6c",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the persistent upward PSA trend and the patient's history of low-grade disease, despite a PI-RADS 4 finding. Although the Digital Rectal Exam was normal, the rising PSA (11 ng/mL) warrants further tissue evaluation given the uncertainty in risk stratification. Therefore, a biopsy is recommended to clarify the extent of the prostate cancer."
+}

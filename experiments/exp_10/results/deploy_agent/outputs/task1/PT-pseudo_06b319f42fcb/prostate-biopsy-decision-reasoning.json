@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is supported by the high PI-RADS 5 finding and elevated PSA of 13.5 ng/mL, which indicate a high probability of significant prostate cancer despite prior Gleason 3+3 disease findings. Given the established risk factors and ongoing surveillance need, further tissue sampling is necessary to exclude higher-risk disease. Therefore, a prostate biopsy is recommended for this patient."
+}

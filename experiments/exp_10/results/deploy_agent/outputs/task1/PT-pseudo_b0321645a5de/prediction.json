@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_b0321645a5de",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by high-risk findings, specifically the PI-RADS 5 lesion and the elevated PSA of 7.8 ng/mL. This recommendation is further strengthened by the patient's prior positive biopsy history (bx: important) and the palpable DRE nodus in the right peripheral zone. Therefore, a prostate biopsy is warranted to evaluate this suspicious finding."
+}

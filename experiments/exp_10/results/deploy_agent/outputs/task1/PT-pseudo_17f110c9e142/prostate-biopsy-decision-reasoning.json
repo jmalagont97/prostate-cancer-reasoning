@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the elevated PSA of 6.9 ng/mL and a PI-RADS 5 finding, the decision leans toward no biopsy due to the patient's overall low-risk profile indicated by the PSAD of 0.171 and DRE finding of Nodus. Given the borderline confidence and important weight assigned to factors like age and prior history (bx: important), active surveillance is favored over immediate invasive testing. Therefore, a prostate biopsy is not recommended at this time."
+}

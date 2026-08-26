@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_819642c63ff9",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the PI-RADS 5 finding, the decision is no because the patient's overall clinical picture suggests deferral. Factors such as his age of 72 and moderate LUTS (IPSS 15/35) weigh against immediate intervention. Furthermore, the history of prior biopsy makes further immediate action less warranted in this context. Therefore, a prostate biopsy is not recommended at this time."
+}

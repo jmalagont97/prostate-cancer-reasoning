@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_3cc88c81f35a",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid biopsy is supported by the patient's low-risk profile, evidenced by a PSA of 8.3 ng/mL and a PI-RADS score of 2. Although a DRE revealed a nodule, the overall risk factors are low, especially considering the prior history of finding low-grade disease on a previous biopsy. Therefore, further invasive testing is not indicated at this time."
+}

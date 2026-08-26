@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_37d8ae9b27f1",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend no biopsy is based on the patient's history of a prior positive biopsy and current findings, such as a PSA of 4.8 ng/mL and PI-RADS 4. Although prostate volume is noted at 90.82 mL, the existing data suggests that further immediate biopsy is not warranted given the context. Therefore, no prostate biopsy is recommended at this time."
+}

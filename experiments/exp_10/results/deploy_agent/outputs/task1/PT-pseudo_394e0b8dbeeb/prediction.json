@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_394e0b8dbeeb",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to biopsy is strongly supported by the combination of elevated PSA progression (PSA 9.2 ng/mL) and the presence of a PI-RADS 4 lesion identified on MRI, which is weighted as decisive. This finding is further corroborated by the physical examination finding of a DRE nodus in an asymmetrically enlarged prostate. Therefore, a biopsy is recommended to obtain tissue diagnosis."
+}

@@ -1,0 +1,23 @@
+{
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the steadily climbing PSA of 7.68 ng/mL, the decision is no because the prior biopsy returned benign histology and the PI-RADS score is 3. The clinical presentation includes a normal DRE and no reported negative family history or comorbidities that would strongly favor immediate re-biopsy. Therefore, given the uncertainty, no further biopsy is recommended at this time."
+}

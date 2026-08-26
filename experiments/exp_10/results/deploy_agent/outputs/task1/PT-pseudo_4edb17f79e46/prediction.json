@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_4edb17f79e46",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "decisive",
+        "vol": "important",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite an elevated PSA of 9.2 ng/mL, the decision is no because the physical examination was normal and the digital rectal examination (DRE) was normal. Furthermore, the PI-RADS score is 4 with a PSAD of 0.16, which suggests that further invasive biopsy is not immediately indicated based on current findings. Therefore, clinical re-assessment and active surveillance are recommended instead of immediate biopsy."
+}

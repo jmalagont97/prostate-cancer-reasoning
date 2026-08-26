@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_21e7fa67a79e",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "important",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by high-risk features, including a PSA of 11.0 ng/mL and a PI-RADS 5 lesion. Furthermore, the patient presents with severe lower urinary tract symptoms (IPSS score: 34/35), which necessitates further tissue evaluation despite the prior positive biopsy history. Therefore, a repeat biopsy is indicated to assess the extent of disease progression."
+}

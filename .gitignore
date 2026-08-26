@@ -1,5 +1,6 @@
 # Documentation & Reference Materials
 docs/
+.hermes/
 
 # Python Cache & Bytecode
 __pycache__/

@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the elevated PSA of 12.3 ng/mL and a PI-RADS 5 lesion, the decision is no biopsy based on the current clinical picture. The physical examination revealed a normal DRE, and there are no prior biopsies recorded for this patient. Therefore, given the absence of palpable nodules or asymmetry, further immediate intervention is deferred pending reassessment."
+}

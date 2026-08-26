@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_926c37508fe2",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the rising PSA of 5.4 ng/mL and a prior positive biopsy (ISUP GG 2), the decision is deferred because the imaging findings are low risk, specifically PI-RADS 2. This low score suggests that an acute intervention is not warranted given the patient's overall clinical picture. Therefore, no immediate prostate biopsy is recommended at this time."
+}

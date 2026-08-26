@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_6a100adb6ac3",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend no biopsy is based on the patient's current clinical profile, including a PSA of 5.8 ng/mL and a PSAD of 0.192, which places the risk in a moderate category. Although the PI-RADS score is 4, the normal Digital Rectal Exam (DRE) findings and lack of significant prior biopsy history suggest that active surveillance may be appropriate at this time. Therefore, no immediate prostate biopsy is recommended based on the current data."
+}

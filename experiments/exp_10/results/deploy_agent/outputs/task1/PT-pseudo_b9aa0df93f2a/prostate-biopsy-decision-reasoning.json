@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to proceed with a biopsy is supported by the elevated PSA of 5.5 ng/mL and the PI-RADS 5 finding, which indicate high suspicion for prostate cancer. Although the Digital Rectal Exam was normal, the combination of these objective findings necessitates tissue sampling given the patient's age and prior history. Therefore, a prostate biopsy is recommended to further evaluate the suspicious lesion."
+}

@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision against biopsy is supported by the patient's low-risk profile, evidenced by a PI-RADS 2 score and a Prostate volume of 56.0 mL, despite a PSA of 2.7 ng/mL. Although PSAD is noted as important, the overall clinical picture suggests that further invasive testing may lead to overdiagnosis given the patient's apprehension regarding procedures. Therefore, based on these low-risk parameters, no immediate biopsy is recommended at this time."
+}

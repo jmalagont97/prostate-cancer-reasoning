@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision not to biopsy is supported by the patient's history of a prior negative biopsy outcome and the current PI-RADS 4 assessment. Although the PSA is elevated at 4.8 ng/mL, the clinical picture does not mandate further invasive testing given the noted comorbidity of Chronic kidney disease and Obesity. Therefore, no prostate biopsy is recommended at this time."
+}

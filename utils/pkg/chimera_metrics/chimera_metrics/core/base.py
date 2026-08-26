@@ -14,48 +14,33 @@ from chimera_metrics.core.types import (
 
 
 def norm_decision(val: Any) -> Optional[str]:
-    """Normalize binary biopsy decision (yes/no/bool)."""
-    if val is None:
+    """Normalize binary biopsy decision using the official string contract."""
+    if not isinstance(val, str):
         return None
-    if isinstance(val, bool):
-        return "yes" if val else "no"
-    if isinstance(val, (int, float)):
-        return "yes" if int(val) == 1 else "no"
-    s = str(val).strip().lower()
-    if s in ("yes", "true", "1", "positive", "biopsy"):
-        return "yes"
-    if s in ("no", "false", "0", "negative", "no_biopsy"):
-        return "no"
-    return None
+    value = val.strip().lower()
+    return value if value in {"yes", "no"} else None
 
 
 def norm_treatment_decision(val: Any) -> Optional[str]:
-    """Normalize multiclass treatment decision."""
+    """Normalize treatment recommendation using the official primary field."""
     if val is None:
         return None
     if isinstance(val, dict):
-        action = val.get("action") or val.get("treatment_recommendation") or val.get("recommendation")
-        if action:
-            return norm_treatment_decision(action)
-    s = str(val).strip().lower().replace("-", "_").replace(" ", "_")
+        recommendation = val.get("treatment_recommendation")
+        if not isinstance(recommendation, dict):
+            return None
+        val = recommendation.get("primary")
+    if not isinstance(val, str):
+        return None
+    s = val.strip().lower().replace("-", "_")
+    s = "_".join(s.split())
     valid_decisions = {
         "watchful_waiting",
         "active_surveillance",
         "continued_surveillance",
         "active_treatment",
     }
-    if s in valid_decisions:
-        return s
-    # Map common aliases
-    alias_map = {
-        "ww": "watchful_waiting",
-        "as": "active_surveillance",
-        "cs": "continued_surveillance",
-        "at": "active_treatment",
-        "active_surveillance_protocol": "active_surveillance",
-        "radical_treatment": "active_treatment",
-    }
-    return alias_map.get(s, None)
+    return s if s in valid_decisions else None
 
 
 def norm_confidence(val: Any) -> Optional[str]:

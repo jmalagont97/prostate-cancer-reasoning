@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_a9a20522674d",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend no biopsy is based on the patient's current status, including a PSA of 9.0 ng/mL and PI-RADS 4 findings, despite an upward trajectory. Given that the physical examination revealed a normal DRE and there is no prior biopsy history (bx: n/a), active surveillance remains the preferred management strategy. Therefore, further imaging or observation is recommended instead of immediate intervention."
+}

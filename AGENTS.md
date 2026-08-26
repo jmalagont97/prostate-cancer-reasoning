@@ -55,6 +55,8 @@ Every project initialized with this system must adhere to the following director
 │   └── pkg/         ← External repositories, dependencies, and shared utilities.
 ├── docs/            ← Research papers, PDFs, documentation, and reference material.
 ├── experiments/     ← Standardized path for all experimental runs and results.
+├── deploy/          ← Deployment artifacts, scripts, and serving configurations.
+│   └── tasks/       ← Production modules and inference pipelines by task (task1, task2, task3).
 └── data/            ← Dataset storage. Additional subdirectories are allowed, but this root must always be present.
 ```
 

@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_3b6ea1920967",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid biopsy is supported by the patient's history of a prior positive biopsy and the current clinical status, including a PSA of 6.5 ng/mL and a PI-RADS 4 finding. Although the PSAD is noted as 0.11, the lack of palpable nodules on DRE and absence of other symptoms suggests that active surveillance remains the preferred management strategy in this context. Therefore, no immediate biopsy is recommended at this time."
+}

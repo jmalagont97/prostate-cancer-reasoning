@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_5af00f9153c2",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the elevated PSA of 11.2 ng/mL and PI-RADS 5 finding, the decision is no biopsy because the patient has a prior csPCa risk of 0.8541575 and no prior biopsy history. The noted comorbidity (Type 2 diabetes, CKD) and normal DRE suggest deferring invasive procedures in favor of active surveillance. Therefore, no prostate biopsy is recommended at this time."
+}

@@ -6,6 +6,7 @@ from dataclasses import asdict
 from statistics import mean
 from typing import Any, Dict, List, Optional, Tuple
 
+from chimera_metrics.core.base import norm_event, norm_months
 from chimera_metrics.core.types import (
     Task1CaseResult,
     Task2CaseResult,
@@ -115,6 +116,8 @@ def evaluate_task3_cohort(
     n = len(gt_list)
     if case_ids is None:
         case_ids = [f"case_{i}" for i in range(n)]
+    if len(pred_list) != n or len(case_ids) != n:
+        raise ValueError("gt_list, pred_list, and case_ids must have equal lengths")
 
     case_results: List[Task3CaseResult] = []
     times: List[float] = []
@@ -127,13 +130,15 @@ def evaluate_task3_cohort(
 
         g_ev = gt.get("event")
         p_ev = pr.get("event")
-        g_tm = gt.get("months_to_recurrence")
-        p_tm = pr.get("months_to_recurrence")
+        g_tm = norm_months(gt.get("months_to_recurrence"))
+        p_tm = norm_months(pr.get("months_to_recurrence"))
+        g_ev = norm_event(gt.get("event"))
+        p_ev = norm_event(pr.get("event"))
 
-        if g_tm is not None and p_tm is not None and g_ev is not None:
-            times.append(float(g_tm))
-            preds.append(float(p_tm))
-            events.append(int(g_ev))
+        if g_tm is not None and p_tm is not None and g_ev in (0, 1):
+            times.append(g_tm)
+            preds.append(p_tm)
+            events.append(g_ev)
 
         case_results.append(
             Task3CaseResult(

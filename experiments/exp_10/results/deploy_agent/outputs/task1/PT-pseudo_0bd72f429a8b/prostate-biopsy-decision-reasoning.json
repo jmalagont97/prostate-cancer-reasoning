@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the elevated PSA of 5.3 ng/mL and the presence of a palpable DRE nodus. Furthermore, the PI-RADS score of 4 indicates a need for further tissue evaluation regarding potential prostate cancer. Given these findings, a biopsy is warranted to assess the risk associated with the observed symptoms and imaging characteristics."
+}

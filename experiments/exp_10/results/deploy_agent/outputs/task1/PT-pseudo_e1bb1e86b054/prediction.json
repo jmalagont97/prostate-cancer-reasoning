@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_e1bb1e86b054",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the elevated PSA of 8.7 ng/mL and PI-RADS 4 assessment, a biopsy is not recommended because the digital rectal examination was normal and the prostate volume was noted at 35.27 mL. Given the patient's history of prior confirmed adenocarcinoma and lack of significant comorbidities, active surveillance remains the appropriate management strategy in this context. Therefore, no further biopsy is indicated at this time."
+}

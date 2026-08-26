@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is supported by the persistent upward PSA trajectory and the patient's age of 66 years. Although the Digital Rectal Exam (DRE) was normal, the PI-RADS score of 4 indicates a clinically significant lesion requiring further tissue evaluation. Therefore, despite the noted prostate volume of 31.46 mL, biopsy is recommended to assess the extent of the disease."
+}

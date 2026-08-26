@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_95d3fd02d5e0",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid biopsy is supported by the patient's normal physical examination findings, specifically a Normal DRE and a smooth, firm prostate profile. Although PSA is elevated at 5.5 ng/mL and PI-RADS is 4, the overall clinical picture, including noted comorbidities like Type 2 diabetes and Coronary artery disease, suggests deferring immediate invasive testing. Given the borderline confidence level, no biopsy is recommended at this time."
+}

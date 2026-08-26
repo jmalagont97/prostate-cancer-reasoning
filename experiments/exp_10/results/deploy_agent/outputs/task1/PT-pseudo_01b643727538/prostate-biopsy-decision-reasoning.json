@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "not_used",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the elevated PSA of 9.3 ng/mL and PI-RADS 5 finding, a prior biopsy result confirming ISUP grade group 3 malignancy makes the decision decisive against further invasive testing. Given the patient's history (bx: decisive) and current clinical status, there are no immediate high-risk factors necessitating a repeat biopsy at this time. Therefore, no prostate biopsy is recommended for this patient."
+}

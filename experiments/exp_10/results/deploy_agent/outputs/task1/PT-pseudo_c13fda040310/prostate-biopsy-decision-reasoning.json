@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "important",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the escalating PSA trajectory, reaching 6.1 ng/mL, and the presence of a PI-RADS 4 finding, despite the prior negative systematic biopsy. Although PSAD is low (0.08), the combination of rising PSA and imaging features necessitates further diagnostic evaluation. Therefore, a prostate biopsy is recommended to assess the potential for clinically significant cancer."
+}

@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend no biopsy is supported by the patient's history of surveillance for a previously diagnosed Gleason 3+4 lesion and current low-risk profile, evidenced by a PSA of 3.8 ng/mL and PI-RADS 4 findings. Given the established baseline and lack of significant comorbidities, continued active surveillance is the preferred management strategy over immediate invasive intervention. Therefore, no prostate biopsy is recommended at this time."
+}

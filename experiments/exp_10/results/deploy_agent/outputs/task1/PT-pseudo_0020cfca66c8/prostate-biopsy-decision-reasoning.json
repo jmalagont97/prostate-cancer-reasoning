@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "not_used",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report"
+    ],
+    "free_text": "The decision to recommend no biopsy is primarily supported by the low suspicion level indicated by PI-RADS 2, despite a PSA of 4.7 ng/mL and a prostate volume of 33.46 mL. Furthermore, the PSAD score of 0.14 suggests a low probability of clinically significant cancer, which aligns with deferring invasive procedures. Therefore, given the current imaging findings and clinical context, no biopsy is recommended at this time."
+}

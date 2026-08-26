@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_cac2563c222a",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is strongly supported by the patient's high-risk profile, specifically the PI-RADS 5 finding and the PSA level of 4.53 ng/mL. Although the DRE was normal, these objective findings necessitate further investigation given the elevated risk factors noted in the context. Therefore, a prostate biopsy is recommended to exclude significant disease."
+}

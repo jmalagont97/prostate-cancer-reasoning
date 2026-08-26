@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the PI-RADS 4 assessment and the elevated PSA of 4.2 ng/mL, which are weighted as decisive factors. The physical exam finding of a firm nodule noted on DRE further necessitates tissue sampling for definitive diagnosis. Therefore, a prostate biopsy is recommended to evaluate the suspicious lesion identified on MRI."
+}

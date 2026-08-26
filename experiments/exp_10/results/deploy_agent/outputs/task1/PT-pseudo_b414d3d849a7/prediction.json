@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_b414d3d849a7",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision is no biopsy because the patient presents with an unfavorable intermediate risk profile, evidenced by a PSA of 5.0 ng/mL and PI-RADS 4 findings. Although a DRE revealed a nodule, the prior biopsy result (ISUP GG 4) suggests that active surveillance is the preferred management strategy over further invasive procedures. Therefore, no immediate prostate biopsy is recommended."
+}

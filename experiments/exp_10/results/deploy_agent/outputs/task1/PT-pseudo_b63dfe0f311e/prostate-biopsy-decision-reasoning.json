@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "not_used",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the low-risk profile indicated by PI-RADS 2 and a PSA of 5.3 ng/mL, despite the patient's age of 67. Although PSAD is noted as 0.10, the overall clinical picture does not present significant red flags that would mandate immediate tissue sampling. Therefore, active surveillance is the appropriate management strategy for this patient."
+}

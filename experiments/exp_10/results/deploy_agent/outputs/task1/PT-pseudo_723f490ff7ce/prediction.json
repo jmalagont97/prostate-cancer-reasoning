@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_723f490ff7ce",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by the elevated PSA of 3.7 ng/mL and the presence of a PI-RADS 2 score, which necessitates further investigation despite the normal Digital Rectal Exam (DRE). Although PSAD is low at 0.07, the combination of rising PSA velocity and patient age makes biopsy necessary for definitive risk stratification. Therefore, a prostate biopsy is recommended to evaluate the suspicious findings identified on imaging."
+}

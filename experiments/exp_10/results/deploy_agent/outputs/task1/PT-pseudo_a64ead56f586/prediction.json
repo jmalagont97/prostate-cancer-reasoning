@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_a64ead56f586",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the PI-RADS 5 finding and PSA of 7.0 ng/mL, the decision is no biopsy because the patient has a history of one prior biopsy (ISUP Group 3) and a normal Digital Rectal Exam (DRE). The combination of these factors suggests that active surveillance is appropriate given the current clinical status and established risk profile. Therefore, no immediate prostate biopsy is recommended at this time."
+}

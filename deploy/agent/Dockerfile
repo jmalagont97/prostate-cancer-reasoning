@@ -1,0 +1,62 @@
+# =============================================================================
+# CHIMERA Generalist Agent — self-contained production inference image.
+#
+# - Gemma 4 E2B (gemma4:e2b) is BAKED into the image: the container runs
+#   correctly with `--network none` (Grand Challenge contract).
+# - Ollama is the official CUDA-enabled binary; the NVIDIA GPU is exposed at
+#   runtime via the host nvidia-container-runtime (`docker run --gpus all`).
+# - Task models (.pkl) are mounted at runtime from training artifacts.
+# =============================================================================
+
+# --- Stage 0: bake the LLM into the image ---------------------------------
+FROM ollama/ollama:latest AS model-bake
+
+# Pull the invariant model with network available at BUILD time only.
+RUN ollama serve & \
+    for i in $(seq 1 60); do \
+      curl -sf http://127.0.0.1:11434/api/version >/dev/null 2>&1 && break; \
+      sleep 1; \
+    done && \
+    ollama pull gemma4:e2b
+
+# --- Stage 1: runtime ------------------------------------------------------
+FROM ollama/ollama:latest AS runtime
+
+# Ollama's official image is Ubuntu-based without Python; add Python 3.11.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        curl ca-certificates python3 python3-pip python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /opt/app
+
+# Python deps (torch+shap needed to unpickle the subtask models).
+COPY deploy/agent/requirements.txt ./requirements.txt
+RUN pip install --no-cache-dir --break-system-packages -r requirements.txt
+
+# Agent source, templates, configs, entrypoint.
+COPY deploy/agent/src/ /opt/app/src/
+COPY deploy/agent/templates/ /opt/app/templates/
+COPY deploy/agent/configs/ /opt/app/configs/
+COPY deploy/agent/inference.py /opt/app/inference.py
+COPY deploy/agent/entrypoint.sh /opt/app/entrypoint.sh
+COPY deploy/agent/pyproject.toml /opt/app/pyproject.toml
+# Training model_definitions needed to unpickle the subtask .pkl models
+# (import path deploy.tasks.task1.training.model_definitions).
+COPY deploy/tasks/task1/training/model_definitions.py /opt/app/deploy/tasks/task1/training/model_definitions.py
+
+# Editable install so `chimera_agent` is importable.
+RUN pip install --no-cache-dir --break-system-packages -e /opt/app
+
+# Copy the baked model blobs into the default model root (/root/.ollama/models).
+COPY --from=model-bake /root/.ollama/models /root/.ollama/models
+
+ENV OLLAMA_MODELS=/root/.ollama/models
+ENV SUBMODELS_DIR=/opt/ml/model
+ENV PYTHONPATH=/opt/app/src:/opt/app
+
+RUN chmod +x /opt/app/entrypoint.sh
+
+VOLUME ["/opt/ml/model"]
+
+WORKDIR /opt/app
+ENTRYPOINT ["/opt/app/entrypoint.sh"]

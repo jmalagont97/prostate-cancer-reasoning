@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_4d54f04e26ae",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "important",
+        "psad": "decisive",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by significant clinical findings, including a high PSA of 34.7 ng/mL and a PI-RADS 4 assessment. Furthermore, the physical examination revealed a DRE finding of a firm nodule, which increases suspicion for prostate cancer. Given these objective indicators, a biopsy is warranted to further evaluate the lesion. Therefore, a prostate biopsy is recommended for this patient."
+}

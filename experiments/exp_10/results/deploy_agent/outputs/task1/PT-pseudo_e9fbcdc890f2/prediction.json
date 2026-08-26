@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_e9fbcdc890f2",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "decisive",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the high PSA of 82.0 ng/mL and a PI-RADS 5 lesion, the decision is no biopsy because the clinical context suggests deferral or alternative management. The patient's history includes a prior positive prostate biopsy context (implied by chief complaint) and stable physical findings (DRE: Normal), leading to a cautious approach. Therefore, further immediate biopsy is not recommended at this time."
+}

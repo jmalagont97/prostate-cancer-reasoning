@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_af12e08190bd",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the elevated PSA of 5.8 ng/mL and PI-RADS 4 assessment, the decision is no biopsy because the patient has a history of a negative prior biopsy and low prostate volume (39.0 mL). The combination of these factors suggests that immediate intervention is not warranted given the established risk profile. Therefore, no prostate biopsy is recommended at this time."
+}

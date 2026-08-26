@@ -1,0 +1,23 @@
+{
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the patient's history, including a prior biopsy finding of ISUP GG 2 and a PI-RADS 3 score. Although PSA is elevated at 9.5 ng/mL with a PSA velocity of 1.85 ng/mL/yr, the overall risk profile suggests continued active surveillance rather than immediate intervention. Therefore, given the noted factors like Prostate volume 49.29 mL and PSAD 0.193, no biopsy is recommended at this time."
+}

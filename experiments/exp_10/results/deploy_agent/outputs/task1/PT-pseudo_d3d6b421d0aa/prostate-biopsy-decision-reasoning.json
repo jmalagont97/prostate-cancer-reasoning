@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is strongly supported by the patient's clinical presentation and imaging findings. Specifically, the elevated PSA of 8.6 ng/mL and the presence of a PI-RADS 5 lesion necessitate tissue sampling for definitive diagnosis. Furthermore, the physical exam finding of a DRE nodus aligns with the need to evaluate the prostate structure given the high csPCa risk prior of 0.8539465. Therefore, a biopsy is warranted to assess the extent of the malignancy."
+}

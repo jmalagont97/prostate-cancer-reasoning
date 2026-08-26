@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend no biopsy is supported by the patient's low-risk profile, evidenced by a PSA of 6.0 ng/mL and a PI-RADS score of 3. Furthermore, the physical examination revealed a normal DRE, which mitigates the need for immediate invasive testing. Given these findings, active surveillance remains the appropriate management strategy for this patient."
+}

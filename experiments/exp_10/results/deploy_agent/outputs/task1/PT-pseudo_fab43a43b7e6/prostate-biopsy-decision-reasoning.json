@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the patient's elevated PSA of 4.3 ng/mL and the PI-RADS 4 finding, which are strong indicators for tissue sampling. Furthermore, the Digital Rectal Examination revealed a distinct, firm asymmetrical nodule (Nodus), justifying the need for further evaluation. Therefore, a prostate biopsy is recommended to confirm the presence and extent of the lesion."
+}

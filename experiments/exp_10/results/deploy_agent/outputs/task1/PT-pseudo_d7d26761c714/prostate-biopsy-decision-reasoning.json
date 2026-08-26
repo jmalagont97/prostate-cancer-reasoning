@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the patient's low-risk profile, evidenced by a PSA of 7.7 ng/mL and a PI-RADS score of 3. Furthermore, the physical examination showed a normal DRE, which aligns with surveillance protocols for patients with low suspicion risk. Given the established history of ISUP Grade Group 1 carcinoma and stable parameters, biopsy is not indicated at this time."
+}

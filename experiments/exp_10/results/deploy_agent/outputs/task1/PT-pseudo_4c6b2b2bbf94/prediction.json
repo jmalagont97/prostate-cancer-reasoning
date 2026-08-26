@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_4c6b2b2bbf94",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend no biopsy is based on the current clinical profile, including a PSA of 4.7 ng/mL and a PSAD of 0.07, which suggests low suspicion for aggressive disease progression. Although the prior biopsy was positive, the PI-RADS score of 4 and the lack of palpable nodules support continued active surveillance. Therefore, given the current stable parameters, no immediate biopsy is recommended at this time."
+}

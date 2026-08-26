@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_0930885168c9",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "not_used",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid biopsy is supported by the patient's low-risk profile, evidenced by a PSA of 8.7 ng/mL and a PSAD of 0.25. Furthermore, the physical examination was normal with a Normal DRE, and the PI-RADS score is only 3, suggesting a low suspicion for clinically significant cancer requiring immediate tissue sampling. Given these findings, active surveillance is the appropriate management strategy."
+}

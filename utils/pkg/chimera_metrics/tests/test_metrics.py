@@ -34,7 +34,7 @@ class TestChimeraMetrics(unittest.TestCase):
         self.assertEqual(score, 0.0)
 
         # Dict formats
-        score, _, _, _ = compute_biopsy_decision_gate({"biopsy_decision": True}, {"biopsy_decision": "yes"})
+        score, _, _, _ = compute_biopsy_decision_gate({"biopsy_decision": "yes"}, {"biopsy_decision": "yes"})
         self.assertEqual(score, 1.0)
 
     def test_task2_decision_gate(self):

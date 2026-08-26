@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend no biopsy is based on the low PSA level of 0.44 ng/mL and the PI-RADS 3 score, which indicate a low suspicion for clinically significant prostate cancer. Although the patient has moderate LUTS (IPSS 10), the absence of prior biopsies and benign findings suggests that further invasive testing is not warranted at this time. Therefore, no prostate biopsy is recommended."
+}

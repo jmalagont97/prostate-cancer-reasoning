@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the high PSA of 31.0 ng/mL and PI-RADS 5 assessment, the decision is to defer biopsy due to the patient's age of 77 and existing cardiovascular comorbidities. The prior positive biopsy history (csPCa risk prior: 0.9289904) combined with the need for careful consideration of treatment options supports avoiding further invasive procedures at this time. Therefore, a prostate biopsy is not recommended currently."
+}

@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_8654c4ff4d10",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend no biopsy is based on the patient's low-risk profile despite a recent PSA spike, evidenced by a PSA of 6.9 ng/mL and a PI-RADS 4 assessment. Although prostate volume is noted at 57.11 mL, the PSAD of 0.121 suggests a relatively low risk, which supports deferring immediate invasive testing. Therefore, given the intermediate risk status and lack of other high-risk factors, active surveillance is the appropriate management strategy."
+}

@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is driven primarily by the PI-RADS 5 classification, which is decisive in this assessment. This finding, combined with an elevated PSA of 5.5 ng/mL, necessitates further tissue diagnosis despite a normal Digital Rectal Exam. The prostate volume of 40.54 mL and PSAD of 0.136 are noted factors supporting the need for intervention."
+}

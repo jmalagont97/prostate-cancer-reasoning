@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_fdd4ff09679e",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid biopsy is supported by the patient's normal physical examination findings, specifically a Normal DRE and no palpable nodules. Although the PI-RADS score is 5 and PSA is 4.4 ng/mL, the history of prior biopsies (bx: important) suggests that further intervention should be guided by surveillance rather than immediate rebiopsy. Therefore, given the current stable presentation, no biopsy is recommended at this time."
+}
