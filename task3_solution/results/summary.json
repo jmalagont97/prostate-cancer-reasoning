@@ -1,0 +1,47 @@
+{
+  "task": "task3_biochemical_recurrence",
+  "final_model": "cox_p03_prostatectomy_pca5",
+  "final_loocv_c_index": 0.8575,
+  "n_cases": 75,
+  "n_events": 19,
+  "score_progression": [
+    {"stage": "T3.1_baseline", "description": "4 bare structured fields only", "c_index": 0.641, "protocol": "5-fold"},
+    {"stage": "exp_3_T3.6", "description": "+ surgical-pathology text extraction", "c_index": 0.772, "protocol": "LOOCV, raw-hazard ranking"},
+    {"stage": "exp_4_T3.4_T3.5", "description": "agent built; Cox penalizer swept under real output contract", "c_index": 0.7655, "protocol": "LOOCV, literal predicted months"},
+    {"stage": "exp_5_T3.2_T3.3", "description": "+ prostatectomy-slide embedding, PCA k=5", "c_index": 0.8575, "protocol": "LOOCV, literal predicted months"}
+  ],
+  "cox_penalizer_sweep": {
+    "0.01": 0.7035, "0.1": 0.7487, "0.3": 0.7655, "0.5": 0.7584,
+    "0.7": 0.7540, "1.0": 0.7513, "2.0": 0.7363
+  },
+  "embedding_source_sweep_pca5": {
+    "baseline_no_embedding": 0.7655,
+    "mri": 0.7522,
+    "biopsy_slides": 0.7327,
+    "prostatectomy_slides": 0.8575,
+    "all_three_combined": 0.8133
+  },
+  "prostatectomy_pca_k_sweep": {"2": 0.8451, "5": 0.8575, "10": 0.8469},
+  "model_family_comparison": {
+    "cox_p03": 0.8575,
+    "weibull_aft": 0.7553,
+    "lognormal_aft": 0.7398,
+    "loglogistic_aft": 0.5628
+  },
+  "bootstrap_significance": {
+    "exp4_penalizer_gain": {"point_estimate": 0.0168, "ci_95": [-0.0068, 0.0416], "significant": false},
+    "exp5_embedding_gain": {"point_estimate": 0.0920, "ci_95": [0.0277, 0.1765], "significant": true, "fraction_favoring": 0.996}
+  },
+  "t3_7_ipcw_time_dependent_auc": {
+    "before_embedding": {"12m": 0.854, "24m": 0.760, "36m": 0.753, "60m": 0.758},
+    "after_embedding": {"12m": 0.922, "24m": 0.859, "36m": 0.853, "60m": 0.875}
+  },
+  "known_limitations": [
+    "scikit-survival (RSF / GBS) unavailable in source environment - no C++ compiler toolchain",
+    "Cox penalizer not re-swept on the embedding-augmented feature set (exp_5 Stage C)",
+    "radiology_report, previous_notes, family_history text never extracted into features",
+    "reasoning text is template-generated, not LLM-authored - no LLM available in source environment",
+    "no real GC/Docker submission packaging built",
+    "production-simulation spot check found 2/2 early-recurrence cases substantially underestimated in absolute terms"
+  ]
+}
