@@ -1,0 +1,14 @@
+{
+  "H1_vs_H2_macro_f1": {
+    "statistic": 1572.0,
+    "p_value": 0.012749091501973253,
+    "mean_difference": -0.010796628086059705,
+    "is_significant_alpha_0_05": true
+  },
+  "H1_vs_H2_brier": {
+    "statistic": 833.0,
+    "p_value": 5.968225746376303e-09,
+    "mean_difference": 0.01305768276515152,
+    "is_significant_alpha_0_05": true
+  }
+}

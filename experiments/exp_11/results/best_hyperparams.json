@@ -1,0 +1,50 @@
+{
+  "hard": {
+    "tab": {
+      "C": 0.1,
+      "class_weight": null
+    },
+    "mri": {
+      "C": 0.1,
+      "class_weight": null
+    },
+    "text": {
+      "C": 10.0,
+      "class_weight": null,
+      "max_features": 500
+    },
+    "fusion": {
+      "family": "hard",
+      "w_tab": 0.85,
+      "w_mri": 0.15,
+      "w_txt": 0.0,
+      "mean_macro_f1": 0.5831455793948054,
+      "std_macro_f1": 0.05835735751381222,
+      "mean_brier": 0.3945361939236342
+    }
+  },
+  "fuzzy": {
+    "tab": {
+      "C": 0.1,
+      "epsilon": 0.05
+    },
+    "mri": {
+      "C": 0.1,
+      "epsilon": 0.1
+    },
+    "text": {
+      "C": 10.0,
+      "epsilon": 0.05,
+      "max_features": null
+    },
+    "fusion": {
+      "family": "fuzzy",
+      "w_tab": 0.55,
+      "w_mri": 0.2,
+      "w_txt": 0.25,
+      "mean_macro_f1": 0.6166258178096413,
+      "std_macro_f1": 0.05472724757011056,
+      "mean_brier": 0.38940116716765094
+    }
+  }
+}

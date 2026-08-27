@@ -1,0 +1,3 @@
+exp_11 execution timestamp: 2026-08-26T18:42:19.874656
+Base: exp_10 (MCCV-100 splits reused, N=70)
+Fallbacks used: None

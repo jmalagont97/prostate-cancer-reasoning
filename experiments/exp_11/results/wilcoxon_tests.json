@@ -1,0 +1,26 @@
+{
+  "H1_vs_H2_macro_f1": {
+    "statistic": 686.0,
+    "p_value": 5.484898653589781e-09,
+    "mean_difference": -0.033480238414835946,
+    "is_significant_alpha_0_05": true
+  },
+  "H1_vs_H2_brier": {
+    "statistic": 2173.0,
+    "p_value": 0.22616750120373663,
+    "mean_difference": 0.005135026755983216,
+    "is_significant_alpha_0_05": false
+  },
+  "exp11_H1_hard_fusion_vs_exp10_H1_hard_fusion": {
+    "statistic": 2432.0,
+    "p_value": 0.8806995577701895,
+    "mean_difference": -0.0031395662235866118,
+    "is_significant_alpha_0_05": false
+  },
+  "exp11_H2_fuzzy_fusion_vs_exp10_H2_fuzzy_fusion": {
+    "statistic": 2041.0,
+    "p_value": 0.12982666687383193,
+    "mean_difference": 0.019544044105189614,
+    "is_significant_alpha_0_05": false
+  }
+}

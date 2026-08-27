@@ -1,0 +1,62 @@
+{
+  "hard": {
+    "tab": {
+      "k": 1,
+      "metric": "euclidean",
+      "weights": "uniform",
+      "fuzzy": false
+    },
+    "mri": {
+      "k": 5,
+      "metric": "euclidean",
+      "weights": "uniform",
+      "fuzzy": false
+    },
+    "text": {
+      "k": 3,
+      "metric": "cosine",
+      "weights": "uniform",
+      "fuzzy": false,
+      "max_features": 500
+    },
+    "fusion": {
+      "family": "hard",
+      "w_tab": 0.35,
+      "w_mri": 0.45,
+      "w_txt": 0.2,
+      "mean_macro_f1": 0.5862851456183921,
+      "std_macro_f1": 0.12847885834980086,
+      "mean_brier": 0.5306481515151517
+    }
+  },
+  "fuzzy": {
+    "tab": {
+      "k": 1,
+      "metric": "euclidean",
+      "weights": "uniform",
+      "fuzzy": true
+    },
+    "mri": {
+      "k": 5,
+      "metric": "euclidean",
+      "weights": "uniform",
+      "fuzzy": true
+    },
+    "text": {
+      "k": 5,
+      "metric": "cosine",
+      "weights": "uniform",
+      "fuzzy": true,
+      "max_features": null
+    },
+    "fusion": {
+      "family": "fuzzy",
+      "w_tab": 0.35,
+      "w_mri": 0.45,
+      "w_txt": 0.2,
+      "mean_macro_f1": 0.5970817737044517,
+      "std_macro_f1": 0.1251841718458739,
+      "mean_brier": 0.5175904687499999
+    }
+  }
+}
