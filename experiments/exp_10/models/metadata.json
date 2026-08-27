@@ -1,0 +1,26 @@
+{
+  "experiment": "exp_10",
+  "created_at": "2026-08-27T16:37:24.499579",
+  "cohort": {
+    "n": 70,
+    "classes": [
+      "watchful_waiting",
+      "continued_surveillance",
+      "active_surveillance",
+      "active_treatment"
+    ]
+  },
+  "soft_target_formula": "y_k = 0.25 + 0.75*c; y_j!=k = (1-y_k)/3",
+  "confidence_map": {
+    "clear": 1.0,
+    "borderline": 0.5,
+    "uncertain": 0.25
+  },
+  "class_order": [
+    "watchful_waiting",
+    "continued_surveillance",
+    "active_surveillance",
+    "active_treatment"
+  ],
+  "notes": "Models retrained on ALL N=70 labeled cases. For inference on new cases, apply the corresponding preprocessor before predict_proba."
+}
