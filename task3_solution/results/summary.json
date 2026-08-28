@@ -1,14 +1,15 @@
 {
   "task": "task3_biochemical_recurrence",
-  "final_model": "cox_p03_prostatectomy_pca5",
-  "final_loocv_c_index": 0.8575,
+  "final_model": "cox_p03_prostatectomy_pca5_p90",
+  "final_loocv_c_index": 0.8765,
   "n_cases": 75,
   "n_events": 19,
   "score_progression": [
     {"stage": "T3.1_baseline", "description": "4 bare structured fields only", "c_index": 0.641, "protocol": "5-fold"},
     {"stage": "exp_3_T3.6", "description": "+ surgical-pathology text extraction", "c_index": 0.772, "protocol": "LOOCV, raw-hazard ranking"},
     {"stage": "exp_4_T3.4_T3.5", "description": "agent built; Cox penalizer swept under real output contract", "c_index": 0.7655, "protocol": "LOOCV, literal predicted months"},
-    {"stage": "exp_5_T3.2_T3.3", "description": "+ prostatectomy-slide embedding, PCA k=5", "c_index": 0.8575, "protocol": "LOOCV, literal predicted months"}
+    {"stage": "exp_5_T3.2_T3.3", "description": "+ prostatectomy-slide embedding, PCA k=5", "c_index": 0.8575, "protocol": "LOOCV, literal predicted months"},
+    {"stage": "exp_6_calibration", "description": "+ percentile point estimate (p=0.90) replacing the mean", "c_index": 0.8765, "protocol": "LOOCV, literal predicted months"}
   ],
   "cox_penalizer_sweep": {
     "0.01": 0.7035, "0.1": 0.7487, "0.3": 0.7655, "0.5": 0.7584,
@@ -28,20 +29,45 @@
     "lognormal_aft": 0.7398,
     "loglogistic_aft": 0.5628
   },
+  "percentile_sweep": {
+    "point_estimate": "predict_percentile(p), fraction of population recurred by t = 1-p",
+    "0.5_median": {"c_index": 0.7389, "event1_bias_months": 153.3, "n_capped": 61},
+    "0.6": {"c_index": 0.7752, "event1_bias_months": 122.8, "n_capped": 55},
+    "0.7": {"c_index": 0.8243, "event1_bias_months": 73.2, "n_capped": 42},
+    "0.75": {"c_index": 0.8367, "event1_bias_months": 37.8, "n_capped": 39},
+    "0.8": {"c_index": 0.8642, "event1_bias_months": 2.7, "n_capped": 31},
+    "0.85": {"c_index": 0.8566, "event1_bias_months": -2.3, "n_capped": 19},
+    "0.9_chosen": {"c_index": 0.8765, "event1_bias_months": -9.7, "n_capped": 7},
+    "0.95": {"c_index": 0.8491, "event1_bias_months": -12.2, "n_capped": 0}
+  },
   "bootstrap_significance": {
     "exp4_penalizer_gain": {"point_estimate": 0.0168, "ci_95": [-0.0068, 0.0416], "significant": false},
-    "exp5_embedding_gain": {"point_estimate": 0.0920, "ci_95": [0.0277, 0.1765], "significant": true, "fraction_favoring": 0.996}
+    "exp5_embedding_gain": {"point_estimate": 0.0920, "ci_95": [0.0277, 0.1765], "significant": true, "fraction_favoring": 0.996},
+    "exp6_percentile_gain": {"point_estimate": 0.0190, "ci_95": [-0.0019, 0.0456], "significant": "borderline", "fraction_favoring": 0.957}
   },
   "t3_7_ipcw_time_dependent_auc": {
     "before_embedding": {"12m": 0.854, "24m": 0.760, "36m": 0.753, "60m": 0.758},
-    "after_embedding": {"12m": 0.922, "24m": 0.859, "36m": 0.853, "60m": 0.875}
+    "after_embedding_before_calibration_fix": {"12m": 0.922, "24m": 0.859, "36m": 0.853, "60m": 0.875},
+    "after_calibration_fix": {"12m": 0.941, "24m": 0.885, "36m": 0.880, "60m": 0.910}
+  },
+  "calibration_check": {
+    "event1_bias_months_before": 40.1,
+    "event1_bias_months_after": -9.7,
+    "event1_mae_months_before": 42.2,
+    "event1_mae_months_after": 10.0,
+    "le12mo_true_recurrence_bias_before": 38.7,
+    "le12mo_true_recurrence_bias_after": -1.8,
+    "mean_time_score_diagnostic_before": 0.7723,
+    "mean_time_score_diagnostic_after": 0.5346,
+    "mean_time_score_note": "drops under the fix - this non-scored diagnostic rewards any prediction >= true follow-up on censored cases more than it credits accuracy on known-truth cases; not a red flag, see experiments/exp_6_calibration_check/"
   },
   "known_limitations": [
     "scikit-survival (RSF / GBS) unavailable in source environment - no C++ compiler toolchain",
-    "Cox penalizer not re-swept on the embedding-augmented feature set (exp_5 Stage C)",
+    "Cox penalizer swept on the pre-embedding feature set, carried forward unchanged after both the embedding fusion and the percentile fix - not re-swept on the final pipeline",
     "radiology_report, previous_notes, family_history text never extracted into features",
     "reasoning text is template-generated, not LLM-authored - no LLM available in source environment",
     "no real GC/Docker submission packaging built",
-    "production-simulation spot check found 2/2 early-recurrence cases substantially underestimated in absolute terms"
+    "no fine sweep between p=0.85 and p=0.95 to confirm 0.90 is the true local optimum",
+    "percentile fix validated only for cox_p03_prostatectomy_pca5, not extended to other model-registry variants"
   ]
 }

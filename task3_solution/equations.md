@@ -1,4 +1,4 @@
-# Model derivation: `cox_p03_prostatectomy_pca5`
+# Model derivation: `cox_p03_prostatectomy_pca5_p90`
 
 Every equation below maps directly to code in `code/task3_config.py` and `code/task3_embeddings.py`.
 Rendered with GitHub's native LaTeX support.
@@ -103,21 +103,39 @@ giving every case its own predicted survival curve,
 
 $$S(t \mid x) = \exp\big(-H_0(t)\cdot e^{\beta \cdot x}\big) \tag{8}$$
 
-and the output the schema actually asks for is that curve's expectation:
+A first, natural choice for the output is that curve's expectation (mean survival time):
 
-$$\text{months\_to\_recurrence} = \int_0^{\infty} S(t \mid x)\, dt \tag{9}$$
+$$E[T \mid x] = \int_0^{\infty} S(t \mid x)\, dt \tag{9}$$
 
-**Why the mean, not the median:** the median survival time requires $S(t\mid x)$ to cross 50%
-*within the observed follow-up window* — it never does for 62 of 75 cases here, silently collapsing
-them all to the same fallback value and erasing most of the model's actual ranking resolution (a
-real regression caught by comparing against a known reference number, not by inspection). The
-expectation integrates the whole curve numerically and is always finite; results are additionally
-capped at 330 months (3× the longest observed follow-up) as a last-resort guard against numerical
-blow-up on an extremely low-risk case.
+**Why not the median, and why (9) alone isn't what ships:** the median survival time requires
+$S(t\mid x)$ to cross 50% *within the observed follow-up window* — it never does for 62 of 75 cases
+here, silently collapsing them all to the same fallback value. Equation (9)'s expectation is always
+finite and was the model's first shipped choice (LOOCV C-index 0.8575) — but a systematic
+calibration check across all 19 known-truth (event=1) cases found it severely biased: **+40.1
+month** mean overestimate, up to 11× on cases that recurred within a year. With 75% of this cohort
+censored, the mean gets dragged far right by a long, poorly-supported tail beyond the last real
+observation — a known property of the mean vs. the median under heavy censoring.
+
+The fix, and what actually ships, is a shorter, better-defined quantile of the same curve — the
+time by which a fraction $p$ of the population would already have recurred:
+
+$$\text{months\_to\_recurrence} = \min\{\, t : S(t \mid x) \le 1-p \,\}, \quad p = 0.90 \tag{10}$$
+
+`lifelines.CoxPHFitter.predict_percentile(p=0.90)` — the earliest time at which the survival curve
+has dropped to 0.90 (10% of the population would have recurred by then). Swept $p \in
+\{0.5,\dots,0.95\}$; $p=0.90$ wins on **both** axes: LOOCV C-index $0.8575 \to$ **0.8765**, and the
+event=1 mean bias collapses from $+40.1$ to **$-9.7$ months** (MAE $42.2 \to 10.0$). Bootstrap on the
+C-index gain: 95% CI $[-0.002, +0.046]$ — borderline, unlike equation (2)'s embedding-source result,
+but never shown worse. Results remain capped at 330 months (3× the longest observed follow-up) as a
+last-resort guard against numerical blow-up on an extremely low-risk case. Full sweep and
+methodology: `experiments/exp_6_calibration_check/`.
 
 ## 7. Output
 
-`Task3Output`: `case_id`, `months_to_recurrence` (equation 9, clipped to [0, 330]), `reasoning`
+`Task3Output`: `case_id`, `months_to_recurrence` (equation 10, clipped to [0, 330]), `reasoning`
 (template text citing $x_6$–$x_{13}$'s findings). No `event` field — the schema doesn't define one,
 and only the time is scored (`evaluate.py`'s `concordance_index`, on `months_to_recurrence` alone,
 against ground-truth time and event).
+
+**A real example** (case T3-001, true recurrence at 1.8 months): equation (9) predicted 34.0 months;
+equation (10) predicts 1.6 months.

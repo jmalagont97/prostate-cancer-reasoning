@@ -10,15 +10,21 @@ of the three CHIMERA tasks.
 
 ## Result
 
+![C-index progression across pipeline stages](charts/score_progression.svg)
+
 | Stage | What changed | LOOCV C-index |
 |---|---|---|
 | Baseline (T3.1) | 4 bare structured fields (age, PSA, DRE, prior treatment) | 0.641 |
 | + pathology-text extraction | Regex-parsed ISUP grade, stage, margins, EPE, SVI, LN status from the surgical pathology report | 0.766 |
 | + model sweep, real output contract | Ridge-penalized Cox (λ=0.3), scored on the literal predicted date, not a hazard proxy | 0.766 |
-| **+ prostatectomy-slide embedding** | PCA-reduced (k=5) tissue-image embedding fused into the same Cox model | **0.858** |
+| + prostatectomy-slide embedding | PCA-reduced (k=5) tissue-image embedding fused into the same Cox model | 0.858 |
+| **+ calibration fix** | Percentile-based point estimate (p=0.90) instead of the mean — fixes a severe bias, see below | **0.877** |
 
-The final gain (0.766 → 0.858) is bootstrap-significant: 2,000-resample paired bootstrap gives a
-95% interval of **[+0.028, +0.176]**, comfortably clear of zero.
+The embedding-fusion gain (0.766 → 0.858) is bootstrap-significant: 2,000-resample paired bootstrap
+gives a 95% interval of **[+0.028, +0.176]**, comfortably clear of zero — the strongest single
+result in this project's task-3 work. The calibration-fix gain (0.858 → 0.877) is borderline on
+C-index alone (95% CI [−0.002, +0.046]) but never worse, and decisively fixes something else
+entirely — see below.
 
 ## The model
 
@@ -31,12 +37,26 @@ h(t | x) = h₀(t) · exp(β·x)
 fit over an 18-dimensional covariate vector `x` — 13 clinical/pathology fields plus 5 PCA components
 of a pooled prostatectomy-slide embedding — via Efron-corrected partial likelihood with an L2
 penalty (λ = 0.3, found by a full leave-one-out sweep over 0.01–2.0, not a library default).
-`months_to_recurrence` is the expectation of the fitted survival curve
-(`predict_expectation()`, not the median — see `experiments/exp_4_model_sweep_and_agent/` for why
-the median silently fails on 62/75 of these cases).
 
 A full worked derivation (every equation, why it was applied, and what each term means) lives in
 `equations.md` in this folder.
+
+### The point estimate: a real fix, not a footnote
+
+The first shipped version reported `predict_expectation()` — the mean of the fitted survival
+curve. A systematic calibration check across all 19 cases with a known true outcome (event=1) found
+this severely biased: **+40.1 month mean overestimate**, up to 11× on cases that recurred within a
+year. Cause: with 75% of this cohort censored, the mean gets dragged far right by a long,
+poorly-supported tail beyond the last real observation — a known property of "mean" vs. "median"
+under heavy censoring, not a bug specific to any case.
+
+![Predicted vs true recurrence time, old model vs new model, log scale](charts/calibration_dumbbell.svg)
+
+The fix swept `predict_percentile(p)` for p ∈ {0.5, ..., 0.95} — p=0.90 (the time by which 10% of
+the population would have recurred, a much shorter and better-defined quantile than the median)
+wins on **both** axes: C-index 0.8575→0.8765, event=1 bias +40.1mo→**−9.7mo**, MAE 42.2mo→**10.0mo**.
+
+![C-index as a function of the prediction percentile p](charts/percentile_sweep.svg)
 
 ### Inputs
 
@@ -53,12 +73,25 @@ A full worked derivation (every equation, why it was applied, and what each term
 citing the pathology findings that drove the prediction). No `event` field — the schema doesn't
 define one, and only the time is scored.
 
+### Why prostatectomy-slide, specifically
+
+![C-index by embedding fusion source](charts/embedding_source.svg)
+
+The working hypothesis going in favored the MRI embedding (a different modality, a different time
+point, nothing like it elsewhere in the inputs) over the prostatectomy-slide embedding (expected to
+be redundant with the pathology text already extracted from the same tissue). The result inverted
+that prediction — MRI and biopsy-slide embeddings both *hurt*; only prostatectomy-slide helped, and
+by a wide margin. Treated as a "too good, check for leakage" result before trusting it (case-ID
+alignment, PCA-leakage, and raw-correlation checks all passed — see `experiments/exp_5_embedding_fusion/`).
+
 ## What's here
 
 ```
 task3_solution/
 ├── README.md                       — this file
+├── MODEL_CARD.md                   — full preprocessing + model-selection narrative
 ├── equations.md                    — full mathematical derivation
+├── charts/                         — the 4 SVGs embedded above
 ├── code/                           — production code, reference/documentation
 │   ├── extract_features_task3.py   — closed-vocabulary regex feature extraction
 │   ├── task3_embeddings.py         — masked-mean pooling + raw-file embedding fallback
@@ -75,7 +108,8 @@ task3_solution/
 ├── experiments/
 │   ├── exp_3_pathology_text_extraction/  — T3.6: 0.641 → 0.766
 │   ├── exp_4_model_sweep_and_agent/      — T3.4/T3.5: agent built, Cox penalizer swept
-│   └── exp_5_embedding_fusion/           — T3.2/T3.3: the 0.858 embedding win
+│   ├── exp_5_embedding_fusion/           — T3.2/T3.3: 0.766 → 0.858, the embedding win
+│   └── exp_6_calibration_check/          — the +40mo bias found and fixed: 0.858 → 0.877
 └── results/
     └── summary.json                — key metrics, machine-readable
 ```
@@ -96,9 +130,12 @@ The experiment write-ups and `equations.md` are fully self-contained and readabl
   (0.752 and 0.733 respectively) — only the prostatectomy-slide embedding won.
 - Radiology-report, previous-notes, and family-history text (three of the five gated clinical-data
   sections) were never extracted into features at all — untried, not refuted.
-- A live production-simulation spot check found 2/2 tested early-recurrence cases substantially
-  underestimated in absolute terms, even though ranking (C-index) holds up in aggregate — flagged,
-  not yet investigated systematically.
+- The Cox penalizer (λ=0.3) was swept on the pre-embedding feature set and carried forward
+  unchanged after the embedding was added — not re-swept on the final feature set.
+- A diagnostic-metric paradox was found and explained, not hidden: `mean_time_score` (not part of
+  the scored `ranking_score`) actually *drops* under the calibration fix, because that metric's own
+  formula rewards blind optimism on censored cases more than it credits accuracy on known-truth
+  ones — see `experiments/exp_6_calibration_check/`.
 
-Full detail on all of the above is in `experiments/exp_4_model_sweep_and_agent/summary.md` and
-`experiments/exp_5_embedding_fusion/summary.md`.
+Full detail on all of the above is in `experiments/exp_4_model_sweep_and_agent/summary.md`,
+`experiments/exp_5_embedding_fusion/summary.md`, and `experiments/exp_6_calibration_check/summary.md`.

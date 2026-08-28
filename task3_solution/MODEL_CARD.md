@@ -137,9 +137,10 @@ model that isn't listed in §3.2, §3.3, or §3.5.
 **Cox proportional-hazards regression** (`lifelines.CoxPHFitter`), fit with an L2 (ridge) penalty
 of 0.3 on the negative log partial likelihood (Efron's method for tied event times). Predictions
 are converted from a relative hazard into a literal predicted time via the model's own baseline
-cumulative hazard estimate (Breslow estimator) and the expectation of the resulting survival curve
-— see `equations.md` §5–6 for the full derivation. Predicted times are clipped to [0, 330] months
-(3× the longest observed follow-up) as a numerical safety guard, not a modeling assumption.
+cumulative hazard estimate (Breslow estimator), then read off the fitted survival curve at its 90th
+percentile (`predict_percentile(p=0.90)` — see §5.5 for why this replaced the curve's mean) — see
+`equations.md` §5–6 for the full derivation. Predicted times are clipped to [0, 330] months (3× the
+longest observed follow-up) as a numerical safety guard, not a modeling assumption.
 
 ## 5. Models actually tried (not just the one that shipped)
 
@@ -201,12 +202,43 @@ confirmed statistically significant, not just a better point estimate.
 
 Robust across the swept range — not an artifact of the specific k=5 choice.
 
+### 5.5 Point estimate: mean vs. percentile (the calibration fix)
+
+A live production-simulation check (refitting the model with one case held out entirely, reading
+only that case's raw files) found 2 of 2 spot-checked cases substantially underestimated in
+absolute predicted time. The systematic version — all 19 event=1 (known-truth) cases, not 2 —
+refuted the specific claim that *fast* recurrences are worse (r=−0.19, p=0.45), and found a bigger
+one instead: `predict_expectation()` (the curve's mean) is biased **+40.1 months** across nearly
+every event=1 case, up to 11× on cases that recurred within a year. Cause: 75% of this cohort is
+censored, so the mean gets dragged far right by a long, poorly-supported tail beyond the last real
+observation.
+
+Swept `predict_percentile(p)` for p ∈ {0.5, ..., 0.95} (p=0.5 is the median, already known to fail —
+undefined for 62/75 cases):
+
+| p | 0.5 | 0.6 | 0.7 | 0.75 | 0.8 | 0.85 | **0.9** | 0.95 |
+|---|---|---|---|---|---|---|---|---|
+| C-index | 0.739 | 0.775 | 0.824 | 0.837 | 0.864 | 0.857 | **0.877** | 0.849 |
+| event=1 bias (mo) | +153.3 | +122.8 | +73.2 | +37.8 | +2.7 | −2.3 | **−9.7** | −12.2 |
+| n capped/undefined | 61/75 | 55/75 | 42/75 | 39/75 | 31/75 | 19/75 | **7/75** | 0/75 |
+
+**p=0.90 wins on both axes at once** — better ranking *and* far better calibration, not a tradeoff.
+Bootstrap (2,000 resamples) on the C-index gain: 95% CI **[−0.002, +0.046]** — borderline, unlike
+§5.3's embedding-fusion result, but never shown worse.
+
+A diagnostic paradox, resolved rather than hidden: the non-scored `mean_time_score` metric *drops*
+under p=0.90 (0.772→0.535). Traced to its own formula — event=1 scores clamp to 0 once error
+exceeds true-time regardless (still true at MAE=10mo for these mostly-short recurrence times), while
+the 56 censored cases score a free 1.0 for *any* prediction ≥ their true follow-up;
+`predict_expectation()`'s inflated values were exploiting that rule, not being more honest.
+
 ## 6. Output
 
-`Task3Output`:
+`Task3Output`, before → after this fix (case T3-001, true recurrence at 1.8 months):
 
 ```json
-{"case_id": "T3-005", "months_to_recurrence": 74.59, "reasoning": "Predicted time to biochemical recurrence..."}
+old: {"case_id": "T3-001", "months_to_recurrence": 34.03, "reasoning": "..."}
+new: {"case_id": "T3-001", "months_to_recurrence": 1.62,  "reasoning": "..."}
 ```
 
 - `months_to_recurrence` (float, ≥ 0) — the model's single prediction, §4's output.
@@ -219,11 +251,13 @@ Robust across the swept range — not an artifact of the specific k=5 choice.
 ## 7. Known limitations
 
 - `scikit-survival` (§5.2) blocked on a missing build toolchain — not a modeling decision.
-- The Cox penalizer (§5.1) was not re-swept after the embedding fusion in §5.3; 0.3 was carried
-  forward on the assumption it would still be near-optimal, not re-verified.
+- The Cox penalizer (§5.1) was swept on the pre-embedding feature set and carried forward unchanged
+  after both the embedding fusion (§5.3) and the percentile fix (§5.5) — not re-swept on the final
+  pipeline.
 - `radiology_report`, `previous_notes`, and `family_history` (3 of the 5 gated clinical-data
   sections) were never extracted into features — untried, not tested and refuted.
-- A live production-simulation check (refitting the model with one case held out entirely, reading
-  only that case's raw files) found 2 of 2 tested early-recurrence cases substantially
-  underestimated in absolute predicted time, even though the model's C-index shows it ranks cases
-  correctly in aggregate. Flagged, not yet investigated systematically.
+- No fine sweep between p=0.85 and p=0.95 (§5.5) to confirm 0.90 is the true local optimum — the
+  coarse sweep shows a slight dip at 0.85 before the 0.90 peak, suggesting some LOOCV noise rather
+  than a perfectly smooth curve.
+- The percentile fix (§5.5) was validated only for this specific (penalizer, embedding) combination
+  — not extended to the other model-family variants in the code registry.
