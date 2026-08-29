@@ -1,0 +1,45 @@
+{
+  "experiment": "exp_12",
+  "created_at": "2026-08-29T13:19:59.852416",
+  "cohort": {
+    "n": 70,
+    "classes_4": [
+      "watchful_waiting",
+      "continued_surveillance",
+      "active_surveillance",
+      "active_treatment"
+    ],
+    "classes_3": [
+      "uncertain",
+      "borderline",
+      "clear"
+    ]
+  },
+  "subtask1_fusion": {
+    "family": "fuzzy",
+    "w_tab": 0.35,
+    "w_mri": 0.45,
+    "w_txt": 0.2,
+    "mean_macro_f1": 0.5970817737044517,
+    "std_macro_f1": 0.1251841718458739,
+    "mean_brier": 0.5175904687499999
+  },
+  "subtask2_fusion": {
+    "w_tab": 0.0,
+    "w_mri": 0.55,
+    "w_txt": 0.45
+  },
+  "subtask3_algorithms": {
+    "age": "et",
+    "bx_gl_prim": "et",
+    "bx_gl_sec": "et",
+    "bx_isup": "rf",
+    "comorbidity": "et",
+    "cspca": "et",
+    "ct": "rf",
+    "fh": "et",
+    "pirads": "et",
+    "psa": "et",
+    "psad": "et"
+  }
+}

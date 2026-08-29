@@ -1,0 +1,34 @@
+{
+  "per_var_algorithm": {
+    "age": "et",
+    "bx_gl_prim": "et",
+    "bx_gl_sec": "et",
+    "bx_isup": "rf",
+    "comorbidity": "et",
+    "cspca": "et",
+    "ct": "rf",
+    "fh": "et",
+    "pirads": "et",
+    "psa": "et",
+    "psad": "et"
+  },
+  "variables": [
+    "age",
+    "bx_gl_prim",
+    "bx_gl_sec",
+    "bx_isup",
+    "comorbidity",
+    "cspca",
+    "ct",
+    "fh",
+    "pirads",
+    "psa",
+    "psad"
+  ],
+  "weight_order": [
+    "not_used",
+    "noted",
+    "important",
+    "decisive"
+  ]
+}

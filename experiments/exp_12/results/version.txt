@@ -1,0 +1,2 @@
+exp_12 execution timestamp: 2026-08-29T09:33:57.865761
+Sub-skeleton complete: 2.1 reeval + 2.2 grid/fusion + 2.3 per-variable grid.
