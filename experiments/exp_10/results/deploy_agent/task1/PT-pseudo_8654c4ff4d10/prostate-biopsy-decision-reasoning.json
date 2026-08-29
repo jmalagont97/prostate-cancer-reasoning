@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "not_used",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the patient's profile, including a PSA of 6.9 ng/mL and a PI-RADS 4 finding, which suggests intermediate risk disease. Although a prior biopsy was positive, the patient has no reported comorbidities and is a non-smoker, mitigating immediate high-risk concerns. Therefore, given the intermediate risk assessment and lack of additional high-risk factors, further immediate biopsy is not recommended."
+}

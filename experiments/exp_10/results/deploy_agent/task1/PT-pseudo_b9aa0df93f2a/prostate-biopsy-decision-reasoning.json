@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The recommendation for a biopsy is supported by multiple high-risk factors, including a PSA of 5.5 ng/mL and a PI-RADS 5 lesion. This is further compounded by the history of a prior positive biopsy (bx: Positive), indicating ongoing disease concern. Therefore, a biopsy is recommended to obtain definitive tissue diagnosis."
+}

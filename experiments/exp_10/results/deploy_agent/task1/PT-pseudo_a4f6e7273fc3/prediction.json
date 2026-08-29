@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_a4f6e7273fc3",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is strongly supported by the patient's persistent symptoms and high-risk findings, specifically the PSA of 31.0 ng/mL and the PI-RADS 5 lesion. Furthermore, the history of a prior positive biopsy (bx) necessitates further evaluation to assess disease progression. Given the combination of these factors, a biopsy is warranted to guide further management."
+}

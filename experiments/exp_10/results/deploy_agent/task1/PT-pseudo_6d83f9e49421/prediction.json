@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_6d83f9e49421",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the steadily increasing PSA measurement of 35.0 ng/mL and the rapid PSA velocity of 4.76 ng/mL/yr, despite a prior negative biopsy. Furthermore, the PI-RADS score of 5 and the PSAD of 0.43 indicate a high probability of clinically significant prostate cancer. Therefore, a prostate biopsy is recommended to further evaluate the suspicious findings."
+}

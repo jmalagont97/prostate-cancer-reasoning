@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the elevated PSA of 7.9 ng/mL and the history of a prior positive biopsy with Gleason 4+3 pathology. Although the PI-RADS score is 4, the need for further evaluation is indicated by the PSA velocity of 2.6 ng/mL/yr and the prior biopsy result. Therefore, a repeat biopsy is warranted to assess for progression given the clinical context and prior findings."
+}

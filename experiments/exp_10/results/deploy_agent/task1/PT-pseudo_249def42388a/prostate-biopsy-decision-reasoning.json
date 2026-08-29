@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "decisive",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is based on the borderline confidence and the decisive factors of PSAD 0.236 and the physical exam findings, specifically the DRE noting a Nodus, despite a PSA of 7.6 ng/mL and a PI-RADS 5 result. Although PSA and PI-RADS are important, the low IPSS score and the physical finding suggest that further immediate intervention is not warranted. Therefore, a prostate biopsy is not recommended at this time."
+}

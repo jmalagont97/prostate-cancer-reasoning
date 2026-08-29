@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_6a100adb6ac3",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the patient's history of a prior positive biopsy (bx: Positive) and the documented upward trajectory in serum markers (PSA 5.8 ng/mL and PSA velocity 0.23 ng/mL/yr). Although the DRE is normal, the PI-RADS score of 4 and the importance assigned to prior biopsy results necessitate further tissue sampling for reassessment. Therefore, a prostate biopsy is recommended to evaluate the documented progression of the disease."
+}

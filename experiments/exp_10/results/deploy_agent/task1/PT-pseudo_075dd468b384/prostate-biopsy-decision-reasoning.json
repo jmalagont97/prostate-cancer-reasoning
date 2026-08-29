@@ -1,0 +1,23 @@
+{
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite a PSA of 13.2 ng/mL and a PI-RADS 4 finding, the decision is no biopsy, primarily due to the history of a prior positive biopsy and the need for further characterization. The PSA velocity of 2.7 ng/mL/yr and the DRE finding of Nodus support deferring immediate invasive intervention. Therefore, no prostate biopsy is recommended at this time."
+}

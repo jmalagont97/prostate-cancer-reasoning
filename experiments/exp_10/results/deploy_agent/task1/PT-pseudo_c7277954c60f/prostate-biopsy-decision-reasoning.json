@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "important",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite a rising PSA of 9.8 ng/mL, the decision is to avoid biopsy due to low-risk imaging features, specifically a PI-RADS 2 score and a PSAD of 0.073. The physical examination was normal, with a normal DRE, further supporting the deferral of invasive testing. Therefore, no prostate biopsy is recommended at this time."
+}

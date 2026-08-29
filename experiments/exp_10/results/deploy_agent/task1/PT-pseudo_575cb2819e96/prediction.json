@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_575cb2819e96",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the PI-RADS 5 finding, the decision is no because the patient has a prior negative biopsy and a normal DRE, which reduces immediate need for invasive testing. The persistent PSA elevation of 7.4 ng/mL is noted, but the history of a negative prior biopsy weighs against immediate intervention. Therefore, no prostate biopsy is recommended at this time."
+}

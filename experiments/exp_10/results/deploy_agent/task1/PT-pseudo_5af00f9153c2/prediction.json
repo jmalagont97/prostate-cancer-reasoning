@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_5af00f9153c2",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid a repeat biopsy is supported by the patient's history of a prior positive biopsy and the high PI-RADS 5 finding. Although the PSA is elevated at 11.2 ng/mL, the prior biopsy result establishes a known malignancy, making further immediate biopsy less warranted. Given the decisive weight placed on prior biopsy history and the PI-RADS 5 assessment, no further biopsy is recommended at this time."
+}

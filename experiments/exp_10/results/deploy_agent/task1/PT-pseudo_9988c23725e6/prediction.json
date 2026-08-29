@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_9988c23725e6",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by the persistent biochemical elevation (PSA 6.2 ng/mL) and pronounced lower urinary tract symptoms (IPSS 28/35). Although the PI-RADS score is 4, the PSAD of 0.259 is decisive, indicating a need for further investigation given the clinical presentation. Since there are no prior biopsies, a prostate biopsy is warranted to evaluate the suspicious area."
+}

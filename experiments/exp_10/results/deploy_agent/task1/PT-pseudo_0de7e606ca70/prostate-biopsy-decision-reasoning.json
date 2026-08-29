@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is strongly supported by the patient's clinical data, specifically the elevated PSA of 9.0 ng/mL and the PI-RADS 5 finding, which are decisive factors. Although the Digital Rectal Exam (DRE) was normal, the PSAD of 0.409 indicates a significant risk that warrants tissue sampling. Therefore, a prostate biopsy is recommended for this patient."
+}

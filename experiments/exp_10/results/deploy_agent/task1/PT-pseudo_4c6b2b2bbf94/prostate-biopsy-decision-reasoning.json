@@ -1,0 +1,23 @@
+{
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid immediate biopsy is supported by the PI-RADS 4 finding and the low PSAD of 0.07, suggesting a lower probability of clinically significant cancer. Furthermore, the patient has a history of a prior positive biopsy, which guides the approach toward active surveillance rather than immediate re-biopsy. Although PSA is 4.7 ng/mL, the overall clinical picture, including normal DRE and mild LUTS, supports deferring further invasive testing at this time."
+}

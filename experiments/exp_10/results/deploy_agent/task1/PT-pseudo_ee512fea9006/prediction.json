@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_ee512fea9006",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "decisive",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid biopsy is supported by the patient's profile, including a PSA of 4.2 ng/mL and a PI-RADS 4 finding, which is further supported by the DRE finding of Nodus. Although the csPCa risk prior is 0.7802015, the combination of imaging and physical exam findings suggests that further immediate intervention is not warranted. Therefore, no prostate biopsy is recommended at this time."
+}

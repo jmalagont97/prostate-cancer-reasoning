@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "decisive",
+        "psa": "important",
+        "vol": "important",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite a high PSA of 28.0 ng/mL and a PI-RADS 5 lesion, the decision is no because the PSAD is low (0.28) and prior biopsies were negative, supporting an active surveillance approach. The patient's profile, including age 79 and no reported comorbidities, suggests that the risk of intervention outweighs the benefit of further biopsy at this time. Therefore, no immediate biopsy is recommended."
+}

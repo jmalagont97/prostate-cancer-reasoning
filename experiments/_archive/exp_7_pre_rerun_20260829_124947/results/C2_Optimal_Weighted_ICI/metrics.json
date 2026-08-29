@@ -1,0 +1,34 @@
+{
+  "condition_id": "C2_Optimal_Weighted_ICI",
+  "name": "Optimal-Weighted Fuzzy ICI (0.55/0.20/0.25)",
+  "mean_macro_f1": 0.21415086652444754,
+  "std_macro_f1": 0.07450847012625435,
+  "mean_accuracy": 0.2777777777777778,
+  "std_accuracy": 0.08507127705430849,
+  "mean_moe_abs": 0.38198653198653204,
+  "std_moe_abs": 0.060049045926377005,
+  "mean_s_conf": 0.5944444444444444,
+  "std_s_conf": 0.05725373904220117,
+  "mean_rec_uncertain": 0.08888888888888888,
+  "mean_rec_borderline": 0.7666666666666667,
+  "mean_rec_clear": 0.1515151515151515,
+  "spearman_rho": 0.060091307850637994,
+  "spearman_p": 0.16319072585292368,
+  "confusion_matrix_pooled": [
+    [
+      8,
+      63,
+      19
+    ],
+    [
+      14,
+      92,
+      14
+    ],
+    [
+      29,
+      251,
+      50
+    ]
+  ]
+}

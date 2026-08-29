@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_180352970ace",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to biopsy is strongly supported by the PI-RADS 5 finding and the PSA level of 3.7 ng/mL, which are decisive factors. Although the Digital Rectal Exam was normal, the high-risk MRI finding necessitates further tissue sampling. Therefore, a prostate biopsy is recommended for this patient."
+}

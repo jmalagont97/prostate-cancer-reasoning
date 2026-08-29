@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "not_used",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the low suspicion level indicated by the PI-RADS 2 score and the mild PSA level of 4.7 ng/mL. Although the patient reports moderate LUTS (IPSS 18/35), the low imaging score suggests that further invasive testing is not warranted at this time. Therefore, no prostate biopsy is recommended for this patient."
+}

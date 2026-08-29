@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid a further biopsy is based on the decisive factor of the prior biopsy result (bx: decisive) confirming Gleason 4+3 carcinoma, despite the elevated PSA of 10.92 ng/mL. Although the PI-RADS score is 5, the patient lacks concerning symptoms and the overall clinical picture suggests that clinical reassessment is the appropriate next step rather than immediate re-biopsy. Therefore, no further prostate biopsy is recommended at this time."
+}

@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_6d6abf7f6fb5",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by multiple high-risk factors, including a PSA of 5.8 ng/mL and a PI-RADS 5 lesion identified on mpMRI. The PSAD score of 0.227 is decisive in pushing toward intervention, despite a normal DRE. Given the important weight placed on PSA, PI-RADS, and PSAD, a biopsy is warranted to confirm the presence of prostate cancer. Therefore, a prostate biopsy is recommended for this patient."
+}

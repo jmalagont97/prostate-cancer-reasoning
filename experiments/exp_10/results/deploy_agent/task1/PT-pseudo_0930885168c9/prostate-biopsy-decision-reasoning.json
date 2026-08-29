@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite a PSA of 8.7 ng/mL, the patient presents a low-risk profile, evidenced by a PSAD of 0.25 and a PI-RADS 3 score. The physical examination is reassuring, as the DRE was normal, and the patient has a history of prior positive biopsies. Therefore, given the low suspicion and established history, a prostate biopsy is not recommended at this time."
+}

@@ -49,6 +49,12 @@ def _load_models() -> dict[str, object]:
     }
     for key, fname in mapping.items():
         path = models_dir / fname
+        if not path.is_file():
+            raise FileNotFoundError(
+                f"Required Task-1 model is missing: {path}. "
+                "Mount the canonical deploy/tasks/task1/training/models artifacts "
+                "at SUBMODELS_DIR."
+            )
         log.info("Loading %s from %s", key, path)
         _MODELS[key] = joblib.load(path)
     return _MODELS

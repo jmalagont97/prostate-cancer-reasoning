@@ -10,7 +10,7 @@
 
 ## 1. Overview & Architecture
 This implementation realizes the joint fusion paradigm proposed in `DESIGN.md`. For each patient case $i$, it extracts:
-1. **Raw Phenotypic Features ($\mathbf{x}^{(i)} \in \mathbb{R}^{10}$)**: Canonical pre-biopsy variables (`age`, `psa`, `vol`, `psad`, `dre_num`, `pirads`, `fh_num`, `comorb_score`, `bx_prior_num`, `cspca`).
+1. **Raw Phenotypic Features ($\mathbf{x}^{(i)} \in \mathbb{R}^{10}$)**: Canonical pre-biopsy variables (`age`, `psa`, `vol`, `psad`, `dre_num`, `pirads`, `fh_num`, `comorb_score`, `bx_num` (sourced directly from the corrected tabular data), `cspca`).
 2. **Local Model Sensitivities ($|\boldsymbol{\Phi}^{(i)}| \in \mathbb{R}^{10}$)**: Absolute Shapley values computed with respect to the optimal frozen tabular classifier ($C_1^*$ Fuzzy-KNN, $k=5$, Euclidean metric from `exp_4`).
 3. **Coalesced Energies ($\boldsymbol{\Phi}_{\text{coalesced}}^{(i)} \in \mathbb{R}^3$)**:
    - $\Phi_{\text{PSA,PSAD}}^{(i)} = |\phi_{\text{PSA}}^{(i)}| + |\phi_{\text{PSAD}}^{(i)}|$

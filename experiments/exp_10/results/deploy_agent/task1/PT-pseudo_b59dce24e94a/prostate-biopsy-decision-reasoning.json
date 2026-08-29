@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The recommendation for biopsy is driven by the elevated PSA of 15.0 ng/mL and the PI-RADS 5 finding, which indicate a high suspicion for prostate cancer. This decision is further supported by the history of a previously positive biopsy, despite the patient's comorbidity of chronic kidney disease. Therefore, a biopsy is recommended to further evaluate the extent of the disease."
+}

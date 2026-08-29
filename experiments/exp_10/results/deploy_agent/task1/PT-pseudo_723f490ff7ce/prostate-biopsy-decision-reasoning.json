@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "important",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "important",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the patient's low-risk profile, evidenced by a PSA of 3.7 ng/mL and a PI-RADS 2 score. Although the prostate volume is 60.0 mL and the patient has comorbidities like hypertension, the overall risk factors suggest that biopsy is not indicated for further investigation at this time. Therefore, no prostate biopsy is recommended based on the current clinical data."
+}

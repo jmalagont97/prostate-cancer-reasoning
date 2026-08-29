@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_7dd989c35f87",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by multiple high-risk factors, including a PSA of 14.0 ng/mL and a PI-RADS 5 lesion, which indicate significant suspicion for prostate cancer. Furthermore, the prior biopsy result was positive, necessitating clinical re-assessment and further tissue sampling. Therefore, a biopsy is indicated to confirm the extent of the disease."
+}

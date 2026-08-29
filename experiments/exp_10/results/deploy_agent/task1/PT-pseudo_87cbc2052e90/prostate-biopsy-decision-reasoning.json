@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "important",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "A prostate biopsy is recommended due to the marked PSA elevation of 8.8 ng/mL and the rising PSA velocity of 0.96 ng/mL/yr, which necessitates further investigation. Although the PI-RADS score is 3, the combination of the high PSA and important factors like age (70) and family history warrants tissue sampling. The PSAD of 0.267 and noted comorbidities further support the need for a definitive diagnosis."
+}

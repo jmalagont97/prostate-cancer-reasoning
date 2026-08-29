@@ -2,9 +2,9 @@
   "C1_Tabular_vs_C0": {
     "test": "Wilcoxon Signed-Rank Test (Two-Sided)",
     "n_splits": 30,
-    "statistic": 39.0,
-    "p_value": 0.00011334998886676701,
-    "mean_difference": 0.09303661157359308,
+    "statistic": 35.0,
+    "p_value": 4.853553392725927e-05,
+    "mean_difference": 0.14487450036901317,
     "is_significant_alpha_0_05": true
   },
   "C2_MRI_vs_C0": {
@@ -26,9 +26,9 @@
   "C4_LateFusion_vs_C0": {
     "test": "Wilcoxon Signed-Rank Test (Two-Sided)",
     "n_splits": 30,
-    "statistic": 7.0,
-    "p_value": 3.508985847253369e-06,
-    "mean_difference": 0.23734860272254082,
+    "statistic": 29.0,
+    "p_value": 2.835120043791006e-05,
+    "mean_difference": 0.20438706861021252,
     "is_significant_alpha_0_05": true
   }
 }

@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_fa4a71ae9a34",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is strongly supported by the patient's PI-RADS 5 finding and the history of a prior positive biopsy (ISUP GG 4). Although the PSA is 4.8 ng/mL, the decisive factor is the high-risk lesion identified on imaging and the need for further characterization following the previous result. Therefore, a confirmatory biopsy is warranted to assess the extent of the disease."
+}

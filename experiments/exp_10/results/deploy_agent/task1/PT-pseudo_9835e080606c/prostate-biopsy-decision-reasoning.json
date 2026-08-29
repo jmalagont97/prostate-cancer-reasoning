@@ -1,0 +1,23 @@
+{
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the high PSA level of 15.0 ng/mL and the PI-RADS 5 finding, which indicate a high likelihood of prostate cancer. Furthermore, the prior positive biopsy (bx) necessitates re-evaluation of the disease status. Given the severe LUTS (IPSS 27/35) and other risk factors, a biopsy is warranted to guide further management."
+}

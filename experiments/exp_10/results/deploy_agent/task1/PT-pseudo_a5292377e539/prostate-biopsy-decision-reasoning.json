@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "decisive",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is strongly supported by multiple high-risk factors, including a PSA of 11.0 ng/mL and a PI-RADS 5 finding. The physical exam finding of a firm DRE nodus further corroborates the need for tissue sampling. Given the decisive weighting of PI-RADS, PSAD, and DRE, a biopsy is indicated to evaluate the suspicious lesion."
+}

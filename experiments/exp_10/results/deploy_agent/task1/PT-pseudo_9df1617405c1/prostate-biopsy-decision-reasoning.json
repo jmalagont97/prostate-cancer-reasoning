@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "not_used",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the patient's low PSA of 2.4 ng/mL and PI-RADS 3 score, indicating a low suspicion for clinically significant prostate cancer. Furthermore, the prior biopsy established low-grade disease (Gleason 3+3, ISUP GG 1), which suggests a low long-term risk of lethal prostate cancer. Therefore, no acute biopsy is recommended at this time."
+}

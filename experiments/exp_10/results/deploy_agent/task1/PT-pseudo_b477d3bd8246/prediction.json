@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_b477d3bd8246",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the presence of a PI-RADS 5 lesion and the history of a prior positive biopsy (bx: Positive). The current PSA of 7.3 ng/mL and the PSAD of 0.11 indicate ongoing risk that requires further tissue evaluation. Therefore, a repeat biopsy is warranted to assess the status of the lesion and rule out higher-risk disease."
+}

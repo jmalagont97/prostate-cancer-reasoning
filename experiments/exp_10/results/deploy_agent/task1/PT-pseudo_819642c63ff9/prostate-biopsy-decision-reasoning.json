@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the PI-RADS 5 finding and rising PSA of 5.7 ng/mL, the decision is no because the patient has a history of a prior positive biopsy and moderate LUTS (IPSS 15/35). The combination of these factors, along with the patient's age and status, suggests that further immediate biopsy is not warranted. Therefore, surveillance and clinical management are prioritized over additional invasive testing at this time."
+}

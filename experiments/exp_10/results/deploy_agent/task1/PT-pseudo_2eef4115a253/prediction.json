@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_2eef4115a253",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to biopsy is supported by the imaging finding of a left peripheral zone abnormality and the PI-RADS score of 4, despite a low PSA of 2.11 ng/mL. Although the DRE was normal, the combination of imaging suspicion and PSA elevation warrants further tissue sampling. Therefore, a prostate biopsy is recommended for this patient."
+}

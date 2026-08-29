@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the patient's history, specifically the prior positive biopsy (bx: decisive), despite the current findings of PI-RADS 5 and PSA 6.9 ng/mL. Given the prior diagnosis and the low PSAD of 0.171, active surveillance is the preferred management strategy. Therefore, no prostate biopsy is recommended at this time."
+}

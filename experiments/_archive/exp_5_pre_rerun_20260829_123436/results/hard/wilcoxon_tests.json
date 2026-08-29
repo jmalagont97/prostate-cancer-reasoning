@@ -1,0 +1,42 @@
+{
+  "C1_Tabular_KDM_vs_C0": {
+    "test": "Wilcoxon Signed-Rank Test (Two-Sided)",
+    "n_splits": 30,
+    "statistic": 29.5,
+    "p_value": 0.00020844682810268206,
+    "mean_difference": 0.09758978643748759,
+    "is_significant_alpha_0_05": true
+  },
+  "C2_MRI_KDM_vs_C0": {
+    "test": "Wilcoxon Signed-Rank Test (Two-Sided)",
+    "n_splits": 30,
+    "statistic": 35.5,
+    "p_value": 5.0696742862533705e-05,
+    "mean_difference": 0.16078891877142945,
+    "is_significant_alpha_0_05": true
+  },
+  "C3_Text_KDM_vs_C0": {
+    "test": "Wilcoxon Signed-Rank Test (Two-Sided)",
+    "n_splits": 30,
+    "statistic": 3.0,
+    "p_value": 1.3544149500299424e-05,
+    "mean_difference": -0.1121697736065552,
+    "is_significant_alpha_0_05": true
+  },
+  "C4_EqualFusion_vs_C0": {
+    "test": "Wilcoxon Signed-Rank Test (Two-Sided)",
+    "n_splits": 30,
+    "statistic": 82.0,
+    "p_value": 0.001947278601742354,
+    "mean_difference": 0.09287741042713554,
+    "is_significant_alpha_0_05": true
+  },
+  "C5_OptimalFusion_vs_C0": {
+    "test": "Wilcoxon Signed-Rank Test (Two-Sided)",
+    "n_splits": 30,
+    "statistic": 11.0,
+    "p_value": 5.198579161140839e-06,
+    "mean_difference": 0.17516845398954736,
+    "is_significant_alpha_0_05": true
+  }
+}

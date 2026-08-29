@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_b8115e954c12",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is driven by the combination of an upward PSA trajectory (PSA velocity 1.11 ng/mL/yr) and concerning imaging findings (PI-RADS 4), despite the current PSA of 3.87 ng/mL. Given the prior positive biopsy result (bx: Positive), further evaluation is necessary to assess the extent of disease progression. Therefore, a biopsy is recommended to confirm the presence and extent of prostate cancer."
+}

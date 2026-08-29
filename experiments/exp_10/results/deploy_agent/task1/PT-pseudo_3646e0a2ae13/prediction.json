@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_3646e0a2ae13",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision not to biopsy is supported by the patient's low-risk profile, despite a PSA of 4.5 ng/mL and a prostate volume of 47.29 mL. The PI-RADS score is NA, and the Digital Rectal Exam (DRE) was normal, indicating no suspicious findings. Given the absence of prior biopsies and the mild LUTS (IPSS score: 5/35), active surveillance is the recommended management strategy."
+}

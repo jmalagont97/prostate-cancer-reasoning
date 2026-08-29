@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_a32d7e3c3cdf",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the finding of a DRE nodus, the decision is no biopsy because the patient has a prior biopsy result of Positive and the overall risk profile, including a PI-RADS 4 score and low PSA of 2.5 ng/mL, supports active surveillance. The decisive weight given to the prior biopsy result dictates deferral of further invasive testing. Therefore, no prostate biopsy is recommended at this time."
+}

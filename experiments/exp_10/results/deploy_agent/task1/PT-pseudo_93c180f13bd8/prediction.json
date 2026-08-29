@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_93c180f13bd8",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the rising PSA of 7.68 ng/mL, the decision is no because the patient has a history of a negative prior biopsy and a PI-RADS 3 score, which suggests a lower likelihood of clinically significant cancer. The physical examination is normal, and the PSAD is low, supporting an approach of active surveillance rather than immediate re-biopsy. Therefore, no prostate biopsy is recommended at this time."
+}

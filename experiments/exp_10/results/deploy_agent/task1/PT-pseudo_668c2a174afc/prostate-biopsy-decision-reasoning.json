@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the high-risk features present, specifically the PI-RADS 5 finding and the elevated PSA of 7.93 ng/mL. Although the patient has no reported comorbidities and a normal DRE, the PI-RADS 5 lesion necessitates further investigation, aligning with the importance assigned to PI-RADS in this assessment. Therefore, a biopsy is recommended to confirm the nature of the lesion."
+}

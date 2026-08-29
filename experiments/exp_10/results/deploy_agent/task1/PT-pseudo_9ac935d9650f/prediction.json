@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_9ac935d9650f",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite an elevated PSA of 17.0 ng/mL and a PI-RADS 5 lesion, the decision is no biopsy because the prior biopsy results were negative and the PSAD is low (0.35). The patient's history of prior negative biopsies and normal DRE supports deferring immediate invasive testing. Therefore, no prostate biopsy is recommended at this time."
+}

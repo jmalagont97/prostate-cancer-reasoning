@@ -1,27 +1,27 @@
 {
   "C2_Raw_Only_10D_vs_C1_SHAP": {
-    "statistic": 5.0,
-    "p_value": 1.862645149230957e-08,
-    "delta_f1": 0.05717793799759549
+    "statistic": 43.0,
+    "p_value": 2.366676926612854e-05,
+    "delta_f1": 0.034445679100391036
   },
   "C3_Joint_Forest_23D_vs_C1_SHAP": {
-    "statistic": 0.0,
-    "p_value": 1.862645149230957e-09,
-    "delta_f1": 0.042369546348129034
+    "statistic": 38.0,
+    "p_value": 1.218356192111969e-05,
+    "delta_f1": 0.029231158250120126
   },
   "C4_Joint_ExtraTrees_23D_vs_C1_SHAP": {
-    "statistic": 0.0,
-    "p_value": 1.862645149230957e-09,
-    "delta_f1": 0.054226366709644064
+    "statistic": 28.0,
+    "p_value": 2.7623027563095093e-06,
+    "delta_f1": 0.03259929745965834
   },
   "C5_Targeted_Hybrid_23D_vs_C1_SHAP": {
-    "statistic": 22.0,
-    "p_value": 9.98377799987793e-07,
-    "delta_f1": 0.03140292233129152
+    "statistic": 131.0,
+    "p_value": 0.036434996873140335,
+    "delta_f1": 0.012500867229085777
   },
   "C4_Joint_ExtraTrees_vs_C2_Raw": {
-    "statistic": 186.0,
-    "p_value": 0.3492113798856735,
-    "delta_f1": -0.0029515712879514266
+    "statistic": 196.0,
+    "p_value": 0.46454504504799843,
+    "delta_f1": -0.0018463816407326972
   }
 }

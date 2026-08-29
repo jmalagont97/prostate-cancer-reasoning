@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is supported by the presence of a PI-RADS 5 lesion and the history of a prior positive biopsy result. Although the patient is 76 years old, the high-risk MRI finding and prior pathology necessitate further tissue sampling for definitive risk stratification. Therefore, a prostate biopsy is recommended to exclude higher-risk disease."
+}

@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by high-risk features, including a PI-RADS 5 lesion and a prior positive biopsy result. Although the patient has moderate LUTS (IPSS 9/35), the combination of rising PSA (4.2 ng/mL) and the prior positive finding necessitates further tissue diagnosis. Therefore, a prostate biopsy is recommended to evaluate the extent of the disease."
+}

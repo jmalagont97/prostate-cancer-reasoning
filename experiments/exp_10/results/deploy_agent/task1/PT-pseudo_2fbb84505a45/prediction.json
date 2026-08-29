@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_2fbb84505a45",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the patient's history of a prior positive biopsy (bx: important) and current PSA elevation of 8.4 ng/mL. Furthermore, the PI-RADS score of 4 and PSA velocity of 2.3 ng/mL/yr indicate a need for further tissue evaluation. Therefore, a biopsy is warranted to reassess the prostate status."
+}

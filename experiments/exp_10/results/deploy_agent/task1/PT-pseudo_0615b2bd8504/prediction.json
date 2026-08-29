@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_0615b2bd8504",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "decisive",
+        "vol": "noted",
+        "psad": "not_used",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to withhold a new biopsy is based on the patient's history, specifically the prior biopsy result of 'Positive' and the high PSA level of 160.0 ng/mL. Although the PI-RADS score is 5 and the DRE is abnormal, the existing information suggests a clinical reassessment is warranted rather than immediate re-biopsy. Therefore, no further biopsy is recommended at this time."
+}

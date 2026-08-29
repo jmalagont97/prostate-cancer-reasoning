@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_7f85fe245d6c",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "not_used",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the persistent upward PSA trend and the prior positive biopsy result. Given the PI-RADS 4 finding and the history of a prior biopsy, further investigation is warranted to assess the extent of the disease. Therefore, a prostate biopsy is recommended to guide further management."
+}

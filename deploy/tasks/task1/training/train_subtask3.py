@@ -27,7 +27,7 @@ def main():
     labeled_count = df_gt["is_labeled"].sum()
     print(f"Total cohort size: {len(df_gt)}, Labeled cases: {labeled_count}")
 
-    model = Subtask3JointExtraTrees(n_estimators=100, random_state=42)
+    model = Subtask3JointExtraTrees(n_estimators=50, random_state=42)
 
     print("Fitting canonical Joint ExtraTrees 23D meta-predictor on all labeled cases...")
     model.fit(df_tab, df_gt)

@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_4e545d350c5b",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "important",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The recommendation for biopsy is driven by high-risk imaging findings, specifically a PI-RADS 5 lesion, despite a normal Digital Rectal Exam. This is further supported by the elevated PSA of 22.0 ng/mL and the importance assigned to these factors. Therefore, a prostate biopsy is necessary to obtain tissue diagnosis."
+}

@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_2e0346bce3b3",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid biopsy is supported by the patient's clinical profile, including a PSA of 3.5 ng/mL and a PI-RADS 4 score, suggesting a focal lesion that requires further imaging assessment. Although the prior biopsy was positive, the current data, including the PSAD of 0.01 and normal DRE, indicates a low-risk scenario for immediate intervention. Therefore, based on the current stable presentation and imaging characteristics, no immediate biopsy is recommended."
+}

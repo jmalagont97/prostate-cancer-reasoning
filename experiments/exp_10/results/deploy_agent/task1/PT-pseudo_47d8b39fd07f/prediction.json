@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_47d8b39fd07f",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "decisive",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision not to biopsy is supported by the patient's profile, including a PSA of 21.0 ng/mL and an intermediate PI-RADS 3 finding. Although the PSA trajectory is noted, the prior biopsy was negative, and the overall risk factors are not high enough to warrant further invasive testing. Therefore, active surveillance is the recommended management strategy for this patient."
+}

@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the persistent PSA elevation of 7.4 ng/mL, the decision is to withhold biopsy because the PI-RADS score is 3 and the prior biopsy was negative. This approach is supported by the context that the patient has a history of a negative biopsy and a low PSAD of 0.16. Therefore, further intervention is deferred pending reassessment, as suggested by the prior negative result."
+}

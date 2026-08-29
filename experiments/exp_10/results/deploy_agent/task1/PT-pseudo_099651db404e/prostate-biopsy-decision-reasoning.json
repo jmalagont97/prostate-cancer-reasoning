@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is driven by the persistent elevation of PSA (5.9 ng/mL) and the high PI-RADS score of 5, which indicates a high likelihood of clinically significant prostate cancer. Although the prior biopsy was negative, the rising PSA velocity (0.97 ng/mL/yr) and the high PI-RADS score necessitate further investigation. Therefore, a biopsy is recommended to evaluate the suspicious lesion indicated by the imaging findings."
+}

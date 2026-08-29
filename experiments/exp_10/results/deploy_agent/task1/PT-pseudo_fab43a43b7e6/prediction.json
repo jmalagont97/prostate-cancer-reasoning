@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_fab43a43b7e6",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "decisive",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by multiple high-risk factors, including a PSA of 4.3 ng/mL and a PI-RADS 4 finding, which are weighted as important and decisive. The Digital Rectal Exam (DRE) revealed a firm asymmetrical nodule, further emphasizing the need for tissue diagnosis. Given the combination of elevated PSA, imaging findings, and physical exam evidence, a prostate biopsy is indicated for this patient."
+}

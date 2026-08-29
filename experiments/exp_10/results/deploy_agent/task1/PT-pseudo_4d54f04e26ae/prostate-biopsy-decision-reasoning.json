@@ -1,0 +1,23 @@
+{
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "important",
+        "psad": "decisive",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "decisive",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is supported by the sustained PSA elevation of 34.7 ng/mL and the PI-RADS 4 finding, despite a prior negative biopsy. The PSAD of 0.352 is decisive, and the DRE finding of a nodus further mandates investigation. Therefore, a prostate biopsy is recommended to evaluate the suspicious findings."
+}

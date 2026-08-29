@@ -25,6 +25,7 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import shap
 
 # ==============================================================================
 # CANONICAL INGESTION & FEATURE PARSER HELPERS (Mirrors exp_2 preprocess_task1.py)
@@ -112,6 +113,7 @@ def extract_raw_patient_payload(
         "psa": parse_numeric(sp.get("psa")),
         "vol": parse_numeric(sp.get("vol")),
         "psad": parse_numeric(sp.get("psad")),
+        "bx": parse_numeric(sp.get("bx")),
         "dre": sp.get("dre") if sp.get("dre") is not None else np.nan,
         "pirads": sp.get("pirads") if sp.get("pirads") is not None else np.nan,
         "cspca": parse_numeric(sp.get("cspca")),
@@ -179,14 +181,14 @@ def extract_raw_patient_payload(
 ORDINAL_TARGET_MAP_11 = {
     ("yes", "clear"): 1.00,
     ("yes", "borderline"): 0.75,
-    ("yes", "uncertain"): 0.55,
-    ("no", "uncertain"): 0.45,
+    ("yes", "uncertain"): 0.50,
+    ("no", "uncertain"): 0.50,
     ("no", "borderline"): 0.25,
     ("no", "clear"): 0.00,
 }
 
 NUMERIC_COLS_11 = [
-    "age", "psa", "vol", "psad", "pirads", "psav", "psap", "months",
+    "age", "psa", "vol", "psad", "pirads", "bx", "psav", "psap", "months",
     "ipss_score", "vitals_weight_kg", "vitals_height_cm", "vitals_bmi",
     "vitals_bp_sys", "vitals_bp_dia", "vitals_hr_bpm"
 ]
@@ -345,7 +347,7 @@ class Subtask1LateFusionEnsemble:
         self.mri_pca = PCA(n_components=16, random_state=42)
         self.txt_preprocessor = TextPreprocessorSubtask1(max_features=1000)
 
-        self.model_tab = CustomKNNPredictor11(k=5, metric="euclidean", weights="distance", use_fuzzy=True)
+        self.model_tab = CustomKNNPredictor11(k=5, metric="manhattan", weights="uniform", use_fuzzy=True)
         self.model_mri = CustomKNNPredictor11(k=1, metric="euclidean", weights="uniform", use_fuzzy=False)
         self.model_txt = CustomKNNPredictor11(k=3, metric="cosine", weights="uniform", use_fuzzy=True)
 
@@ -483,13 +485,13 @@ CONFIDENCE_MAP = {"uncertain": 0, "borderline": 1, "clear": 2}
 INV_CONFIDENCE_MAP = {0: "uncertain", 1: "borderline", 2: "clear"}
 
 COMORBIDITY_GROUPS = {
-    "cvd": ["hypertension", "htn", "cad", "mi", "stroke", "afib", "arrhythmia", "chf", "hypercholesterolemia", "dyslipidemia", "aortic", "pacemaker", "stent", "cabg"],
-    "metabolic": ["diabetes", "dm2", "t2d", "dm1", "obesity", "hypothyroidism", "thyroid", "gout", "fatty liver", "metabolic syndrome"],
-    "respiratory": ["asthma", "copd", "emphysema", "apnea", "osa", "bronchitis"],
-    "gi_renal": ["gerd", "reflux", "ckd", "renal", "kidney", "diverticulitis", "crohn", "colitis", "ulcer", "gastritis"],
-    "msk_neuro": ["arthrosis", "arthritis", "osteoarthritis", "back pain", "parkinson", "dementia", "neuropathy", "sciatica", "disc", "hernia"],
-    "other_cancer": ["melanoma", "basal cell", "bcc", "scc", "bladder", "colon", "lymphoma", "leukemia", "renal cell", "kidney cancer"],
+    "cardiometabolic": ["hypertension", "hypercholesterolaemia", "coronary artery disease", "type 2 diabetes", "obesity"],
+    "renal": ["chronic kidney disease"],
+    "bleeding_risk": ["atrial fibrillation"],
+    "respiratory": ["copd"],
+    "bph": ["benign prostatic hyperplasia"],
 }
+_KNOWN_CONDITIONS = [c for values in COMORBIDITY_GROUPS.values() for c in values] + ["osteoarthritis"]
 
 
 def extract_comorbidity_flags_from_text(text: str) -> Dict[str, float]:
@@ -497,10 +499,16 @@ def extract_comorbidity_flags_from_text(text: str) -> Dict[str, float]:
     flags["comorb_other_unmatched"] = 0.0
     if not text or pd.isna(text):
         return flags
-    lower = str(text).lower()
-    for group, kw_list in COMORBIDITY_GROUPS.items():
-        if any(kw in lower for kw in kw_list):
-            flags[f"comorb_{group}"] = 1.0
+    entries = []
+    for entry in str(text).split(","):
+        clean = re.sub(r"\s*\(.*?\)", "", entry).strip().lower()
+        if clean:
+            entries.append(clean)
+    known = {condition.lower() for condition in _KNOWN_CONDITIONS}
+    for group, conditions in COMORBIDITY_GROUPS.items():
+        condition_set = {condition.lower() for condition in conditions}
+        flags[f"comorb_{group}"] = float(any(entry in condition_set for entry in entries))
+    flags["comorb_other_unmatched"] = float(any(entry not in known for entry in entries))
     return flags
 
 
@@ -572,7 +580,7 @@ class Subtask2DirectKDMClassifier:
         self.mri_mean_vec: Optional[np.ndarray] = None
         self.tabular_cols = [
             "psa", "psap", "psav", "psad", "vol", "age", "cspca", "vitals_bmi",
-            "pirads", "dre_not_done", "dre_ordinal"
+            "pirads", "bx", "bx_missing", "dre_not_done", "dre_ordinal"
         ] + [f"comorb_{g}" for g in COMORBIDITY_GROUPS] + ["comorb_other_unmatched"]
 
     def _extract_tabular_dict(self, tab_data: Dict[str, Any], medhx_str: Optional[str] = None) -> Dict[str, float]:
@@ -582,6 +590,9 @@ class Subtask2DirectKDMClassifier:
 
         pirads_raw = tab_data.get("pirads", np.nan)
         out["pirads"] = parse_numeric(pirads_raw)
+        bx_value = parse_numeric(tab_data.get("bx"))
+        out["bx"] = bx_value
+        out["bx_missing"] = float(pd.isna(bx_value))
 
         dre_raw = str(tab_data.get("dre", "")).strip().lower()
         if dre_raw in ["not done", "none", "nan", ""]:
@@ -819,31 +830,40 @@ class TabularFuzzyKNNSubtask3:
 class Subtask3JointExtraTrees:
     """Self-contained deployable meta-predictor for Subtask 1.3 Variable Weights & Decisive Factors."""
 
-    def __init__(self, n_estimators: int = 100, random_state: int = 42):
+    def __init__(self, n_estimators: int = 50, random_state: int = 42):
         self.n_estimators = n_estimators
         self.random_state = random_state
         self.preprocessor = TabularPreprocessorSubtask3()
         self.base_knn = TabularFuzzyKNNSubtask3(k=5)
         self.shap_background: Optional[np.ndarray] = None
+        self.shap_explainer: Optional[Any] = None
         self.classifiers: Dict[str, ExtraTreesClassifier] = {}
         self.class_maps: Dict[str, List[int]] = {}
 
     def _compute_shap_13d(self, X_eval: np.ndarray) -> np.ndarray:
-        K = len(self.shap_background)
-        N, D = X_eval.shape
-        diffs = X_eval[:, np.newaxis, :] - self.shap_background[np.newaxis, :, :]
-        scales = np.std(self.shap_background, axis=0) + 1e-4
-        z_scores = diffs / scales[np.newaxis, np.newaxis, :]
-        phi_10d = np.abs(z_scores[:, :, :10]).mean(axis=1)
+        if self.shap_explainer is None:
+            raise RuntimeError("SHAP explainer has not been fitted")
+        shap_values = self.shap_explainer.shap_values(X_eval, nsamples=100, silent=True)
+        shap_mat = np.asarray(shap_values[0] if isinstance(shap_values, list) else shap_values)
+        if shap_mat.ndim == 3:
+            shap_mat = shap_mat[:, :, 1] if shap_mat.shape[2] > 1 else shap_mat[:, :, 0]
 
-        row_sums = phi_10d.sum(axis=1, keepdims=True) + 1e-6
-        phi_10d = phi_10d / row_sums
-
-        psa_psad = phi_10d[:, 1] + phi_10d[:, 3]
-        pirads_cspca = phi_10d[:, 5] + phi_10d[:, 9]
-        vol_psad = phi_10d[:, 2] + phi_10d[:, 3]
-
-        return np.hstack([phi_10d, psa_psad[:, None], pirads_cspca[:, None], vol_psad[:, None]])
+        # C1* feature order: age, psa, vol, psad, pirads, cspca,
+        # psav, psap, months, ipss_score, dre, bx.
+        phi = np.zeros((len(X_eval), 10), dtype=np.float32)
+        phi[:, 0] = np.abs(shap_mat[:, 0])
+        phi[:, 1] = np.abs(shap_mat[:, 1]) + 0.5 * np.abs(shap_mat[:, 6]) + 0.5 * np.abs(shap_mat[:, 7])
+        phi[:, 2] = np.abs(shap_mat[:, 2])
+        phi[:, 3] = np.abs(shap_mat[:, 3])
+        phi[:, 4] = np.abs(shap_mat[:, 10])
+        phi[:, 5] = np.abs(shap_mat[:, 4])
+        phi[:, 6] = 0.5 * np.abs(shap_mat[:, 8])
+        phi[:, 7] = np.abs(shap_mat[:, 9])
+        phi[:, 8] = np.abs(shap_mat[:, 11])
+        phi[:, 9] = np.abs(shap_mat[:, 5])
+        return np.hstack([phi, (phi[:, 1] + phi[:, 3])[:, None],
+                           (phi[:, 5] + phi[:, 9])[:, None],
+                           (phi[:, 2] + phi[:, 3])[:, None]])
 
     def fit(self, df_tab: pd.DataFrame, df_gt: pd.DataFrame) -> "Subtask3JointExtraTrees":
         labeled_gt = df_gt[df_gt["is_labeled"] == True].copy()
@@ -856,7 +876,9 @@ class Subtask3JointExtraTrees:
         y_binary = (labeled_gt["decision"].str.lower() == "yes").astype(float).values
         self.base_knn.fit(X_knn, y_binary)
 
-        self.shap_background = X_knn[: min(15, len(X_knn))]
+        bg_idx = np.linspace(0, len(X_knn) - 1, min(len(X_knn), 40), dtype=int)
+        self.shap_background = X_knn[bg_idx]
+        self.shap_explainer = shap.KernelExplainer(self.base_knn.predict_proba, self.shap_background)
 
         X_shap_13d = self._compute_shap_13d(X_knn)
         X_raw_10d = self.preprocessor.transform_raw_10d(tab_sub)
@@ -872,7 +894,9 @@ class Subtask3JointExtraTrees:
                 n_estimators=self.n_estimators,
                 class_weight="balanced",
                 max_features="sqrt",
-                random_state=self.random_state,
+                max_depth=3,
+                min_samples_leaf=2,
+                random_state=self.random_state + list(CLINICAL_VARIABLES).index(var),
             )
             clf.fit(X_joint_23d, y_var)
             self.classifiers[var] = clf

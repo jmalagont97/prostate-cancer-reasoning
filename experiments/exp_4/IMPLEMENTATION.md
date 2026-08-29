@@ -15,6 +15,8 @@
   * `TextPreprocessor`: Clinical narrative preprocessor preserving clinical negations (`no`, `not`, `without`, `absence`, `denies`, `negative`), TF-IDF vectorizer ($max\_features \in \{500, 1000, 2000, \text{None}\}$), and TruncatedSVD ($n_{\text{comp}} \in \{4, 10, 20, 40, \text{None}\}$).
   * `CustomKNN`: Dual Standard Classifier / Fuzzy Regressor KNN with metric support ($\{\text{cosine}, \text{euclidean}, \text{manhattan}\}$), kernel weights ($\{\text{uniform}, \text{distance}\}$), and compact neighbor space ($k \in \{1, 3, 5\}$).
 
+* **BX correction:** `TabularPreprocessor` now consumes the canonical numeric `bx` column from `clinical_tabular.csv` and its fold-safe missingness indicator; the obsolete `cli_bx` field is not used.
+
 * **`scripts/run_exp4_mccv_evaluation.py`:**
   * Canonical execution runner evaluating 180 Tabular, 144 MRI, and 480 Clinical Text configurations across 30 deterministic MCCV folds.
   * Late fusion grid sweep over $\mathbf{w} \in \Delta^2$ (step 0.05) and decision threshold $\theta \in [0.20, 0.80]$ (step 0.02).

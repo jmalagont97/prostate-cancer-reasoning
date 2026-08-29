@@ -1,0 +1,24 @@
+{
+    "case_id": "PT-pseudo_1a4e0cf3b927",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "not_used",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the PI-RADS 5 finding and elevated PSA of 7.0 ng/mL, the decision is no biopsy because the patient has a history of a positive prior biopsy, which is a decisive factor. The borderline confidence reflects the need to weigh the current imaging findings against the prior pathology. Therefore, no immediate biopsy is recommended at this time."
+}

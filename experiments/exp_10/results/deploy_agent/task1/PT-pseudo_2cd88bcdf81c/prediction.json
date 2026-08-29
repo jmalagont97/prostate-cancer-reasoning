@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_2cd88bcdf81c",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "not_used",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the persistent PSA elevation of 12.0 ng/mL and the PI-RADS 4 finding, which indicates a suspicious lesion. Although the patient has a prior negative biopsy, the current clinical picture warrants further investigation given the important weight placed on PSA and PI-RADS. Therefore, a biopsy is recommended to assess the risk associated with the prostate-specific antigen level and imaging findings."
+}

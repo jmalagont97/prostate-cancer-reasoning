@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_0bd72f429a8b",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite a PSA of 5.3 ng/mL and a DRE finding of a Nodus, the decision is no biopsy because the PI-RADS score is 4 and the PSAD is low (0.10), suggesting a lower risk profile. The prior positive biopsy and stable imaging findings do not provide an immediate indication for further invasive testing. Therefore, no prostate biopsy is recommended at this time."
+}

@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "decisive",
+        "vol": "noted",
+        "psad": "not_used",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the high PSA of 113.0 ng/mL and PI-RADS 5 assessment, the decision is no biopsy because the patient has a prior positive biopsy (bx: Positive), which dictates a non-biopsy pathway. This approach is supported by the context of the patient's history and the overall risk profile, despite the DRE finding of a nodule. Therefore, no prostate biopsy is recommended at this time."
+}

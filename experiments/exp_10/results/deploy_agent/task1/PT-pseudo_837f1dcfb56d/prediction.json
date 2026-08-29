@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_837f1dcfb56d",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "important",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "important",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision against biopsy is supported by the patient's low PSA of 2.7 ng/mL and the low PI-RADS 2 score, indicating a low suspicion for clinically significant prostate cancer. Despite the patient's age of 68, the absence of high-risk features and stable clinical status suggests that biopsy is not warranted at this time. Therefore, no prostate biopsy is recommended for this patient."
+}

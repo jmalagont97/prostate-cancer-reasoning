@@ -1,0 +1,24 @@
+{
+    "case_id": "PT-pseudo_0169468160c6",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "decisive",
+        "vol": "noted",
+        "psad": "not_used",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to withhold biopsy is supported by the patient's history of a prior positive biopsy (bx: Positive) and a very high PSA level of 187.0 ng/mL. Furthermore, the PI-RADS 5 finding and the established csPCa risk prior of 0.964853 indicate a high probability of clinically significant prostate cancer. Therefore, further invasive biopsy is deferred based on existing histological confirmation and risk assessment."
+}

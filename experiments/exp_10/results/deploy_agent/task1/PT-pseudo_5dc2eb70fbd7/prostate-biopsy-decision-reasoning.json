@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the low PSA of 0.44 ng/mL and prior negative biopsies, the patient presents with moderate LUTS (IPSS 10) and a PI-RADS score of 3, which warrants further investigation to address the persistent uncertainty regarding prostate cancer screening. The need for re-evaluation is supported by the clinical context and the patient's chief complaint. Therefore, a prostate biopsy is recommended for further assessment."
+}

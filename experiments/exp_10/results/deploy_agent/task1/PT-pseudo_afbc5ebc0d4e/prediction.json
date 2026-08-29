@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_afbc5ebc0d4e",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the elevated PSA of 19.0 ng/mL and the PI-RADS 4 finding, which are weighted as important factors. Furthermore, the physical examination revealed a palpable nodule on DRE, and the history of a prior positive biopsy necessitates further investigation. Therefore, a prostate biopsy is recommended to assess the extent of the disease."
+}

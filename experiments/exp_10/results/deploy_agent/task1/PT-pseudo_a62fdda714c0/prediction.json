@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_a62fdda714c0",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "important",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by the elevated PSA of 24.9 ng/mL and the PI-RADS 4 finding, which are weighted as decisive factors. Although the Digital Rectal Exam (DRE) was normal, the combination of these objective findings necessitates further tissue assessment. Therefore, a prostate biopsy is recommended to evaluate the suspicious lesion."
+}

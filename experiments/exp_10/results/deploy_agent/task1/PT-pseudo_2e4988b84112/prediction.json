@@ -1,0 +1,24 @@
+{
+    "case_id": "PT-pseudo_2e4988b84112",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "decisive",
+        "vol": "important",
+        "psad": "not_used",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid a further biopsy is supported by the patient's history of a prior positive biopsy and the high PSA level of 70.0 ng/mL. Although the PI-RADS score is 5, the existing positive biopsy and the established risk profile suggest that further immediate biopsy is not indicated. Therefore, based on the decisive weight of prior biopsy results, no further biopsy is recommended at this time."
+}

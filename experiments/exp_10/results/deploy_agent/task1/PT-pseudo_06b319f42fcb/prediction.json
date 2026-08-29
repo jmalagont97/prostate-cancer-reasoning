@@ -1,0 +1,24 @@
+{
+    "case_id": "PT-pseudo_06b319f42fcb",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "not_used",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by the high PSA level of 13.5 ng/mL and the PI-RADS 5 finding, which indicates a high probability of significant prostate cancer. Furthermore, the history of prior positive biopsies (bx) necessitates further evaluation to exclude higher-risk disease. Given these factors, a biopsy is indicated to confirm the extent of the disease."
+}

@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the persistent PSA elevation of 5.8 ng/mL and the presence of a PI-RADS 4 lesion, despite a prior negative biopsy. The prior negative biopsy (bx) and the elevated PSA (psa) are weighted as important factors necessitating re-evaluation. Therefore, a prostate biopsy is recommended to further investigate the source of the elevated PSA."
+}

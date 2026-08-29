@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "decisive",
+        "vol": "noted",
+        "psad": "not_used",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision is no because the patient has a prior biopsy-proven prostate cancer (bx: decisive), and the PI-RADS 5 finding suggests a lesion that has already been assessed. Although the PSA is high (190.0 ng/mL), the established history and imaging findings guide the decision against immediate re-biopsy. Therefore, no further biopsy is recommended at this time."
+}

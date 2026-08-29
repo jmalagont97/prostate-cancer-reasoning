@@ -11,7 +11,7 @@
 This implementation replicates the **Direct-KDM 3-Class Architecture** (historic record holder `exp_12`) under the strict **leak-free multimodal canonical representation** (established in `exp_2`, `exp_4`) and the standardized **MCCV-30 protocol** (`utils/pkg/chimera_metrics/PROTOCOL.md`).
 
 ### Pipeline Workflow:
-1. **Data Ingestion (Canonical & Leak-Free)**: Load `clinical_tabular.csv`, `clinical_texts.csv`, `mri_embeddings.csv`, and `ground_truth_task1.csv` (labeled subset $N=91$). Exclude all post-biopsy fields (`bx`, `bx_isup`, `path_hist_*`, `clinical-data.json`).
+1. **Data Ingestion (Canonical & Leak-Free)**: Load `clinical_tabular.csv`, `clinical_texts.csv`, `mri_embeddings.csv`, and `ground_truth_task1.csv` (labeled subset $N=91$). Include the canonical baseline `bx`; exclude all post-biopsy pathology fields (`bx_isup`, `path_hist_*`, `clinical-data.json`).
 2. **Leak-Free Preprocessing (Fit on Train Folds Only)**:
    - **Tabular ($\mathbf{x}_{\text{tab}}$)**: Median imputation for numerical features + One-Hot encoding for categorical clinical variables + MinMax scaling.
    - **MRI ($\mathbf{x}_{\text{mri}}$)**: 16-component PCA fit strictly on train embeddings per fold.
@@ -61,7 +61,7 @@ experiments/exp_6/
 
 ### 3.1 Preprocessing Pipeline
 - **Tabular Features**: Numeric columns (`age`, `psa`, `vol`, `psad`, `pirads`, `psav`, `psap`, `months`, `ipss_score`, `vitals_*`) with median imputation and missingness indicators. Categorical columns (`dre`, `active_treatment_flag`, comorbidity flags).
-- **Zero-Leakage Assurance**: No `bx`, `isup`, `bx_isup`, `cores`, or post-biopsy findings.
+- **Zero-Leakage Assurance**: Include baseline `bx`; exclude `isup`, `bx_isup`, `cores`, and all post-biopsy findings.
 - **Dimensionality Reduction**: MRI (PCA-16) and Text (TF-IDF + SVD-16) fitted per fold.
 
 ### 3.2 `ScalarDirectKDM` Classifier

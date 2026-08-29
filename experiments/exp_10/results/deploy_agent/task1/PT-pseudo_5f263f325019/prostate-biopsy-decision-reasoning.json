@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is strongly supported by the patient's high-risk profile, specifically the PI-RADS 5 finding and the history of a positive prior biopsy. Although the DRE is normal, the combination of a PSA of 12.3 ng/mL and prior positive results necessitates further investigation. Therefore, a prostate biopsy is recommended to evaluate the suspicious lesion."
+}

@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid a biopsy is supported by the patient's history of a prior positive biopsy (bx: important) and the moderate risk profile indicated by PSA 19.0 ng/mL and PI-RADS 4. Although PSAD is important, the overall clinical picture suggests deferring invasive testing given the existing history and moderate risk factors. Therefore, no prostate biopsy is recommended at this time."
+}

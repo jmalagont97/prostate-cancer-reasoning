@@ -1,0 +1,24 @@
+{
+    "case_id": "PT-pseudo_7efca1668c87",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "decisive",
+        "vol": "noted",
+        "psad": "not_used",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the rising PSA level of 68.0 ng/mL and the PI-RADS 5 finding, which indicate a high likelihood of clinically significant cancer. This is further supported by the prior positive biopsy result and the physical finding of a firm, asymmetric Nodus on DRE. Therefore, a prostate biopsy is recommended to obtain tissue diagnosis."
+}

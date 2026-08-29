@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_b414d3d849a7",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid a new biopsy is driven by the decisive factor of the prior positive biopsy (bx: Positive) and the PI-RADS 4 finding. Although the DRE revealed a nodule, the overall clinical picture, including the PSAD of 0.141, supports continued active surveillance rather than immediate re-biopsy. Therefore, the established history and current stable status dictate no further biopsy at this time."
+}

@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_8192345b35fa",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend no biopsy is supported by the patient's history of a prior positive biopsy and the high-risk findings, specifically PI-RADS 5 and a prior csPCa risk of 0.8667895. Although the PSA is elevated at 27.0 ng/mL, the existing information suggests that further immediate biopsy is not warranted given the established diagnosis. Therefore, no prostate biopsy is recommended at this time."
+}

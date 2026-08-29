@@ -71,8 +71,12 @@ def stage_gc_input_if_needed(cfg) -> None:
         target_dir = tmp_root / "task1" / "agent_input" / case_id
         target_dir.mkdir(parents=True, exist_ok=True)
         shutil.copy2(str(gc_flat), str(target_dir / "structured-prompt.json"))
-        # Also copy companion files if present alongside /input (e.g., *_clinical.json)
-        # but not strictly needed — MCP tools read case_path directly.
+        # Preserve companion files required by the trained predict_raw() models
+        # (clinical text/history and MRI neural representation) alongside the
+        # structured prompt. The model tools read these files from case_path.
+        for companion in Path("/input").iterdir():
+            if companion.is_file() and companion.name != "structured-prompt.json":
+                shutil.copy2(str(companion), str(target_dir / companion.name))
         cfg.paths.data_root = str(tmp_root)
         cfg.paths.input_dir = "/input"
         cfg.paths.output_dir = str(output_dir)

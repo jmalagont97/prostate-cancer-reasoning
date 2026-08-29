@@ -1,0 +1,14 @@
+{
+  "condition": "C3_Scalar_KDM_23col_ordinal_weighted",
+  "macro_f1_mean": 0.4801320489550848,
+  "macro_f1_std": 0.11585312701118378,
+  "s_conf_mean": 0.7166666666666667,
+  "s_conf_std": 0.07398142353865993,
+  "ordinal_distance_mean": 0.28333333333333327,
+  "ordinal_distance_std": 0.07398142353865991,
+  "moe_abs_mean": 0.3449074074074074,
+  "moe_abs_std": 0.10298061296257281,
+  "accuracy_mean": 0.5888888888888889,
+  "accuracy_std": 0.08795808953361421,
+  "n_folds": 30
+}

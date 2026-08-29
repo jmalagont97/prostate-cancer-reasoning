@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The recommendation for biopsy is supported by the high-risk profile, specifically the PSA of 10.0 ng/mL and the PI-RADS 5 finding. Given the prior positive biopsy history (bx: Positive), further tissue sampling is warranted to assess the extent of disease progression. Therefore, a prostate biopsy is recommended to guide further management."
+}

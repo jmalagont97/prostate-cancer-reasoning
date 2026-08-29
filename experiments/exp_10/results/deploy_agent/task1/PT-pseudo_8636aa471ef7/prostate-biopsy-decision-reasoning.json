@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the patient's elevated PSA of 11.8 ng/mL and the history of a prior positive biopsy (bx: Positive). Although the PI-RADS score is 4, the combination of these risk factors warrants further tissue sampling to exclude clinically significant prostate cancer. Therefore, a prostate biopsy is recommended for this patient."
+}

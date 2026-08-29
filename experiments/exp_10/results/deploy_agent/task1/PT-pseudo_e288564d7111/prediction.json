@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_e288564d7111",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the rising PSA of 8.4 ng/mL and the prior positive biopsy status. Although the PI-RADS score is 4, the combination of elevated PSA and the need for further characterization warrants intervention. Therefore, a biopsy is recommended to assess the extent of the disease and guide further management.\n"
+}

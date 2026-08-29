@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_956f2054a1ea",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the patient's clinical status, specifically the rising PSA of 19.0 ng/mL and the presence of a PI-RADS 5 lesion. Given the prior positive biopsy (bx: Positive), further evaluation is warranted to assess potential progression or recurrence. Therefore, a prostate biopsy is recommended to guide further management."
+}

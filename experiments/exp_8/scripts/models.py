@@ -64,7 +64,7 @@ class TabularPreprocessor:
     """
 
     def __init__(self):
-        self.num_cols = ["age", "psa", "vol", "psad", "pirads", "cspca", "psav", "psap", "months", "ipss_score"]
+        self.num_cols = ["age", "psa", "vol", "psad", "pirads", "bx", "cspca", "psav", "psap", "months", "ipss_score"]
         self.cat_cols = ["dre", "enc_type"]
         self.imputer_num: Optional[SimpleImputer] = None
         self.imputer_cat: Optional[SimpleImputer] = None

@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the persistent elevation of PSA (11.0 ng/mL) and the history of a prior negative biopsy. Although the PI-RADS score is 3, the rising PSA velocity (3.06 ng/mL/yr) warrants further investigation to rule out clinically significant disease. Therefore, a biopsy is recommended to reassess the prostate tissue status."
+}

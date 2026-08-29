@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "important",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid biopsy is supported by the patient's low-risk profile despite a PSA of 6.0 ng/mL and a prior positive biopsy. Although the PSAD is 0.13, the PI-RADS score of 3 and normal Digital Rectal Exam (DRE) suggest a low probability of clinically significant cancer. Given the prior positive biopsy and the overall low-risk context, active surveillance is the recommended management strategy."
+}

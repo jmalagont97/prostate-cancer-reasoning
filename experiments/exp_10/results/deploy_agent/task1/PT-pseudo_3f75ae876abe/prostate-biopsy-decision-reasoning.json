@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "important",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is strongly supported by the patient's clinical data, specifically the PI-RADS 5 finding and the elevated PSA of 16.8 ng/mL. This high-risk assessment, combined with the PSAD of 0.846 and prostate volume of 19.86 mL, necessitates tissue sampling for definitive diagnosis. Therefore, a prostate biopsy is recommended to evaluate the suspicious lesion identified on MRI."
+}

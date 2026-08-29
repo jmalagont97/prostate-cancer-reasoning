@@ -1,0 +1,32 @@
+{
+  "C1_Tabular_Optimal": {
+    "spearman_tau": 0.8,
+    "model_type": "fuzzy_knn_reg",
+    "k": 5,
+    "metric": "manhattan",
+    "weights": "uniform"
+  },
+  "C2_MRI_Optimal": {
+    "pca_components": 16,
+    "model_type": "standard_knn_clf",
+    "k": 1,
+    "metric": "euclidean",
+    "weights": "uniform"
+  },
+  "C3_Text_Optimal": {
+    "max_features": 1000,
+    "svd_components": null,
+    "model_type": "fuzzy_knn_reg",
+    "k": 3,
+    "metric": "cosine",
+    "weights": "uniform"
+  },
+  "C4_LateFusion_Optimal": {
+    "w_tab": 0.15,
+    "w_mri": 0.05,
+    "w_txt": 0.8,
+    "threshold": 0.56,
+    "mean_macro_f1": 0.7051036402463242,
+    "std_macro_f1": 0.12163536523654717
+  }
+}

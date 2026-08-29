@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The recommendation for biopsy is supported by the combination of factors, including the PSA velocity of 1.73 ng/mL/yr and the prior positive biopsy result. Although the physical exam is normal and the PI-RADS score is 4, the upward trajectory in PSA and the history of prior malignancy necessitate further tissue sampling for definitive management. Therefore, a prostate biopsy is recommended to confirm the extent of the disease."
+}

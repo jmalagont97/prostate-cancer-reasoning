@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the rising PSA of 12.0 ng/mL and a PI-RADS 4 finding, the decision is no because the patient has a history of a negative prior biopsy and the overall risk profile is managed by noted comorbidities. The prior negative biopsy and the low PSAD of 0.23 suggest that an acute biopsy is not warranted at this time. Therefore, no prostate biopsy is recommended for this patient currently."
+}

@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_e5104a16c8bb",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to withhold biopsy is supported by the patient's history of a prior positive biopsy and the overall low-risk profile despite the PI-RADS 5 finding. Although the PI-RADS score is high, the patient has a history of confirmed carcinoma and no lower urinary tract symptoms, which supports deferring further invasive testing. Therefore, based on the established history and clinical presentation, a biopsy is not recommended at this time."
+}

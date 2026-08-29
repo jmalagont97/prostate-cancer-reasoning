@@ -26,6 +26,19 @@ ESSENTIAL_VARIABLES = [
 ]
 
 
+def normalize_bx(val: Any) -> Optional[float]:
+    """Normalize prior-biopsy status to 1, 0, or NaN while preserving missingness."""
+    if val is None or (isinstance(val, str) and val.strip() == "None"):
+        return np.nan
+    if isinstance(val, str):
+        normalized = val.strip().lower()
+        if normalized == "positive":
+            return 1.0
+        if normalized == "negative":
+            return 0.0
+    raise ValueError(f"Unsupported BX value: {val!r}; expected Positive, Negative, or None")
+
+
 def parse_numeric(val: Any) -> Optional[float]:
     """Safely parse float or int from string/number."""
     if val is None or val == "" or pd.isna(val):
@@ -73,6 +86,7 @@ def extract_patient_tabular(sp: Dict[str, Any], pid: str) -> Dict[str, Any]:
         "psad": parse_numeric(sp.get("psad")),
         "dre": sp.get("dre") if sp.get("dre") is not None else np.nan,
         "pirads": sp.get("pirads") if sp.get("pirads") is not None else np.nan,
+        "bx": normalize_bx(sp.get("bx")),
         "cspca": parse_numeric(sp.get("cspca")),
         "psav": parse_numeric(sp.get("psav")),
         "psap": parse_numeric(sp.get("psap")),
@@ -303,12 +317,16 @@ def main():
     print(f"2. clinical_texts.csv:     Shape {df_texts.shape} -> {path_texts}")
     print(f"3. mri_embeddings.csv:     Shape {df_embeddings.shape} -> {path_embeddings}")
     print(f"4. ground_truth_task1.csv: Shape {df_gt.shape} (Labeled cases: {df_gt['is_labeled'].sum()}) -> {path_gt}")
+    print(f"BX distribution: {df_tabular['bx'].value_counts(dropna=False).to_dict()}")
     
     # Assertions
     assert len(df_tabular) == total_cases, "Row count mismatch in tabular data"
     assert len(df_texts) == total_cases, "Row count mismatch in text data"
     assert len(df_embeddings) == total_cases, "Row count mismatch in embeddings"
     assert len(df_gt) == total_cases, "Row count mismatch in ground truth"
+    assert "bx" in df_tabular.columns, "BX column missing from tabular data"
+    bx_values = set(df_tabular["bx"].dropna().unique())
+    assert bx_values <= {0.0, 1.0}, f"Unexpected normalized BX values: {bx_values}"
     assert df_embeddings.shape[1] == 1026, f"Expected 1026 cols (pid, case_id + 1024 emb), got {df_embeddings.shape[1]}"
     
     # Validate NaN exclusion on PT-pseudo_0bd72f429a8b

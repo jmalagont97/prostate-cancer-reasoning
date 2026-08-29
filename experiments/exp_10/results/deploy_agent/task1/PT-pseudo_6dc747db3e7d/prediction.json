@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_6dc747db3e7d",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to biopsy is strongly supported by the presence of a PI-RADS 5 focus, which is a decisive factor, alongside a PSA of 3.3 ng/mL and a PSAD of 0.074. Although the DRE was normal, the high imaging suspicion mandates further tissue sampling to exclude clinically significant prostate cancer. Therefore, a biopsy is recommended to assess the risk associated with the identified lesion and biochemical markers."
+}

@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid immediate biopsy is supported by the presence of a PI-RADS 5 lesion and a prior positive biopsy (bx). Although the PSA is 4.7 ng/mL, the current clinical context favors an active surveillance approach rather than immediate intervention. Therefore, no prostate biopsy is recommended at this time."
+}

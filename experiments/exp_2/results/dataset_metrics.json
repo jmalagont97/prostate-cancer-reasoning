@@ -1,6 +1,6 @@
 {
   "total_cases": 195,
-  "tabular_features": 37,
+  "tabular_features": 38,
   "text_features": 13,
   "embedding_dimensions": 1024,
   "labeled_cases": 91,

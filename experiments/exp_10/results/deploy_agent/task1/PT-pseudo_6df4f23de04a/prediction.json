@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_6df4f23de04a",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision not to biopsy is supported by the patient's low-risk profile despite a PSA of 8.2 ng/mL and a prior positive biopsy. Factors such as the PI-RADS 4 score and the low PSAD of 0.12 suggest that further invasive testing is not immediately warranted. Given the history of a prior positive biopsy and the overall low-risk context, active surveillance is the appropriate management strategy."
+}

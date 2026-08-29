@@ -1,22 +1,22 @@
 {
   "C2_10D_Balanced_Tree_vs_C1": {
-    "statistic": 87.0,
-    "p_value": 0.0020201820880174637,
-    "delta_f1": -0.019711198239654726
+    "statistic": 146.0,
+    "p_value": 0.07672121562063694,
+    "delta_f1": -0.012642236579204519
   },
   "C3_Coalesced_Balanced_Tree_vs_C1": {
-    "statistic": 77.0,
-    "p_value": 0.0008718203753232956,
-    "delta_f1": -0.01788718296885458
+    "statistic": 150.0,
+    "p_value": 0.09194962680339813,
+    "delta_f1": -0.009801945658071881
   },
   "C4_Coalesced_Balanced_Forest_vs_C1": {
-    "statistic": 73.0,
-    "p_value": 0.0006084088236093521,
-    "delta_f1": 0.017540319189145254
+    "statistic": 114.0,
+    "p_value": 0.013663241639733315,
+    "delta_f1": 0.012021682998395206
   },
   "C5_Hybrid_Regularized_vs_C1": {
-    "statistic": 158.0,
-    "p_value": 0.12935307621955872,
-    "delta_f1": -0.007030657439303811
+    "statistic": 220.0,
+    "p_value": 0.8078304156661034,
+    "delta_f1": 0.00023994325322806986
   }
 }

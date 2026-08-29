@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is supported by the elevated PSA of 4.53 ng/mL and the presence of a PI-RADS 5 lesion, which indicate high suspicion for prostate cancer. Furthermore, the prior biopsy result was positive, necessitating further evaluation to assess the extent of disease. Therefore, a confirmatory biopsy is recommended to exclude significant disease and guide management."
+}

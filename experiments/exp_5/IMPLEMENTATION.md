@@ -6,7 +6,7 @@ This plan implements the experimental replication of **BrentMemKDM Multimodal** 
 The implementation strictly maintains:
 1. **Decoupled Evaluation Governance:** Zero evaluation or metric logic implemented inside execution scripts; all evaluation is imported from `utils/pkg/chimera_metrics`.
 2. **Identical Preprocessing Pipelines (`exp_4` $\rightarrow$ `exp_5`):**
-   - Tabular: Missing-indicator flags + median/mode imputation + One-Hot Encoding + `MinMaxScaler` $[0, 1]$ (purging all post-biopsy fields).
+   - Tabular: Canonical baseline `bx` plus missing-indicator flags, median/mode imputation, One-Hot Encoding and `MinMaxScaler` $[0, 1]$ (purging all post-biopsy fields).
    - MRI: 1024-d visual embeddings, train-mean imputation, `PCA(n_components=16)` fit on training splits.
    - Text: `TfidfVectorizer(max_features=1000, stop_words="english", lowercase=True)` fit on training splits.
 3. **Continuous Bandwidth Kernel Density Matrix Memory (`BrentMemKDM`):**

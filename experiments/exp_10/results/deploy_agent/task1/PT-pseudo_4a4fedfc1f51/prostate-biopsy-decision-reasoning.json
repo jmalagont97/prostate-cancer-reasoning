@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "decisive",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is strongly supported by multiple high-risk factors. Specifically, the PI-RADS 5 finding and the positive DRE (Nodus) are decisive indicators, which are further supported by the elevated PSA of 8.5 ng/mL. Given the decisive PSAD of 0.368, a biopsy is indicated to confirm the presence of prostate cancer. Therefore, a prostate biopsy is recommended for this patient."
+}

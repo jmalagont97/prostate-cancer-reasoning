@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to withhold biopsy is based on the patient's low-risk profile despite a PSA of 3.8 ng/mL and a PI-RADS 4 finding. Given the history of a previously identified Gleason 3+4 lesion and the positive prior biopsy result, further invasive testing is not indicated at this time. The overall clinical picture, including mild LUTS and no other significant comorbidities, supports continued active surveillance. Therefore, no prostate biopsy is recommended."
+}

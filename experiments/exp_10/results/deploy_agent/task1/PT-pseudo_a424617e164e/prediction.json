@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_a424617e164e",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to withhold biopsy is supported by the patient's profile, including a prior negative biopsy and a PI-RADS 3 score. Although the PSA is 9.6 ng/mL, the low PSAD of 0.32 and the prior negative biopsy suggest a low long-term risk of lethal prostate cancer. Therefore, given the current stable imaging findings and prior negative history, immediate biopsy is not recommended at this time."
+}

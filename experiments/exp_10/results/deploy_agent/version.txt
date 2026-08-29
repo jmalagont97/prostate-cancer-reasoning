@@ -1,6 +1,0 @@
-7ca6af4f9bcb27651f32fcfa2cbdb8578e71ab61
-Generation: experiments/exp_10/scripts/run_full_task1.py
-Evaluation: experiments/exp_10/scripts/evaluate_deploy_task1.py
-Cohort: data/raw/train_release/task1 (91 paired annotated cases)
-Execution: tmux:0
-Model: gemma4:e2b via Ollama

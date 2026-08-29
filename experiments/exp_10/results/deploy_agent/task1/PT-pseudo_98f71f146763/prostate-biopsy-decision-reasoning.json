@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The recommendation for biopsy is supported by multiple high-risk factors, including a PSA of 8.1 ng/mL and a PI-RADS 5 lesion identified on DRE. Furthermore, the history of a prior positive biopsy necessitates further tissue characterization to guide management. Given the elevated PSA and high suspicion level, a biopsy is warranted to assess the extent of prostate cancer."
+}

@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_ef66ca71e996",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "decisive",
+        "psa": "important",
+        "vol": "decisive",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the PSA of 10.0 ng/mL, the decision is no because the patient has a PI-RADS 3 score and a prior negative biopsy, suggesting a low probability of clinically significant prostate cancer. The normal Digital Rectal Exam and absence of symptoms, reflected by the IPSS score of 8/35, further support deferring invasive testing. Therefore, no prostate biopsy is recommended at this time."
+}

@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is supported by the patient's steadily climbing PSA of 6.1 ng/mL and the physical finding of a DRE nodus, despite the prior positive biopsy. Factors like the prior positive biopsy (bx: decisive) and the PI-RADS 4 score (pirads: important) necessitate further tissue evaluation to assess the current status of the lesion. Therefore, a prostate biopsy is recommended for ongoing surveillance and risk stratification."
+}

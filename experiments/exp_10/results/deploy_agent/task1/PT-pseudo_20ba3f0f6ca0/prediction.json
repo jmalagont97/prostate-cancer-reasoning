@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_20ba3f0f6ca0",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by multiple risk factors, including a PSA of 4.8 ng/mL and a PI-RADS score of 4, which are weighted as important and decisive. Furthermore, the PSAD of 0.086 and the palpable DRE nodus reinforce the need for further investigation. Therefore, a prostate biopsy is recommended to evaluate the suspicious findings."
+}

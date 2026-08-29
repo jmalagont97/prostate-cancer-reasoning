@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_34647958aba3",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "decisive",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the elevated PSA of 7.6 ng/mL and a PI-RADS 5 finding, the decision is deferred primarily due to the prior positive biopsy (bx: decisive). The overall risk profile, including the history of prior disease, weighs against immediate invasive intervention. Therefore, no prostate biopsy is recommended at this time."
+}

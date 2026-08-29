@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_acad53162dba",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by the clinical reassessment following a steady increase in PSA (4.0 ng/mL) and the presence of a PI-RADS 4 finding, despite a normal Digital Rectal Exam (DRE). Given the patient's age of 65 and the noted PSA velocity of 0.78 ng/mL/yr, a biopsy is indicated to further evaluate the prostate tissue. Therefore, a prostate biopsy is recommended for this patient."
+}

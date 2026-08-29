@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_4edb17f79e46",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the upward trajectory in PSA levels (9.2 ng/mL) and the PI-RADS 4 assessment, despite the prior negative biopsy. Although the Digital Rectal Examination was normal, the rising PSA necessitates further investigation to rule out clinically significant prostate cancer. Therefore, a biopsy is recommended to re-evaluate the clinical status of the prostate."
+}

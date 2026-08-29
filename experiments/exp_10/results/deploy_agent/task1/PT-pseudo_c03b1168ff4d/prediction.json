@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_c03b1168ff4d",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the patient's history of a confirmed prostate malignancy and a rising PSA level of 7.8 ng/mL. Furthermore, the PI-RADS 4 finding in the prostate and the prior positive biopsy mandate further investigation for disease extent. Therefore, a biopsy is necessary to guide subsequent management decisions."
+}

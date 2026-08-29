@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to withhold biopsy is supported by the patient's profile, including a PSA of 4.5 ng/mL and a prior positive biopsy (bx: Positive). Although the PI-RADS score is 4, the physical exam was normal (DRE: Normal), and the patient has no reported comorbidities. Given the established risk factors and stable presentation, further immediate biopsy is not indicated. Therefore, no prostate biopsy is recommended at this time."
+}

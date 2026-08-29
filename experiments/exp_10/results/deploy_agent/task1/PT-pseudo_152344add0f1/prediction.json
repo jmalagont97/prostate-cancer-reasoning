@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_152344add0f1",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is strongly supported by the presence of a PI-RADS 5 lesion and an elevated PSA of 11.4 ng/mL in this 70-year-old patient. The high PI-RADS score is the decisive factor, indicating a high likelihood of clinically significant prostate cancer that requires tissue diagnosis. Therefore, a prostate biopsy is necessary to evaluate the suspicious lesion."
+}

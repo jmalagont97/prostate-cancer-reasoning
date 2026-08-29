@@ -1,0 +1,22 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "not_used",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the PSA level of 4.8 ng/mL and the prior positive biopsy result, which necessitates further evaluation. Although the PI-RADS score is 2, the combination of these factors, along with the patient's age of 77 and comorbidities, warrants proceeding with the biopsy. Therefore, a prostate biopsy is recommended to further assess the malignancy risk."
+}

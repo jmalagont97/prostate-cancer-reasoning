@@ -12,7 +12,7 @@
 This implementation replicates the **Composite Fuzzy ICI** architecture (historical `exp_17` / `exp_16`) under the canonical multimodal representation (`exp_2`, `exp_4`) and standardized **MCCV-30 protocol** (`data/processed/task1/mccv_splits_30.csv`).
 
 ### Pipeline Workflow:
-1. **Data Ingestion (Canonical & Leak-Free)**: Load `clinical_tabular.csv`, `clinical_texts.csv`, `mri_embeddings.csv`, and `ground_truth_task1.csv` ($N=91$ labeled cohort). Exclude all post-biopsy features (`bx`, `bx_isup`, `path_hist_*`, `cores_positive`).
+1. **Data Ingestion (Canonical & Leak-Free)**: Load `clinical_tabular.csv`, `clinical_texts.csv`, `mri_embeddings.csv`, and `ground_truth_task1.csv` ($N=91$ labeled cohort). Include the canonical pre-biopsy `bx` field; exclude pathology-derived post-outcome fields.
 2. **Unimodal Model Instantiation (Frozen exp_4)**:
    - **Tabular ($T$)**: `TabularPreprocessor(spearman_tau=None)` + `CustomKNNPredictor(k=5, metric="euclidean", weights="distance", is_fuzzy=True)`.
    - **MRI ($M$)**: `MRIPreprocessor(n_components=16)` + `CustomKNNPredictor(k=1, metric="euclidean", weights="uniform", is_fuzzy=False)`.

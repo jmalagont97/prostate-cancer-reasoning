@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend no biopsy is supported by the patient's prior positive biopsy finding (bx: Positive) and the current PI-RADS 3 assessment. Although the PSA is 9.5 ng/mL, the low PI-RADS score and the established history of prior disease suggest that further immediate biopsy is not indicated. Therefore, based on the existing data, no prostate biopsy is recommended at this time."
+}

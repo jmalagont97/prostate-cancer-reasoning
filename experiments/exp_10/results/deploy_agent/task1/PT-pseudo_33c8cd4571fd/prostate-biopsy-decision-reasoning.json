@@ -1,0 +1,22 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is supported by high-risk findings, including a PI-RADS 5 lesion and a PSA of 12.0 ng/mL. The PSA velocity of 0.96 ng/mL/yr further indicates clinically significant change, which aligns with the importance assigned to PSA and PI-RADS. Although the DRE was normal, the combination of these factors necessitates further investigation to exclude prostate cancer. Therefore, a prostate biopsy is recommended for this patient."
+}

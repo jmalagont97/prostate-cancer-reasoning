@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "important",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend no biopsy is supported by the patient's history of a negative prior biopsy and current low-risk features, such as a PSA of 3.4 ng/mL and a PI-RADS 3 score. Although PSA is important, the overall clinical picture, including the normal DRE and minimal LUTS (IPSS 4/35), suggests that further invasive testing is not indicated at this time. Therefore, given the prior negative result and current low-risk profile, no further biopsy is recommended."
+}

@@ -1,0 +1,22 @@
+{
+  "C2_10D_Balanced_Tree_vs_C1": {
+    "statistic": 87.0,
+    "p_value": 0.0020201820880174637,
+    "delta_f1": -0.019711198239654726
+  },
+  "C3_Coalesced_Balanced_Tree_vs_C1": {
+    "statistic": 77.0,
+    "p_value": 0.0008718203753232956,
+    "delta_f1": -0.01788718296885458
+  },
+  "C4_Coalesced_Balanced_Forest_vs_C1": {
+    "statistic": 73.0,
+    "p_value": 0.0006084088236093521,
+    "delta_f1": 0.017540319189145254
+  },
+  "C5_Hybrid_Regularized_vs_C1": {
+    "statistic": 158.0,
+    "p_value": 0.12935307621955872,
+    "delta_f1": -0.007030657439303811
+  }
+}

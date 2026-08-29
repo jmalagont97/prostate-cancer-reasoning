@@ -81,9 +81,9 @@ Task: 1 (biopsy decision)
 
 === REFERENCE REASONINGS FROM SIMILAR NEIGHBOR CASES (SECONDARY REFERENCE ONLY) ===
 The fused probability above is a weighted vote of three modality experts:
-  tabular expert (weight 0.55) -> probability {biopsy['modality_probabilities']['tabular']}
-  MRI expert      (weight 0.20) -> probability {biopsy['modality_probabilities']['mri']}
-  text expert     (weight 0.25) -> probability {biopsy['modality_probabilities']['text']}
+  tabular expert (weight 0.15) -> probability {biopsy['modality_probabilities']['tabular']}
+  MRI expert      (weight 0.05) -> probability {biopsy['modality_probabilities']['mri']}
+  text expert     (weight 0.80) -> probability {biopsy['modality_probabilities']['text']}
 
 The texts below were written by expert urologists for OTHER patients. Each
 neighbor lists which modality experts retrieved it ("sources"): a neighbor

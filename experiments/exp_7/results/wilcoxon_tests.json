@@ -1,22 +1,22 @@
 {
   "C1_Canonical_Fuzzy_ICI": {
-    "statistic": 123.0,
-    "p_value": 0.9878650306776919,
+    "statistic": 310.0,
+    "p_value": 0.05545339288522096,
     "significant_005": false
   },
   "C1_clf_Fuzzy_ICI": {
-    "statistic": 134.0,
-    "p_value": 0.9786221455647699,
-    "significant_005": false
+    "statistic": 327.0,
+    "p_value": 0.026131673716008663,
+    "significant_005": true
   },
   "C2_Optimal_Weighted_ICI": {
-    "statistic": 107.0,
-    "p_value": 0.9950818474621453,
+    "statistic": 217.0,
+    "p_value": 0.6250740120542261,
     "significant_005": false
   },
   "C3_Unweighted_UniformTree": {
-    "statistic": 71.0,
-    "p_value": 0.006015179235104538,
-    "significant_005": true
+    "statistic": 13.0,
+    "p_value": 0.5683333552317498,
+    "significant_005": false
   }
 }

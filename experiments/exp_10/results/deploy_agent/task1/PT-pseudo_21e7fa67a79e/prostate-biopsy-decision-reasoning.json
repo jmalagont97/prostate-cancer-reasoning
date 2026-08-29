@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is supported by the combination of a rising PSA of 11.0 ng/mL and the presence of a PI-RADS 5 lesion, which indicates a high-risk area. Furthermore, the patient has a history of a previously positive biopsy and severe lower urinary tract symptoms (IPSS 34/35), necessitating further tissue evaluation. Therefore, a biopsy is warranted to assess the extent of the disease and guide management."
+}

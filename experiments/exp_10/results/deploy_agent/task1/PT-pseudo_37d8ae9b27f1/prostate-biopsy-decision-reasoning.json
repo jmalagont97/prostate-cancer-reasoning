@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend no biopsy is supported by the patient's clinical profile, including a PSA of 4.8 ng/mL and a PI-RADS score of 4. The prior positive biopsy result and the moderate IPSS score suggest that active surveillance is the appropriate management strategy at this time. Therefore, based on the current data, a prostate biopsy is not recommended."
+}

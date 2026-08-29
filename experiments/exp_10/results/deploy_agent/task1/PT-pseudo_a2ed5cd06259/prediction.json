@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_a2ed5cd06259",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the patient having a prior positive biopsy and a PI-RADS 5 lesion, the decision is no biopsy because the physical examination is normal and the IPSS score is low. The combination of PSA 4.6 ng/mL and PSAD 0.153 suggests that immediate intervention is not warranted given the current clinical status. Therefore, biopsy is deferred to allow for observation, aligning with the low-risk profile suggested by the physical exam."
+}

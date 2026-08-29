@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_6d2ecb82cc52",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the elevated PSA of 25.0 ng/mL and PI-RADS 5 finding, the decision is no because the patient has a history of prior positive biopsies (bx: decisive) and no reported comorbidities. The combination of these factors, along with the noted prostate volume of 31.91 mL, suggests that further immediate biopsy is not warranted at this time. Therefore, the recommendation is to defer biopsy and focus on active surveillance."
+}

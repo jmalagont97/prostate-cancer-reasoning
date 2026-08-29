@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_665cf811e172",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is strongly supported by the patient's clinical profile, specifically the elevated PSA of 16.5 ng/mL and the PI-RADS 5 lesion. Furthermore, the history of a prior positive biopsy and continued PSA elevation necessitate further tissue sampling to exclude higher-risk disease. Therefore, a prostate biopsy is recommended for definitive risk stratification."
+}

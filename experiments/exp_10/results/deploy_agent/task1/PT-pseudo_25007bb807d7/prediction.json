@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_25007bb807d7",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is strongly supported by the PI-RADS 5 finding and the elevated PSA of 17.0 ng/mL in this 61-year-old patient. The PSAD of 0.462 is decisive, indicating a high probability of clinically significant prostate cancer, which necessitates further tissue sampling. Although the DRE was normal, the high-risk imaging features mandate a biopsy to confirm the presence and extent of the lesion."
+}

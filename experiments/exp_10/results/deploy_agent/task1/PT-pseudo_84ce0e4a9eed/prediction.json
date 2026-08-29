@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_84ce0e4a9eed",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid immediate biopsy is supported by the patient's history of prior positive biopsies (bx: Positive) and the high-risk imaging finding of PI-RADS 5. Although the PSA is elevated at 15.0 ng/mL, the existing pathology and imaging findings suggest a cautious approach rather than immediate tissue sampling. Therefore, no prostate biopsy is recommended at this time."
+}

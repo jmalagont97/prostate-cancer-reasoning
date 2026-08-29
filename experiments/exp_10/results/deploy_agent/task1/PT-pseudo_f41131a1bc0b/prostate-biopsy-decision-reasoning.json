@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the PI-RADS 5 finding and DRE nodus, the decision is no biopsy because the patient has a prior positive biopsy (bx: decisive) and no reported symptoms. The overall clinical picture, including a PSA of 3.9 ng/mL and no significant comorbidities, supports deferring further invasive testing. Therefore, no prostate biopsy is recommended at this time."
+}

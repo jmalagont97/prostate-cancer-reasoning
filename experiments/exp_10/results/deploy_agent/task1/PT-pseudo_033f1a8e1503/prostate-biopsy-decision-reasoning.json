@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is strongly supported by the patient's clinical data, specifically the PSA of 5.9 ng/mL and the PI-RADS 5 finding. The PSAD of 0.199 is decisive, indicating a significant risk, further supported by the PSA velocity of 1.83 ng/mL/yr. Therefore, a prostate biopsy is recommended to evaluate the suspicious lesion."
+}

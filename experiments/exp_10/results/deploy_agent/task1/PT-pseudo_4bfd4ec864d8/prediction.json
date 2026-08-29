@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_4bfd4ec864d8",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the presence of a PI-RADS 5 lesion and a PSA of 11.0 ng/mL, the decision is no biopsy because the patient has a history of negative prior biopsies and a low symptom burden (IPSS 6/35). The overall clinical picture supports continued active surveillance rather than immediate invasive intervention. Therefore, no prostate biopsy is recommended at this time."
+}

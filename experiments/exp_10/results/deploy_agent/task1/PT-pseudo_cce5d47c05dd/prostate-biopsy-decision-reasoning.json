@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "not_used",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "decisive",
+        "cspca": "noted"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid a further biopsy is primarily driven by the decisive factor of a prior positive biopsy (bx: decisive), despite the PI-RADS 5 finding. Although the patient has an elevated PSA of 12.0 ng/mL, the history of prior confirmed disease dictates deferral of immediate re-biopsy. Therefore, no further biopsy is recommended at this time."
+}

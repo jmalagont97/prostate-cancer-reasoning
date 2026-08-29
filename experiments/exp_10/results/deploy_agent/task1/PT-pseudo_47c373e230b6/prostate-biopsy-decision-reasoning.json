@@ -1,0 +1,23 @@
+{
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to biopsy is supported by the high PSA level of 10.0 ng/mL and the presence of a PI-RADS 5 lesion, which are decisive factors. Given the history of a previously positive biopsy, further tissue sampling is indicated to assess the extent of the disease. Therefore, a prostate biopsy is recommended to guide further management."
+}

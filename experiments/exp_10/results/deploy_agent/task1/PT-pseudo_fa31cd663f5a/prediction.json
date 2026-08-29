@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_fa31cd663f5a",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by the ascending PSA trajectory (0.74 ng/mL/yr) following a prior positive biopsy. Although the DRE is normal, the history of a positive prior biopsy and rising PSA necessitates further diagnostic evaluation. Therefore, a confirmatory biopsy is recommended to assess the current status of the prostate."
+}

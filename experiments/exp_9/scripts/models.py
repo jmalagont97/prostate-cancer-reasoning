@@ -42,7 +42,7 @@ class TabularPreprocessor:
 
     def fit(self, df: pd.DataFrame) -> "TabularPreprocessor":
         # Missing value medians
-        num_cols = ["age", "psa", "vol", "psad", "pirads", "cspca", "psav", "psap", "months", "vitals_bmi", "vitals_bp_sys", "ipss_score"]
+        num_cols = ["age", "psa", "vol", "psad", "pirads", "bx", "cspca", "psav", "psap", "months", "vitals_bmi", "vitals_bp_sys", "ipss_score"]
         for col in num_cols:
             if col in df.columns:
                 self.medians[col] = float(df[col].median(skipna=True)) if not df[col].dropna().empty else 0.0
@@ -82,7 +82,7 @@ class TabularPreprocessor:
                 row.get("months", self.medians.get("months", 12.0)) if pd.notna(row.get("months")) else self.medians.get("months", 12.0),
                 row.get("ipss_score", self.medians.get("ipss_score", 10.0)) if pd.notna(row.get("ipss_score")) else self.medians.get("ipss_score", 10.0),
                 1.0 if str(row.get("dre", "")).lower() in ["nodus", "abnormal", "suspicious"] else 0.0,
-                1.0 if str(row.get("enc_type", "")).lower().find("prior") != -1 else 0.0,
+                row.get("bx", self.medians.get("bx", 0.0)) if pd.notna(row.get("bx")) else self.medians.get("bx", 0.0),
             ]
             feats.append(row_feats)
         return np.array(feats, dtype=np.float32)
@@ -106,11 +106,11 @@ class TabularPreprocessor:
             comorb = float(row.get("ipss_score", 0.0)) if pd.notna(row.get("ipss_score")) else 0.0
             
             enc_type_str = str(row.get("enc_type", "")).lower()
-            bx_prior = 2.0 if "prior pca" in enc_type_str else (1.0 if "prior negative" in enc_type_str else 0.0)
+            bx_value = float(row.get("bx", self.medians.get("bx", 0.0))) if pd.notna(row.get("bx")) else self.medians.get("bx", 0.0)
             
             cspca = float(row.get("cspca", 0.3)) if pd.notna(row.get("cspca")) else self.medians.get("cspca", 0.3)
 
-            raw_feats.append([age, psa, vol, psad, dre_val, pirads, fh_val, comorb, bx_prior, cspca])
+            raw_feats.append([age, psa, vol, psad, dre_val, pirads, fh_val, comorb, bx_value, cspca])
         return np.array(raw_feats, dtype=np.float32)
 
 
@@ -164,7 +164,7 @@ class ShapAttributionExtractor:
             shap_mat = shap_mat[:, :, 1] if shap_mat.shape[2] > 1 else shap_mat[:, :, 0]
 
         # Map the 12 features of C1* to the 10 canonical clinical variables
-        # C1* features: [0:age, 1:psa, 2:vol, 3:psad, 4:pirads, 5:cspca, 6:psav, 7:psap, 8:months, 9:ipss, 10:dre, 11:bx_prior]
+        # C1* features: [0:age, 1:psa, 2:vol, 3:psad, 4:pirads, 5:cspca, 6:psav, 7:psap, 8:months, 9:ipss, 10:dre, 11:bx]
         # Canonical 10: [age, psa, vol, psad, dre, pirads, fh, comorbidity, bx, cspca]
         N = len(X)
         shap_10d = np.zeros((N, 10), dtype=np.float32)

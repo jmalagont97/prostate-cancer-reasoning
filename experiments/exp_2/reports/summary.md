@@ -2,9 +2,9 @@
 
 **Experiment**: experiments/exp_2/  
 **Project**: prostate-cancer-reasoning  
-**Author**: Juan Sebastian Malagon Torres  
-**Date**: 2026-08-22  
-**Verdict**: ✅ PASS (Lossless extraction completed)
+**Author**: Juan Sebastian Malagón Torres  
+**Date**: 2026-08-29  
+**Verdict**: ✅ PASS (Lossless extraction completed with BX)
 
 ---
 
@@ -19,7 +19,7 @@ All quality gates, exclusion constraints (global exclusion of tool-gated `clinic
 
 | Artifact File | Destination Path | Rows | Columns / Dimensions | Non-Null Coverage |
 |---|---|:---:|:---:|:---:|
-| **`clinical_tabular.csv`** | `data/processed/task1/clinical_tabular.csv` | **195** | **37** | 100% core clinical vars (`age`, `psa`, `vol`, `psad`, `dre`, `cspca`) |
+| **`clinical_tabular.csv`** | `data/processed/task1/clinical_tabular.csv` | **195** | **38** | Includes `bx`: 116 = 1, 30 = 0, 49 = NaN |
 | **`clinical_texts.csv`** | `data/processed/task1/clinical_texts.csv` | **195** | **13** | 100% `chief_complaint`, `history`, `physical_exam`, `notes` |
 | **`mri_embeddings.csv`** | `data/processed/task1/mri_embeddings.csv` | **195** | **1026** (1024 float features) | 190 complete vectors, 5 valid `NaN` instances |
 | **`ground_truth_task1.csv`** | `data/processed/task1/ground_truth_task1.csv` | **195** | **19** | **91 labeled cases** (56 `yes`, 35 `no`), 104 unlabelled |
@@ -47,7 +47,7 @@ All quality gates, exclusion constraints (global exclusion of tool-gated `clinic
 | 6 | `pirads` | `pirads` (194/195 valid, 1 NaN) | `weight_pirads` (91/91 labeled) |
 | 7 | `fh` | Inferred from `history` / `clinical_texts` | `weight_fh` (91/91 labeled) |
 | 8 | `comorbidity` | `medhx`, `pmhx`, `vitals` | `weight_comorbidity` (91/91 labeled) |
-| 9 | `bx` | Inferred from `history` / `clinical_texts` | `weight_bx` (91/91 labeled) |
+| 9 | `bx` | `bx` from structured prompt, normalized Positive → 1, Negative → 0, None → NaN | `weight_bx` (91/91 labeled) |
 | 10 | `cspca` | `cspca` (195/195 valid) | `weight_cspca` (91/91 labeled) |
 
 ---

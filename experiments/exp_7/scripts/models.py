@@ -30,14 +30,14 @@ CONF_MAP = {"uncertain": 0, "borderline": 1, "clear": 2}
 ORD_NAMES = ["uncertain", "borderline", "clear"]
 
 NUMERIC_COLS = [
-    "age", "psa", "vol", "psad", "pirads", "psav", "psap", "months",
+    "age", "psa", "vol", "psad", "pirads", "bx", "psav", "psap", "months",
     "ipss_score", "allergies_count", "comorbidity_count",
     "vitals_weight_kg", "vitals_height_cm", "vitals_bmi",
     "vitals_bp_sys", "vitals_bp_dia", "vitals_hr_bpm", "smoking_pack_years"
 ]
 
 CATEGORICAL_COLS = [
-    "cli_dre", "cli_bx", "cli_fh_binary", "vit_smoking_status"
+    "cli_dre", "cli_fh_binary", "vit_smoking_status"
 ]
 
 

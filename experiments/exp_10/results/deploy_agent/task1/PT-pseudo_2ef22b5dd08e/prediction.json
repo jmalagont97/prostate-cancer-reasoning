@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_2ef22b5dd08e",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend biopsy is supported by the persistent upward PSA trajectory (9.3 ng/mL) and the PI-RADS 4 finding, which are weighted as important factors. Although the Digital Rectal Exam was normal and PSAD is low (0.30), the combination of these metrics necessitates further investigation. Therefore, a prostate biopsy is recommended for this patient."
+}

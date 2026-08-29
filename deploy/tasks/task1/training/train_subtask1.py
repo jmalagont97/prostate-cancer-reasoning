@@ -30,10 +30,10 @@ def main():
     print(f"Total cohort size: {len(df_gt)}, Labeled cases: {labeled_count}")
 
     model = Subtask1LateFusionEnsemble(
-        weight_tab=0.55,
-        weight_mri=0.20,
-        weight_txt=0.25,
-        decision_threshold=0.60
+        weight_tab=0.15,
+        weight_mri=0.05,
+        weight_txt=0.80,
+        decision_threshold=0.56
     )
 
     print("Fitting canonical late fusion ensemble on all labeled cases...")

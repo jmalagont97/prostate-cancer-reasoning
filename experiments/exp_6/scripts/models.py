@@ -85,6 +85,8 @@ class Exp12FeatureBuilder:
             cont_cols = ["psa", "psad", "vol", "age", "cspca"]
 
         frame = df_tab[["pid"] + cont_cols].copy()
+        frame["bx"] = pd.to_numeric(df_tab["bx"], errors="coerce")
+        frame["bx_missing"] = df_tab["bx"].isna().astype(float)
         frame["pirads"] = df_tab["pirads"].values
 
         dre_map = {"Normal": 0, "Abnormal": 1, "Nodus": 2, "Suspicious": 3}

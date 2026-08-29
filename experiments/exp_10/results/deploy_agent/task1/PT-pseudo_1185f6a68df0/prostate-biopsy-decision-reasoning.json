@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is strongly supported by the PI-RADS 5 finding and the rising PSA of 7.0 ng/mL, which are decisive factors. Although the DRE was normal, the PSAD of 0.329 and the high csPCa risk prior of 0.8321669 necessitate further tissue evaluation. Therefore, a prostate biopsy is recommended for this patient."
+}

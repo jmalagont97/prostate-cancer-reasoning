@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_9187d18278f9",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the low PSA of 0.2 ng/mL, the PI-RADS score of 4 and the patient's age of 75 place this case in a category requiring further investigation. The PI-RADS score is decisive, indicating a lesion that warrants biopsy to exclude clinically significant prostate cancer. Therefore, a prostate biopsy is recommended to evaluate the suspicious area."
+}

@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "decisive",
+        "pirads": "decisive",
+        "fh": "noted",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to biopsy is supported by multiple high-risk factors, including a PSA of 4.3 ng/mL and a PSAD of 0.182, which are weighted as decisive. Furthermore, the physical examination finding of a DRE nodus and a PI-RADS 4 lesion necessitate further tissue diagnosis. Therefore, a prostate biopsy is recommended to confirm the presence and extent of prostate cancer."
+}

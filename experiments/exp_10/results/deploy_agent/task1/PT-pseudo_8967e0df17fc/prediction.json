@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_8967e0df17fc",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "Despite the patient's climbing PSA of 6.2 ng/mL and a prior positive biopsy, the decision is no because the imaging features suggest a lower risk profile, specifically PI-RADS 4 and a PSAD of 0.269. The normal DRE and stable prostate volume of 23.05 mL, combined with the prior positive biopsy, support deferring further immediate invasive testing. Therefore, a prostate biopsy is not recommended at this time."
+}

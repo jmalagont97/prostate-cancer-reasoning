@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is strongly supported by multiple high-risk factors, including a PSA of 5.2 ng/mL and a PI-RADS 5 lesion identified on MRI. Furthermore, the patient has a history of a positive prior biopsy, which necessitates further tissue evaluation. Given these concerning findings, a prostate biopsy is warranted to assess the extent of the disease. Therefore, a prostate biopsy is recommended for this patient."
+}

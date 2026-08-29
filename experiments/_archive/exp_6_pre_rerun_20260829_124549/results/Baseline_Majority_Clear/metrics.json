@@ -1,0 +1,14 @@
+{
+  "condition": "Baseline_Majority_Clear",
+  "macro_f1_mean": 0.2528735632183909,
+  "macro_f1_std": 1.1102230246251565e-16,
+  "s_conf_mean": 0.722222222222222,
+  "s_conf_std": 2.220446049250313e-16,
+  "ordinal_distance_mean": 0.2777777777777778,
+  "ordinal_distance_std": 0.0,
+  "moe_abs_mean": 0.5,
+  "moe_abs_std": 0.0,
+  "accuracy_mean": 0.611111111111111,
+  "accuracy_std": 1.1102230246251565e-16,
+  "n_folds": 30
+}

@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_4a2fa7bc3595",
+    "task": 1,
+    "biopsy_decision": false,
+    "confidence": "uncertain",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to avoid a biopsy is supported by the patient's history of a prior positive biopsy and the current clinical context. Although the PI-RADS score is 5 and a DRE nodus is present, the overall risk profile, considering the PSA of 6.9 ng/mL and the PSAD of 0.257, suggests deferral. Given the established history, further invasive testing is not recommended at this time."
+}

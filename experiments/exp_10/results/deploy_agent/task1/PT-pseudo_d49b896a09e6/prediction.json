@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_d49b896a09e6",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "borderline",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "noted",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "important",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The decision to recommend a biopsy is supported by the upward PSA trend and the history of a previously positive biopsy (Gleason 6). Although the Digital Rectal Examination was normal, the patient has multiple important risk factors, including a history of coronary artery disease and obesity, which warrants further investigation. Given the PI-RADS 4 score and the need to evaluate the progression of the disease, a confirmatory biopsy is indicated. Therefore, a prostate biopsy is recommended to further evaluate the prostate."
+}

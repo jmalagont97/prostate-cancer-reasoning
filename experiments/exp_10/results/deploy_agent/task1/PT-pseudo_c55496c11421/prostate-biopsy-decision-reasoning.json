@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "noted",
+        "vol": "important",
+        "psad": "not_used",
+        "dre": "noted",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite a PSA of 7.5 ng/mL, the decision is no because the patient has a history of a previously confirmed low-grade prostatic lesion and a prior positive biopsy (bx: decisive). The PI-RADS score is 4, and the physical examination is normal, indicating no acute concerns. Therefore, there are no immediate red flags to warrant further invasive biopsy in this patient."
+}

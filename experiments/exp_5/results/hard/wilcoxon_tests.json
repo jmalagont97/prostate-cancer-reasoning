@@ -2,9 +2,9 @@
   "C1_Tabular_KDM_vs_C0": {
     "test": "Wilcoxon Signed-Rank Test (Two-Sided)",
     "n_splits": 30,
-    "statistic": 29.5,
-    "p_value": 0.00020844682810268206,
-    "mean_difference": 0.09758978643748759,
+    "statistic": 68.0,
+    "p_value": 0.00122356113650154,
+    "mean_difference": 0.09950934220350056,
     "is_significant_alpha_0_05": true
   },
   "C2_MRI_KDM_vs_C0": {
@@ -26,17 +26,17 @@
   "C4_EqualFusion_vs_C0": {
     "test": "Wilcoxon Signed-Rank Test (Two-Sided)",
     "n_splits": 30,
-    "statistic": 82.0,
-    "p_value": 0.001947278601742354,
-    "mean_difference": 0.09287741042713554,
+    "statistic": 92.5,
+    "p_value": 0.00396972127146574,
+    "mean_difference": 0.09905381958630333,
     "is_significant_alpha_0_05": true
   },
   "C5_OptimalFusion_vs_C0": {
     "test": "Wilcoxon Signed-Rank Test (Two-Sided)",
     "n_splits": 30,
-    "statistic": 11.0,
-    "p_value": 5.198579161140839e-06,
-    "mean_difference": 0.17516845398954736,
+    "statistic": 24.0,
+    "p_value": 4.556674307432444e-05,
+    "mean_difference": 0.16474089335908818,
     "is_significant_alpha_0_05": true
   }
 }

@@ -1,0 +1,26 @@
+{
+    "case_id": "PT-pseudo_67728e41a2fa",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "noted",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "important",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "A prostate biopsy is recommended due to the elevated PSA of 12.6 ng/mL and the PI-RADS 5 finding, which indicate a high likelihood of clinically significant disease. Although the patient has a prior positive biopsy, the persistent upward PSA trajectory necessitates further tissue evaluation. Therefore, a biopsy is warranted to assess the extent of the malignancy."
+}

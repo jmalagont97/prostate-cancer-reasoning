@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "decisive",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "noted",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "Despite the PI-RADS 5 finding, the decision is no because the PSAD is low (0.13) and the prior biopsy was negative, mitigating immediate need for intervention. The PSA of 8.0 ng/mL is noted, but the low PSAD and negative prior history suggest a low long-term risk of lethal prostate cancer. Therefore, a biopsy is not recommended at this time."
+}

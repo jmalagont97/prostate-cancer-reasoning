@@ -1,0 +1,23 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "decisive",
+        "pirads": "important",
+        "fh": "noted",
+        "comorbidity": "noted",
+        "bx": "decisive",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "family_history",
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend biopsy is strongly supported by the patient's clinical profile, specifically the PI-RADS 5 finding and the prior positive biopsy status. Given the PSA of 7.8 ng/mL and the palpable DRE nodus, these findings necessitate further investigation to assess the extent of the disease. Therefore, a prostate biopsy is recommended to guide definitive management."
+}

@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to avoid a new biopsy is supported by the patient's history of a prior positive biopsy and adherence to active surveillance protocols. Although the current PSA is 7.0 ng/mL and the PI-RADS is 5, the established history and stable clinical picture suggest deferring further invasive testing. Therefore, no prostate biopsy is recommended at this time."
+}

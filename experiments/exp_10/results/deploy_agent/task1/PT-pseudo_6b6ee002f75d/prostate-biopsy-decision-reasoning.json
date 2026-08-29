@@ -1,0 +1,22 @@
+{
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "noted",
+        "dre": "important",
+        "pirads": "important",
+        "fh": "not_used",
+        "comorbidity": "noted",
+        "bx": "important",
+        "cspca": "not_used"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "free_text": "The decision to recommend a biopsy is strongly supported by the patient's clinical presentation, specifically the elevated PSA of 6.22 ng/mL and the presence of a highly suspicious lesion indicated by PI-RADS 5. Furthermore, the physical examination finding of a DRE nodus, combined with the history of prior positive biopsies, necessitates tissue sampling for definitive diagnosis. Therefore, a prostate biopsy is recommended to evaluate the suspicious findings."
+}

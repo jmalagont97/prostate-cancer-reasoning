@@ -2,9 +2,9 @@
 
 **Experiment**: experiments/exp_2/  
 **Project**: prostate-cancer-reasoning  
-**Author**: Juan Sebastian Malagon Torres  
+**Author**: Juan Sebastian Malagón Torres  
 **Date**: 2026-08-22  
-**Status**: Approved
+**Status**: Updated — BX integration
 
 ---
 
@@ -20,7 +20,8 @@ Implement a robust, modular Python preprocessing pipeline (`experiments/exp_2/sc
 ## 2. Extraction & Transformation Modules
 - **Module 1: Tabular Parser (`extract_tabular`)**:
   - Ingests `structured-prompt.json`.
-  - Extracts numeric and categorical features (`age`, `psa`, `vol`, `psad`, `psav`, `psap`, `pirads`, `dre`, `cspca`, `ipss`, demographics, vitals parsed into `bp_sys`, `bp_dia`, `bmi`, `hr`, `smoking`, etc.).
+  - Extracts numeric and categorical features (`age`, `psa`, `vol`, `psad`, `psav`, `psap`, `pirads`, `dre`, `bx`, `cspca`, `ipss`, demographics, vitals parsed into `bp_sys`, `bp_dia`, `bmi`, `hr`, `smoking`, etc.).
+  - Reads `bx` exclusively from `structured-prompt.json`; normalizes `Positive` → `1`, `Negative` → `0`, and raw `None` → `np.nan`.
   - Handles missing entries by populating with IEEE 754 `np.nan`.
 - **Module 2: Clinical Narrative Parser (`extract_texts`)**:
   - Ingests `structured-prompt.json` exclusively (ignoring `clinical-data.json`).
@@ -39,5 +40,6 @@ Implement a robust, modular Python preprocessing pipeline (`experiments/exp_2/sc
 ## 3. Verification & Quality Gates
 - **Row count check**: Exactly 195 rows per CSV.
 - **Bijective Key Alignment**: Exact match of sorted `pid` across all 4 files.
-- **Nullity & Dimensionality Check**: `(195, 1024)` matrix for embeddings, exactly 1 row with `NaN`s (`PT-pseudo_0bd72f429a8b`), exactly 91 non-null labels in ground truth.
-- **Zero Leakage Check**: Automated assert confirming zero presence of biopsy/Gleason derived tokens or EHR tool-gated files in input matrices.
+- **Nullity & Dimensionality Check**: `(195, 1024)` matrix for embeddings, five rows with `NaN`s (one explicitly excluded case plus four missing raw representation files), exactly 91 non-null labels in ground truth.
+- **BX Check**: `bx` is restricted to `{0, 1, NaN}` after normalization and all 195 cases must retain a row.
+- **Leakage Check**: Tool-gated clinical-data files are not read by the preprocessor. Text fields remain those supplied by `structured-prompt.json`.

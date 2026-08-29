@@ -1,33 +1,33 @@
 {
   "condition_id": "C1_clf_Fuzzy_ICI",
   "name": "Composite Fuzzy ICI (Balanced Classifier)",
-  "mean_macro_f1": 0.2214941573750745,
-  "std_macro_f1": 0.09219743609935684,
-  "mean_accuracy": 0.2907407407407407,
-  "std_accuracy": 0.11642771856907226,
-  "mean_moe_abs": 0.448148148148148,
-  "std_moe_abs": 0.08817643309949591,
-  "mean_s_conf": 0.5064814814814814,
-  "std_s_conf": 0.11935047834959081,
-  "mean_rec_uncertain": 0.3555555555555555,
-  "mean_rec_borderline": 0.36666666666666664,
-  "mean_rec_clear": 0.24545454545454545,
-  "spearman_rho": 0.05183059340949761,
-  "spearman_p": 0.22918866069930238,
+  "mean_macro_f1": 0.30018968628359755,
+  "std_macro_f1": 0.12269767834640612,
+  "mean_accuracy": 0.3388888888888889,
+  "std_accuracy": 0.14020449700041743,
+  "mean_moe_abs": 0.3862794612794612,
+  "std_moe_abs": 0.09495056797504409,
+  "mean_s_conf": 0.5296296296296296,
+  "std_s_conf": 0.11738361475363368,
+  "mean_rec_uncertain": 0.5333333333333333,
+  "mean_rec_borderline": 0.45,
+  "mean_rec_clear": 0.24545454545454543,
+  "spearman_rho": 0.05276524776462981,
+  "spearman_p": 0.22088994991770322,
   "confusion_matrix_pooled": [
     [
-      32,
-      33,
-      25
+      48,
+      31,
+      11
     ],
     [
-      49,
-      44,
-      27
+      46,
+      54,
+      20
     ],
     [
-      125,
-      124,
+      140,
+      109,
       81
     ]
   ]

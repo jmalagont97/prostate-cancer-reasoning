@@ -1,0 +1,25 @@
+{
+    "case_id": "PT-pseudo_52213169f58b",
+    "task": 1,
+    "biopsy_decision": true,
+    "confidence": "clear",
+    "variable_weights": {
+        "age": "important",
+        "psa": "important",
+        "vol": "noted",
+        "psad": "decisive",
+        "dre": "noted",
+        "pirads": "decisive",
+        "fh": "not_used",
+        "comorbidity": "not_used",
+        "bx": "noted",
+        "cspca": "important"
+    },
+    "reveal_sequence": [
+        "previous_notes",
+        "laboratory_results",
+        "radiology_report",
+        "pathology_report"
+    ],
+    "reasoning": "The recommendation for biopsy is strongly supported by the high PSA of 5.5 ng/mL and the PI-RADS 5 classification, which are decisive factors. Furthermore, the PSAD of 0.136 indicates significant suspicion, warranting tissue sampling despite a normal Digital Rectal Exam. Therefore, a prostate biopsy is recommended to evaluate the suspicious lesion."
+}
