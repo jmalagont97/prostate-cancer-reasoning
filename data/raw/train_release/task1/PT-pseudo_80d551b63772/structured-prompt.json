@@ -11,6 +11,7 @@
   "psap": 1.5,
   "vol": 32.0,
   "dre": "Normal",
+  "bx": "None",
   "cspca": 0.6872062,
   "medhx": "Type 2 diabetes, Hypercholesterolaemia, COPD, Osteoarthritis, Benign prostatic hyperplasia",
   "meds": "empagliflozin, simvastatin, rosuvastatin, salbutamol PRN, paracetamol PRN",
