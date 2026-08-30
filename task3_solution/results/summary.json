@@ -64,12 +64,14 @@
   "known_limitations": [
     "scikit-survival (RSF / GBS) unavailable in source environment - no C++ compiler toolchain",
     "Cox penalizer swept on the pre-embedding feature set, carried forward unchanged after both the embedding fusion and the percentile fix - not re-swept on the final pipeline",
-    "radiology_report, previous_notes, family_history text never extracted into features",
     "reasoning text is template-generated, not LLM-authored - no LLM available in source environment",
     "no real GC/Docker submission packaging built",
-    "no fine sweep between p=0.85 and p=0.95 to confirm 0.90 is the true local optimum",
-    "percentile fix validated only for cox_p03_prostatectomy_pca5, not extended to other model-registry variants",
-    "event classifier (exp_7) not bootstrap-tested for significance - doesn't touch the scored ranking_score, and classification accuracy at n=75/19-events is inherently noisier than a ranking statistic"
+    "percentile fix validated only for cox_p03_prostatectomy_pca5, not extended to other model-registry variants"
+  ],
+  "closed_limitations": [
+    "no fine sweep between p=0.85 and p=0.95 to confirm 0.90 is the true local optimum -> CLOSED by exp_8: confirmed, p=0.90 is the best point on a finer grid, significant against 7/10 neighbors, one honest tie with p=0.92",
+    "event classifier (exp_7) not bootstrap-tested for significance -> CLOSED by exp_9: significant against the trivial baseline (95% CI [+0.160,+0.383]), but the specific (horizon,threshold) choice is a best estimate, not a proven optimum against its 4 nearest competitors (all CIs cross zero)",
+    "radiology_report, previous_notes, family_history text never extracted into features -> CLOSED by exp_10: tried, refuted - every variant scored below the 13-feature baseline (0.8765); psa_density correlates 0.969 with the already-included psa"
   ],
   "exp_7_output_contract_fix": {
     "correction": "Task3Output requires an `event` field (0/1 BCR status) - the reference baseline's schema.py, previously treated as the full submission contract, was an incomplete reference used only for an internal LLM form-fill step. Confirmed against the org's task-3 webpage and the reference agent's real run.py output-writing code.",
@@ -99,5 +101,59 @@
     "mean_event_score_local_eval": 0.800,
     "mean_event_score_note": "matches classification_report.accuracy exactly - confirms end-to-end wiring against the real evaluate.py functions, not just the isolated sweep script",
     "audit": "75/75 schema-valid on both production and LOOCV paths after the fix, including the new field's range check"
+  },
+  "exp_8_fine_percentile_sweep": {
+    "question": "is p=0.90's coarse-grid peak (0.85/0.90/0.95 = 0.8566/0.8765/0.8491) a genuine local optimum or LOOCV noise on a flat region?",
+    "fine_grid_c_index": {
+      "0.85": 0.8566, "0.86": 0.8549, "0.87": 0.8619, "0.88": 0.8584, "0.89": 0.8584,
+      "0.90": 0.8765, "0.91": 0.8575, "0.92": 0.8659, "0.93": 0.8412, "0.94": 0.8363, "0.95": 0.8491
+    },
+    "best_p": 0.90,
+    "bootstrap_p90_vs_neighbors": {
+      "0.85": {"ci_95": [0.0042, 0.0390], "verdict": "significant"},
+      "0.86": {"ci_95": [0.0020, 0.0466], "verdict": "significant"},
+      "0.87": {"ci_95": [-0.0027, 0.0365], "verdict": "borderline"},
+      "0.88": {"ci_95": [0.0033, 0.0402], "verdict": "significant"},
+      "0.89": {"ci_95": [0.0038, 0.0395], "verdict": "significant"},
+      "0.91": {"ci_95": [0.0031, 0.0406], "verdict": "significant"},
+      "0.92": {"ci_95": [-0.0076, 0.0302], "verdict": "not significant", "note": "closest competitor, not statistically distinguishable from p=0.90"},
+      "0.93": {"ci_95": [0.0092, 0.0699], "verdict": "significant"},
+      "0.94": {"ci_95": [0.0089, 0.0815], "verdict": "significant"},
+      "0.95": {"ci_95": [-0.0016, 0.0574], "verdict": "borderline"}
+    },
+    "verdict": "confirmed - p=0.90 is the best point on a finer grid and significantly beats 7/10 neighbors; one honest tie with p=0.92. No change to promoted config.",
+    "report": "experiments/exp_8_fine_percentile_sweep/summary.md"
+  },
+  "exp_9_event_classifier_bootstrap": {
+    "question": "is exp_7's event classifier (balanced accuracy 0.779) distinguishable from a trivial baseline, and is its specific (horizon,threshold) choice a real standout among grid competitors?",
+    "primary_vs_trivial_baseline": {
+      "winner_balanced_accuracy": 0.779, "trivial_baseline_balanced_accuracy": 0.500,
+      "mean_diff": 0.2775, "ci_95": [0.1600, 0.3833], "frac_favoring_winner": 1.000,
+      "verdict": "significant"
+    },
+    "secondary_vs_nearest_competitors": {
+      "h24_thr0.7": {"balanced_accuracy": 0.7274, "ci_95": [-0.0403, 0.1664], "verdict": "not significant"},
+      "h36_thr0.7": {"balanced_accuracy": 0.7274, "ci_95": [-0.0456, 0.1627], "verdict": "not significant"},
+      "h60_thr0.6": {"balanced_accuracy": 0.7274, "ci_95": [-0.0526, 0.1577], "verdict": "not significant"},
+      "h110_thr0.6": {"balanced_accuracy": 0.7444, "ci_95": [-0.0283, 0.1165], "verdict": "not significant"}
+    },
+    "verdict": "mixed, honestly reported - overall skill over baseline is decisively significant; the specific (horizon=60, threshold=0.7) choice is a best point estimate, not a proven optimum against its 4 nearest neighbors. No change to promoted config (60mo also has independent clinical justification).",
+    "report": "experiments/exp_9_event_classifier_bootstrap/summary.md"
+  },
+  "exp_10_remaining_text_sections": {
+    "question": "does extracting radiology_report/previous_notes/family_history (the 3 gated text sections never used) beat the 13-feature baseline?",
+    "new_features": {
+      "radiology": ["prostate_volume_cc", "psa_density", "pirads", "ai_prob_cspca"],
+      "prior_notes": ["has_comorbidities", "cci"],
+      "family_history": ["family_history_present"]
+    },
+    "on_5ari_excluded": "43/44 non-null cases are 'not on' - the single positive case (T3-057) crashes lifelines' Newton-Raphson step when LOOCV holds it out (zero-variance training-fold column); same category of problem as active_treatment_flag in exp_3",
+    "sweep_c_index": {
+      "baseline_18feat": 0.8765, "plus_radiology": 0.8646, "plus_prior_notes": 0.8686,
+      "plus_family_history": 0.8743, "plus_all_combined": 0.8642
+    },
+    "diagnostic": "psa_density correlates 0.969 with the already-included psa - near-redundant",
+    "verdict": "refuted - baseline wins outright against every variant, no bootstrap needed. No change to promoted config; extraction code kept (documented, additive, unused).",
+    "report": "experiments/exp_10_remaining_text_sections/summary.md"
   }
 }

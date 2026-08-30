@@ -67,6 +67,13 @@ wins on **both** axes: C-index 0.8575→0.8765, event=1 bias +40.1mo→**−9.7m
 
 ![C-index as a function of the prediction percentile p](charts/percentile_sweep.svg)
 
+**Confirmed, not left an open question (exp_8)**: that coarse grid's peak (0.85→0.90→0.95:
+0.8566→0.8765→0.8491) could have been a real local optimum or LOOCV noise on a flat region. A
+finer grid (step 0.01) plus a paired bootstrap against every neighbor found p=0.90 is still the
+best point and significantly beats 7 of its 10 neighbors — one honest caveat: its closest
+competitor, p=0.92 (0.8659), isn't statistically distinguishable from it (95% CI [−0.0076,
++0.0302]). No change to the promoted config. See `experiments/exp_8_fine_percentile_sweep/`.
+
 ### Inputs
 
 | # | Field | Source | Meaning |
@@ -111,6 +118,14 @@ cleared (10 over-flagged). The model leans toward over-flagging risk rather than
 recurrence — the safer failure mode for a clinical screening context, and a direct consequence of
 optimizing for balanced accuracy under this cohort's 75/25 class split.
 
+**Bootstrap-tested, mixed result honestly reported (exp_9)**: the classifier's overall skill over
+a trivial "always predict no BCR" baseline is decisively significant — 95% CI [+0.160, +0.383],
+100% of resamples favor it. But the *specific* choice of horizon=60/threshold=0.7 is **not**
+statistically distinguishable from its four nearest grid competitors (all 95% CIs cross zero) —
+a best point estimate, not a proven optimum, echoing the Cox-penalizer finding in exp_4. No change
+to the promoted config — horizon=60 months also carries an independent clinical justification (the
+5-year BCR benchmark) the alternatives don't. See `experiments/exp_9_event_classifier_bootstrap/`.
+
 ### Why prostatectomy-slide, specifically
 
 ![C-index by embedding fusion source](charts/embedding_source.svg)
@@ -148,7 +163,10 @@ task3_solution/
 │   ├── exp_4_model_sweep_and_agent/      — T3.4/T3.5: agent built, Cox penalizer swept
 │   ├── exp_5_embedding_fusion/           — T3.2/T3.3: 0.766 → 0.858, the embedding win
 │   ├── exp_6_calibration_check/          — the +40mo bias found and fixed: 0.858 → 0.877
-│   └── exp_7_output_contract_fix/        — event field added; balanced accuracy 0.779
+│   ├── exp_7_output_contract_fix/        — event field added; balanced accuracy 0.779
+│   ├── exp_8_fine_percentile_sweep/      — p=0.90 confirmed as a genuine local optimum
+│   ├── exp_9_event_classifier_bootstrap/ — classifier vs. baseline: significant; vs. neighbors: not
+│   └── exp_10_remaining_text_sections/   — radiology/notes/family-history tried, refuted
 └── results/
     └── summary.json                — key metrics, machine-readable
 ```
@@ -168,18 +186,29 @@ The experiment write-ups and `equations.md` are fully self-contained and readabl
 - MRI and biopsy-slide embeddings were tried as the fusion source and both *hurt* performance
   (0.752 and 0.733 respectively) — only the prostatectomy-slide embedding won.
 - Radiology-report, previous-notes, and family-history text (three of the five gated clinical-data
-  sections) were never extracted into features at all — untried, not refuted.
+  sections) were extracted and tested (exp_10) — **refuted**, not untried: every variant scored
+  below the 13-feature baseline (best: family-history-only at 0.8743 vs. baseline 0.8765).
+  `psa_density` correlates 0.969 with the already-included `psa` — near-redundant, part of why the
+  radiology group dragged. Extraction code kept, not deleted; nothing promoted.
 - The Cox penalizer (λ=0.3) was swept on the pre-embedding feature set and carried forward
-  unchanged after the embedding was added — not re-swept on the final feature set.
+  unchanged after the embedding was added — not re-swept on the final feature set. (Still open —
+  exp_8/exp_9 closed the percentile and event-classifier equivalents of this same question; the
+  penalizer itself hasn't been re-checked yet.)
 - A diagnostic-metric paradox was found and explained, not hidden: `mean_time_score` (not part of
   the scored `ranking_score`) actually *drops* under the calibration fix, because that metric's own
   formula rewards blind optimism on censored cases more than it credits accuracy on known-truth
   ones — see `experiments/exp_6_calibration_check/`.
-- The `event` output field (added in exp_7) was not held to the same statistical bar as
-  `ranking_score` gains elsewhere in this project — no bootstrap significance test on the balanced-
-  accuracy result. It's a secondary, non-scored diagnostic addition, and classification accuracy at
-  n=75/19-events is inherently noisier than a ranking metric.
+- The percentile point estimate (p=0.90) was checked with a fine sweep (exp_8): confirmed as the
+  best point on a 0.01-step grid, significantly ahead of 7 of 10 neighbors — one caveat, p=0.92
+  isn't statistically distinguishable from it.
+- The `event` output field (added in exp_7) was bootstrap-tested (exp_9): decisively significant
+  against a trivial baseline, but the specific (horizon, threshold) choice is a best point
+  estimate, not a proven optimum against its nearest competitors.
+- The percentile fix (p=0.90) is still validated only for `cox_p03_prostatectomy_pca5` — not
+  extended to other model-registry variants.
 
 Full detail on all of the above is in `experiments/exp_4_model_sweep_and_agent/summary.md`,
 `experiments/exp_5_embedding_fusion/summary.md`, `experiments/exp_6_calibration_check/summary.md`,
-and `experiments/exp_7_output_contract_fix/summary.md`.
+`experiments/exp_7_output_contract_fix/summary.md`, `experiments/exp_8_fine_percentile_sweep/summary.md`,
+`experiments/exp_9_event_classifier_bootstrap/summary.md`, and
+`experiments/exp_10_remaining_text_sections/summary.md`.

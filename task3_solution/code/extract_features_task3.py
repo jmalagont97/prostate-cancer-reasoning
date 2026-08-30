@@ -1,19 +1,24 @@
 """Extract task3 engineered features: (1) a cleaned parse of the existing structured `dre` free
 text (Group B — it's not actually a clean category, see notebooks/task3_eda.ipynb §3's bar chart,
-which is dominated by near-unique long strings once you look past the top few), and (2) genuinely
+which is dominated by near-unique long strings once you look past the top few), (2) genuinely
 new post-surgical pathology findings parsed out of `surgical_pathology_report` free text (Group C) --
 ISUP grade group, pathological T-stage, extraprostatic extension, margin status, seminal-vesicle
-invasion, lymphovascular invasion, and lymph-node status.
+invasion, lymphovascular invasion, and lymph-node status, and (3) the three previously-untouched
+gated text sections -- `radiology_report`, `previous_notes`, `family_history` (Group D, exp_10) --
+parsed the same way, additively, into the same file.
 
-Both text sources were confirmed in notebooks/task3_eda.ipynb §5 (and the follow-up scan below) to
-be a small, closed, fully-templated vocabulary -- not free prose -- so a plain regex/keyword parse
-gets 100% coverage with no NLP model needed. Every pattern here was validated against the *exact*
-set of distinct phrasings actually present in the corpus (not guessed), the same way task1's
-extract_features_task1.py's parsers were built.
+All four text sources were confirmed to be a small, closed, fully-templated vocabulary -- not free
+prose -- so a plain regex/keyword parse gets full (or near-full) coverage with no NLP model needed.
+Group B/C were confirmed in notebooks/task3_eda.ipynb §5; Group D was confirmed the same way, by a
+direct corpus scan documented in experiments/exp_10/DESIGN.md (74/75 radiology reports match one
+template exactly, one has two PI-RADS scores for two lesions -- handled by taking the max, the
+clinically standard convention for multifocal disease; previous_notes has 1/75 outlier row outside
+the closed vocabulary, handled by keeping only the sub-patterns that still parse from it).
 
 Reads:
   data/processed/task3/structured.csv       (Group B source: dre, active_treatment_prior_to_surgery)
-  data/processed/task3/clinical_notes.jsonl (Group C source: surgical_pathology_report)
+  data/processed/task3/clinical_notes.jsonl (Group C/D source: surgical_pathology_report,
+                                              radiology_report, previous_notes, family_history)
 
 Writes:
   data/processed/task3/engineered_features.csv  (case_id + all new columns, additive)
@@ -147,6 +152,81 @@ def parse_surgical_pathology(text):
     return out
 
 
+# --- Group D (exp_10): radiology_report, previous_notes, family_history ------------------------
+# radiology_report: always present (75/75), one closed template; 74/75 match exactly, 1 row
+# (multifocal disease) reports two PI-RADS scores -- handled by taking the max (worst lesion, the
+# standard clinical convention), confirmed by direct corpus scan.
+RAD_RE = re.compile(
+    r"Prostate volume: ([\d.]+) cc\. PSA density: ([\d.]+) ng/mL/cc\. PI-RADS: ([\d, ]+)\. "
+    r"AI model-predicted probability of clinically significant prostate cancer \([^)]*\): ([\d.]+)\."
+)
+
+
+def parse_radiology(text):
+    if not text:
+        return {"prostate_volume_cc": None, "psa_density": None, "pirads": None, "ai_prob_cspca": None}
+    m = RAD_RE.search(text)
+    if not m:
+        return {"prostate_volume_cc": None, "psa_density": None, "pirads": None, "ai_prob_cspca": None}
+    pirads_vals = [int(x) for x in re.findall(r"\d+", m.group(3))]
+    return {
+        "prostate_volume_cc": float(m.group(1)),
+        "psa_density": float(m.group(2)),
+        "pirads": float(max(pirads_vals)),
+        "ai_prob_cspca": float(m.group(4)),
+    }
+
+
+# previous_notes: 30/75 missing entirely (no prior-history note recorded at all -- a real
+# missingness, not an error). Of the 45 present, 44 mention the 5-ARI line; 1 outlier row (smoking
+# medication instead) still parses for the comorbidity sub-pattern. CCI is sparse even among
+# present notes (~19/75) -- left as a normal numeric column, median-imputed same as every other
+# NUMERIC_FEATURES column, not specially handled.
+ON_5ARI_RE = re.compile(r"The patient is (not on|on) 5-ARI medication")
+COMORBID_RE = re.compile(r"No relevant comorbidities recorded|Relevant comorbidities include")
+CCI_RE = re.compile(r"Charlson Comorbidity Index \(CCI\) of (\d+)")
+
+
+def parse_previous_notes(text):
+    if not text:
+        return {"on_5ari": None, "has_comorbidities": None, "cci": None}
+    m = ON_5ARI_RE.search(text)
+    on_5ari = {"on": 1.0, "not on": 0.0}.get(m.group(1)) if m else None
+    m = COMORBID_RE.search(text)
+    has_comorbidities = (1.0 if m and m.group(0).startswith("Relevant") else
+                          0.0 if m else None)
+    m = CCI_RE.search(text)
+    cci = float(m.group(1)) if m else None
+    return {"on_5ari": on_5ari, "has_comorbidities": has_comorbidities, "cci": cci}
+
+
+# family_history: fully closed vocabulary, 4 templates cover all 75 cases (52 non-missing + 23
+# raw-missing). "unknown" (patient/family history not known) is kept as None alongside raw
+# missing, same convention as the rest of this project's missingness handling (task1's
+# dre_not_done/pirads_na, this file's ln_assessed/ln_positive) -- both mean "no usable signal
+# here," not two different signals worth separating.
+FAMHIST_RE = re.compile(
+    r"There is a family history of prostate or breast cancer|"
+    r"There is no family history of prostate or breast cancer|"
+    r"no known family history of prostate or breast cancer|"
+    r"Family history of prostate or breast cancer is unknown"
+)
+
+
+def parse_family_history(text):
+    if not text:
+        return {"family_history_present": None}
+    m = FAMHIST_RE.search(text)
+    if not m:
+        return {"family_history_present": None}
+    hit = m.group(0)
+    if hit.startswith("There is a family history"):
+        return {"family_history_present": 1.0}
+    if "no family history" in hit or "no known family history" in hit:
+        return {"family_history_present": 0.0}
+    return {"family_history_present": None}  # "...is unknown"
+
+
 def main():
     tdir = PROC_ROOT / TASK
     with open(tdir / "structured.csv", newline="", encoding="utf-8") as f:
@@ -166,7 +246,11 @@ def main():
         out["dre_nodule"] = nodule
         out["dre_ct_stage_ordinal"] = ct_stage
         out["active_treatment_flag"] = parse_active_treatment(srow.get("active_treatment_prior_to_surgery"))
-        out.update(parse_surgical_pathology(clinical.get(case_id, {}).get("surgical_pathology_report")))
+        crec = clinical.get(case_id, {})
+        out.update(parse_surgical_pathology(crec.get("surgical_pathology_report")))
+        out.update(parse_radiology(crec.get("radiology_report")))
+        out.update(parse_previous_notes(crec.get("previous_notes")))
+        out.update(parse_family_history(crec.get("family_history")))
         rows.append(out)
 
     fieldnames = ["case_id"] + [k for k in rows[0] if k != "case_id"]

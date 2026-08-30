@@ -280,10 +280,70 @@ files):
 
 Leans toward over-flagging risk (10 FP) rather than missing a real recurrence (5 FN) — the safer
 failure mode for a clinical screening context, and a direct consequence of optimizing balanced
-accuracy under this cohort's 75/25 class split. **Not bootstrap-tested for significance** — unlike
-`ranking_score` gains elsewhere in this project, `event` doesn't touch the scored metric, and
-classification accuracy at n=75/19-events is inherently noisier than a ranking statistic. See
-`experiments/exp_7_output_contract_fix/`.
+accuracy under this cohort's 75/25 class split. See `experiments/exp_7_output_contract_fix/`.
+(The "not bootstrap-tested" caveat here was closed by exp_9 — see §5.8.)
+
+### 5.7 Confirmed: p=0.90 is a genuine local optimum, not LOOCV noise (exp_8)
+
+§5.5's coarse grid {…, 0.85, 0.90, 0.95} scored 0.8566 → 0.8765 → 0.8491 — a dip-then-peak-then-dip
+shape spaced 0.05 apart, plausible as a real optimum but also exactly what LOOCV noise on n=75
+could produce over a flat region. Reran at step 0.01 across the same [0.85, 0.95] window, same
+model, same protocol:
+
+| p | .85 | .86 | .87 | .88 | .89 | **.90** | .91 | .92 | .93 | .94 | .95 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| C-index | .8566 | .8549 | .8619 | .8584 | .8584 | **.8765** | .8575 | .8659 | .8412 | .8363 | .8491 |
+
+p=0.90 is still the best point on the finer grid. A paired bootstrap (2,000 resamples) of p=0.90
+against every other grid point found it **significantly** beats 7 of the 10 — the two exceptions:
+p=0.87 and p=0.95 land borderline, and its closest point-estimate competitor, **p=0.92 (0.8659), is
+not statistically distinguishable from it** (95% CI [−0.0076, +0.0302]). Read honestly: a genuine
+standout against most of the grid, not a razor-sharp single winner. No change to the promoted
+config. See `experiments/exp_8_fine_percentile_sweep/`.
+
+### 5.8 Bootstrap-testing the event classifier (exp_9)
+
+§5.6's winner (horizon=60, threshold=0.7, balanced accuracy 0.779) had never been bootstrap-tested
+against the trivial "always predict 0" baseline (0.500), unlike every `ranking_score` gain
+elsewhere in this project. Two paired-bootstrap questions, reusing the exact LOOCV `S(h|x)`
+computation, no new model fit:
+
+**Primary — winner vs. trivial baseline**: mean diff +0.278, 95% CI **[+0.160, +0.383]**, 100% of
+resamples favor the winner. Decisively significant — the classifier's overall skill is real, not a
+lucky LOOCV split.
+
+**Secondary — winner vs. its four nearest grid competitors** (h=24 or 36 @ thr=0.7, both 0.727;
+h=60 @ thr=0.6, 0.727; h=110 @ thr=0.6, 0.744): every comparison's 95% CI crosses zero (81.8–85.4%
+of resamples favor the winner, none clearing significance). Read honestly: the specific
+(horizon=60, threshold=0.7) choice is the best point estimate, **not a statistically proven
+optimum** against its neighbors — the same pattern exp_4 found for the Cox penalizer. No change to
+the promoted config — horizon=60 also carries an independent clinical justification (the 5-year BCR
+benchmark) its statistical near-ties don't. See `experiments/exp_9_event_classifier_bootstrap/`.
+
+### 5.9 The remaining gated text sections — tried, refuted (exp_10)
+
+`radiology_report`, `previous_notes`, and `family_history` (3 of the 5 gated clinical-data
+sections) sat untried since exp_3. Extracted 8 new candidate features (closed-vocabulary regex,
+same rigor as §3.3): `prostate_volume_cc`, `psa_density`, `pirads`, `ai_prob_cspca` (radiology,
+75/75 coverage); `has_comorbidities`, `cci` (prior notes, 30/75 and 19/75); `family_history_present`
+(35/75). `on_5ari` was extracted but excluded from testing: 43 of 44 non-null cases are "not on" —
+the single positive case (T3-057) crashes lifelines' Newton-Raphson step whenever LOOCV holds it
+out (zero-variance column in the training fold), the same category of problem §3.2's
+`active_treatment_flag` hit.
+
+| Variant | # features | LOOCV C-index |
+|---|---|---|
+| **Baseline (promoted)** | 13 | **0.8765** |
+| + radiology | 17 | 0.8646 |
+| + prior notes | 15 | 0.8686 |
+| + family history | 14 | 0.8743 |
+| + all three combined | 20 | 0.8642 |
+
+The baseline wins outright against every variant — no bootstrap needed (nothing beat it on the
+point estimate). Diagnosed, not left a mystery: `psa_density` correlates **0.969** with the
+already-included `psa` — near-redundant, part of why the radiology group dragged. No change to the
+promoted config; the extraction code and CSV columns are kept (documented, additive, unused). See
+`experiments/exp_10_remaining_text_sections/`.
 
 ## 6. Output
 
@@ -308,13 +368,18 @@ new: {"case_id": "T3-001", "months_to_recurrence": 1.62, "event": 1, "reasoning"
 - `scikit-survival` (§5.2) blocked on a missing build toolchain — not a modeling decision.
 - The Cox penalizer (§5.1) was swept on the pre-embedding feature set and carried forward unchanged
   after both the embedding fusion (§5.3) and the percentile fix (§5.5) — not re-swept on the final
-  pipeline.
-- `radiology_report`, `previous_notes`, and `family_history` (3 of the 5 gated clinical-data
-  sections) were never extracted into features — untried, not tested and refuted.
-- No fine sweep between p=0.85 and p=0.95 (§5.5) to confirm 0.90 is the true local optimum — the
-  coarse sweep shows a slight dip at 0.85 before the 0.90 peak, suggesting some LOOCV noise rather
-  than a perfectly smooth curve.
+  pipeline. (exp_8/exp_9 closed the analogous open questions for the percentile and event-classifier
+  parameters; the penalizer itself hasn't been re-checked yet.)
 - The percentile fix (§5.5) was validated only for this specific (penalizer, embedding) combination
   — not extended to the other model-family variants in the code registry.
-- The `event` classifier (§5.6) was not bootstrap-tested for significance, unlike every
-  `ranking_score` gain in this project.
+- `scikit-survival`, GC/Docker submission packaging, and LLM-authored reasoning text (§6) remain
+  environment-level constraints, not modeling gaps — none are actionable without infra access this
+  project doesn't have.
+
+**Closed this round, replaced with checked findings rather than open questions:**
+- ~~No fine sweep between p=0.85 and p=0.95~~ → §5.7 (exp_8): confirmed, p=0.90 is the best point on
+  a finer grid, significant against 7/10 neighbors, one honest tie with p=0.92.
+- ~~`event` classifier not bootstrap-tested~~ → §5.8 (exp_9): significant against baseline, but the
+  specific (horizon, threshold) choice is a best estimate, not a proven optimum against neighbors.
+- ~~Radiology/notes/family-history text untried~~ → §5.9 (exp_10): tried, refuted — every variant
+  scored below the promoted baseline.
