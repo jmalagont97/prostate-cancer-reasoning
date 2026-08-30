@@ -1,0 +1,7 @@
+commit=17992202d82032d054705d2bc58349c5ce9cf90a
+status=M .discussion.md
+ M .logbook.md
+ M experiments/INDEX.md
+?? data/processed/task3/
+?? experiments/exp_11/
+?? experiments/exp_12/

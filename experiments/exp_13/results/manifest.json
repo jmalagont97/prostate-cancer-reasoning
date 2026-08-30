@@ -1,0 +1,39 @@
+{
+  "experiment": "exp_13",
+  "conditions": [
+    "clinical_pathology",
+    "prostatectomy_pca5",
+    "prostatectomy_pca5_p90",
+    "prostatectomy_pca5_mean"
+  ],
+  "n_cases": 75,
+  "n_events": 19,
+  "n_censored": 56,
+  "n_folds": 30,
+  "fold_shape": {
+    "train": 60,
+    "validation": 15,
+    "validation_events": 4
+  },
+  "configuration": {
+    "penalizer": 0.3,
+    "pca_components": 5,
+    "seed": 0
+  },
+  "data_hashes": {
+    "clinical_pathology_features.csv": "49417deb1f16736d1156c0764798e17bb84559b965d696f91ae79d5046d5de6a",
+    "survival_labels.csv": "cbd690e9b08fa9edccdc51f7134bed34e7123bea2e15ed32c099ae56b8577388",
+    "embeddings.npz": "c335c4bb0476f8548fca612471b4903c6b8f2b5aa76b21a5290a93f989e1999e",
+    "mccv_splits_30.csv": "aad2dcc638e5efc11572319ba231b02b07c2efc49d5e4fccf6e2f40f2cd711df"
+  },
+  "git": {
+    "commit": "17992202d82032d054705d2bc58349c5ce9cf90a",
+    "status": "M .discussion.md\n M .logbook.md\n M experiments/INDEX.md\n?? data/processed/task3/\n?? experiments/exp_11/\n?? experiments/exp_12/\n?? experiments/exp_13/"
+  },
+  "evaluation_entrypoint": "chimera_metrics.evaluate_task3_cohort",
+  "output_event_policy": {
+    "horizon_months": 60.0,
+    "survival_threshold": 0.7,
+    "rule": "predicted_event=1 if S(horizon|x) < threshold"
+  }
+}

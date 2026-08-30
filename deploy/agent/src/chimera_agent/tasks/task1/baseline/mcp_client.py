@@ -32,9 +32,10 @@ class SubtaskMCPClient:
         env["PYTHONPATH"] = src_dir + os.pathsep + str(repo_root) + os.pathsep + env.get("PYTHONPATH", "")
         env["SUBMODELS_DIR"] = str(Path(self.cfg.paths.submodels_dir).resolve())
 
+        server_module = str(getattr(self.cfg.mcp, "server_module", "chimera_agent.tasks.task1.baseline.mcp_server"))
         params = StdioServerParameters(
             command=sys.executable,
-            args=["-m", "chimera_agent.tasks.task1.baseline.mcp_server"],
+            args=["-m", server_module],
             env=env,
         )
         self._stdio_ctx = stdio_client(params)

@@ -22,14 +22,12 @@ def test_get_task1_runner_is_callable():
     assert r.__name__ == "run_task1"
 
 
-def test_task2_and_3_raise_not_implemented():
+def test_task2_and_3_runners_are_callable():
     import asyncio
 
     async def _check(tid):
         runner = get_task_runner(tid)
-        # runners exist but raise when executed
-        with pytest.raises(NotImplementedError, match="not yet implemented"):
-            await runner(cfg=None)  # type: ignore[arg-type]
+        assert callable(runner)
 
     asyncio.run(_check(2))
     asyncio.run(_check(3))

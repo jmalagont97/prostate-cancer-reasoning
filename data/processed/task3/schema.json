@@ -1,0 +1,50 @@
+{
+  "schema_version": "task3-preprocessed-v1",
+  "source": "data/raw/train_release/task3",
+  "case_id_order": "lexicographic",
+  "features": [
+    "age",
+    "psa",
+    "dre_abnormal",
+    "dre_bilateral",
+    "dre_nodule",
+    "dre_ct_stage_ordinal",
+    "active_treatment_flag",
+    "isup_grade_group",
+    "gleason_primary",
+    "gleason_secondary",
+    "gleason_sum",
+    "gleason_tertiary_present",
+    "pt_stage_ordinal",
+    "epe_present",
+    "margins_positive",
+    "svi_present",
+    "lvi_present",
+    "ln_assessed",
+    "ln_positive"
+  ],
+  "labels": [
+    "case_id",
+    "months_to_recurrence",
+    "event"
+  ],
+  "embeddings": {
+    "mri": [
+      75,
+      1,
+      1024
+    ],
+    "biopsy": [
+      75,
+      3,
+      960
+    ],
+    "prostatectomy": [
+      75,
+      3,
+      960
+    ]
+  },
+  "padding": "NaN; use *_counts to recover valid rows",
+  "pca_or_imputation_fitted": false
+}

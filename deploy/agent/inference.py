@@ -50,7 +50,17 @@ def stage_gc_input_if_needed(cfg) -> None:
     This helper creates /tmp/gc_cases so baseline loader works unmodified.
     """
     gc_flat = Path("/input/structured-prompt.json")
-    gc_task_dir = Path("/input/task1/agent_input")
+    task_id = int(getattr(cfg.agent, "task_id", 1) or 1)
+    if gc_flat.is_file():
+        try:
+            payload_task = json.loads(gc_flat.read_text()).get("task")
+            if payload_task is not None:
+                task_id = validate_task_id(int(payload_task))
+                cfg.agent.task_id = task_id
+        except (TypeError, ValueError, json.JSONDecodeError):
+            pass
+    task_slug = f"task{task_id}"
+    gc_task_dir = Path("/input") / task_slug / "agent_input"
     data_root = Path(str(cfg.paths.data_root))
     output_dir = Path(str(cfg.paths.output_dir))
 
@@ -68,7 +78,7 @@ def stage_gc_input_if_needed(cfg) -> None:
         except Exception:
             case_id = "case"
         tmp_root = Path("/tmp/gc_cases")
-        target_dir = tmp_root / "task1" / "agent_input" / case_id
+        target_dir = tmp_root / task_slug / "agent_input" / case_id
         target_dir.mkdir(parents=True, exist_ok=True)
         shutil.copy2(str(gc_flat), str(target_dir / "structured-prompt.json"))
         # Preserve companion files required by the trained predict_raw() models
@@ -95,7 +105,7 @@ def stage_gc_input_if_needed(cfg) -> None:
         has_cases = any((p / "structured-prompt.json").exists() for p in Path("/input").iterdir() if p.is_dir())
         if has_cases:
             tmp_root = Path("/tmp/gc_cases")
-            target_base = tmp_root / "task1" / "agent_input"
+            target_base = tmp_root / task_slug / "agent_input"
             target_base.mkdir(parents=True, exist_ok=True)
             for p in Path("/input").iterdir():
                 if p.is_dir() and (p / "structured-prompt.json").exists():
@@ -160,14 +170,12 @@ def main() -> None:
         cfg_tid = int(cfg.agent.task_id)  # type: ignore[attr-defined]
     except Exception:
         cfg_tid = None
-    if cfg_tid != task_id:
-        override_path = Path(args.config).parent / "tasks" / f"task{task_id}.yaml"
-        if override_path.is_file():
-            override = OmegaConf.load(str(override_path))
-            cfg = OmegaConf.merge(cfg, override)
-        cfg.agent.task_id = task_id  # type: ignore[attr-defined]
-        cfg.agent.tasks = [task_id]  # type: ignore[attr-defined]
-        # Re-stage if needed (no-op if already staged)
+    override_path = Path(args.config).parent / "tasks" / f"task{task_id}.yaml"
+    if override_path.is_file():
+        override = OmegaConf.load(str(override_path))
+        cfg = OmegaConf.merge(cfg, override)
+    cfg.agent.task_id = task_id  # type: ignore[attr-defined]
+    cfg.agent.tasks = [task_id]  # type: ignore[attr-defined]
 
     print(f"[inference] dispatching Task {task_id}", file=sys.stderr)
     runner = get_task_runner(task_id)

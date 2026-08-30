@@ -24,4 +24,4 @@ dependencies = [
 where = ["src"]
 
 [tool.setuptools.package-data]
-chimera_agent = ["../../templates/prompts/task1/*.j2"]
+chimera_agent = ["../../templates/prompts/task1/*.j2", "../../templates/prompts/task3/*.j2"]

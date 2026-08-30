@@ -1,0 +1,8 @@
+{
+  "n_cases": 75,
+  "n_events": 19,
+  "n_censored": 56,
+  "n_review": 0,
+  "source": "/home/jmalagont/Documents/prostate-cancer-reasoning/data/raw/train_release/task3",
+  "output": "/home/jmalagont/Documents/prostate-cancer-reasoning/data/processed/task3"
+}

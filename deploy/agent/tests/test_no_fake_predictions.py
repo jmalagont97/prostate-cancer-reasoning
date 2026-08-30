@@ -5,7 +5,7 @@ import pytest
 from chimera_agent.dispatch import get_task_runner
 
 
-@pytest.mark.parametrize("tid", [2, 3])
+@pytest.mark.parametrize("tid", [2])
 def test_task2_3_not_fake_predictions(tid):
     runner = get_task_runner(tid)
     # Must not return dummy JSON; must raise NotImplementedError when called

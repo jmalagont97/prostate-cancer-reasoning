@@ -1,0 +1,31 @@
+{
+  "model": "Task3CoxPCA5",
+  "n_cases": 75,
+  "n_events": 19,
+  "penalizer": 0.3,
+  "pca_components": 5,
+  "time_percentile": 0.9,
+  "event_horizon_months": 60.0,
+  "survival_threshold": 0.7,
+  "features": [
+    "age",
+    "psa",
+    "dre_abnormal",
+    "dre_bilateral",
+    "dre_nodule",
+    "dre_ct_stage_ordinal",
+    "active_treatment_flag",
+    "isup_grade_group",
+    "gleason_primary",
+    "gleason_secondary",
+    "gleason_sum",
+    "gleason_tertiary_present",
+    "pt_stage_ordinal",
+    "epe_present",
+    "margins_positive",
+    "svi_present",
+    "lvi_present",
+    "ln_assessed",
+    "ln_positive"
+  ]
+}
