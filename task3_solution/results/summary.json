@@ -68,6 +68,36 @@
     "reasoning text is template-generated, not LLM-authored - no LLM available in source environment",
     "no real GC/Docker submission packaging built",
     "no fine sweep between p=0.85 and p=0.95 to confirm 0.90 is the true local optimum",
-    "percentile fix validated only for cox_p03_prostatectomy_pca5, not extended to other model-registry variants"
-  ]
+    "percentile fix validated only for cox_p03_prostatectomy_pca5, not extended to other model-registry variants",
+    "event classifier (exp_7) not bootstrap-tested for significance - doesn't touch the scored ranking_score, and classification accuracy at n=75/19-events is inherently noisier than a ranking statistic"
+  ],
+  "exp_7_output_contract_fix": {
+    "correction": "Task3Output requires an `event` field (0/1 BCR status) - the reference baseline's schema.py, previously treated as the full submission contract, was an incomplete reference used only for an internal LLM form-fill step. Confirmed against the org's task-3 webpage and the reference agent's real run.py output-writing code.",
+    "method": "event = 1 if S(horizon|x) < threshold else 0, derived from the already-fitted survival curve - no second model",
+    "chosen_horizon_months": 60,
+    "chosen_threshold": 0.7,
+    "chosen_accuracy": 0.800,
+    "chosen_balanced_accuracy": 0.779,
+    "trivial_baseline_balanced_accuracy": 0.500,
+    "ranking_score_unchanged": 0.8765,
+    "ranking_score_unchanged_note": "confirmed, not assumed - concordance_index only ever reads ground-truth event, never predicted",
+    "horizon_threshold_sweep_accuracy_balanced": {
+      "12": {"0.3": [0.787, 0.579], "0.4": [0.773, 0.570], "0.5": [0.773, 0.587], "0.6": [0.813, 0.666], "0.7": [0.827, 0.693]},
+      "24": {"0.3": [0.773, 0.570], "0.4": [0.800, 0.640], "0.5": [0.827, 0.693], "0.6": [0.827, 0.693], "0.7": [0.827, 0.727]},
+      "36": {"0.3": [0.773, 0.570], "0.4": [0.800, 0.640], "0.5": [0.827, 0.693], "0.6": [0.827, 0.693], "0.7": [0.827, 0.727]},
+      "60": {"0.3": [0.800, 0.640], "0.4": [0.827, 0.693], "0.5": [0.827, 0.693], "0.6": [0.827, 0.727], "0.7": [0.800, 0.779]},
+      "110": {"0.3": [0.827, 0.693], "0.4": [0.827, 0.693], "0.5": [0.827, 0.727], "0.6": [0.800, 0.744], "0.7": [0.707, 0.734]}
+    },
+    "classification_report": {
+      "no_bcr_0": {"precision": 0.902, "recall": 0.821, "f1": 0.860, "support": 56},
+      "bcr_1": {"precision": 0.583, "recall": 0.737, "f1": 0.651, "support": 19},
+      "accuracy": 0.800,
+      "macro_avg": {"precision": 0.743, "recall": 0.779, "f1": 0.755, "support": 75},
+      "weighted_avg": {"precision": 0.821, "recall": 0.800, "f1": 0.807, "support": 75}
+    },
+    "confusion_matrix": {"tn": 46, "fp": 10, "fn": 5, "tp": 14},
+    "mean_event_score_local_eval": 0.800,
+    "mean_event_score_note": "matches classification_report.accuracy exactly - confirms end-to-end wiring against the real evaluate.py functions, not just the isolated sweep script",
+    "audit": "75/75 schema-valid on both production and LOOCV paths after the fix, including the new field's range check"
+  }
 }

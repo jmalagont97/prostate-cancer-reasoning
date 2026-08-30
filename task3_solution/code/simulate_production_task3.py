@@ -124,14 +124,15 @@ def simulate_one_case(case_id: str, verbose: bool = True) -> dict:
 
     log(f"\n[5/5] Predicting + validating against Task3Output schema...")
     months = float(model.predict_months(case_row)[0])
+    event = int(model.predict_event(case_row)[0])
     reasoning = build_free_text(case_row_dict, months)
-    output = Task3Output(case_id=case_id, months_to_recurrence=months, reasoning=reasoning)
+    output = Task3Output(case_id=case_id, months_to_recurrence=months, event=event, reasoning=reasoning)
     log(f"  Schema-validated OK.")
 
     case_dir = OUTPUT_DIR / case_id
     case_dir.mkdir(parents=True, exist_ok=True)
     with open(case_dir / "prostate-time-to-recurrence-or-last-follow-up.json", "w") as f:
-        json.dump({"months_to_recurrence": output.months_to_recurrence}, f)
+        json.dump({"months_to_recurrence": output.months_to_recurrence, "event": output.event}, f)
     with open(case_dir / "prostate-time-to-recurrence-or-last-follow-up-reasoning.json", "w") as f:
         json.dump(output.reasoning, f)
     log(f"  Wrote GC-shaped output files to {case_dir}")
@@ -141,7 +142,7 @@ def simulate_one_case(case_id: str, verbose: bool = True) -> dict:
     if gt_path.exists():
         gt = json.loads(gt_path.read_text())
 
-    return {"case_id": case_id, "months_to_recurrence": months, "reasoning": reasoning,
+    return {"case_id": case_id, "months_to_recurrence": months, "event": event, "reasoning": reasoning,
             "output_dir": case_dir, "extracted_features": case_row_dict, "ground_truth": gt}
 
 
@@ -156,6 +157,7 @@ def main():
 
     print(f"\n=== Result ===")
     print(f"  Predicted months_to_recurrence: {result['months_to_recurrence']:.2f}")
+    print(f"  Predicted event (BCR status): {result['event']}")
     print(f"  Reasoning: {result['reasoning']}")
 
     if result["ground_truth"]:

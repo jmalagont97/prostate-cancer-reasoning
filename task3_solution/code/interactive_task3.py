@@ -42,7 +42,8 @@ def print_case_result(case_id: str):
           f"ISUP={feats.get('isup_grade_group')}, pT-ordinal={feats.get('pt_stage_ordinal')}, "
           f"margins_positive={feats.get('margins_positive')}, EPE={feats.get('epe_present')}, "
           f"SVI={feats.get('svi_present')}")
-    print(f"\n  PREDICTED months_to_recurrence: {result['months_to_recurrence']:.2f}")
+    pred_event_str = "predicted BCR" if result["event"] == 1 else "predicted no BCR"
+    print(f"\n  PREDICTED months_to_recurrence: {result['months_to_recurrence']:.2f}  ({pred_event_str})")
     print(f"  Reasoning: {result['reasoning']}")
 
     gt = result["ground_truth"]

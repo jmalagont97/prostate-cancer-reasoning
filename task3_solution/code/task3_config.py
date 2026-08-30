@@ -44,6 +44,13 @@ CATEGORICAL_FEATURES: list[str] = []
 # correctly-ordered value.
 MAX_MONTHS_CAP = 330.0
 
+# Event (BCR status) prediction: horizon + S(t) threshold, swept under LOOCV against real
+# ground-truth labels (experiments/exp_7/) -- 60 months (5-year BCR, the standard clinical
+# benchmark) with threshold 0.7 gave the best balanced accuracy (0.779) among all combinations
+# tried, well clear of a trivial "always 0" baseline's 0.500.
+EVENT_HORIZON_MONTHS = 60.0
+EVENT_THRESHOLD = 0.7
+
 
 def build_preprocessor():
     return ColumnTransformer([("num", SimpleImputer(strategy="median"), NUMERIC_FEATURES)])
@@ -179,11 +186,14 @@ class _CoxEmbeddingAdapter:
         self.model.fit(cox_df, duration_col="months_to_recurrence", event_col="event")
         return self
 
-    def predict_months(self, df: pd.DataFrame) -> np.ndarray:
+    def _build_cox_df(self, df: pd.DataFrame) -> pd.DataFrame:
         emb_cols = self._embedding_columns(df, fitting=False)
         X = self.imputer.transform(pd.concat([df[NUMERIC_FEATURES].reset_index(drop=True),
                                                emb_cols.reset_index(drop=True)], axis=1))
-        cox_df = pd.DataFrame(X, columns=[f"f{j}" for j in range(X.shape[1])])
+        return pd.DataFrame(X, columns=[f"f{j}" for j in range(X.shape[1])])
+
+    def predict_months(self, df: pd.DataFrame) -> np.ndarray:
+        cox_df = self._build_cox_df(df)
         if self.percentile is None:
             raw = self.model.predict_expectation(cox_df)
         else:
@@ -191,6 +201,22 @@ class _CoxEmbeddingAdapter:
         pred = np.atleast_1d(np.asarray(raw, dtype=float)).flatten()
         pred = np.where(np.isfinite(pred), pred, MAX_MONTHS_CAP)
         return np.clip(pred, 0.0, MAX_MONTHS_CAP)
+
+    def predict_event(self, df: pd.DataFrame, horizon: float = EVENT_HORIZON_MONTHS,
+                       threshold: float = EVENT_THRESHOLD) -> np.ndarray:
+        """Binary BCR-status prediction (0/1) required by the actual challenge output contract
+        (confirmed against the org's own webpage and the reference agent's real write path in
+        run.py -- Task3Output's pydantic schema, used only for an internal LLM form-fill step,
+        omits it and is NOT the true submission contract). Derived from the same fitted survival
+        curve predict_months() already uses: event=1 if the cumulative incidence by `horizon`
+        exceeds `1-threshold` (i.e. S(horizon|x) < threshold). horizon=60 months (the standard
+        5-year BCR benchmark) and threshold=0.7 were swept, not assumed -- see
+        experiments/exp_7/ for the full LOOCV grid against real ground-truth event labels
+        (balanced accuracy 0.779 vs. a trivial "always 0" baseline's 0.500)."""
+        cox_df = self._build_cox_df(df)
+        sf = self.model.predict_survival_function(cox_df, times=[horizon])
+        s_at_h = np.asarray(sf.values, dtype=float).flatten()
+        return (s_at_h < threshold).astype(int)
 
 
 MODEL_FACTORIES = {

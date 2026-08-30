@@ -44,11 +44,13 @@ def load_task3():
 def write_outputs(output: Task3Output):
     case_dir = OUTPUT_DIR / output.case_id
     case_dir.mkdir(parents=True, exist_ok=True)
-    # Matches evaluate.py's GT_FILENAMES["task3"] shape: a bare {months_to_recurrence} outcome
-    # object (no "event" -- Task3Output's schema doesn't define one, see task3_schema.py) plus a
+    # Matches the real submission contract (confirmed against the org's task-3 webpage and the
+    # reference agent's actual write path, run.py::_write_task_outputs -- NOT Task3Output's own
+    # pydantic schema in the baseline repo, which turned out to be an incomplete internal-only
+    # constraint, see task3_schema.py): {months_to_recurrence, event} outcome object plus a
     # separate reasoning file.
     with open(case_dir / "prostate-time-to-recurrence-or-last-follow-up.json", "w") as f:
-        json.dump({"months_to_recurrence": output.months_to_recurrence}, f)
+        json.dump({"months_to_recurrence": output.months_to_recurrence, "event": output.event}, f)
     with open(case_dir / "prostate-time-to-recurrence-or-last-follow-up-reasoning.json", "w") as f:
         json.dump(output.reasoning, f)
 
@@ -65,8 +67,10 @@ def main():
         case_id = row["case_id"].iloc[0]
         try:
             months = float(model.predict_months(row)[0])
+            event = int(model.predict_event(row)[0])
             reasoning = build_free_text(row.iloc[0].to_dict(), months)
-            output = Task3Output(case_id=case_id, months_to_recurrence=months, reasoning=reasoning)
+            output = Task3Output(case_id=case_id, months_to_recurrence=months, event=event,
+                                  reasoning=reasoning)
             write_outputs(output)
             n_ok += 1
         except Exception as exc:

@@ -142,6 +142,12 @@ percentile (`predict_percentile(p=0.90)` — see §5.5 for why this replaced the
 `equations.md` §5–6 for the full derivation. Predicted times are clipped to [0, 330] months (3× the
 longest observed follow-up) as a numerical safety guard, not a modeling assumption.
 
+![Fitted Cox survival curves for 5 real cases spanning the risk spectrum](charts/cox_survival_curves.svg)
+
+Five real fitted curves, lowest to highest risk (`e^(β·x)` 0.19 → 56.9). Step functions — the actual
+shape of a Breslow-estimator curve. Dots mark each curve's S(t)=0.90 crossing, the literal predicted
+`months_to_recurrence`.
+
 ## 5. Models actually tried (not just the one that shipped)
 
 Every substitution below was measured under the identical LOOCV protocol and the real evaluator's
@@ -232,21 +238,70 @@ exceeds true-time regardless (still true at MAE=10mo for these mostly-short recu
 the 56 censored cases score a free 1.0 for *any* prediction ≥ their true follow-up;
 `predict_expectation()`'s inflated values were exploiting that rule, not being more honest.
 
+### 5.6 Predicting BCR status (`event`) — a corrected output requirement
+
+An earlier version of this document, following the reference baseline's `Task3Output` pydantic
+model, stated no `event` field was required. That model turned out to be an incomplete reference —
+used only to constrain an internal LLM form-fill step in the baseline agent, not the actual
+submission contract. Two independent sources confirm `event` **is** required: the org's own task-3
+webpage ("Predicted BCR status within the observation window (1 = BCR; 0 = no BCR)") and the
+reference agent's real output-writing code (`run.py::_write_task_outputs`), which writes
+`{"event": ..., "months_to_recurrence": ...}` into the actually-submitted file.
+
+Derived from the same fitted survival curve §5.5 uses — no second model: predict `event=1` if
+`S(horizon|x) < threshold`. Both swept under LOOCV against real ground-truth labels:
+
+| Horizon (mo) | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 |
+|---|---|---|---|---|---|
+| 12 | .787/.579 | .773/.570 | .773/.587 | .813/.666 | .827/.693 |
+| 24 | .773/.570 | .800/.640 | .827/.693 | .827/.693 | .827/.727 |
+| 36 | .773/.570 | .800/.640 | .827/.693 | .827/.693 | .827/.727 |
+| **60** | .800/.640 | .827/.693 | .827/.693 | .827/.727 | **.800/.779** |
+| 110 | .827/.693 | .827/.693 | .827/.727 | .800/.744 | .707/.734 |
+
+(cells: accuracy/balanced accuracy)
+
+**Winner: horizon=60 months (the standard clinical 5-year BCR benchmark) + threshold=0.7** —
+balanced accuracy 0.779 against a trivial "always predict 0" baseline's useless 0.500.
+
+Classification report (LOOCV, computed with `sklearn.metrics` directly against the on-disk output
+files):
+
+| Class | Precision | Recall | F1 | Support |
+|---|---|---|---|---|
+| No BCR (0) | 0.902 | 0.821 | 0.860 | 56 |
+| BCR (1) | 0.583 | 0.737 | 0.651 | 19 |
+| **Accuracy** | | | **0.800** | 75 |
+
+|              | Pred: no BCR | Pred: BCR |
+|---|---|---|
+| **True: no BCR** (56) | 46 (TN) | 10 (FP) |
+| **True: BCR** (19) | 5 (FN) | 14 (TP) |
+
+Leans toward over-flagging risk (10 FP) rather than missing a real recurrence (5 FN) — the safer
+failure mode for a clinical screening context, and a direct consequence of optimizing balanced
+accuracy under this cohort's 75/25 class split. **Not bootstrap-tested for significance** — unlike
+`ranking_score` gains elsewhere in this project, `event` doesn't touch the scored metric, and
+classification accuracy at n=75/19-events is inherently noisier than a ranking statistic. See
+`experiments/exp_7_output_contract_fix/`.
+
 ## 6. Output
 
-`Task3Output`, before → after this fix (case T3-001, true recurrence at 1.8 months):
+`Task3Output`, before → after the calibration fix (case T3-001, true recurrence at 1.8 months):
 
 ```json
 old: {"case_id": "T3-001", "months_to_recurrence": 34.03, "reasoning": "..."}
-new: {"case_id": "T3-001", "months_to_recurrence": 1.62,  "reasoning": "..."}
+new: {"case_id": "T3-001", "months_to_recurrence": 1.62, "event": 1, "reasoning": "..."}
 ```
 
-- `months_to_recurrence` (float, ≥ 0) — the model's single prediction, §4's output.
+- `months_to_recurrence` (float, ≥ 0) — §4/§5.5's output.
+- `event` (int, 0/1) — §5.6's output. Predicted BCR status.
 - `reasoning` (string, ≥ 40 chars) — template-generated (not LLM-authored; no LLM was available in
   the source environment), citing the specific pathology findings (§3.3) that informed the
   prediction for that case.
-- No `event` field — the output schema doesn't define one, and the evaluator's `ranking_score` for
-  task 3 is the C-index on `months_to_recurrence` alone.
+- Only `months_to_recurrence` feeds `ranking_score` (Harrell's C-index) — `event` is required for a
+  complete, schema-valid submission but does not change that metric (confirmed directly from
+  `evaluate.py`: `concordance_index` only ever reads *ground-truth* event, never predicted).
 
 ## 7. Known limitations
 
@@ -261,3 +316,5 @@ new: {"case_id": "T3-001", "months_to_recurrence": 1.62,  "reasoning": "..."}
   than a perfectly smooth curve.
 - The percentile fix (§5.5) was validated only for this specific (penalizer, embedding) combination
   — not extended to the other model-family variants in the code registry.
+- The `event` classifier (§5.6) was not bootstrap-tested for significance, unlike every
+  `ranking_score` gain in this project.

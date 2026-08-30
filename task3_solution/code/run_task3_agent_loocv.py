@@ -37,7 +37,7 @@ def write_outputs(output: Task3Output):
     case_dir = OUTPUT_DIR / output.case_id
     case_dir.mkdir(parents=True, exist_ok=True)
     with open(case_dir / "prostate-time-to-recurrence-or-last-follow-up.json", "w") as f:
-        json.dump({"months_to_recurrence": output.months_to_recurrence}, f)
+        json.dump({"months_to_recurrence": output.months_to_recurrence, "event": output.event}, f)
     with open(case_dir / "prostate-time-to-recurrence-or-last-follow-up-reasoning.json", "w") as f:
         json.dump(output.reasoning, f)
 
@@ -54,8 +54,10 @@ def main():
         try:
             model = MODEL_FACTORIES[DEFAULT_MODEL_KEY]().fit(tr)
             months = float(model.predict_months(va)[0])
+            event = int(model.predict_event(va)[0])
             reasoning = build_free_text(va.iloc[0].to_dict(), months)
-            output = Task3Output(case_id=case_id, months_to_recurrence=months, reasoning=reasoning)
+            output = Task3Output(case_id=case_id, months_to_recurrence=months, event=event,
+                                  reasoning=reasoning)
             write_outputs(output)
             n_ok += 1
         except Exception as exc:

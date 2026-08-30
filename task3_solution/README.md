@@ -38,6 +38,15 @@ fit over an 18-dimensional covariate vector `x` — 13 clinical/pathology fields
 of a pooled prostatectomy-slide embedding — via Efron-corrected partial likelihood with an L2
 penalty (λ = 0.3, found by a full leave-one-out sweep over 0.01–2.0, not a library default).
 
+![Fitted Cox survival curves for 5 real cases spanning the risk spectrum, with the p=0.90 prediction crossing marked](charts/cox_survival_curves.svg)
+
+Five real cases, from lowest fitted risk (`e^(β·x)` = 0.19) to highest (56.9) — step functions, the
+true shape of a Breslow-estimator survival curve, not a smoothed interpolation. Darker = higher
+risk. The dots mark each curve's crossing of S(t) = 0.90 — the literal `months_to_recurrence`
+output is read off this plot (equation 10 in `equations.md`). Note the lowest-risk curve never
+reaches 0.90 within the 110-month observed window; its prediction is the 330-month numerical cap,
+not a real crossing.
+
 A full worked derivation (every equation, why it was applied, and what each term means) lives in
 `equations.md` in this folder.
 
@@ -69,9 +78,38 @@ wins on **both** axes: C-index 0.8575→0.8765, event=1 bias +40.1mo→**−9.7m
 
 ### Output
 
-`Task3Output`: `case_id`, `months_to_recurrence` (float ≥ 0), `reasoning` (free text, template-generated,
-citing the pathology findings that drove the prediction). No `event` field — the schema doesn't
-define one, and only the time is scored.
+`Task3Output`: `case_id`, `months_to_recurrence` (float ≥ 0), `event` (int, 0/1 — predicted BCR
+status), `reasoning` (free text, template-generated, citing the pathology findings that drove the
+prediction). **Correction**: an earlier version of this document said no `event` field was
+required, based on the reference baseline's `Task3Output` pydantic model (`schema.py`) — that model
+turned out to be an incomplete reference, used only to constrain an internal LLM form-fill step, not
+the actual submission contract. Confirmed against two independent sources instead: the org's own
+task-3 webpage ("Predicted BCR status within the observation window (1 = BCR; 0 = no BCR)" is
+listed as a required output) and the reference agent's real output-writing code
+(`run.py::_write_task_outputs`), which does write `event` into the submitted file. See
+`experiments/exp_7_output_contract_fix/`. Only `months_to_recurrence` feeds `ranking_score`
+(C-index) — `event` is required for a complete submission but doesn't change that metric.
+
+### Predicting BCR status
+
+`event` is derived from the same fitted survival curve `months_to_recurrence` already uses — no
+second model. Predict `event=1` if the cumulative incidence by a fixed horizon exceeds a threshold
+(`S(horizon|x) < threshold`). Both swept under LOOCV against real ground-truth labels: **horizon =
+60 months** (the standard clinical 5-year BCR benchmark) **+ threshold = 0.7** won, balanced
+accuracy 0.779 against a trivial "always predict no BCR" baseline's useless 0.500.
+
+![Confusion matrix for the BCR event classifier](charts/confusion_matrix.svg)
+
+| Class | Precision | Recall | F1 | Support |
+|---|---|---|---|---|
+| No BCR (0) | 0.902 | 0.821 | 0.860 | 56 |
+| BCR (1) | 0.583 | 0.737 | 0.651 | 19 |
+| **Accuracy** | | | **0.800** | 75 |
+
+Of 19 true recurrences, 14 are caught (5 missed); of 56 true non-recurrences, 46 are correctly
+cleared (10 over-flagged). The model leans toward over-flagging risk rather than missing a real
+recurrence — the safer failure mode for a clinical screening context, and a direct consequence of
+optimizing for balanced accuracy under this cohort's 75/25 class split.
 
 ### Why prostatectomy-slide, specifically
 
@@ -91,7 +129,7 @@ task3_solution/
 ├── README.md                       — this file
 ├── MODEL_CARD.md                   — full preprocessing + model-selection narrative
 ├── equations.md                    — full mathematical derivation
-├── charts/                         — the 4 SVGs embedded above
+├── charts/                         — the 6 SVGs embedded above
 ├── code/                           — production code, reference/documentation
 │   ├── extract_features_task3.py   — closed-vocabulary regex feature extraction
 │   ├── task3_embeddings.py         — masked-mean pooling + raw-file embedding fallback
@@ -109,7 +147,8 @@ task3_solution/
 │   ├── exp_3_pathology_text_extraction/  — T3.6: 0.641 → 0.766
 │   ├── exp_4_model_sweep_and_agent/      — T3.4/T3.5: agent built, Cox penalizer swept
 │   ├── exp_5_embedding_fusion/           — T3.2/T3.3: 0.766 → 0.858, the embedding win
-│   └── exp_6_calibration_check/          — the +40mo bias found and fixed: 0.858 → 0.877
+│   ├── exp_6_calibration_check/          — the +40mo bias found and fixed: 0.858 → 0.877
+│   └── exp_7_output_contract_fix/        — event field added; balanced accuracy 0.779
 └── results/
     └── summary.json                — key metrics, machine-readable
 ```
@@ -136,6 +175,11 @@ The experiment write-ups and `equations.md` are fully self-contained and readabl
   the scored `ranking_score`) actually *drops* under the calibration fix, because that metric's own
   formula rewards blind optimism on censored cases more than it credits accuracy on known-truth
   ones — see `experiments/exp_6_calibration_check/`.
+- The `event` output field (added in exp_7) was not held to the same statistical bar as
+  `ranking_score` gains elsewhere in this project — no bootstrap significance test on the balanced-
+  accuracy result. It's a secondary, non-scored diagnostic addition, and classification accuracy at
+  n=75/19-events is inherently noisier than a ranking metric.
 
 Full detail on all of the above is in `experiments/exp_4_model_sweep_and_agent/summary.md`,
-`experiments/exp_5_embedding_fusion/summary.md`, and `experiments/exp_6_calibration_check/summary.md`.
+`experiments/exp_5_embedding_fusion/summary.md`, `experiments/exp_6_calibration_check/summary.md`,
+and `experiments/exp_7_output_contract_fix/summary.md`.

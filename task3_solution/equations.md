@@ -119,7 +119,7 @@ observation — a known property of the mean vs. the median under heavy censorin
 The fix, and what actually ships, is a shorter, better-defined quantile of the same curve — the
 time by which a fraction $p$ of the population would already have recurred:
 
-$$\text{months\_to\_recurrence} = \min\{\, t : S(t \mid x) \le 1-p \,\}, \quad p = 0.90 \tag{10}$$
+$$\text{months\_to\_recurrence} = \min\{\, t : S(t \mid x) \le p \,\}, \quad p = 0.90 \tag{10}$$
 
 `lifelines.CoxPHFitter.predict_percentile(p=0.90)` — the earliest time at which the survival curve
 has dropped to 0.90 (10% of the population would have recurred by then). Swept $p \in
@@ -132,10 +132,29 @@ methodology: `experiments/exp_6_calibration_check/`.
 
 ## 7. Output
 
-`Task3Output`: `case_id`, `months_to_recurrence` (equation 10, clipped to [0, 330]), `reasoning`
-(template text citing $x_6$–$x_{13}$'s findings). No `event` field — the schema doesn't define one,
-and only the time is scored (`evaluate.py`'s `concordance_index`, on `months_to_recurrence` alone,
-against ground-truth time and event).
+`Task3Output`: `case_id`, `months_to_recurrence` (equation 10, clipped to [0, 330]), `event`
+(equation 11, below), `reasoning` (template text citing $x_6$–$x_{13}$'s findings). **Correction**:
+an earlier version of this document said no `event` field was required — that was wrong, traced to
+treating the reference baseline's `Task3Output` pydantic model as the full contract when it only
+ever validated an internal LLM form-fill step. The org's task-3 webpage and the reference agent's
+real output-writing code (`run.py`) both confirm `event` is required. Only `months_to_recurrence`
+is scored (`evaluate.py`'s `concordance_index`, against ground-truth time and event) — `event` is
+required for a complete submission but doesn't change that metric. See
+`experiments/exp_7_output_contract_fix/`.
 
 **A real example** (case T3-001, true recurrence at 1.8 months): equation (9) predicted 34.0 months;
 equation (10) predicts 1.6 months.
+
+### Equation (11) — deriving `event` from the same survival curve
+
+No second model. A fixed horizon $h$ and threshold $\tau$ turn the already-fitted $S(t \mid x)$
+(equation 6) into a binary call:
+
+$$
+\hat{e}(x) = \mathbb{1}\left[ S(h \mid x) < \tau \right]
+$$
+
+Both swept under LOOCV against real ground-truth labels (not assumed): $h=60$ months (the standard
+clinical 5-year BCR benchmark) and $\tau=0.7$ won, balanced accuracy 0.779 against a trivial
+"always predict 0" baseline's useless 0.500. Full sweep grid and the classification
+report/confusion matrix: `experiments/exp_7_output_contract_fix/`.
