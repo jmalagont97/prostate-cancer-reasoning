@@ -43,6 +43,8 @@ COPY deploy/agent/pyproject.toml /opt/app/pyproject.toml
 # Training model_definitions needed to unpickle the subtask .pkl models
 # (import path deploy.tasks.task1.training.model_definitions).
 COPY deploy/tasks/task1/training/model_definitions.py /opt/app/deploy/tasks/task1/training/model_definitions.py
+COPY deploy/tasks/task2/model_definitions.py /opt/app/deploy/tasks/task2/model_definitions.py
+COPY deploy/tasks/task2/preprocessing.py /opt/app/deploy/tasks/task2/preprocessing.py
 # Task-3 inference modules needed by the MCP Cox tool.
 COPY deploy/tasks/task3/model_definitions.py /opt/app/deploy/tasks/task3/model_definitions.py
 COPY deploy/tasks/task3/preprocessing.py /opt/app/deploy/tasks/task3/preprocessing.py
@@ -51,8 +53,12 @@ COPY deploy/tasks/task3/inference.py /opt/app/deploy/tasks/task3/inference.py
 RUN mkdir -p /opt/ml/model
 COPY deploy/tasks/task1/training/models/subtask1_ensemble.pkl /opt/ml/model/subtask1_ensemble.pkl
 COPY deploy/tasks/task1/training/models/subtask2_kdm.pkl /opt/ml/model/subtask2_kdm.pkl
-COPY deploy/tasks/task1/training/models/subtask3_extratrees.pkl /opt/ml/model/subtask3_extratrees.pkl
+COPY deploy/tasks/task1/training/models/subtask3_extratrees.pkl /opt/ml/model/task1_subtask3_extratrees.pkl
 COPY deploy/tasks/task3/training/models/task3_cox_pca5.pkl /opt/ml/model/task3_cox_pca5.pkl
+RUN mkdir -p /opt/ml/model/task2
+COPY deploy/tasks/task2/training/models/subtask1_ensemble.pkl /opt/ml/model/task2/subtask1_ensemble.pkl
+COPY deploy/tasks/task2/training/models/subtask2_knn.pkl /opt/ml/model/task2/subtask2_knn.pkl
+COPY deploy/tasks/task2/training/models/subtask3_extratrees.pkl /opt/ml/model/task2/subtask3_extratrees.pkl
 
 # Editable install so `chimera_agent` is importable.
 RUN pip install --no-cache-dir --break-system-packages -e /opt/app

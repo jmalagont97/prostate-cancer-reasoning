@@ -1,0 +1,23 @@
+.git
+.gitignore
+.env
+
+# Training/evaluation data are not needed by the runtime image.
+data
+docs
+experiments
+graphify-out
+utils/labs
+
+# The submission copy must not be sent as part of the repository-root context.
+deploy/agent_submission
+
+# Local/build artifacts.
+__pycache__
+*.py[cod]
+*.egg-info
+.pytest_cache
+.mypy_cache
+.ruff_cache
+*.tar
+*.tar.gz

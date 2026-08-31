@@ -1,0 +1,48 @@
+# =============================================================================
+# CHIMERA Generalist Agent — base configuration.
+#
+# Task-agnostic defaults. Per-task overrides live in configs/tasks/taskN.yaml
+# and are merged explicitly in inference.py (OmegaConf.merge), not via Hydra.
+# =============================================================================
+
+paths:
+  # For GC: /input and /output are the contract mount points.
+  # The runner still respects data_root for local dev; inference.py selects
+  # the GC input path when present.
+  data_root: data
+  input_dir: /input
+  output_dir: /output
+  # Directory holding subtask1_ensemble.pkl / subtask2_kdm.pkl / subtask3_extratrees.pkl
+  # In GC this is /opt/ml/model; locally it may point to training/models.
+  submodels_dir: /opt/ml/model
+
+model:
+  provider: ollama
+  base_url: http://127.0.0.1:11434
+  model_id: gemma4:e2b               # Gemma 4 E2B — invariant
+  request_timeout: 600
+
+mcp:
+  server_module: chimera_agent.tasks.task1.baseline.mcp_server
+
+agent:
+  tasks: [1]
+  task_id: 1
+  pids: null
+  limit: null
+  form_fill:
+    max_retries: 3
+
+generation:
+  temperature: 0.2
+  num_ctx: 16384
+  num_predict: 2048
+
+logging:
+  level: INFO
+
+hydra:
+  run:
+    dir: .
+  job:
+    chdir: false

@@ -1,0 +1,97 @@
+{
+  "C1_baseline_exp12": {
+    "s_weights_mean": 0.8306854256854257,
+    "s_weights_std": 0.014233466629340207,
+    "set_f1_mean": 0.6826177658320515,
+    "set_f1_std": 0.03252132201292972
+  },
+  "C2_per_var_tuned": {
+    "s_weights_mean": 0.8087481962481962,
+    "s_weights_std": 0.0169984712512261,
+    "set_f1_mean": 0.6316243941243942,
+    "set_f1_std": 0.04375345192098564
+  },
+  "wilcoxon_tests": {
+    "s_weights_p_value": 1.862645149230957e-09,
+    "set_f1_p_value": 8.009374141693115e-08
+  },
+  "best_hyperparams_per_var": {
+    "age": {
+      "algorithm": "et",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": null,
+      "mean_macro_f1": 0.20333294089586992
+    },
+    "bx_gl_prim": {
+      "algorithm": "rf",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": "balanced",
+      "mean_macro_f1": 0.30949402449402447
+    },
+    "bx_gl_sec": {
+      "algorithm": "et",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": null,
+      "mean_macro_f1": 0.34770731447202036
+    },
+    "bx_isup": {
+      "algorithm": "rf",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": "balanced",
+      "mean_macro_f1": 0.4281997631997632
+    },
+    "comorbidity": {
+      "algorithm": "et",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": null,
+      "mean_macro_f1": 0.2653254438797917
+    },
+    "cspca": {
+      "algorithm": "rf",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": "balanced",
+      "mean_macro_f1": 0.25746119757149166
+    },
+    "ct": {
+      "algorithm": "rf",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": null,
+      "mean_macro_f1": 0.2360422597554951
+    },
+    "fh": {
+      "algorithm": "rf",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": "balanced",
+      "mean_macro_f1": 0.26027236356831523
+    },
+    "pirads": {
+      "algorithm": "rf",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": "balanced",
+      "mean_macro_f1": 0.22214728175447987
+    },
+    "psa": {
+      "algorithm": "rf",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": "balanced",
+      "mean_macro_f1": 0.3316171799763131
+    },
+    "psad": {
+      "algorithm": "rf",
+      "n_estimators": 100,
+      "criterion": "gini",
+      "class_weight": "balanced",
+      "mean_macro_f1": 0.2761012977247497
+    }
+  }
+}

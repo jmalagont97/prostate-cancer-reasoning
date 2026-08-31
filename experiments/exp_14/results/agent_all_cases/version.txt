@@ -1,0 +1,14 @@
+git_commit=d44eb25e607053199b06593ea979d2ca4d8557e2
+git_status=dirty
+git_modified_paths:
+M .discussion.md
+ M .logbook.md
+ M deploy/agent/README.md
+ M deploy/agent/inference.py
+ M deploy/agent/tests/test_config_and_paths.py
+ M experiments/INDEX.md
+?? experiments/exp_14/
+docker_image=sha256:67d383ee34bbf958e7460d514c42c4d29946333f28178bcc5b11a076f4b6a7b5
+chimera_metrics=0.1.0
+model_id=gemma4:e2b
+execution=tmux:0

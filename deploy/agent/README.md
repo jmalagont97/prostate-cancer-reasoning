@@ -35,9 +35,9 @@ deploy/agent/
 ## Flujo de ejecución
 
 1. `inference.py` carga `configs/config.yaml` y hace `OmegaConf.merge` explícito con `configs/tasks/taskN.yaml` (no usa Hydra `defaults` implícito).
-2. Si detecta `/input/structured-prompt.json` (GC), lo estadifica a `/tmp/gc_cases/task1/agent_input/<case_id>/structured-prompt.json` para que el loader baseline lo encuentre sin cambios.
+2. Si detecta `/input/structured-prompt.json` (GC) o un lote de casos en `/input/<case_id>/`, infiere el task desde `structured-prompt.json` y lo estadifica a `/tmp/gc_cases/taskN/agent_input/<case_id>/`. Los lotes con tasks mezclados se rechazan.
 3. Valida `task_id ∈ {1,2,3}` vía `dispatch.validate_task_id` **antes** de cargar pickles.
-4. Despacha al runner de la tarea. Task 1 usa el baseline conservado; Tasks 2/3 abortan con error controlado.
+4. Despacha al runner de la tarea. Task 1 usa el baseline conservado y Task 3 usa Cox + reasoning con Gemma 4 E2B.
 
 Solo se cargan pickles/joblib desde `cfg.paths.submodels_dir` (`/opt/ml/model` en GC); nunca desde rutas derivadas del input del usuario.
 

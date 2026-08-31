@@ -42,6 +42,59 @@ def load_merged_config(base_path: str | Path) -> OmegaConf:
     return base
 
 
+def _detect_generic_input_task(input_dir: Path) -> int | None:
+    """Return the task declared by direct case directories, rejecting mixed batches."""
+    task_ids: set[int] = set()
+    for case_dir in sorted(input_dir.iterdir()):
+        prompt = case_dir / "structured-prompt.json"
+        if not case_dir.is_dir() or not prompt.is_file():
+            continue
+        payload = json.loads(prompt.read_text())
+        if "task" in payload:
+            task_ids.add(validate_task_id(int(payload["task"])))
+    if len(task_ids) > 1:
+        raise ValueError(f"Generic /input batch contains mixed tasks: {sorted(task_ids)}")
+    return next(iter(task_ids), None)
+
+
+def _detect_input_task() -> int | None:
+    """Detect task from every supported GC layout; never infer Task 1 by default."""
+    input_dir = Path("/input")
+    if not input_dir.is_dir():
+        return None
+
+    task_ids: set[int] = set()
+    flat_prompt = input_dir / "structured-prompt.json"
+    if flat_prompt.is_file():
+        payload = json.loads(flat_prompt.read_text())
+        if "task" in payload:
+            task_ids.add(validate_task_id(int(payload["task"])))
+
+    # Canonical nested GC layout: /input/taskN/agent_input/<case>/structured-prompt.json
+    for task_dir in sorted(input_dir.glob("task[123]")):
+        if not task_dir.is_dir():
+            continue
+        task_id = validate_task_id(int(task_dir.name.removeprefix("task")))
+        agent_input = task_dir / "agent_input"
+        if not agent_input.is_dir():
+            continue
+        declared_ids: set[int] = set()
+        for prompt in agent_input.glob("*/structured-prompt.json"):
+            payload = json.loads(prompt.read_text())
+            if "task" in payload:
+                declared_ids.add(validate_task_id(int(payload["task"])))
+        if len(declared_ids) > 1 or (declared_ids and task_id not in declared_ids):
+            raise ValueError(f"Task id conflicts with nested input layout at {task_dir}")
+        task_ids.add(task_id)
+
+    direct_task = _detect_generic_input_task(input_dir)
+    if direct_task is not None:
+        task_ids.add(direct_task)
+    if len(task_ids) > 1:
+        raise ValueError(f"Input contains mixed or conflicting tasks: {sorted(task_ids)}")
+    return next(iter(task_ids), None)
+
+
 def stage_gc_input_if_needed(cfg) -> None:
     """If running on GC (/input exists), stage flat structured-prompt.json into baseline layout.
 
@@ -50,7 +103,13 @@ def stage_gc_input_if_needed(cfg) -> None:
     This helper creates /tmp/gc_cases so baseline loader works unmodified.
     """
     gc_flat = Path("/input/structured-prompt.json")
-    task_id = int(getattr(cfg.agent, "task_id", 1) or 1)
+    detected_task = _detect_input_task()
+    if detected_task is None and Path("/input").is_dir() and any(Path("/input").iterdir()):
+        raise ValueError("Cannot determine task_id from /input; refusing to run")
+    task_id = detected_task
+    if task_id is None:
+        task_id = validate_task_id(int(getattr(cfg.agent, "task_id", 1)))
+    cfg.agent.task_id = task_id
     if gc_flat.is_file():
         try:
             payload_task = json.loads(gc_flat.read_text()).get("task")
@@ -59,6 +118,10 @@ def stage_gc_input_if_needed(cfg) -> None:
                 cfg.agent.task_id = task_id
         except (TypeError, ValueError, json.JSONDecodeError):
             pass
+
+    # Generic GC input: infer the task from the first case before selecting
+    # the staging namespace. The base config defaults to Task 1, but a batch
+    # may contain structured prompts for another task.
     task_slug = f"task{task_id}"
     gc_task_dir = Path("/input") / task_slug / "agent_input"
     data_root = Path(str(cfg.paths.data_root))
@@ -123,7 +186,11 @@ def stage_gc_input_if_needed(cfg) -> None:
 
 def detect_task_id(cfg) -> int:
     """Detect task_id from cfg or from GC input payload."""
-    # Prefer explicit cfg
+    detected_task = _detect_input_task()
+    if detected_task is not None:
+        return detected_task
+
+    # Prefer explicit cfg only when no task can be read from the input.
     try:
         tid = cfg.agent.task_id  # type: ignore[attr-defined]
         if tid is not None:
@@ -147,8 +214,18 @@ def detect_task_id(cfg) -> int:
         return validate_task_id(int(cfg.agent.task_id))  # type: ignore[attr-defined]
     except Exception:
         pass
-    # Ultimate fallback: Task 1 (conserved)
-    return 1
+    raise ValueError("Cannot determine task_id; refusing to run")
+
+
+def _task_from_config_path(config_path: str | Path) -> int | None:
+    """Return a task only for an explicitly task-scoped config file."""
+    name = Path(config_path).name
+    if not (name.startswith("task") and name.endswith(".yaml")):
+        return None
+    try:
+        return validate_task_id(int(name[4:-5]))
+    except (ValueError, TypeError):
+        return None
 
 
 def main() -> None:
@@ -157,6 +234,14 @@ def main() -> None:
     args = parser.parse_args()
 
     cfg = load_merged_config(args.config)
+
+    input_task = _detect_input_task()
+    config_task = _task_from_config_path(args.config)
+    if input_task is not None and config_task is not None and input_task != config_task:
+        raise ValueError(
+            f"Task id conflict: input declares Task {input_task}, "
+            f"but config declares Task {config_task}; refusing to run"
+        )
 
     # Stage GC input before anything else, then re-merge task override if task_id changed from input
     stage_gc_input_if_needed(cfg)

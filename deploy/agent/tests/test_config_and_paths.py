@@ -7,7 +7,7 @@ from omegaconf import OmegaConf
 
 # Ensure deploy/agent is importable for inference.py
 sys.path.insert(0, str(Path("deploy/agent").resolve()))
-from inference import load_merged_config  # type: ignore[import]
+from inference import _detect_generic_input_task, load_merged_config  # type: ignore[import]
 
 
 def test_base_config_loads():
@@ -43,3 +43,23 @@ def test_submodels_dir_never_derived_from_case_payload():
     # Even if payload contains a path, cfg must remain authoritative
     assert "/tmp/evil" not in str(cfg.paths.submodels_dir)
     assert str(cfg.paths.submodels_dir) == "/opt/ml/model"
+
+
+def test_generic_input_detects_task3(tmp_path):
+    case = tmp_path / "T3-001"
+    case.mkdir()
+    (case / "structured-prompt.json").write_text('{"case_id":"T3-001","task":3}')
+    assert _detect_generic_input_task(tmp_path) == 3
+
+
+def test_generic_input_rejects_mixed_tasks(tmp_path):
+    for case_id, task_id in (("T1-001", 1), ("T3-001", 3)):
+        case = tmp_path / case_id
+        case.mkdir()
+        (case / "structured-prompt.json").write_text(
+            f'{{"case_id":"{case_id}","task":{task_id}}}'
+        )
+    import pytest
+
+    with pytest.raises(ValueError, match="mixed tasks"):
+        _detect_generic_input_task(tmp_path)

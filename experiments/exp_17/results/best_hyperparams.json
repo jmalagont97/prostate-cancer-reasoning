@@ -1,0 +1,30 @@
+{
+  "Hard_SVC": {
+    "tab": {
+      "C": 0.1,
+      "class_weight": null
+    },
+    "mri": {
+      "C": 0.1,
+      "class_weight": null
+    },
+    "txt": {
+      "C": 0.1,
+      "class_weight": null
+    }
+  },
+  "Fuzzy_SVR": {
+    "tab": {
+      "C": 0.1,
+      "epsilon": 0.05
+    },
+    "mri": {
+      "C": 0.1,
+      "epsilon": 0.1
+    },
+    "txt": {
+      "C": 10.0,
+      "epsilon": 0.1
+    }
+  }
+}

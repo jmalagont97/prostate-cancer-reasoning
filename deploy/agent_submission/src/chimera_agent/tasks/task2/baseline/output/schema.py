@@ -1,0 +1,133 @@
+"""Structured output contract — Task 2 only (fixed, mirrors GC Interface 1 submission)."""
+
+from __future__ import annotations
+
+from enum import StrEnum
+from typing import Literal
+
+from pydantic import BaseModel, ConfigDict, Field
+
+
+class Weight(StrEnum):
+    NOT_USED = "not_used"
+    NOTED = "noted"
+    IMPORTANT = "important"
+    DECISIVE = "decisive"
+
+
+class Confidence(StrEnum):
+    CLEAR = "clear"
+    BORDERLINE = "borderline"
+    UNCERTAIN = "uncertain"
+
+
+class TreatmentDecision(StrEnum):
+    ACTIVE_SURVEILLANCE = "active_surveillance"
+    CONTINUED_SURVEILLANCE = "continued_surveillance"
+    ACTIVE_TREATMENT = "active_treatment"
+    WATCHFUL_WAITING = "watchful_waiting"
+
+
+LEGACY_TREATMENT_DECISION_MAP = {
+    "Active Surveillance": "active_surveillance",
+    "Radical Prostatectomy": "active_treatment",
+    "Radiation Therapy": "active_treatment",
+    "Androgen Deprivation Therapy": "active_treatment",
+}
+
+
+def normalize_treatment_decision(value: str | TreatmentDecision) -> TreatmentDecision:
+    """Normalize legacy model labels to the Grand Challenge contract."""
+    if isinstance(value, TreatmentDecision):
+        return value
+    try:
+        return TreatmentDecision(value)
+    except ValueError:
+        try:
+            return TreatmentDecision(LEGACY_TREATMENT_DECISION_MAP[value])
+        except KeyError as exc:
+            raise ValueError(f"Unsupported treatment decision: {value!r}") from exc
+
+
+# ---------------------------------------------------------------------------
+# Reveal-sequence correspondence for Task 2.
+#
+# Deterministic evidence-source projection derived from the submodel-assigned
+# variable weights.
+# ---------------------------------------------------------------------------
+
+
+class RevealCategory(StrEnum):
+    FAMILY_HISTORY = "family_history"
+    PREVIOUS_NOTES = "previous_notes"
+    LABORATORY_RESULTS = "laboratory_results"
+    PSA_TREND = "psa_trend"
+    RADIOLOGY_REPORT = "radiology_report"
+
+
+
+# Variables available in the basal patient context do not require grounding.
+ALWAYS_AVAILABLE_VARIABLES = {"age", "psa"}
+
+# Task-2 variable -> one or more normative evidence-source categories.
+VARIABLE_REVEAL_MAP: dict[str, tuple[str, ...]] = {
+    "age": (),
+    "psa": (),
+    "psad": (RevealCategory.RADIOLOGY_REPORT.value,),
+    "pirads": (RevealCategory.RADIOLOGY_REPORT.value,),
+    "ct": (RevealCategory.RADIOLOGY_REPORT.value,),
+    "cspca": (RevealCategory.RADIOLOGY_REPORT.value,),
+    "fh": (RevealCategory.FAMILY_HISTORY.value,),
+    "bx_isup": ("previous_notes",),
+    "bx_gl_prim": ("previous_notes",),
+    "bx_gl_sec": ("previous_notes",),
+    "comorbidity": (),
+}
+
+# Canonical order is deterministic only.
+_CANONICAL_REVEAL_ORDER = (
+    RevealCategory.FAMILY_HISTORY.value,
+    RevealCategory.PREVIOUS_NOTES.value,
+    RevealCategory.LABORATORY_RESULTS.value,
+    RevealCategory.PSA_TREND.value,
+    RevealCategory.RADIOLOGY_REPORT.value,
+
+)
+_WEIGHT_RANK = {"decisive": 3, "important": 2, "noted": 1, "not_used": 0}
+
+
+def build_reveal_sequence(variable_weights: dict[str, str]) -> list[str]:
+    """Project active weighted variables onto normative reveal categories."""
+    active_categories: set[str] = set()
+    for variable, weight in variable_weights.items():
+        if variable in ALWAYS_AVAILABLE_VARIABLES:
+            continue
+        if _WEIGHT_RANK.get(str(weight), 0) <= 0:
+            continue
+        active_categories.update(VARIABLE_REVEAL_MAP.get(variable, ()))
+
+    return [
+        category
+        for category in _CANONICAL_REVEAL_ORDER
+        if category in active_categories
+    ]
+
+
+class Task2Output(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    case_id: str
+    task: Literal[2] = 2
+    treatment_decision: TreatmentDecision
+    confidence: Confidence
+    variable_weights: dict[str, Weight] = Field(default_factory=dict)
+    reveal_sequence: list[
+        Literal[
+            "family_history",
+            "previous_notes",
+            "laboratory_results",
+            "psa_trend",
+            "radiology_report",
+        ]
+    ] = Field(default_factory=list)
+    reasoning: str = Field(min_length=40)

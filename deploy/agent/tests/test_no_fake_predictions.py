@@ -1,18 +1,8 @@
-"""No fake predictions for Tasks 2/3 — they must fail controllably."""
+"""No fake predictions validation."""
 
 import pytest
 
 from chimera_agent.dispatch import get_task_runner
-
-
-@pytest.mark.parametrize("tid", [2])
-def test_task2_3_not_fake_predictions(tid):
-    runner = get_task_runner(tid)
-    # Must not return dummy JSON; must raise NotImplementedError when called
-    import asyncio
-
-    with pytest.raises(NotImplementedError):
-        asyncio.run(runner(cfg=None))  # type: ignore[arg-type]
 
 
 def test_invalid_task_does_not_load_models():

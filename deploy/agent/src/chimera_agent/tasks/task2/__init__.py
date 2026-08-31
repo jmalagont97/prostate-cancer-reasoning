@@ -1,11 +1,7 @@
-"""Task 2 — placeholder (not yet implemented)."""
+"""Task 2 — Post-Biopsy Treatment Decision and Multimodal Reasoning."""
 
 from __future__ import annotations
 
+from chimera_agent.tasks.task2.baseline.run import run_task2
 
-async def run_task2(cfg):
-    raise NotImplementedError(
-        "Task 2 is not yet implemented in this generalist image. "
-        "Add src/chimera_agent/tasks/task2/baseline/ and its configs/tasks/task2.yaml, "
-        "then wire it in src/chimera_agent/dispatch.py and configs."
-    )
+__all__ = ["run_task2"]

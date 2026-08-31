@@ -1,0 +1,25 @@
+{# Task-2 case contextualization — flat structured-prompt.json schema (GC). #}
+PATIENT CASE
+============
+Case ID: {{ case_id | default(pid | default('n/a')) }}
+Age: {{ age | default('n/a') }}
+PSA: {{ psa | default('n/a') }} ng/mL{% if psav is defined and psav not in (none, '') %} | PSA velocity: {{ psav }} ng/mL/yr{% endif %} | PSAD: {{ psad | default('n/a') }}
+PI-RADS: {{ pirads | default('n/a') }} | Prostate volume: {{ vol | default('n/a') }} mL | csPCa risk prior: {{ cspca | default('n/a') }}
+DRE: {{ dre | default('n/a') }}
+Months since last evaluation: {{ months | default('n/a') }}
+{% if bx_isup is defined %}ISUP Grade Group: {{ bx_isup }} | Primary Gleason: {{ bx_gl_prim | default('n/a') }} | Secondary Gleason: {{ bx_gl_sec | default('n/a') }}{% endif %}
+{% if ct is defined and ct not in (none, '') %}Clinical T Stage: {{ ct }}{% endif %}
+{% set vit = vitals or {} %}
+Vitals: weight={{ vit.get('weight', 'n/a') }}, height={{ vit.get('height', 'n/a') }}, BMI={{ vit.get('bmi', 'n/a') }}, BP={{ vit.get('bp', 'n/a') }}, HR={{ vit.get('hr', 'n/a') }}, smoking={{ vit.get('smoking', 'n/a') }}
+IPSS: {{ ipss | default('n/a') }}
+Prior biopsies (bx): {{ bx | default('n/a') }}
+Family history: {{ family_hx | default('n/a') }}
+PMHx: {% if pmhx %}{{ pmhx | join('; ') }}{% else %}none reported{% endif %}
+Allergies: {% if allergies %}{{ allergies | join('; ') }}{% else %}none reported{% endif %}
+{% set secs = note_sections or [] %}
+{% for s in secs if s is mapping %}
+{{ s.get('s', 'Section') }}: {{ s.get('t', '') }}
+{% endfor %}
+{% if notes %}Additional notes: {{ notes }}{% endif %}
+
+TASK: Recommend the most appropriate clinical prostate cancer treatment strategy for this patient.

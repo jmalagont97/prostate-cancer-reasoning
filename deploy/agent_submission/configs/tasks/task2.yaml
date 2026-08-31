@@ -1,0 +1,10 @@
+# Task 2 production configuration override.
+agent:
+  tasks: [2]
+  task_id: 2
+
+paths:
+  submodels_dir: /opt/ml/model/task2
+
+mcp:
+  server_module: chimera_agent.tasks.task2.baseline.mcp_server

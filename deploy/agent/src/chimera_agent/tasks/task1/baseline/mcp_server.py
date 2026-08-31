@@ -43,20 +43,25 @@ def _load_models() -> dict[str, object]:
         return _MODELS
     models_dir = Path(os.environ.get("SUBMODELS_DIR", "models"))
     mapping = {
-        "ensemble": "subtask1_ensemble.pkl",
-        "kdm": "subtask2_kdm.pkl",
-        "extratrees": "subtask3_extratrees.pkl",
+        "ensemble": ["subtask1_ensemble.pkl", "task1_subtask1_ensemble.pkl"],
+        "kdm": ["subtask2_kdm.pkl"],
+        "extratrees": ["subtask3_extratrees.pkl", "task1_subtask3_extratrees.pkl"],
     }
-    for key, fname in mapping.items():
-        path = models_dir / fname
-        if not path.is_file():
+    for key, fnames in mapping.items():
+        found = None
+        for fn in fnames:
+            candidate = models_dir / fn
+            if candidate.is_file():
+                found = candidate
+                break
+        if found is None:
             raise FileNotFoundError(
-                f"Required Task-1 model is missing: {path}. "
+                f"Required Task-1 model is missing in {models_dir} (tried {fnames}). "
                 "Mount the canonical deploy/tasks/task1/training/models artifacts "
                 "at SUBMODELS_DIR."
             )
-        log.info("Loading %s from %s", key, path)
-        _MODELS[key] = joblib.load(path)
+        log.info("Loading %s from %s", key, found)
+        _MODELS[key] = joblib.load(found)
     return _MODELS
 
 

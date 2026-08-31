@@ -1,0 +1,15 @@
+{
+  "tabular": {
+    "k": 3,
+    "weights": "uniform"
+  },
+  "mri": {
+    "k": 5,
+    "weights": "uniform"
+  },
+  "text": {
+    "k": 5,
+    "weights": "uniform",
+    "max_features": null
+  }
+}

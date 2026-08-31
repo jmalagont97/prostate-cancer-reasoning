@@ -1,0 +1,20 @@
+.git
+.gitignore
+.env
+
+# Training, evaluation, and documentation artifacts not copied by the Dockerfile.
+data
+docs
+experiments
+graphify-out
+utils/labs
+
+# Local/build artifacts.
+__pycache__
+*.py[cod]
+*.egg-info
+.pytest_cache
+.mypy_cache
+.ruff_cache
+*.tar
+*.tar.gz

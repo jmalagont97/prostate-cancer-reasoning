@@ -1,0 +1,24 @@
+{
+  "evaluation_note": "Exploratory in-sample evaluation; production Cox model was trained on this same 75-case cohort.",
+  "event_accuracy_mean": 0.9066666666666666,
+  "ground_truth_event_counts": {
+    "0": 56,
+    "1": 19
+  },
+  "harrell_c_index": 0.9172566371681415,
+  "n_annotated_evaluated": 75,
+  "n_discovered": 75,
+  "n_errors": 0,
+  "n_valid_outputs": 75,
+  "predicted_event_counts": {
+    "0": 55,
+    "1": 20
+  },
+  "time_dependent_auc": {
+    "12.0": 0.9670436734866776,
+    "24.0": 0.9250327099062882,
+    "36.0": 0.9222933134729173,
+    "60.0": 0.9443967215490112
+  },
+  "time_score_mean": 0.5920118859246084
+}
