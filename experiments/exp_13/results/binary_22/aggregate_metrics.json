@@ -1,0 +1,47 @@
+{
+  "family_best": {
+    "hard_tab": {
+      "C": 10.0,
+      "cw": null
+    },
+    "hard_mri": {
+      "C": 0.1,
+      "cw": null
+    },
+    "hard_text": {
+      "C": 1.0,
+      "cw": "balanced",
+      "mf": 500
+    },
+    "soft_tab": {
+      "C": 10.0,
+      "eps": 0.05
+    },
+    "soft_mri": {
+      "C": 0.1,
+      "eps": 0.05
+    },
+    "soft_text": {
+      "C": 0.1,
+      "eps": 0.05,
+      "mf": 500
+    },
+    "hard_fusion": {
+      "w_tab": 0.85,
+      "w_mri": 0.0,
+      "w_txt": 0.15,
+      "mean_macro_f1": 0.4584891241927527
+    },
+    "soft_fusion": {
+      "w_tab": 0.15,
+      "w_mri": 0.85,
+      "w_txt": 0.0,
+      "mean_macro_f1": 0.5348965350794785
+    }
+  },
+  "loocv_accuracy": {
+    "hard": 0.8,
+    "soft": 0.6857142857142857
+  },
+  "runtime_seconds": 432.423602104187
+}

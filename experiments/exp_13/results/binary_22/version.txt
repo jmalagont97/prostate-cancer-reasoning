@@ -1,0 +1,2 @@
+exp_13 binary 2.2 timestamp: 2026-08-31T19:27:34.293825
+Binary borderline-vs-clear SVM benchmark (uncertain dropped).
