@@ -21,3 +21,5 @@ Thumbs.db
 *.log
 
 *.tar.gz
+CLAUDE.md
+.claude/
