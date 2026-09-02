@@ -1,0 +1,39 @@
+{
+    "G0_reload_exp29_winners": {
+        "passed": true,
+        "per_modality": {
+            "tab": {
+                "got": 0.6333333333333333,
+                "expected": 0.6333333333333333,
+                "passed": true
+            },
+            "mri": {
+                "got": 0.5285714285714286,
+                "expected": 0.5285714285714286,
+                "passed": true
+            },
+            "txt": {
+                "got": 0.7090909090909091,
+                "expected": 0.7090909090909091,
+                "passed": true
+            }
+        }
+    },
+    "G1_reproduce_exp29_s1": {
+        "passed": true,
+        "weights_match": true,
+        "phaseb_match": true,
+        "got_weights": {
+            "tab": 0.4,
+            "mri": 0.1,
+            "txt": 0.5
+        },
+        "expected_weights": {
+            "tab": 0.4,
+            "mri": 0.1,
+            "txt": 0.5
+        },
+        "got_macro_f1": 0.7067941474721136,
+        "expected_macro_f1": 0.7067941474721136
+    }
+}

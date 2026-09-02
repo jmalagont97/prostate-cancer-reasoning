@@ -1,0 +1,80 @@
+{
+    "fusion_arithmetic_smoothed__hard": {
+        "macro_f1": 0.7067941474721136,
+        "accuracy": 0.7386363636363636,
+        "sensitivity": 0.8703703703703703,
+        "specificity": 0.5294117647058824,
+        "auroc": 0.7649782135076253,
+        "brier_score": 0.19152742094632702,
+        "tp": 47,
+        "tn": 18,
+        "fp": 16,
+        "fn": 7,
+        "total_cases": 88
+    },
+    "fusion_loglinear__hard": {
+        "macro_f1": 0.6914085330216247,
+        "accuracy": 0.7272727272727273,
+        "sensitivity": 0.8703703703703703,
+        "specificity": 0.5,
+        "auroc": 0.755718954248366,
+        "brier_score": 0.19872151849597433,
+        "tp": 47,
+        "tn": 17,
+        "fp": 17,
+        "fn": 7,
+        "total_cases": 88
+    },
+    "fusion_kdm_gate__hard": {
+        "macro_f1": 0.6111190306486101,
+        "accuracy": 0.6477272727272727,
+        "sensitivity": 0.7777777777777778,
+        "specificity": 0.4411764705882353,
+        "auroc": 0.7107843137254902,
+        "brier_score": 0.20996067792512116,
+        "tp": 42,
+        "tn": 15,
+        "fp": 19,
+        "fn": 12,
+        "total_cases": 88
+    },
+    "unimodal_tab_smoothed__hard": {
+        "macro_f1": 0.6333333333333333,
+        "accuracy": 0.6818181818181818,
+        "sensitivity": 0.8518518518518519,
+        "specificity": 0.4117647058823529,
+        "auroc": 0.7053376906318083,
+        "brier_score": 0.23543046246414653,
+        "tp": 46,
+        "tn": 14,
+        "fp": 20,
+        "fn": 8,
+        "total_cases": 88
+    },
+    "unimodal_mri_smoothed__hard": {
+        "macro_f1": 0.5285714285714286,
+        "accuracy": 0.5909090909090909,
+        "sensitivity": 0.7777777777777778,
+        "specificity": 0.29411764705882354,
+        "auroc": 0.5201525054466231,
+        "brier_score": 0.3165263158068203,
+        "tp": 42,
+        "tn": 10,
+        "fp": 24,
+        "fn": 12,
+        "total_cases": 88
+    },
+    "unimodal_txt_smoothed__hard": {
+        "macro_f1": 0.7090909090909091,
+        "accuracy": 0.7272727272727273,
+        "sensitivity": 0.7962962962962963,
+        "specificity": 0.6176470588235294,
+        "auroc": 0.7145969498910675,
+        "brier_score": 0.2275060544501436,
+        "tp": 43,
+        "tn": 21,
+        "fp": 13,
+        "fn": 11,
+        "total_cases": 88
+    }
+}

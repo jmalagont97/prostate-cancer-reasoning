@@ -1,0 +1,20 @@
+{
+    "H1_loglinear_vs_arithmetic": {
+        "b": 1,
+        "c": 2,
+        "statistic": 1,
+        "pvalue": 1.0
+    },
+    "H2_gate_vs_arithmetic": {
+        "b": 3,
+        "c": 11,
+        "statistic": 3,
+        "pvalue": 0.057373046875
+    },
+    "context_gate_vs_loglinear": {
+        "b": 3,
+        "c": 10,
+        "statistic": 3,
+        "pvalue": 0.09228515625
+    }
+}
