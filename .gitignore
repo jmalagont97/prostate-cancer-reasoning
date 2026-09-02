@@ -22,3 +22,4 @@ experiments/*/results/per_instance_predictions.csv
 # OS/editor cruft
 .DS_Store
 Thumbs.db
+CLAUDE.md
