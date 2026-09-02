@@ -1,0 +1,119 @@
+{
+  "task": "task2_mri_biopsy_risk_stratification",
+  "final_config": {
+    "decision": {"model": "knn(n_neighbors=7, weights=distance)", "n_features": 12, "required_tools": []},
+    "confidence": {"model": "knn(n_neighbors=7, weights=distance)", "n_features": 10, "required_tools": []},
+    "variable_weights": {"model": "mord.LogisticIT", "n_features": 10, "required_tools": []}
+  },
+  "final_loocv_ranking_score": 0.740,
+  "n_cases_labeled": 72,
+  "n_cases_unlabeled": 81,
+  "n_cases_total_released": 153,
+  "score_progression": [
+    {"stage": "exp_11_baseline", "description": "task1 architecture ported; zero-tools policy measured", "ranking_score": 0.714},
+    {"stage": "exp_14_mord_variable_weights", "description": "ordinal classifier promoted for variable_weights (borderline bootstrap + corroborating diagnostics)", "ranking_score": 0.716},
+    {"stage": "exp_16_psa_kinetics", "description": "PSA-trend velocity/ratio added to decision's feature set", "ranking_score": 0.740}
+  ],
+  "decision_classification_report": {
+    "watchful_waiting": {"precision": 0.00, "recall": 0.00, "f1": 0.00, "support": 2},
+    "active_surveillance": {"precision": 0.73, "recall": 0.88, "f1": 0.80, "support": 25},
+    "continued_surveillance": {"precision": 0.93, "recall": 0.93, "f1": 0.93, "support": 14},
+    "active_treatment": {"precision": 0.89, "recall": 0.81, "f1": 0.85, "support": 31},
+    "accuracy": 0.83,
+    "macro_avg": {"precision": 0.64, "recall": 0.65, "f1": 0.64, "support": 72},
+    "weighted_avg": {"precision": 0.82, "recall": 0.83, "f1": 0.82, "support": 72}
+  },
+  "decision_confusion_matrix": {
+    "labels_order": ["watchful_waiting", "active_surveillance", "continued_surveillance", "active_treatment"],
+    "rows_are_true": [
+      [0, 1, 0, 1],
+      [0, 22, 1, 2],
+      [0, 1, 13, 0],
+      [0, 6, 0, 25]
+    ]
+  },
+  "experiments": {
+    "exp_11_first_baseline": {
+      "verdict": "baseline built + tool-policy measured",
+      "ranking_score": 0.714,
+      "tool_policy_bootstrap_gain": {"mean_diff": 0.0636, "ci_95": [0.0525, 0.0748], "verdict": "significant"}
+    },
+    "exp_12_model_sweep": {
+      "verdict": "refuted",
+      "best_candidate": "random_forest on decision",
+      "point_estimate_gain": 0.0149,
+      "bootstrap": {"mean_diff": 0.0147, "ci_95": [-0.0725, 0.1091], "frac_favoring": 0.637, "verdict": "not_significant"}
+    },
+    "exp_13_ordinal_regression": {
+      "verdict": "refuted",
+      "note": "regress-and-round proxy pulled predictions toward the majority/mean class; largest gain tried +0.0019, not bootstrapped (noise-level)"
+    },
+    "exp_14_mord_ordinal_classifiers": {
+      "verdict": "mixed - promoted for variable_weights, refuted for confidence",
+      "confidence_result": {"ranking_score": 0.7151, "verdict": "refuted, uniformly worse than knn"},
+      "variable_weights_result": {
+        "promoted_model": "mord.LogisticIT",
+        "ranking_score": 0.7186,
+        "bootstrap": {"mean_diff": 0.0020, "ci_95": [-0.0005, 0.0047], "frac_favoring": 0.937, "verdict": "borderline"},
+        "corroborating_diagnostics": {"accuracy": [0.53, 0.56], "macro_f1": [0.47, 0.51], "decisive_class_recall": [0.18, 0.25]}
+      }
+    },
+    "exp_15_confidence_tradeoff": {
+      "verdict": "refuted - real cost, not noise",
+      "candidate": "extra_trees (class_weight=balanced) for confidence",
+      "borderline_recall_gain": "0.00 -> 0.57 (8/14)",
+      "bootstrap": {"mean_diff": -0.0087, "ci_95": [-0.0156, -0.0016], "frac_favoring": 0.004, "verdict": "significant_loss"}
+    },
+    "exp_16_psa_kinetics": {
+      "verdict": "promoted",
+      "features_added": ["psa_velocity_per_year", "psa_ratio_last_first"],
+      "ranking_score": 0.7429,
+      "point_estimate_gain": 0.0243,
+      "bootstrap": {"mean_diff": 0.0238, "ci_95": [0.0000, 0.0622], "frac_favoring": 0.858, "verdict": "borderline_promoted_via_corroborating_classification_report"},
+      "labs_group_refuted": {"n_features": 7, "ranking_score": 0.6548, "verdict": "refuted, dimensionality noise"}
+    },
+    "exp_17_subset_sweep": {
+      "verdict": "refuted",
+      "family_history_present_on_decision": {"alone": -0.0362, "combined_with_kinetics": -0.0611},
+      "family_history_present_elsewhere": "negligible (+/-0.0024)"
+    },
+    "exp_18_radiology_pathology_text": {
+      "verdict": "refuted",
+      "features_extracted": ["epe_present", "svi_present", "ai_isup_discordance", "cribriform_present", "perineural_invasion_present"],
+      "radiology_group_effect": "exactly 0.0000 everywhere (too rare: 5 and 2 positive cases)",
+      "pathology_group_effect_on_decision": -0.0717
+    },
+    "exp_19_voting_ensemble": {
+      "verdict": "refuted",
+      "models": ["knn", "logistic", "random_forest"],
+      "voting_hard": {"ranking_score": 0.7452, "point_estimate_gain": 0.0024},
+      "bootstrap": {"mean_diff": 0.0024, "ci_95": [-0.0463, 0.0521], "frac_favoring": 0.560, "verdict": "not_significant"}
+    },
+    "exp_20_kdm_classifier": {
+      "verdict": "refuted",
+      "package": "fagonzalezo/kdm (Kernel Density Matrices)",
+      "ranking_score": 0.6944,
+      "point_estimate_loss": -0.0485,
+      "environment_note": "torch 2.13.0 failed to import (WinError 1114, c10.dll); torch==2.2.0+cpu fixed it"
+    },
+    "exp_21_kdm_regressor": {
+      "verdict": "refuted, decisively",
+      "ranking_score": 0.5865,
+      "point_estimate_loss": -0.1564,
+      "note": "decision confirmed nominal; forcing 4 categories onto a number line pulled predictions toward the middle of the imposed encoding"
+    },
+    "exp_22_kdm_generative": {
+      "verdict": "refuted, catastrophic collapse",
+      "ranking_score": 0.2907,
+      "point_estimate_loss": -0.4522,
+      "note": "identical score across generative weights 0.5/1.0/2.0; confirmed collapse to predicting active_treatment for 72/72 cases"
+    }
+  },
+  "known_limitations": [
+    "watchful_waiting (2/72) never predicted correctly by any model tried - a sample-size floor, not a fixable model weakness",
+    "confidence's borderline class (14/72) never predicted correctly by the promoted model - a named, quantified, deliberately-not-paid trade-off (exp_15)",
+    "no gated-text feature engineering beyond exp_16/exp_18's attempts - psa_trend/labs/radiology/pathology all tried, only psa_trend's kinetics features promoted",
+    "KDM (fagonzalezo/kdm) is 0-for-3 on decision across exp_20/21/22 - wrapper infrastructure (agent/src/kdm_models.py) kept, reusable for a future tuned attempt or task3's regression target",
+    "no model-family re-sweep on decision's final 12-feature set (exp_12's sweep predates exp_16's psa_kinetics addition)"
+  ]
+}
