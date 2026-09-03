@@ -1,0 +1,3 @@
+exp_14 execution timestamp: 2026-09-02T21:02:46.526564
+Columns: full=29 ablated=26; removed=['bx_gl_prim', 'bx_gl_sec', 'bx_isup']
+In-run C0_full vs C1_ablated paired control (exp_12 split metrics absent).

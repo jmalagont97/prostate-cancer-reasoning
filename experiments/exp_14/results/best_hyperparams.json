@@ -1,0 +1,19 @@
+{
+  "subtask2_2": {
+    "k": 1,
+    "w": "uniform"
+  },
+  "subtask2_3": {
+    "age": "rf",
+    "bx_gl_prim": "rf",
+    "bx_gl_sec": "et",
+    "bx_isup": "et",
+    "comorbidity": "et",
+    "cspca": "et",
+    "ct": "rf",
+    "fh": "et",
+    "pirads": "et",
+    "psa": "et",
+    "psad": "et"
+  }
+}
