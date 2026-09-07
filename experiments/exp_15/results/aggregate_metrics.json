@@ -1,0 +1,236 @@
+{
+  "aggregated_per_cond_mode": {
+    "C0_3class": {
+      "macro_f1_mean": 0.3817107779778675,
+      "macro_f1_std": 0.07276935953251853,
+      "best_C": 0.1,
+      "best_eps": 0.05
+    },
+    "C0_binary": {
+      "macro_f1_mean": 0.5725661669668015,
+      "macro_f1_std": 0.10915403929877779,
+      "best_C": 0.1,
+      "best_eps": 0.05
+    },
+    "C1_3class": {
+      "macro_f1_mean": 0.37932031227262236,
+      "macro_f1_std": 0.07151851149614108,
+      "best_C": 0.1,
+      "best_eps": 0.05
+    },
+    "C1_binary": {
+      "macro_f1_mean": 0.5689804684089337,
+      "macro_f1_std": 0.10727776724421162,
+      "best_C": 0.1,
+      "best_eps": 0.05
+    },
+    "C2_3class": {
+      "macro_f1_mean": 0.38039753197274534,
+      "macro_f1_std": 0.06595870207950119,
+      "best_C": 0.1,
+      "best_eps": 0.05
+    },
+    "C2_binary": {
+      "macro_f1_mean": 0.5699700353328556,
+      "macro_f1_std": 0.09871481760107736,
+      "best_C": 0.1,
+      "best_eps": 0.05
+    },
+    "C3_3class": {
+      "macro_f1_mean": 0.38326947525489286,
+      "macro_f1_std": 0.07161743276448379,
+      "best_C": 0.1,
+      "best_eps": 0.05
+    },
+    "C3_binary": {
+      "macro_f1_mean": 0.5746819906601173,
+      "macro_f1_std": 0.107326638933865,
+      "best_C": 0.1,
+      "best_eps": 0.05
+    }
+  },
+  "loocv_accuracy": {
+    "C0_3class": 0.7857142857142857,
+    "C0_binary": 0.7857142857142857,
+    "C1_3class": 0.8,
+    "C1_binary": 0.8,
+    "C2_3class": 0.8,
+    "C2_binary": 0.8,
+    "C3_3class": 0.8,
+    "C3_binary": 0.8
+  },
+  "confusion_matrices": {
+    "C0": {
+      "3class": {
+        "loocv": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            12
+          ],
+          [
+            0,
+            3,
+            53
+          ]
+        ],
+        "labels": [
+          "uncertain",
+          "borderline",
+          "clear"
+        ]
+      },
+      "binary": {
+        "loocv": [
+          [
+            2,
+            12
+          ],
+          [
+            3,
+            53
+          ]
+        ],
+        "labels": [
+          "borderline",
+          "clear"
+        ]
+      }
+    },
+    "C1": {
+      "3class": {
+        "loocv": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            12
+          ],
+          [
+            0,
+            2,
+            54
+          ]
+        ],
+        "labels": [
+          "uncertain",
+          "borderline",
+          "clear"
+        ]
+      },
+      "binary": {
+        "loocv": [
+          [
+            2,
+            12
+          ],
+          [
+            2,
+            54
+          ]
+        ],
+        "labels": [
+          "borderline",
+          "clear"
+        ]
+      }
+    },
+    "C2": {
+      "3class": {
+        "loocv": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            12
+          ],
+          [
+            0,
+            2,
+            54
+          ]
+        ],
+        "labels": [
+          "uncertain",
+          "borderline",
+          "clear"
+        ]
+      },
+      "binary": {
+        "loocv": [
+          [
+            2,
+            12
+          ],
+          [
+            2,
+            54
+          ]
+        ],
+        "labels": [
+          "borderline",
+          "clear"
+        ]
+      }
+    },
+    "C3": {
+      "3class": {
+        "loocv": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            12
+          ],
+          [
+            0,
+            2,
+            54
+          ]
+        ],
+        "labels": [
+          "uncertain",
+          "borderline",
+          "clear"
+        ]
+      },
+      "binary": {
+        "loocv": [
+          [
+            2,
+            12
+          ],
+          [
+            2,
+            54
+          ]
+        ],
+        "labels": [
+          "borderline",
+          "clear"
+        ]
+      }
+    }
+  },
+  "runtime_seconds": 555.2545740604401,
+  "nested_oof": true,
+  "preproc_leak_free": true,
+  "source21": "exp_11 fuzzy-SVR frozen"
+}

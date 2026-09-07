@@ -1,0 +1,170 @@
+{
+  "C0": {
+    "3class": {
+      "loocv": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          12
+        ],
+        [
+          0,
+          3,
+          53
+        ]
+      ],
+      "labels": [
+        "uncertain",
+        "borderline",
+        "clear"
+      ]
+    },
+    "binary": {
+      "loocv": [
+        [
+          2,
+          12
+        ],
+        [
+          3,
+          53
+        ]
+      ],
+      "labels": [
+        "borderline",
+        "clear"
+      ]
+    }
+  },
+  "C1": {
+    "3class": {
+      "loocv": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          12
+        ],
+        [
+          0,
+          2,
+          54
+        ]
+      ],
+      "labels": [
+        "uncertain",
+        "borderline",
+        "clear"
+      ]
+    },
+    "binary": {
+      "loocv": [
+        [
+          2,
+          12
+        ],
+        [
+          2,
+          54
+        ]
+      ],
+      "labels": [
+        "borderline",
+        "clear"
+      ]
+    }
+  },
+  "C2": {
+    "3class": {
+      "loocv": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          12
+        ],
+        [
+          0,
+          2,
+          54
+        ]
+      ],
+      "labels": [
+        "uncertain",
+        "borderline",
+        "clear"
+      ]
+    },
+    "binary": {
+      "loocv": [
+        [
+          2,
+          12
+        ],
+        [
+          2,
+          54
+        ]
+      ],
+      "labels": [
+        "borderline",
+        "clear"
+      ]
+    }
+  },
+  "C3": {
+    "3class": {
+      "loocv": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          12
+        ],
+        [
+          0,
+          2,
+          54
+        ]
+      ],
+      "labels": [
+        "uncertain",
+        "borderline",
+        "clear"
+      ]
+    },
+    "binary": {
+      "loocv": [
+        [
+          2,
+          12
+        ],
+        [
+          2,
+          54
+        ]
+      ],
+      "labels": [
+        "borderline",
+        "clear"
+      ]
+    }
+  }
+}

@@ -1,0 +1,2 @@
+exp_15 v2 timestamp: 2026-09-06T16:18:26.124167
+Leak-free preprocessing per fold; nested OOF 2.1; no eval().
