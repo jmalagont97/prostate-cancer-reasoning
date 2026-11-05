@@ -1,0 +1,3 @@
+[submodule "goals/02/docs/task-driven-harness"]
+	path = goals/02/docs/task-driven-harness
+	url = git@github.com:jmalagont97/task-driven-harness.git

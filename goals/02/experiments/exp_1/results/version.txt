@@ -1,0 +1,1 @@
+ea306ed6306369a47e470c241d8727c97ed9aad1  docs(goals/01): record consolidation note in discussion log

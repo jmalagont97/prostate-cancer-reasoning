@@ -1,0 +1,428 @@
+{
+  "total_labeled": 91,
+  "decision_counts": {
+    "yes": 56,
+    "no": 35
+  },
+  "confidence_counts": {
+    "clear": 58,
+    "borderline": 18,
+    "uncertain": 15
+  },
+  "pirads_contingency": {
+    "no": {
+      "2": 3,
+      "3": 8,
+      "4": 9,
+      "5": 15,
+      "All": 35
+    },
+    "yes": {
+      "2": 0,
+      "3": 2,
+      "4": 24,
+      "5": 30,
+      "All": 56
+    },
+    "All": {
+      "2": 3,
+      "3": 10,
+      "4": 33,
+      "5": 45,
+      "All": 91
+    }
+  },
+  "discordant_pirads_ge4_decision_no": [
+    {
+      "case_id": "PT-pseudo_01b643727538",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.516,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 1,
+      "free_text": "He has a ISUP3 cancer diagnosis already and he should be recommended treatment"
+    },
+    {
+      "case_id": "PT-pseudo_0615b2bd8504",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 2.6355,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 1,
+      "free_text": "Start treating the patent. It does not make sense to not treat this man initially."
+    },
+    {
+      "case_id": "PT-pseudo_079636ac5644",
+      "radiology_report__pirads": 4,
+      "radiology_report__psa_density": 0.2,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 1,
+      "free_text": "All depends if the lesion has grown in size since 2024. If stable no biopsy , if increased in size I will do a biopsy."
+    },
+    {
+      "case_id": "PT-pseudo_11345b8a7ab3",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 2.61,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "Patient has a verified PCa with PSA 113. Start treatment and do I PSMA-PET for further workup."
+    },
+    {
+      "case_id": "PT-pseudo_11fe9c6ca833",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 4.097,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "Patient with a clear PCa diagnosis. Do PSMA-PET and start hormontreatment"
+    },
+    {
+      "case_id": "PT-pseudo_175e6ad47991",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.28,
+      "structured_prompt__bx": "Negative",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "P5 in 79 years old man with earlier negative biopsy. Need to discuss with patient."
+    },
+    {
+      "case_id": "PT-pseudo_17f110c9e142",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.1711,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 1,
+      "free_text": "Need to know if the P5 lesion has grown in size. If not no biopsy."
+    },
+    {
+      "case_id": "PT-pseudo_1a4e0cf3b927",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.427,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "Most likely no biopsy . But very rapid growth in size might change the decision."
+    },
+    {
+      "case_id": "PT-pseudo_1dc32184cab6",
+      "radiology_report__pirads": 4,
+      "radiology_report__psa_density": 0.0211,
+      "structured_prompt__bx": "Negative",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "Low PSA with earlier negative biopsy. A change in P4 lesion size might trigger a biopsy."
+    },
+    {
+      "case_id": "PT-pseudo_20a7e91c494c",
+      "radiology_report__pirads": 4,
+      "radiology_report__psa_density": 0.0616,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "Man on active surveillance. MRI stabile and PSA moderately high."
+    },
+    {
+      "case_id": "PT-pseudo_2b3ef1d3a505",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.0609,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "Need to know if the lesion has grown or if it is stabile."
+    },
+    {
+      "case_id": "PT-pseudo_2e4988b84112",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.6667,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "This patient has PCa and a very high PSA. start treatment and do a PSMA-PET ."
+    },
+    {
+      "case_id": "PT-pseudo_34647958aba3",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.1206,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "Again, man on Active Surveillance. Need initial ISUP and MRI."
+    },
+    {
+      "case_id": "PT-pseudo_37d8ae9b27f1",
+      "radiology_report__pirads": 4,
+      "radiology_report__psa_density": 0.053,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "Need to know initial MRI before decision"
+    },
+    {
+      "case_id": "PT-pseudo_3b6ea1920967",
+      "radiology_report__pirads": 4,
+      "radiology_report__psa_density": 0.11,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "Need initial ISUP grade and MRI in men on active surveillance."
+    },
+    {
+      "case_id": "PT-pseudo_4b950525e6a8",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.37,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 1,
+      "free_text": "Patient needs treatment without repeat biopsy as earlier biopsy showed ISUP4"
+    },
+    {
+      "case_id": "PT-pseudo_4c6b2b2bbf94",
+      "radiology_report__pirads": 4,
+      "radiology_report__psa_density": 0.07,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "PRADS 4 with low-PSA-density can be followed up, I need results of earlier biopsy to make a definite call"
+    },
+    {
+      "case_id": "PT-pseudo_590e7b237744",
+      "radiology_report__pirads": 4,
+      "radiology_report__psa_density": 0.161,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "Stop checking PSA, no need for diagnostics"
+    },
+    {
+      "case_id": "PT-pseudo_c55496c11421",
+      "radiology_report__pirads": 4,
+      "radiology_report__psa_density": 0.1103,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "80yr, low risk PC. Only biopsy if signs of high risk PC, no indication for active treatment otherwise. Biopsyfinding congruent with MRI finding is reassuring."
+    },
+    {
+      "case_id": "PT-pseudo_c9d31197c533",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.26,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 1,
+      "free_text": "Advocate for curative treatment while unfavorable intermediate risk pc in young patient without significant comorbidity. IF he is cautious toward curative treatment, repeat biopsy to exclude higher-risk disease."
+    },
+    {
+      "case_id": "PT-pseudo_cce5d47c05dd",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.2857,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 1,
+      "free_text": "Young patient with elevated PSA (>10), elevated PSA density, PIRADS5 and ISUP GG2 disease -> low threshold for recommending curative treatment. IF patient does not want to go to curative treatment, low threshold for biopsy to exclude higher-risk disease."
+    },
+    {
+      "case_id": "PT-pseudo_d217629c323a",
+      "radiology_report__pirads": 4,
+      "radiology_report__psa_density": 0.1258,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "stable MRi findings in 70yr with reasonably low PSA. prev biopsy finding without obvious indication for treatment. IF patient want to be very active in treatment, consider biopsy and treat if higher-risk biopsy findings."
+    },
+    {
+      "case_id": "PT-pseudo_d38917f87b35",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.4043,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 1,
+      "free_text": "Highrisk disease in young patient. Should be treated, not get another biopsy."
+    },
+    {
+      "case_id": "PT-pseudo_dcd61cf9b443",
+      "radiology_report__pirads": 5,
+      "radiology_report__psa_density": 0.2154,
+      "structured_prompt__bx": "Positive",
+      "previous_notes__prior_cancer_confirmed": 0,
+      "free_text": "This person should discuss curative treatment (younger patient with palpable, MRI-visible high-risk disease incl Gleason 5 findings). If not curative treatment for any reason, a strategy for medical treatment should be set. Potentially reasonable already now, but could also be delayed (but to the risk of disease progression)."
+    }
+  ],
+  "discordant_pirads_le2_decision_yes": [],
+  "numerical_stats_by_class": {
+    "radiology_report__pirads": {
+      "no": {
+        "count": 35.0,
+        "mean": 4.0285714285714285,
+        "std": 1.01418510567422,
+        "min": 2.0,
+        "25%": 3.0,
+        "50%": 4.0,
+        "75%": 5.0,
+        "max": 5.0
+      },
+      "yes": {
+        "count": 56.0,
+        "mean": 4.5,
+        "std": 0.5720775535473553,
+        "min": 3.0,
+        "25%": 4.0,
+        "50%": 5.0,
+        "75%": 5.0,
+        "max": 5.0
+      }
+    },
+    "radiology_report__psa_density": {
+      "no": {
+        "count": 35.0,
+        "mean": 0.44190857142857143,
+        "std": 0.8669445213851138,
+        "min": 0.0211,
+        "25%": 0.10500000000000001,
+        "50%": 0.161,
+        "75%": 0.28285000000000005,
+        "max": 4.097
+      },
+      "yes": {
+        "count": 56.0,
+        "mean": 0.30301785714285717,
+        "std": 0.44749235569180107,
+        "min": 0.01,
+        "25%": 0.119,
+        "50%": 0.1993,
+        "75%": 0.333925,
+        "max": 3.2647
+      }
+    },
+    "radiology_report__prostate_volume": {
+      "no": {
+        "count": 35.0,
+        "mean": 57.202285714285715,
+        "std": 25.839771225279648,
+        "min": 16.4,
+        "25%": 41.165,
+        "50%": 50.0,
+        "75%": 68.5,
+        "max": 134.0
+      },
+      "yes": {
+        "count": 56.0,
+        "mean": 48.40660714285714,
+        "std": 26.55707235211714,
+        "min": 19.07,
+        "25%": 29.5825,
+        "50%": 40.769999999999996,
+        "75%": 57.35,
+        "max": 149.0
+      }
+    },
+    "psa_trend__latest_psa": {
+      "no": {
+        "count": 35.0,
+        "mean": 23.162285714285712,
+        "std": 43.51104059253672,
+        "min": 0.76,
+        "25%": 4.9,
+        "50%": 7.6,
+        "75%": 11.46,
+        "max": 190.0
+      },
+      "yes": {
+        "count": 56.0,
+        "mean": 12.710892857142857,
+        "std": 24.36287236959966,
+        "min": 2.11,
+        "25%": 5.9,
+        "50%": 8.649999999999999,
+        "75%": 12.0,
+        "max": 187.0
+      }
+    },
+    "clinical_data__cspca": {
+      "no": {
+        "count": 35.0,
+        "mean": 0.6948636342857143,
+        "std": 0.2382017791168412,
+        "min": 0.0,
+        "25%": 0.602054285,
+        "50%": 0.7866596,
+        "75%": 0.8577892300000001,
+        "max": 0.9718793
+      },
+      "yes": {
+        "count": 56.0,
+        "mean": 0.7782414678571428,
+        "std": 0.11870204608018439,
+        "min": 0.40281674,
+        "25%": 0.7498871625,
+        "50%": 0.816331575,
+        "75%": 0.8547527875,
+        "max": 0.964853
+      }
+    },
+    "structured_prompt__age": {
+      "no": {
+        "count": 35.0,
+        "mean": 65.71428571428571,
+        "std": 6.964495795150736,
+        "min": 48.0,
+        "25%": 61.0,
+        "50%": 66.0,
+        "75%": 67.5,
+        "max": 82.0
+      },
+      "yes": {
+        "count": 56.0,
+        "mean": 64.91071428571429,
+        "std": 7.133217521412915,
+        "min": 47.0,
+        "25%": 61.0,
+        "50%": 66.0,
+        "75%": 70.0,
+        "max": 78.0
+      }
+    }
+  },
+  "tool_frequencies": {
+    "radiology_report": 88,
+    "psa_trend": 79,
+    "laboratory_results": 41,
+    "previous_notes": 77
+  },
+  "weights_distribution": {
+    "age": {
+      "important": 56,
+      "noted": 31,
+      "decisive": 3,
+      "not_used": 1
+    },
+    "fh": {
+      "noted": 64,
+      "not_used": 24,
+      "important": 3
+    },
+    "cspca": {
+      "not_used": 61,
+      "noted": 19,
+      "important": 11
+    },
+    "pirads": {
+      "decisive": 45,
+      "important": 45,
+      "not_used": 1
+    },
+    "vol": {
+      "noted": 69,
+      "important": 16,
+      "not_used": 4,
+      "decisive": 2
+    },
+    "psa": {
+      "important": 51,
+      "noted": 29,
+      "decisive": 10,
+      "not_used": 1
+    },
+    "comorbidity": {
+      "noted": 63,
+      "not_used": 21,
+      "important": 7
+    },
+    "psad": {
+      "noted": 52,
+      "important": 25,
+      "not_used": 9,
+      "decisive": 5
+    },
+    "dre": {
+      "noted": 64,
+      "important": 24,
+      "not_used": 2,
+      "decisive": 1
+    },
+    "bx": {
+      "important": 46,
+      "noted": 24,
+      "decisive": 18,
+      "not_used": 3
+    }
+  }
+}
