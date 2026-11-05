@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "tool_id": "query_clinical_literature",
+  "name": "Query Clinical Prostate Cancer Guidelines via ChromaDB",
+  "version": "1.0.0",
+  "description": "Performs semantic search against clinical prostate cancer guidelines (EAU & ESMO) in ChromaDB to retrieve formal clinical evidence, recommendations, and diagnostic thresholds.",
+  "execution": {
+    "type": "python",
+    "entrypoint": "query_clinical_literature.py",
+    "function": "query_clinical_literature"
+  },
+  "input_schema": {
+    "type": "object",
+    "required": ["query"],
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "Specific clinical or urological search query (e.g. 'PIRADS 3 and PSA density biopsy threshold', 'prior confirmed prostate cancer repeat biopsy indication')."
+      },
+      "n_results": {
+        "type": "integer",
+        "default": 3,
+        "description": "Number of relevant text chunks to retrieve."
+      },
+      "doc_name": {
+        "type": "string",
+        "enum": ["EAU", "ESMO"],
+        "description": "Optional filter by guideline document."
+      },
+      "topic": {
+        "type": "string",
+        "description": "Optional clinical topic filter (e.g. 'biopsy_strategy', 'imaging_pirads', 'psa_biomarkers')."
+      }
+    }
+  }
+}

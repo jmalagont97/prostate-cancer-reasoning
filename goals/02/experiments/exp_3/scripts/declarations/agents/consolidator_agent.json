@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0.0",
+  "id": "consolidator_agent",
+  "name": "Lead Decision Tree Arbiter & Consolidator",
+  "version": "1.0.0",
+  "description": "Lead arbiter of the decision tree induction harness. Manages blackboard.md state, arbitrates between Oracle and Evaluator, and governs tree expansion.",
+  "enabled": true,
+
+  "role": {
+    "type": "lead",
+    "permissions": {
+      "can_receive_tasks": true,
+      "can_use_tools": false,
+      "can_use_expert_tools": false,
+      "can_use_rag": false,
+      "can_use_data_knowledge": false,
+      "can_write_external": true,
+      "can_finish_task": true
+    },
+    "reports_to": null
+  },
+
+  "prompt": {
+    "template_format": "mustache",
+    "template": "# ROLE\n{{role}}\n\n# CORE MISSION\n{{task}}\n\n# NON-NEGOTIABLE RULES\n{{rules}}\n\n# REQUIRED OUTPUT FORMAT\n{{output_format}}",
+    "role": "You are the Lead Data Scientist and Decision Arbiter for the clinical decision tree induction harness. You manage the cumulative state of the prostate cancer decision tree in blackboard.md, adjudicate proposals between the Oracle and Evaluator, and decide the next tree expansion action.",
+    "task": "You receive: (1) current tree state and patience budget k, (2) candidate split rule proposed by the Oracle, and (3) empirical validation verdict from the Evaluator.\n\nYour mission:\n- If ACCEPTED:\n  * Convert the active node into an internal decision node with the approved rule.\n  * Determine child nodes: pure partitions (Gini = 0.0) or small leaves (< 3 samples) become terminal leaves; mixed partitions become active candidate nodes for further splitting.\n  * Reset the failure counter for this branch.\n  * Set action to 'EXPAND_TREE' (or 'TERMINATE_HARNESS' if all leaves are resolved).\n- If REJECTED:\n  * Append the rejected rule and reason to rejected_hypotheses.\n  * Decrement remaining patience (k_failures += 1).\n  * If patience remains (k_failures < 3): set action to 'RETRY_SPLIT' with clinical guidance for the Oracle.\n  * If patience is exhausted (k_failures >= 3): set action to 'EARLY_STOP_LEAF', seal the node as a terminal leaf with the majority class.\n- Check stopping criteria: if no active mixed leaves remain or maximum tree depth (depth 3) is reached, set action to 'TERMINATE_HARNESS'.",
+    "rules": [
+      "Strictly respect the Evaluator's mathematical verdict. Never accept a split marked REJECTED.",
+      "A partition is pure if and only if Gini = 0.0 (all samples belong to a single class).",
+      "Patience budget per active node is k_max = 3 consecutive rejections. If k_failures >= 3, apply early stopping on that node.",
+      "Maximum depth of the tree is 3 levels of bifurcations.",
+      "Always construct a clear ASCII visual diagram of the decision tree state.",
+      "Provide specific, actionable instructions in 'feedback_for_next_turn' for whichever agent runs next.",
+      "Respond strictly using the JSON format defined in output_format."
+    ],
+    "tools": {
+      "render": "auto_from_bindings",
+      "description": "Tree state management is performed via structured reasoning and JSON output.",
+      "usage_policy": []
+    },
+    "output_format": {
+      "status": "completed",
+      "result": {
+        "action": "EXPAND_TREE",
+        "target_leaf_id": "root",
+        "verdict_received": "ACCEPTED",
+        "patience_remaining": 3,
+        "is_tree_complete": false,
+        "next_active_leaf": "node_id_or_null",
+        "ascii_tree_preview": "ASCII tree diagram",
+        "feedback_for_next_turn": "Guidance for Oracle"
+      },
+      "warnings": []
+    }
+  },
+
+  "tools": [],
+  "expert_tools": [],
+
+  "knowledge": {
+    "rag": { "enabled": false },
+    "data_knowledge": { "enabled": false }
+  },
+
+  "model": {
+    "provider": "ollama",
+    "deployment": "local",
+    "model_name": "gemma4:e2b-64k",
+    "connection": {
+      "base_url": "http://localhost:11434/v1",
+      "api_key_env": "OLLAMA_API_KEY",
+      "timeout_s": 120,
+      "max_retries": 2,
+      "headers": {},
+      "proxy_env": null
+    },
+    "parameters": {
+      "temperature": 0.0,
+      "top_p": null,
+      "max_tokens": 4096,
+      "stop": [],
+      "seed": 42
+    },
+    "capabilities": { "tool_calling": false, "structured_output": true },
+    "billing": { "paid": false, "currency": "USD" },
+    "fallback": []
+  },
+
+  "guardrails": {
+    "output_validation": { "enforce_schema": true, "on_failure": "retry", "max_retries": 2 }
+  },
+
+  "runtime": { "max_iterations": 1, "timeout_s": 120, "parallel_tool_calls": false },
+  "metadata": {
+    "owner": "Goal 02",
+    "created_at": "2026-11-05",
+    "tags": ["consolidator", "arbiter", "decision_tree"]
+  }
+}

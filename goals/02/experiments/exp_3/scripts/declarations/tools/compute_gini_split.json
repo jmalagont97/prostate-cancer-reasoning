@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "tool_id": "compute_gini_split",
+  "name": "Compute Gini Impurity and Information Gain for Decision Tree Split",
+  "version": "1.0.0",
+  "description": "Calculates Gini impurity and Delta Gini for a candidate split rule on clinical features, strictly evaluated on the Train partition (N=45).",
+  "execution": {
+    "type": "python",
+    "entrypoint": "compute_gini_split.py",
+    "function": "compute_gini_split"
+  },
+  "input_schema": {
+    "type": "object",
+    "required": ["feature", "operator", "threshold"],
+    "properties": {
+      "feature": {
+        "type": "string",
+        "description": "Clinical feature name or recognized alias (e.g. 'radiology_report__pirads', 'radiology_report__psa_density', 'structured_prompt__bx')."
+      },
+      "operator": {
+        "type": "string",
+        "enum": ["<=", "<", ">=", ">", "==", "!=", "in"],
+        "description": "Comparison operator to evaluate."
+      },
+      "threshold": {
+        "description": "Cutoff threshold (float, int, or string category like 'Positive')."
+      },
+      "unit": {
+        "type": "string",
+        "description": "Optional physical unit for the threshold (e.g. 'ng/ml/cc', 'ng/ml')."
+      },
+      "target_leaf_id": {
+        "type": "string",
+        "default": "root",
+        "description": "Identifier of the active leaf node being split."
+      }
+    }
+  }
+}

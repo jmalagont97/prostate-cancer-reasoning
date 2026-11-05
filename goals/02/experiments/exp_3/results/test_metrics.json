@@ -1,0 +1,35 @@
+{
+  "dataset_split": "test",
+  "total_samples": 46,
+  "class_distribution": {
+    "yes": 28,
+    "no": 18
+  },
+  "accuracy": 0.8261,
+  "auc_roc": 0.8571,
+  "f1_yes": 0.8571,
+  "f1_no": 0.7778,
+  "macro_f1": 0.8175,
+  "sensitivity_tpr": 0.8571,
+  "specificity_tnr": 0.7778,
+  "confusion_matrix": {
+    "tn": 14,
+    "fp": 4,
+    "fn": 4,
+    "tp": 24,
+    "matrix_labels": [
+      "no",
+      "yes"
+    ],
+    "raw_matrix": [
+      [
+        14,
+        4
+      ],
+      [
+        4,
+        24
+      ]
+    ]
+  }
+}

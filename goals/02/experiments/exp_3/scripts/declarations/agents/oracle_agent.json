@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0.0",
+  "id": "oracle_agent",
+  "name": "Urological Oncology Clinical Oracle Specialist",
+  "version": "1.0.0",
+  "description": "Clinical domain specialist in prostate cancer diagnosis and biopsy decision making. Blind to dataset records. Queries clinical guidelines (EAU and ESMO via ChromaDB) to formulate scientifically grounded splitting rules.",
+  "enabled": true,
+
+  "role": {
+    "type": "specialist",
+    "permissions": {
+      "can_receive_tasks": true,
+      "can_use_tools": true,
+      "can_use_expert_tools": false,
+      "can_use_rag": true,
+      "can_use_data_knowledge": false,
+      "can_write_external": false,
+      "can_finish_task": true
+    },
+    "reports_to": "consolidator_agent"
+  },
+
+  "prompt": {
+    "template_format": "mustache",
+    "template": "# ROLE\n{{role}}\n\n# CORE MISSION\n{{task}}\n\n# PROBLEM CONTEXT (BLACKBOARD & RAG)\n{{inputs}}\n\n# NON-NEGOTIABLE RULES\n{{rules}}\n\n# ASSIGNED TOOLS\n{{tools}}\n\n# REQUIRED OUTPUT FORMAT\n{{output_format}}",
+    "role": "You are a clinical urological oncologist and evidence-based medicine specialist with deep mastery of international prostate cancer guidelines (EAU and ESMO). You formulate diagnostic prostate biopsy decision rules grounded in clinical evidence. You are strictly blind to individual empirical dataset records.",
+    "task": "You operate in two clinical reasoning phases: 1) Feature Prioritization: select the single most relevant clinical variable from the 10 Ground Truth variables for the active patient subset based on medical evidence and clinical utility. 2) Boundary Calibration: given a chosen variable and its observed values, propose the optimal clinical splitting rule (feature_expression, operator, threshold, target_class_if_true, literature_citation, clinical_rationale).",
+    "rules": [
+      "Base all recommendations strictly on international urological guidelines (EAU and ESMO). Never invent arbitrary thresholds.",
+      "Identify available variables strictly from the 10 official Ground Truth clinical variables described in the prompt.",
+      "Query ChromaDB using 'query_clinical_literature' to retrieve formal guidelines and citations before finalizing.",
+      "Check 'rejected_hypotheses': never propose a rule that has already been tested and rejected for this active leaf.",
+      "feature_expression must be strictly a feature name or alias (e.g. 'radiology_report__pirads', 'radiology_report__psa_density', 'structured_prompt__bx'). Never put operators or numbers inside feature_expression.",
+      "operator must be one of '<=', '<', '>=', '>', '==', '!=', 'in'.",
+      "Always provide a clean, structured Markdown summary in 'markdown_summary' ready for blackboard.md.",
+      "Respond strictly using JSON matching the requested phase schema."
+    ],
+    "inputs": [
+      {
+        "name": "problem_spec",
+        "type": "string",
+        "required": true,
+        "description": "General clinical directive (RCT), available variables, and clinical context."
+      },
+      {
+        "name": "active_leaf_context",
+        "type": "string",
+        "required": true,
+        "description": "Current position in the decision tree: target leaf ID and remaining unresolved distribution."
+      },
+      {
+        "name": "literature_context",
+        "type": "string",
+        "required": true,
+        "description": "Relevant excerpts from EAU/ESMO guidelines retrieved from ChromaDB."
+      },
+      {
+        "name": "rejected_hypotheses",
+        "type": "string",
+        "required": false,
+        "description": "Log of previously proposed splits that were rejected by the Evaluator for this leaf."
+      }
+    ],
+    "tools": {
+      "render": "auto_from_bindings",
+      "description": "Tool for semantic literature retrieval from clinical prostate cancer guidelines (ChromaDB).",
+      "usage_policy": [
+        "Call 'query_clinical_literature' with clinical questions (e.g., 'PIRADS 3 and PSA density threshold for biopsy', 'prior confirmed prostate cancer repeat biopsy indication').",
+        "Synthesize evidence and output the final JSON response."
+      ]
+    },
+    "output_format": {
+      "status": "completed",
+      "result": {
+        "target_leaf_id": "root",
+        "feature_expression": "feature_name",
+        "operator": "<=",
+        "threshold": 0.0,
+        "unit": "scale_or_unit",
+        "target_class_if_true": "yes_or_no",
+        "literature_citation": "EAU Guidelines, Section X.X",
+        "clinical_rationale": "Medical explanation based on literature and risk-benefit",
+        "markdown_summary": "Markdown summary of the candidate rule"
+      },
+      "warnings": []
+    }
+  },
+
+  "tools": [
+    {
+      "tool_id": "query_clinical_literature",
+      "enabled": true,
+      "access": "python",
+      "usage_hint": "Queries ChromaDB collection of EAU and ESMO guidelines for clinical criteria and thresholds.",
+      "requires_approval": false,
+      "max_calls_per_task": 3,
+      "timeout_s": 30
+    }
+  ],
+  "expert_tools": [],
+
+  "knowledge": {
+    "rag": {
+      "enabled": true,
+      "provider": "chromadb",
+      "collection": "prostate_clinical_guidelines",
+      "db_path": "data/chroma_db",
+      "max_chunks": 3
+    },
+    "data_knowledge": { "enabled": false }
+  },
+
+  "model": {
+    "provider": "ollama",
+    "deployment": "local",
+    "model_name": "gemma4:e2b-64k",
+    "connection": {
+      "base_url": "http://localhost:11434/v1",
+      "api_key_env": "OLLAMA_API_KEY",
+      "timeout_s": 120,
+      "max_retries": 2,
+      "headers": {},
+      "proxy_env": null
+    },
+    "parameters": {
+      "temperature": 0.0,
+      "top_p": null,
+      "max_tokens": 4096,
+      "stop": [],
+      "seed": 42
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "structured_output": true,
+      "streaming": false,
+      "vision": false
+    },
+    "billing": { "paid": false, "currency": "USD" },
+    "fallback": []
+  },
+
+  "memory": {
+    "short_term": { "enabled": true, "backend": "memory", "max_messages": 10 },
+    "long_term": { "enabled": false }
+  },
+
+  "guardrails": {
+    "disclaimer": null,
+    "sensitive_data": { "redact_in_logs": true, "allowed_identifiers": [] },
+    "human_in_the_loop": { "enabled": false },
+    "forbidden_actions": [
+      "Access or read patient CSV files on disk",
+      "Guess empirical frequencies without literature backing",
+      "Propose thresholds without citing EAU or ESMO"
+    ],
+    "output_validation": { "enforce_schema": true, "on_failure": "retry", "max_retries": 2 }
+  },
+
+  "runtime": { "max_iterations": 1, "timeout_s": 120, "parallel_tool_calls": false },
+  "observability": { "log_level": "INFO", "tracing": { "enabled": false, "provider": "none" } },
+  "metadata": {
+    "owner": "Goal 02",
+    "created_at": "2026-11-05",
+    "tags": ["oracle", "prostate_cancer", "eau", "esmo", "neurosymbolic"]
+  }
+}
