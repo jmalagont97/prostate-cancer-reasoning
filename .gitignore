@@ -4,7 +4,6 @@
 *.env
 
 # Data directory
-data/
 
 # Python bytecode and caches
 __pycache__/
@@ -46,3 +45,5 @@ Thumbs.db
 .gemini/
 CLAUDE.md
 .claude/
+AGENTS.md
+agent.md

@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 
 AGENT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = AGENT_DIR.parent
+PROJECT_ROOT = AGENT_DIR.parents[3]
 DATA_DIR = PROJECT_ROOT / "data" / "chimera26" / "preprocessed" / "task1"
 
 sys.path.insert(0, str(AGENT_DIR))

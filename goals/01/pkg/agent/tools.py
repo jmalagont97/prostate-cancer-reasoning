@@ -12,8 +12,8 @@ import importlib.util
 from pathlib import Path
 
 AGENT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = AGENT_DIR.parent
-DEPLOY_DIR = PROJECT_ROOT / "deploy"
+PKG_DIR = AGENT_DIR.parent
+DEPLOY_DIR = PKG_DIR / "deploy"
 
 # Dynamically load inference functions from deploy subtasks
 def _load_tool_module(subtask_name):
