@@ -1,0 +1,31 @@
+|--- clinical_data__cspca <= 0.40
+|   |--- class: 0
+|--- clinical_data__cspca >  0.40
+|   |--- structured_prompt__bx_Positive <= 0.50
+|   |   |--- radiology_report__pirads <= 3.50
+|   |   |   |--- class: 0
+|   |   |--- radiology_report__pirads >  3.50
+|   |   |   |--- class: 1
+|   |--- structured_prompt__bx_Positive >  0.50
+|   |   |--- clinical_data__cspca <= 0.77
+|   |   |   |--- radiology_report__pirads <= 3.50
+|   |   |   |   |--- class: 0
+|   |   |   |--- radiology_report__pirads >  3.50
+|   |   |   |   |--- class: 1
+|   |   |--- clinical_data__cspca >  0.77
+|   |   |   |--- radiology_report__prostate_volume <= 56.05
+|   |   |   |   |--- radiology_report__prostate_volume <= 37.27
+|   |   |   |   |   |--- structured_prompt__age <= 68.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- structured_prompt__age >  68.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- radiology_report__prostate_volume >  37.27
+|   |   |   |   |   |--- structured_prompt__age <= 67.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- structured_prompt__age >  67.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |--- radiology_report__prostate_volume >  56.05
+|   |   |   |   |--- radiology_report__psa_density <= 0.07
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- radiology_report__psa_density >  0.07
+|   |   |   |   |   |--- class: 1

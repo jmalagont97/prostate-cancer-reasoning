@@ -1,0 +1,95 @@
+{
+  "H0_Naive_Suspicion": {
+    "rule_name": "H0_Naive_Suspicion",
+    "total_samples": 46,
+    "accuracy": 0.6522,
+    "balanced_accuracy": 0.5655,
+    "macro_f1": 0.5221,
+    "f1_yes": 0.7714,
+    "f1_no": 0.2727,
+    "sensitivity_tpr": 0.9643,
+    "specificity_tnr": 0.1667,
+    "confusion_matrix": {
+      "tn": 3,
+      "fp": 15,
+      "fn": 1,
+      "tp": 27,
+      "matrix_labels": [
+        "no",
+        "yes"
+      ],
+      "raw_matrix": [
+        [
+          3,
+          15
+        ],
+        [
+          1,
+          27
+        ]
+      ]
+    }
+  },
+  "H1_PriorBx_Filtered": {
+    "rule_name": "H1_PriorBx_Filtered",
+    "total_samples": 46,
+    "accuracy": 0.6957,
+    "balanced_accuracy": 0.7202,
+    "macro_f1": 0.6951,
+    "f1_yes": 0.7083,
+    "f1_no": 0.6818,
+    "sensitivity_tpr": 0.6071,
+    "specificity_tnr": 0.8333,
+    "confusion_matrix": {
+      "tn": 15,
+      "fp": 3,
+      "fn": 11,
+      "tp": 17,
+      "matrix_labels": [
+        "no",
+        "yes"
+      ],
+      "raw_matrix": [
+        [
+          15,
+          3
+        ],
+        [
+          11,
+          17
+        ]
+      ]
+    }
+  },
+  "H2_EAU_Stratified_Guideline": {
+    "rule_name": "H2_EAU_Stratified_Guideline",
+    "total_samples": 46,
+    "accuracy": 0.6957,
+    "balanced_accuracy": 0.7202,
+    "macro_f1": 0.6951,
+    "f1_yes": 0.7083,
+    "f1_no": 0.6818,
+    "sensitivity_tpr": 0.6071,
+    "specificity_tnr": 0.8333,
+    "confusion_matrix": {
+      "tn": 15,
+      "fp": 3,
+      "fn": 11,
+      "tp": 17,
+      "matrix_labels": [
+        "no",
+        "yes"
+      ],
+      "raw_matrix": [
+        [
+          15,
+          3
+        ],
+        [
+          11,
+          17
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+Git Revision: d99309b13cbbc358c5dd0e4313a94cbc8876a98f
+Date: 2026-11-05T19:33:00.003975
+Model: Deterministic Clinical Heuristics (H0, H1, H2)
+Train samples: 45
+Test samples: 46

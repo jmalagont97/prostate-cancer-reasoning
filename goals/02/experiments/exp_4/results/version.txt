@@ -1,0 +1,6 @@
+Git Revision: d99309b13cbbc358c5dd0e4313a94cbc8876a98f
+Date: 2026-11-05T19:02:30.837592
+Model: DecisionTreeClassifier (unconstrained CART)
+Scikit-learn random_state: 42
+Tree Depth: 6
+Leaf Nodes: 11
